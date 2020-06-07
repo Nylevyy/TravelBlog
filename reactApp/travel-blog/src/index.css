@@ -1,3 +1,7 @@
+@import url(./static/css/normalize.css);
+@import url(./static/fonts/GothamPro/GothamProFont.css);
+@import url('./static/fonts/Intro Bold/intro-bold.css');
+
 body {
     font-family: 'Gotham Pro', serif;
     font-size: 14px;
@@ -11,17 +15,11 @@ body {
     border: none;
     border-radius: 6px;
     white-space: nowrap; }
-.button_delete {
-    align-self: center;
-    background: url("../src/img/article/close.svg") no-repeat;
-    background-size: contain;
-    width: 15px;
-    height: 15px;
-    margin: 25px auto; }
+
 
 .header {
     display: flex;
-    background: url(../src/img/header/01.png) center no-repeat;
+    background: url(../src/static/img/header/01.png) center no-repeat;
     background-size: cover;
     color: #ffffff;
     font-size: 1.1em;
@@ -84,6 +82,15 @@ body {
     padding: 12px;
     text-align: center;
     margin-left: -10px; }
+.buttons__button_delete {
+    border: none;
+    padding: 0;
+    align-self: center;
+    background: url("../src/static/img/article/close.svg") no-repeat;
+    background-size: contain;
+    width: 15px;
+    height: 15px;
+    margin: 25px auto; }
 .buttons__button:first-child {
     margin-left: 0; }
 .buttons__button:last-child {
@@ -179,7 +186,7 @@ body {
     line-height: 1.25em; }
 
 .footer {
-    background: url("../src/img/footer/background.png") center;
+    background: url("../src/static/img/footer/background.png") center;
     background-size: cover;
     height: 75px;
     width: 100%; }
@@ -207,8 +214,6 @@ body {
     /* .modal__content */
     /* .modal__form */ }
 .modal__container {
-    display: flex;
-    flex-direction: column;
     flex: 100%;
     padding: 0 15px 20px; }
 .modal__button {
@@ -277,7 +282,7 @@ body {
     height: 20px;
     width: 20px;
     border: none;
-    background: url(../src/img/modal/location.svg);
+    background: url(../src/static/img/modal/location.svg);
     background-size: contain; }
 .input__label {
     color: #a3a3a3; }

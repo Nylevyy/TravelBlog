@@ -1,0 +1,15 @@
+.daily {
+    display: flex;
+    flex-direction: column;
+}
+.daily__date {
+    font-family: 'Intro Bold Alt', serif;
+    font-size: 27px;
+}
+.daily__articles {
+    margin-bottom: -10px;
+}
+
+.daily:first-child .article:first-child {
+    border-color: #ff7eb5;
+}

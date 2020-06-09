@@ -1,0 +1,30 @@
+@import url(./static/css/normalize.css);
+@import url(./static/fonts/GothamPro/GothamProFont.css);
+@import url('./static/fonts/Intro Bold/intro-bold.css');
+@import url(Components/css/Header.css);
+@import url(Components/css/LogoIcon.css);
+@import url(Components/css/Subtitle.css);
+@import url(Components/css/Button.css);
+@import url(Components/css/Main.css);
+@import url(Components/css/Daily.css);
+@import url(Components/css/Articles.css);
+@import url(Components/css/Footer.css);
+@import url(Components/css/Modal.css);
+@import url(Components/css/Form.css);
+@import url(Components/css/InputWrapper.css);
+@import url(Components/css/Input.css);
+@import url(Components/css/TextArea.css);
+@import url(Components/css/Label.css);
+@import url(Components/css/Checkbox.css);
+
+body {
+    font-family: 'Gotham Pro', serif;
+    font-size: 14px;
+    line-height: 1.15;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+

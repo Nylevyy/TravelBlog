@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    background: url(../../static/img/header/01.png) center no-repeat;
+    background-size: cover;
+    color: #ffffff;
+    font-size: 1.1em;}
+.header__container {
+    margin: 50px auto 30px;
+    padding: 0 15px;
+    flex: 0 0 71.25%; }
+.header__logo {
+    padding: 0 5px; }
+.header__subtitle {
+    width: 670px;
+    align-self: flex-end;
+}
+.header__buttons {
+    padding: 0 20px;
+    margin: 36px 0 0; }

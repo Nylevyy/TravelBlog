@@ -21,6 +21,9 @@ body {
     font-family: 'Gotham Pro', serif;
     font-size: 14px;
     line-height: 1.15;
+    background-color: #f6f6f6;
+    position: relative;
+    min-height: 100vh;
 }
 .container {
     display: flex;

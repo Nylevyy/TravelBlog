@@ -2,7 +2,6 @@ import React from "react";
 
 export default function Checkbox(props) {
   return (
-
     <div className="form__wrapper">
       <input type="checkbox"
              className="form__checkbox"
@@ -11,7 +10,7 @@ export default function Checkbox(props) {
       />
       <label htmlFor="form__checkbox"
              className="form__checkbox_label">
-        Пометить событие как важное
+        {props.label}
       </label>
     </div>
   )

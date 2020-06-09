@@ -8,7 +8,6 @@ export default class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
       inputs: [
         {
           name: "title",
@@ -31,25 +30,52 @@ export default class Form extends React.Component {
           label: ""
         }, {
           name: "checkbox",
-          value: false,
-          label: ""
+          value: "",
+          label: "Пометить событие как важное"
         }
       ]
     }
   }
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     const input = this.state.inputs;
-
+    const id = Date.now();
+    const day = new Date().getDate();
+    const month = new Date().getMonth();
+    const date = this.getDate(day, month);
+    for (let i = 0; i < input.length - 1; i++) {
+      if (!input[i].value) {
+        alert("Поле " + input[i].name + " не заполнено");
+        return
+      }
+    }
     const article = {
       title: input[0].value,
       location: input[1].value,
       time: input[2].value,
       content: input[3].value,
       isImportant: input[4].value,
-      id: Date.now()
+      id: id
     };
-
-    localStorage.setItem( Date.now(), JSON.stringify(article))
+    const storage = localStorage.getItem(date);
+    if (!storage) {
+      localStorage.setItem(date, JSON.stringify([article]));
+    } else {
+      const data = JSON.parse(storage);
+      data.push(article);
+      localStorage.setItem(date, JSON.stringify(data))
+    }
+    this.clearInputs()
+  }
+  getDate(day, monthNum) {
+    const months = [" января", " февраля", " марта", " апреля", " мая", " июня",
+      " июля", " августа", " сентября", " октября", " ноября", " декабря"];
+    const month = months[monthNum];
+    return (day + month)
+  }
+  handleReset() {
+    this.clearInputs();
+    console.log('clear')
   }
   handleChange(key, e) {
     const target = e.target;
@@ -57,7 +83,14 @@ export default class Form extends React.Component {
     const newState = this.state.inputs.slice();
     newState[+key].value = value;
     this.setState({inputs: newState});
-    console.log(this.state.inputs[+key])
+    console.log(newState[key]);
+  }
+  clearInputs() {
+    const inputs = this.state.inputs.slice();
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].value = "";
+    }
+    this.setState({inputs: inputs})
   }
   render() {
     const inputs = this.state.inputs;
@@ -78,7 +111,11 @@ export default class Form extends React.Component {
     };
 
     return (
-      <form action="" className="modal__form form" onSubmit={() => this.handleSubmit()}>
+      <form action=""
+            className="modal__form form"
+            onSubmit={(e) => this.handleSubmit(e)}
+            onReset={() => this.handleReset()}
+      >
         <InputWrapper name={inputs[0].name}
                       label={inputs[0].label}
                       inputIndex={0}
@@ -100,7 +137,8 @@ export default class Form extends React.Component {
                     label={inputs[4].label}
                     inputIndex={4}
                     value=""
-                    onChange={this.handleChange.bind(this)}/>
+                    onChange={this.handleChange.bind(this)}
+          />
           <Buttons
             wrapper="form"
             types={[

@@ -4,9 +4,7 @@ import LocationLabel from "./LocationLabel";
 import Label from "./Label";
 
 export default class InputWrapper extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
   render() {
     const name = this.props.name;
     const label = this.props.label;

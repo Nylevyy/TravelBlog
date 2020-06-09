@@ -2,9 +2,7 @@ import React from "react";
 import Button from "./Button";
 
 export default class Buttons extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
 
   render() { //todo: _modal modify
     const wrapper = this.props.wrapper;
@@ -19,6 +17,7 @@ export default class Buttons extends React.Component {
               type={type.type}
               key={type.id}
               id={type.id}
+              lSKey={type.lSKey}
             />
           )
         })}

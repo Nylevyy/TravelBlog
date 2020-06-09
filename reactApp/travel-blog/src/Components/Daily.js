@@ -2,9 +2,8 @@ import React  from "react";
 import Articles from "./Articles";
 
 export default class Daily extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
+
   render() {
     return (
       <div className="main__daily daily">
@@ -13,6 +12,7 @@ export default class Daily extends React.Component {
         </div>
         <Articles onClick={this.props.onClick}
                   articles={this.props.articles}
+                  date={this.props.value}
         />
       </div>
     )

@@ -3,9 +3,7 @@ import Button from "./Button";
 import Form from "./Form";
 
 export default class Modal extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
   render() {
     const isOpen = this.props.isOpen;
     return (

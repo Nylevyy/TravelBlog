@@ -2,6 +2,9 @@
     display: flex;
     flex-direction: column;
 }
+.daily_empty {
+    padding: 100px;
+}
 .daily__date {
     font-family: 'Intro Bold Alt', serif;
     font-size: 27px;

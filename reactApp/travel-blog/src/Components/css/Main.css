@@ -1,0 +1,11 @@
+.main {
+    display: flex;
+    background-color: #f6f6f6;
+}
+.main__container {
+    flex: 0 0 71.25%;
+    margin: 5px auto;
+}
+.main__daily {
+    padding: 15px 15px 0;
+}

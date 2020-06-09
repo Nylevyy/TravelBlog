@@ -1,0 +1,29 @@
+
+
+.buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    position: relative;
+}
+.buttons__button {
+    margin-right: 30px;
+    width: 165px;
+    height: 52px;
+}
+.buttons__button:first-child {
+    margin-left: 0;
+}
+.buttons__button:last-child {
+    margin-right: 0;
+}
+.buttons__popup {
+    display: none;
+    position: absolute;
+    bottom: -506%;
+    right: -453%;
+}
+.buttons__popup_active {
+    display: flex;
+}
+
+

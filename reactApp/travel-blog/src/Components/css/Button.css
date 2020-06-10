@@ -9,6 +9,9 @@
     white-space: nowrap;
     cursor: pointer;
 }
+.button:focus {
+    outline: none;
+}
 .button_refresh {
     background-color: transparent;
 }
@@ -21,6 +24,11 @@
     border: none;
     background: url(../../static/img/modal/location.svg);
     background-size: contain;
+}
+.button__find-location:focus {
+    outline: none;
+    border-radius: 50%;
+    border: 1px solid #a9d85f;
 }
 .button_modal {
     width: 100px;

@@ -4,11 +4,11 @@ import Button from "./Button";
 export default class Buttons extends React.Component {
 
 
-  render() { //todo: _modal modify
+  render() {
     const wrapper = this.props.wrapper;
     return (
       <div className={wrapper + "__buttons buttons"}>
-        {this.props.types.map((type, index) => {
+        {this.props.types.map((type) => {
           return (
             <Button
               onClick={this.props.onClick}

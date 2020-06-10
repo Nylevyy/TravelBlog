@@ -8,13 +8,100 @@ import Footer from "./Footer";
 export default class App extends React.Component{
   constructor(props) {
     super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
     this.state = {
-      days: this.refreshDays(),
-      articles: this.refreshArticles(),
-      isModal: false
+      days: this.getDays(),
+      articles: this.getArticles(),
+      isModal: false,
+      inputs: [
+        {
+          name: "title",
+          value: "",
+          label: "Событие"
+        },
+        {
+          name: "location",
+          value: "",
+          label: "Место"
+        },
+        {
+          name: "time",
+          value: "",
+          label: "Время"
+        },
+        {
+          name: "content",
+          value: "",
+          label: ""
+        }, {
+          name: "checkbox",
+          value: "",
+          label: "Пометить событие как важное"
+        }
+      ],
+      popUp: true
     }
   }
-  refreshDays() {
+  getDate(day, monthNum) {
+    const months = [" января", " февраля", " марта", " апреля", " мая", " июня",
+      " июля", " августа", " сентября", " октября", " ноября", " декабря"];
+    const month = months[monthNum];
+    return (day + month)
+  }
+  handleSubmit(e, inputs) {
+    e.preventDefault();
+    const input = inputs;
+    const id = Date.now();
+    const day = new Date().getDate();
+    const month = new Date().getMonth();
+    const date = this.getDate(day, month);
+    for (let i = 0; i < input.length - 1; i++) {
+      if (!input[i].value) {
+        alert("Поле " + input[i].name + " не заполнено");
+        return
+      }
+    }
+    const article = {
+      title: input[0].value,
+      location: input[1].value,
+      time: input[2].value,
+      content: input[3].value,
+      isImportant: input[4].value,
+      id: id
+    };
+    const storage = localStorage.getItem(date);
+    if (!storage) {
+      localStorage.setItem(date, JSON.stringify([article]));
+    } else {
+      const data = JSON.parse(storage);
+      data.push(article);
+      localStorage.setItem(date, JSON.stringify(data))
+    }
+    this.clearInputs();
+    this.toggleModal();
+    this.refreshPage()
+  }
+  handleReset() {
+    this.clearInputs();
+  }
+  clearInputs() {
+    const inputs = this.state.inputs.slice();
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].value = "";
+    }
+    this.setState({inputs: inputs})
+  }
+  handleChange(key, e) {
+    const target = e.target;
+    const value = (target.id === "form__checkbox" ? target.checked : target.value);
+    const newState = this.state.inputs.slice();
+    newState[+key].value = value;
+    this.setState({inputs: newState});
+  }
+  getDays() {
     let keys = Object.keys(localStorage);
     let days = [];
     for (let key of keys) {
@@ -22,13 +109,19 @@ export default class App extends React.Component{
     }
     return days
   }
-  refreshArticles() {
+  getArticles() {
     let keys = Object.keys(localStorage);
     let articles = [];
     for (let key of keys) {
       articles.concat(localStorage.getItem(key))
     }
     return articles
+  }
+  refreshPage() {
+    this.setState({
+      days: this.getDays(),
+      articles: this.getArticles()
+    })
   }
   toggleModal() {
     const isModal = this.state.isModal;
@@ -40,44 +133,57 @@ export default class App extends React.Component{
     const elemIndex = storage.indexOf((elem), 0);
     storage.splice(elemIndex, 1);
     (storage.length === 0) ? localStorage.removeItem(key) : localStorage.setItem(key, JSON.stringify(storage));
-    this.setState({days: this.refreshDays(), articles: this.refreshArticles()})
+    this.refreshPage()
   }
-  handleClick(id, key) {
+  getLocation(evt) {
+    evt.preventDefault();
+    console.log('getloc');
 
+  }
+  handleClick(id, value) {
+    console.log(id);
     switch (id) {
       case "newArticleButton":
         this.toggleModal();
         break;
       case "refreshButton":
-        this.refreshDays();
-        this.refreshArticles();
+        this.refreshPage();
         break;
       case "submitButton":
-        this.refreshDays();
-        this.refreshArticles();
-        console.log('ok');
         break;
       case "resetButton":
+        this.clearInputs();
         break;
       case "closeModal":
         this.toggleModal();
         break;
+      case "getLocation":
+        this.getLocation(value);
+        break;
+      case "popUp":
+        this.setState({popUp: false});
+        console.log(this.state.popUp);
+        break;
       default:
-        this.removeArticle(id, key)
+        this.removeArticle(id, value)
     }
   }
-
   render() {
     return (
       <div className="App">
-        <Header onClick={this.handleClick.bind(this)}/>
-        <Main onClick={this.handleClick.bind(this)}
+        <Header onClick={this.handleClick}/>
+        <Main onClick={this.handleClick}
               days={this.state.days}
         />
         <Footer/>
         <Modal
           isOpen={this.state.isModal}
-          onClick={this.handleClick.bind(this)}
+          onClick={this.handleClick}
+          onSubmit={this.handleSubmit}
+          onChange={this.handleChange}
+          onReset={this.handleReset}
+          inputs={this.state.inputs}
+          popUp={this.state.popUp}
         />
       </div>
     )

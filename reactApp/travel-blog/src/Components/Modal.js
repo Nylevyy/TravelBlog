@@ -20,7 +20,13 @@ export default class Modal extends React.Component {
                 />
               </div>
               <div className="modal__content">
-                <Form onClick={this.props.onClick}/>
+                <Form onClick={this.props.onClick}
+                      onSubmit={this.props.onSubmit}
+                      onChange={this.props.onChange}
+                      onReset={this.props.onReset}
+                      inputs={this.props.inputs}
+                      popUp={this.props.popUp}
+                />
               </div>
             </div>
           </div>

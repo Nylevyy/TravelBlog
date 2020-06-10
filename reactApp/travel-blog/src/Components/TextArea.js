@@ -8,6 +8,7 @@ export default function TextArea(props) {
               rows="10"
               placeholder="Описание"
               onChange={(e) => props.onChange(props.inputIndex, e)}
+              value={props.value}
     />
   )
 }

@@ -15,8 +15,11 @@ export default class InputWrapper extends React.Component {
         <Input name={name}
                onChange={this.props.onChange}
                inputIndex={this.props.inputIndex}
+               value={this.props.value}
         />
-        <LocationLabel/>
+        <LocationLabel popUp={this.props.popUp}
+                       onClick={this.props.onClick}
+        />
       </div>
     );
     return (
@@ -25,6 +28,7 @@ export default class InputWrapper extends React.Component {
         <Input name={name}
                onChange={this.props.onChange}
                inputIndex={this.props.inputIndex}
+               value={this.props.value}
         />
         <Label name={name} value={label}/>
       </div>

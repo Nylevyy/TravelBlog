@@ -21,3 +21,12 @@
     border: 1px solid #a3a3a3; }
 .input__content_active {
     border: 2px solid #a9d85f; }
+
+
+
+@media screen and (max-width: 480px) {
+    .input__content {
+        margin-top: 0;
+    }
+
+}

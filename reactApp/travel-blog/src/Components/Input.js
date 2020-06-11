@@ -8,6 +8,7 @@ export default function Input(props) {
            className={name + " input__field input__" + name}
            id={"input__" + name}
            onChange={(e) => props.onChange(props.inputIndex, e)}
+           value={props.value}
     />
   );
 }

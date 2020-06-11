@@ -1,11 +1,25 @@
 .main {
     display: flex;
-    background-color: #f6f6f6;
 }
 .main__container {
     flex: 0 0 71.25%;
     margin: 5px auto;
+    padding-bottom: 100px;
+
 }
 .main__daily {
     padding: 15px 15px 0;
+}
+
+@media screen and (max-width: 991px) {
+    .main__container {
+        flex: 1;
+        padding: 0 25px 100px;
+        margin-top: -20px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .main__daily {
+        padding: 0;
+    }
 }

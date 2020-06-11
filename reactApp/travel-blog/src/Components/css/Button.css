@@ -9,6 +9,9 @@
     white-space: nowrap;
     cursor: pointer;
 }
+.button:focus {
+    outline: none;
+}
 .button_refresh {
     background-color: transparent;
 }
@@ -21,6 +24,11 @@
     border: none;
     background: url(../../static/img/modal/location.svg);
     background-size: contain;
+}
+.button__find-location:focus {
+    outline: none;
+    border-radius: 50%;
+    border: 1px solid transparent;
 }
 .button_modal {
     width: 100px;
@@ -42,4 +50,21 @@
     width: 15px;
     height: 15px;
     margin: 25px auto;
+}
+
+
+@media screen and (max-width: 767px) {
+    .button_delete {
+        margin: 15px 0 0;
+    }
+}
+@media screen and (max-width: 480px) {
+    .button {
+        font-size: 15px;
+    }
+    .button_modal {
+        width: 95px;
+        margin-left: 0;
+    }
+
 }

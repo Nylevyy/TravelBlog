@@ -17,3 +17,26 @@
 .header__buttons {
     padding: 0 20px;
     margin: 36px 0 0; }
+
+
+
+@media screen and (max-width: 767px) {
+    .header__container {
+        margin: 25px 20px;
+        flex: 1;
+    }
+    .header__subtitle {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 480px) {
+    .header__container {
+        margin: 10px 15px;
+    }
+    .header__buttons {
+        padding: 0;
+        margin: 10px 10px 5px;
+        justify-content: space-around;
+    }
+
+}

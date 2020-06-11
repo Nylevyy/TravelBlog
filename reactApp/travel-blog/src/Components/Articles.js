@@ -3,17 +3,13 @@ import Buttons from "./Buttons";
 
 export default class Articles extends React.Component {
   render() {
-    const data = this.props.articles;
-    if (!data.length) return (
+    const articles = JSON.parse(this.props.articles);
+    if (!articles.length) return (
       <div className="daily__articles articles">
         <h1>No Articles found</h1>
         <h3>Try to create a new one by clicking the button above</h3>
       </div>
     );
-    const articles = data.map(article => {
-      return JSON.parse(article)
-    });
-
      return (
        <div className="daily__articles articles">
          {
@@ -32,14 +28,13 @@ export default class Articles extends React.Component {
                 <Buttons
                   wrapper="article"
                   types={[
-                    { mod: "delete", value: "", type: "button", id: article.id }
+                    { mod: "delete", value: "", type: "button", id: article.id, lSKey: this.props.date }
                   ]}
                   onClick={this.props.onClick}
                 />
               </article>
             )
          }).sort((a, b) => {
-               console.log(a.key, b.key, typeof a.key);
               if (a.key > b.key)  return -1;
               return 1;
              })

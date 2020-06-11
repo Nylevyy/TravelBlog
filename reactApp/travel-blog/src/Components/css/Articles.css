@@ -35,9 +35,14 @@
     padding: 15px 0;
 }
 .article__location {
-    padding: 15px 0;
+    padding: 15px 0 0;
+    margin-bottom: 15px;
     max-width: 230px;
     color: #5b5b5b;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 .article__title {
     overflow: hidden;
@@ -74,4 +79,35 @@
 }
 .content {
     line-height: 1.25em;
+}
+
+
+@media screen and (max-width: 767px) {
+    .article {
+        flex-direction: column-reverse;
+    }
+    .article__wrapper {
+        padding: 3px 15px;
+    }
+    .article__wrapper_info {
+        flex-direction: row;
+    }
+    .article__time {
+        padding-top: 0;
+    }
+    .article__location {
+        max-width: none;
+        padding: 0 5px;
+    }
+    .article__title {
+        margin-top: 0;
+    }
+    .article__content {
+        -webkit-line-clamp: 4;
+    }
+    .article__buttons {
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 0 15px;
+    }
 }

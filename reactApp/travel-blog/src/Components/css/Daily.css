@@ -2,6 +2,9 @@
     display: flex;
     flex-direction: column;
 }
+.daily_empty {
+    padding: 100px;
+}
 .daily__date {
     font-family: 'Intro Bold Alt', serif;
     font-size: 27px;
@@ -12,4 +15,11 @@
 
 .daily:first-child .article:first-child {
     border-color: #ff7eb5;
+}
+
+
+@media screen and (max-width: 767px) {
+    .daily__articles {
+        margin-top: -10px;
+    }
 }

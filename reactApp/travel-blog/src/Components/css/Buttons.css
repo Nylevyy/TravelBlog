@@ -27,3 +27,13 @@
 }
 
 
+@media screen and (max-width: 480px) {
+    .buttons__button {
+        margin-right: 10px;
+        width: 120px;
+        height: 40px;
+    }
+    .buttons__button:last-child {
+        margin-right: 0;
+    }
+}

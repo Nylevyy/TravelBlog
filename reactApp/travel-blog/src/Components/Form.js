@@ -5,62 +5,8 @@ import Checkbox from "./Checkbox";
 import Buttons from "./Buttons";
 
 export default class Form extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-      inputs: [
-        {
-          name: "title",
-          value: "",
-          label: "Событие"
-        },
-        {
-          name: "location",
-          value: "",
-          label: "Место"
-        },
-        {
-          name: "time",
-          value: "",
-          label: "Время"
-        },
-        {
-          name: "content",
-          value: "",
-          label: ""
-        }, {
-          name: "checkbox",
-          value: false,
-          label: ""
-        }
-      ]
-    }
-  }
-  handleSubmit() {
-    const input = this.state.inputs;
-
-    const article = {
-      title: input[0].value,
-      location: input[1].value,
-      time: input[2].value,
-      content: input[3].value,
-      isImportant: input[4].value,
-      id: Date.now()
-    };
-
-    localStorage.setItem( Date.now(), JSON.stringify(article))
-  }
-  handleChange(key, e) {
-    const target = e.target;
-    const value = (target.id === "form__checkbox" ? target.checked : target.value);
-    const newState = this.state.inputs.slice();
-    newState[+key].value = value;
-    this.setState({inputs: newState});
-    console.log(this.state.inputs[+key])
-  }
   render() {
-    const inputs = this.state.inputs;
+    const inputs = this.props.inputs;
     const wrapper = () => {
       let wrappers = [];
       for (let i = 1; i < 3; i++) {
@@ -68,22 +14,28 @@ export default class Form extends React.Component {
           <InputWrapper name={inputs[i].name}
                         label={inputs[i].label}
                         inputIndex={i}
-                        value=""
-                        onChange={this.handleChange.bind(this)}
+                        value={inputs[i].value}
+                        onChange={this.props.onChange}
                         key={inputs[i].name}
+                        onClick={this.props.onClick}
+                        popUp={this.props.popUp}
           />
         )
       }
       return wrappers.map(item => {return item})
     };
-
     return (
-      <form action="" className="modal__form form" onSubmit={() => this.handleSubmit()}>
+
+      <form action=""
+            className="modal__form form"
+            onSubmit={(e) => this.props.onSubmit(e, this.props.inputs)}
+            onReset={() => this.props.onReset()}
+      >
         <InputWrapper name={inputs[0].name}
                       label={inputs[0].label}
                       inputIndex={0}
-                      value=""
-                      onChange={this.handleChange.bind(this)}
+                      value={inputs[0].value}
+                      onChange={this.props.onChange}
         />
         <div className="form__wrapper">
           {wrapper()}
@@ -92,15 +44,18 @@ export default class Form extends React.Component {
           <TextArea name={inputs[3].name}
                     label={inputs[3].label}
                     inputIndex={3}
-                    value=""
-                    onChange={this.handleChange.bind(this)}/>
+                    value={inputs[3].value}
+                    onChange={this.props.onChange}
+          />
+
         </div>
         <div className="form__input form__wrapper">
           <Checkbox name={inputs[4].name}
                     label={inputs[4].label}
                     inputIndex={4}
-                    value=""
-                    onChange={this.handleChange.bind(this)}/>
+                    value={inputs[4].value}
+                    onChange={this.props.onChange}
+          />
           <Buttons
             wrapper="form"
             types={[

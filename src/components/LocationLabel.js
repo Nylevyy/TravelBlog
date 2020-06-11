@@ -1,4 +1,4 @@
-import popup from "../static/img/modal/popup.svg";
+import popup from "../assets/img/modal/popup.svg";
 import React from "react";
 import Label from "./Label";
 

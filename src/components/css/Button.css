@@ -22,7 +22,7 @@
     height: 20px;
     width: 20px;
     border: none;
-    background: url(../../static/img/modal/location.svg);
+    background: url(../../assets/img/modal/location.svg);
     background-size: contain;
 }
 .button__find-location:focus {
@@ -45,7 +45,7 @@
 .button_delete {
     border: none;
     align-self: center;
-    background: url("../../static/img/article/close.svg") no-repeat;
+    background: url("../../assets/img/article/close.svg") no-repeat;
     background-size: contain;
     width: 15px;
     height: 15px;

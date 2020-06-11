@@ -1,6 +1,6 @@
 .header {
     display: flex;
-    background: url(../../static/img/header/01.png) center no-repeat;
+    background: url(../../assets/img/header/01.png) center no-repeat;
     background-size: cover;
     color: #ffffff;
     font-size: 1.1em;}

@@ -4,12 +4,7 @@ import Buttons from "./Buttons";
 export default class Articles extends React.Component {
   render() {
     const articles = JSON.parse(this.props.articles);
-    if (!articles.length) return (
-      <div className="daily__articles articles">
-        <h1>No Articles found</h1>
-        <h3>Try to create a new one by clicking the button above</h3>
-      </div>
-    );
+
      return (
        <div className="daily__articles articles">
          {

@@ -22,4 +22,8 @@
     .daily__articles {
         margin-top: -10px;
     }
+    .daily_empty {
+        padding: 100px 20px;
+        margin: 0 auto;
+    }
 }

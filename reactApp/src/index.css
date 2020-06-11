@@ -1,6 +1,6 @@
-@import url(./static/css/normalize.css);
-@import url(./static/fonts/GothamPro/GothamProFont.css);
-@import url('./static/fonts/Intro Bold/intro-bold.css');
+@import url(static/css/normalize.css);
+@import url(static/fonts/GothamPro/GothamProFont.css);
+@import url('static/fonts/Intro Bold/intro-bold.css');
 @import url(Components/css/Header.css);
 @import url(Components/css/LogoIcon.css);
 @import url(Components/css/Subtitle.css);

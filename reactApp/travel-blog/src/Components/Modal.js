@@ -4,6 +4,7 @@ import Form from "./Form";
 
 export default class Modal extends React.Component {
 
+
   render() {
     const isOpen = this.props.isOpen;
     return (

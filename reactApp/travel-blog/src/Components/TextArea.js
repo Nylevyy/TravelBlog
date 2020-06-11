@@ -4,7 +4,7 @@ export default function TextArea(props) {
   return (
     <textarea className="input__content content"
               name="content"
-              cols="30"
+              cols="25"
               rows="10"
               placeholder="Описание"
               onChange={(e) => props.onChange(props.inputIndex, e)}

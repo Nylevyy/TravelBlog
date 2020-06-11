@@ -80,3 +80,34 @@
 .content {
     line-height: 1.25em;
 }
+
+
+@media screen and (max-width: 767px) {
+    .article {
+        flex-direction: column-reverse;
+    }
+    .article__wrapper {
+        padding: 3px 15px;
+    }
+    .article__wrapper_info {
+        flex-direction: row;
+    }
+    .article__time {
+        padding-top: 0;
+    }
+    .article__location {
+        max-width: none;
+        padding: 0 5px;
+    }
+    .article__title {
+        margin-top: 0;
+    }
+    .article__content {
+        -webkit-line-clamp: 4;
+    }
+    .article__buttons {
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 0 15px;
+    }
+}

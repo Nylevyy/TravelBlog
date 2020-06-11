@@ -135,13 +135,19 @@ export default class App extends React.Component{
     (storage.length === 0) ? localStorage.removeItem(key) : localStorage.setItem(key, JSON.stringify(storage));
     this.refreshPage()
   }
+  setLocation(geo) {
+    const coords = geo.coords;
+    const geolocation = { latitude: coords.latitude, longitude: coords.longitude };
+    alert(JSON.stringify(geolocation));
+  }
+  handleLocationError(err) {
+      alert(`ERROR(${err.code}): ${err.message}`);
+  }
   getLocation(evt) {
     evt.preventDefault();
-    console.log('getloc');
-
+    navigator.geolocation.getCurrentPosition(this.setLocation, this.handleLocationError)
   }
   handleClick(id, value) {
-    console.log(id);
     switch (id) {
       case "newArticleButton":
         this.toggleModal();
@@ -162,7 +168,6 @@ export default class App extends React.Component{
         break;
       case "popUp":
         this.setState({popUp: false});
-        console.log(this.state.popUp);
         break;
       default:
         this.removeArticle(id, value)

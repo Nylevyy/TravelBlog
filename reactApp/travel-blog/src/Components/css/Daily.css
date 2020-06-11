@@ -16,3 +16,10 @@
 .daily:first-child .article:first-child {
     border-color: #ff7eb5;
 }
+
+
+@media screen and (max-width: 767px) {
+    .daily__articles {
+        margin-top: -10px;
+    }
+}

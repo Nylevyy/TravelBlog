@@ -1,0 +1,35 @@
+$passive:  #a3a3a3;
+$active:  #a9d85f;
+
+.wrapper {
+
+}
+.input {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0 7px;
+  margin: 20px 0;
+  &__field {
+    border: none;
+    border-bottom: 1px solid $passive;
+    padding: 5px 0;
+    margin: 0 0 10px;
+  }
+  &__field:focus {
+    border-bottom: 2px solid $active;
+    outline: none;
+  }
+  &_title {
+
+  }
+  &_location {
+    flex-basis: 70%;
+  }
+  &_time {
+
+  }
+  &__label {
+    color: $passive;
+  }
+}

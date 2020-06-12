@@ -2,12 +2,9 @@
     display: flex;
     flex-direction: column; }
 .input__field {
-    border: none;
-    border-bottom: 1px solid #a3a3a3;
-    padding: 5px 0;
-    margin: 0 0 10px; }
+    }
 .input__field:focus {
-    border-bottom: 2px solid #a9d85f;
+
     outline: none; }
 .input__wrapper_location {
     display: flex;

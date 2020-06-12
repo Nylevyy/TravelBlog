@@ -1,0 +1,10 @@
+$background: url(../../../assets/img/jpg/footerBackground.jpg);
+
+.footer{
+  background: $background;
+  background-size: cover;
+  height: 75px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}

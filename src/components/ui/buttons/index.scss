@@ -1,0 +1,38 @@
+$submitButtonColor: #a9d85f;
+$refreshButtonColor: transparent;
+
+
+.button {
+  border: 3px solid $submitButtonColor;
+  font-size: 1.15em;
+  line-height: 2.2;
+  font-weight: bold;
+  border-radius: 6px;
+  white-space: nowrap;
+  cursor: pointer;
+  width: 155px;
+  margin: 0 5px;
+  color: #ffffff;
+  &:active {
+    border-right: 2px solid #82B058;
+    border-bottom: 2px solid #82B058;
+  }
+  &:focus {
+    outline: white;
+  }
+  &_submit {
+    background-color: $submitButtonColor;
+  }
+  &_refresh {
+    background-color: $refreshButtonColor;
+  }
+  &_reset{
+    background-color: $refreshButtonColor;
+    color: #a3a3a3;
+  }
+}
+
+.small {
+  width: 110px;
+  font-size: 1em;
+}

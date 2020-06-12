@@ -1,0 +1,19 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  &__submit {
+    display: flex;
+    padding: 5px 25px;
+    justify-content: space-between;
+    align-items: center;
+    &_checkbox {
+      display: flex;
+    }
+  }
+}
+.checkbox {
+  &__label {
+    margin-left: 10px;
+    color: #5b5b5b;
+  }
+}

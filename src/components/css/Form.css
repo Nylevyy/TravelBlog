@@ -1,6 +1,4 @@
-.form {
-    /* .form__input */
-    /* .input__location */ }
+.form {}
 .form__input {
     padding: 10px 10px; }
 .form__input_title {
@@ -14,8 +12,7 @@
     align-items: baseline;
     justify-content: space-between; }
 .form__checkbox_label {
-    margin-left: 10px;
-    color: #5b5b5b; }
+     }
 
 
 

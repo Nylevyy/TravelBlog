@@ -1,8 +1,8 @@
 import React from "react";
 import Index from "./core/header";
-import Modal from "./core/Modal";
+import Modal from "./core/modal";
 import Main from "./Main";
-import Footer from "./core/Footer";
+import Footer from "./core/footer";
 
 
 export default class App extends React.Component{
@@ -176,7 +176,7 @@ export default class App extends React.Component{
   render() {
     return (
       <div className="main">
-        <Index onClick={this.handleClick}/>
+        <Footer onClick={this.handleClick}/>
         <Main onClick={this.handleClick}
               days={this.state.days}
         />

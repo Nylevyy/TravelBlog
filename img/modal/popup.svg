@@ -1,0 +1,10 @@
+<svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="202px" height="96px">
+    <path fill-rule="evenodd"  opacity="0.702" fill="rgb(0, 0, 0)"
+          d="M200.000,96.000 L2.000,96.000 C0.895,96.000 -0.000,95.105 -0.000,94.000 L-0.000,11.000 C-0.000,9.895 0.895,9.000 2.000,9.000 L91.808,9.000 L100.500,0.308 L109.192,9.000 L200.000,9.000 C201.105,9.000 202.000,9.895 202.000,11.000 L202.000,94.000 C202.000,95.105 201.105,96.000 200.000,96.000 Z"/>
+    <text kerning="auto" font-family="Myriad Pro" fill="rgb(0, 0, 0)" font-size="14px" x="15px" y="35.3200000000001px"><tspan font-size="14px" font-family="Gotham Pro" fill="#FFFFFF">&#1042;&#1099;&#32;&#1084;&#1086;&#1078;&#1077;&#1090;&#1077;&#32;&#1086;&#1090;&#1084;&#1077;&#1090;&#1080;&#1090;&#1100;&#32;</tspan></text>
+    <text kerning="auto" font-family="Myriad Pro" fill="rgb(0, 0, 0)" font-size="14px" x="15px" y="55.3200000000001px"><tspan font-size="14px" font-family="Gotham Pro" fill="#FFFFFF">&#1074;&#1072;&#1096;&#1077;&#32;&#1084;&#1077;&#1089;&#1090;&#1086;&#1087;&#1086;&#1083;&#1086;&#1078;&#1077;&#1085;&#1080;&#1077;</tspan></text>
+    <text kerning="auto" font-family="Myriad Pro" fill="rgb(0, 0, 0)" font-size="14px" x="15px" y="75.3200000000001px"><tspan font-size="14px" font-family="Gotham Pro" fill="#FFFFFF">&#32;&#1087;&#1088;&#1080;&#32;&#1087;&#1086;&#1084;&#1086;&#1097;&#1080;&#32;&#1082;&#1072;&#1088;&#1090;&#1099;</tspan></text>
+</svg>

@@ -21,6 +21,7 @@ function Header(props) {
             key="newEvent"
             type="button"
             mod="_submit"
+            id="newEvent"
           />
           <Button
             onClick={props.onClick}
@@ -28,6 +29,7 @@ function Header(props) {
             key="refresh"
             type="button"
             mod="_refresh"
+            id="refresh"
           />
         </div>
       </div>

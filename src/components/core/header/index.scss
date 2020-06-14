@@ -54,10 +54,13 @@ $background: url(../../../assets/img/jpg/headerBackground.jpg) center no-repeat;
 @media screen and (max-width: 767px){
   .header{
     &__container {
-      margin: 10px 15px;
+      margin: 10px auto;
     }
     &__subtitle {
-      font-size: 20px;
+      width: 300px;
+      &_text {
+        font-size: 20px;
+      }
     }
     &__buttons {
       padding: 0;
@@ -69,13 +72,13 @@ $background: url(../../../assets/img/jpg/headerBackground.jpg) center no-repeat;
 
 @media screen and (max-width: 480px){
   .header{
-    &__container {
-      margin: 10px 15px;
-    }
     &__buttons {
       padding: 0;
       margin: 10px 10px 5px;
       justify-content: space-around;
+    }
+    &__subtitle {
+      width: 250px;
     }
   }
 }

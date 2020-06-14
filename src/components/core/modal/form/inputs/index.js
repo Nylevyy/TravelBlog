@@ -3,13 +3,7 @@ import Input from "../../../../ui/inputs";
 import "./index.scss"
 
 
-function handleChange(key, e) {
-  const target = e.target;
-  const value = (target.id === "form__checkbox" ? target.checked : target.value);
-  const newState = this.state.inputs.slice();
-  newState[+key].value = value;
-  this.setState({inputs: newState});
-}
+
 
 
 function Inputs(props) {
@@ -17,19 +11,23 @@ function Inputs(props) {
     <div className="inputs">
       <Input name="title"
              label="Событие"
-             inputIndex={0}
-             onChange={props.onChange}
+             index={0}
+             onChange={props.onChange(0)}
+             value={props.values[0]}
+
       />
       <div className="inputs__wrapper">
         <Input name="location"
                label="Место"
-               inputIndex={1}
-               onChange={props.onChange}
+               index={1}
+               onChange={props.onChange(1)}
+               value={props.values[1]}
         />
         <Input name="time"
                label="Время"
-               inputIndex={2}
-               onChange={props.onChange}
+               index={2}
+               onChange={props.onChange(2)}
+               value={props.values[2]}
         />
       </div>
       <textarea className="inputs__textarea"
@@ -37,18 +35,10 @@ function Inputs(props) {
                 cols="25"
                 rows="10"
                 placeholder="Описание"
-                onChange={(e) => props.onChange(props.inputIndex, e)}
+                onChange={(e) => props.onChange(3)(e.target.value)}
+                value={props.values[3]}
       />
     </div>
-
-    // <div className={"form__input input form__input_" + name}>
-    //   <Input name={name}
-    //          onChange={this.props.onChange}
-    //          inputIndex={this.props.inputIndex}
-    //          value={this.props.value}
-    //   />
-    //   <Label name={name} value={label}/>
-    // </div>
   )
 }
 

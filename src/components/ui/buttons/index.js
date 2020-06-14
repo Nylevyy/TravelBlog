@@ -5,7 +5,8 @@ function Button(props) {
   return (
     <button className={"button button" + props.mod}
             type={props.type}
-            // onClick={() => this.props.onClick(id, key)}
+            onClick={() => props.onClick(props.id)}
+            id={props.id}
     >
         {props.value}
     </button>

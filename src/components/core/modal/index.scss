@@ -27,6 +27,7 @@
   &__close_button {
     border: none;
     background-color: transparent;
+    cursor: pointer;
     &:after {
       content: "\D7";
       color: #000000;

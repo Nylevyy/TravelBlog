@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState} from "react";
 import Inputs from "./inputs";
 import Button from "../../../ui/buttons";
 import "./index.scss"
@@ -6,9 +6,10 @@ import "./index.scss"
 function Form(props) {
   const [inputs, setInputs] = useState(['', '', '', '', false]);
 
-
   const validateTime = (value) => { //todo
-    return value.match(/[0-2]\d[:][0-5]\d/)
+    if (!value.match(/[0-1]\d[:][0-5]\d/)) {
+      return !!value.match(/[2][0-3][:][0-5]\d/);
+    } else return true;
   };
   const handleReset = () => {
     setInputs(['', '', '', '', false])
@@ -39,31 +40,28 @@ function Form(props) {
 
     const day = new Date().getDate();
     const month = new Date().getMonth();
-    const date = (day, month) => {
+    const getDate = (day, month) => {
       const months = [" января", " февраля", " марта", " апреля", " мая", " июня",
         " июля", " августа", " сентября", " октября", " ноября", " декабря"];
       const monthName = months[month];
       return (day + monthName)
     };
-    const storage = localStorage.getItem(date(day, month));
+    const date = getDate(day, month);
+    const data = JSON.parse(localStorage.getItem("articles"));
+    if (!data[date]) data[date] = [];
 
-    if (!storage) {
-      localStorage.setItem(date(day, month), JSON.stringify([article]));
-    } else {
-      const data = JSON.parse(storage);
-      data.push(article);
-      localStorage.setItem(date(day, month), JSON.stringify(data))
-    }
+    data[date].push(article);
+    localStorage.setItem("articles", JSON.stringify(data));
     handleReset();
-    props.onSubmit("submitForm")
   };
 
   const handleInput = (id) => {
     return function (value) {
       const newState = inputs.slice();
       if (id === 2) {
+        if (value.match(/[^0-9:]+/g)) return;
         if (value.length === 2) {
-          if (!value.includes(':')) value+= ':'
+          if (!value.includes(':')) value += ':'
         } else if (value.length > 5) return
       }
       newState[id] = value;
@@ -84,6 +82,7 @@ function Form(props) {
         <div className="form__submit_checkbox">
           <input type="checkbox"
                  className="checkbox"
+                 id="form__checkbox"
                  onChange={(e) => handleInput(4)(e.target.checked)}
                  checked={!!inputs[4]}
           />

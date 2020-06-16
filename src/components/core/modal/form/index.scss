@@ -17,3 +17,22 @@
     color: #5b5b5b;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .form {
+    &__submit {
+      flex-direction: column;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form {
+    &__submit {
+      &_checkbox {
+        font-size: 0.9em;
+        margin-bottom: 5px;
+      }
+    }
+  }
+}

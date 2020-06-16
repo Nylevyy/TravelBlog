@@ -28,6 +28,9 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+    &:focus {
+      outline: none;
+    }
     &:after {
       content: "\D7";
       color: #000000;
@@ -45,4 +48,16 @@
     display: flex;
   }
 }
-//todo
+
+@media screen and (max-width: 767px) {
+  .modal {
+    &__container {
+      padding: 5px;
+      width: auto;
+      flex-basis: 65%;
+    }
+    &__close {
+      margin-top: 5px;
+    }
+  }
+}

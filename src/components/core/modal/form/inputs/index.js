@@ -33,7 +33,7 @@ function Inputs(props) {
       <textarea className="inputs__textarea"
                 name="content"
                 cols="25"
-                rows="10"
+                rows="8"
                 placeholder="Описание"
                 onChange={(e) => props.onChange(3)(e.target.value)}
                 value={props.values[3]}

@@ -37,6 +37,11 @@ $refreshButtonColor: transparent;
   font-size: 1em;
 }
 
+@media screen and (max-width: 767px){
+  .small {
+  }
+}
+
 @media screen and (max-width: 480px){
   .button {
     width: 110px;

@@ -1,0 +1,183 @@
+.calendar {
+  display: flex;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 0 0 71.25%;
+    margin: 5px auto;
+    padding-bottom: 100px;
+  }
+
+  &_empty {
+    padding: 100px;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    &_date {
+      font-family: 'Intro Bold Alt', serif;
+      font-size: 27px;
+    }
+    &_articles {
+      margin-bottom: -10px;
+    }
+  }
+}
+.article {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  letter-spacing: 0;
+  border-left: 3px solid #a9d85f;
+  padding: 15px;
+  margin-bottom: 10px;
+  &_important {
+    border-left: 3px solid #d8378e;
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 0 5px 25px;
+    flex: 0 25%;
+  }
+  &__time {
+    padding: 15px 0;
+    font-size: 2.15em;
+    font-weight: 500;
+    font-style: normal;
+  }
+  &__location {
+    padding: 15px 0 0;
+    margin-bottom: 15px;
+    max-width: 230px;
+    color: #5b5b5b;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.25em;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 0 5px 25px;
+    flex: 1 60%;
+  }
+  &__title {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    font-size: 1.25em;
+    font-weight: 500;
+    font-style: normal;
+    color: #000000;
+  }
+  &__description {
+    color: #a3a3a3;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: 15px;
+    line-height: 1.25em;
+  }
+  &__delete_button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+    &:after {
+      content: "\D7";
+      color: #000000;
+      font-size: 25px;
+      line-height: 0.5;
+      font-weight: bold;
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .calendar {
+    &__container {
+      flex: 1;
+      padding: 0 25px 100px;
+      margin-top: -20px;
+    }
+    &_empty {
+      padding: 50px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .article {
+    flex-direction: column;
+    font-size: 0.8rem;
+    &__info {
+      flex-direction: row;
+      padding: 5px;
+    }
+    &__time {
+      padding-right: 10px;
+      padding-bottom: 5px;
+    }
+    &__location {
+      margin-bottom: 5px;
+    }
+    &__content {
+      padding: 5px;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .daily{
+    &__date {
+      font-size: 1.5em;
+    }
+  }
+  .article {
+    padding: 7px;
+    font-size: 0.75em;
+    &__info {
+      padding: 5px;
+    }
+    &__time {
+      padding-right: 10px;
+      padding-bottom: 5px;
+      font-size: 1.5em;
+    }
+    &__location {
+      margin-bottom: 5px;
+    }
+    &__delete{
+      display: flex;
+      &_button {
+        flex: 100%;
+        border: 1px solid #ff7eb5;
+        border-radius: 7px;
+        &:active {
+          border-bottom: 1px solid #fd589f;
+          border-right: 1px solid #fd589f;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:after {
+          content: "Удалить";
+          color: #d8378e;
+          font-size: 15px;
+          line-height: 0.7;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

@@ -21,17 +21,16 @@ $background: url(../../../assets/img/jpg/headerBackground.jpg) center no-repeat;
     border-bottom: 4px #a9d85f solid;
     border-radius: 50%;
     align-self: flex-start;
-    width: 60px;
+    width: 100px;
     &_text {
       margin-left: -22px;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 26px;
     }
   }
   &__subtitle {
     width: 670px;
     align-self: flex-end;
-
     &_text {
       margin: 0;
       font-size: 40px;

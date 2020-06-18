@@ -17,27 +17,12 @@
     background: #ffffff;
     border-radius: 5px;
     border: none;
-    width: 580px;
+    flex: 0 1 580px;
     padding: 20px 15px;
   }
   &__close {
     align-self: flex-end;
     margin-right: 10px;
-  }
-  &__close_button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    &:focus {
-      outline: none;
-    }
-    &:after {
-      content: "\D7";
-      color: #000000;
-      font-size: 25px;
-      line-height: 0.5;
-      font-weight: bold;
-    }
   }
   &__form {
     flex: 1;
@@ -49,6 +34,7 @@
   }
 }
 
+
 @media screen and (max-width: 767px) {
   .modal {
     &__container {
@@ -56,8 +42,9 @@
       width: auto;
       flex-basis: 65%;
     }
-    &__close {
-      margin-top: 5px;
-    }
   }
+}
+
+@media screen and (orientation: landscape) and (max-height: 490px){
+
 }

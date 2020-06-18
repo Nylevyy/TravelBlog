@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../ui/buttons";
+import Button from "../../ui/button";
 import "./index.scss"
 
 function Header(props) {
@@ -11,25 +11,23 @@ function Header(props) {
         </div>
         <div className="header__subtitle">
           <h2 className="header__subtitle_text">
-            Друзья, мои походы пока ещё не закончились, делюсь с вами!
+            {props.headerData.title}
           </h2>
         </div>
         <div className="header__buttons buttons">
           <Button
-            onClick={props.onClick}
+            onClick={props.headerData.onNewEventClick}
             value="Событие +"
             key="newEvent"
             type="button"
             mod="_submit"
-            id="newEvent"
           />
           <Button
-            onClick={props.onClick}
+            onClick={props.headerData.onRefreshContentClick}
             value="Обновить"
             key="refresh"
             type="button"
             mod="_refresh"
-            id="refresh"
           />
         </div>
       </div>
@@ -40,12 +38,3 @@ function Header(props) {
 export default Header
 
 
-/*
-<Buttons
-  wrapper="header"
-  types={[
-    { mod: "submit", value: "Событие +", type: "button", id: "newArticleButton" },
-    { mod: "refresh", value: "Обновить", type: "button", id: "refreshButton" }
-  ]}
-  onClick={this.props.onClick}
-/>*/

@@ -1,14 +1,14 @@
 .form {
   display: flex;
   flex-direction: column;
-  &__submit {
+  &__dashboard {
     display: flex;
     padding: 5px 25px;
     justify-content: space-between;
     align-items: center;
-    &_checkbox {
-      display: flex;
-    }
+  }
+  &__checkbox {
+    display: flex;
   }
 }
 .checkbox {
@@ -28,11 +28,13 @@
 
 @media screen and (max-width: 480px) {
   .form {
-    &__submit {
-      &_checkbox {
-        font-size: 0.9em;
-        margin-bottom: 5px;
-      }
+    &__dashboard {
+      flex-direction: column;
+      padding: 5px 15px;
+    }
+    &__checkbox {
+      font-size: 0.9em;
+      margin-bottom: 5px;
     }
   }
 }

@@ -1,7 +1,6 @@
 $submitButtonColor: #a9d85f;
 $refreshButtonColor: transparent;
 
-
 .button {
   display: flex;
   border: 3px solid $submitButtonColor;
@@ -13,6 +12,7 @@ $refreshButtonColor: transparent;
   cursor: pointer;
   flex: 100%;
   color: #ffffff;
+  transition: box-shadow .4s ease-in-out;
   &__wrapper {
     display: flex;
     padding: 10px;
@@ -35,10 +35,6 @@ $refreshButtonColor: transparent;
     box-shadow: 0 0 15px 5px rgba(169,216,95,1);
   }
   &:active {
-    //border-right: 2px solid #82B058;
-    //border-bottom: 2px solid #82B058;
-    //margin-top: 1px;
-    //margin-left: 1px;
     -webkit-box-shadow: 0 0 25px 10px rgba(169,216,95,1);
     -moz-box-shadow: 0 0 25px 10px rgba(169,216,95,1);
     box-shadow: 0 0 25px 10px rgba(169,216,95,1);

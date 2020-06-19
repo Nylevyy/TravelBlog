@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Inputs from "./inputs";
 import Button from "../../../ui/button";
 import "./index.scss"
 
 function Form(props) {
+  const articleData = props.articleData;
   const [inputs, setInputs] = useState(
     {
       values: ['', '', '', '', false],
@@ -72,9 +73,9 @@ function Form(props) {
           time: this.values[2],
           description: this.values[3],
           isImportant: this.values[4],
-          id: Date.now()
+          id: this.id
         };
-        const date = this.getDate();
+        const date = this.date;
         props.onSubmitFormClick(date, article);
         setInputs(inputs => {
           return {
@@ -93,6 +94,32 @@ function Form(props) {
       },
     }
   );
+  useEffect(() => {
+    if (!articleData) {
+      setInputs(inputs => {
+        return (
+          {
+            ...inputs,
+            values: ['', '', '', '', false],
+            id: Date.now(),
+            date: inputs.getDate()
+          }
+        )
+      })
+    } else {
+      setInputs(inputs => {
+          return (
+            {
+              ...inputs,
+              values: articleData.slice(0, 5),
+              id: articleData[5],
+              date: articleData[6]
+            }
+          )
+        }
+      )
+    }
+  }, [articleData]);
 
   /* function onSubmitForm() {
      for (let i = 0; i < inputs.values.length - 1; i++) {
@@ -182,12 +209,16 @@ function Form(props) {
             key="submitForm"
             onClick={inputs.onSubmitForm.bind(inputs)}
           />
-          <Button
-            value="Удалить"
-            mod="_reset small"
-            key="resetForm"
-            onClick={props.onDeleteClick}
-          />
+          {
+            articleData && (
+              <Button
+                value="Удалить"
+                mod="_reset small"
+                key="resetForm"
+                onClick={props.onDeleteClick(articleData[5], articleData[6])}
+              />
+            )
+          }
         </div>
       </div>
     </form>

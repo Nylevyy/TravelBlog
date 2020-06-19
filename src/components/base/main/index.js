@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Calendar from "./calendar";
 import Layout from "../../layout";
 
@@ -90,7 +90,8 @@ function Main() {
               ...layout,
               modal: {
                 ...layout.modal,
-                isOpen: false
+                isOpen: false,
+                currentArticleData: null
               }
             }
           });
@@ -110,7 +111,14 @@ function Main() {
               )
             } else {
               const newArticlesData = dataContent.articles[date].slice();
-              newArticlesData.push(article);
+              const oldArticlesDataIndex = newArticlesData.findIndex(item => {
+                return (item.id === article.id)
+              });
+              if (typeof oldArticlesDataIndex === "number") {
+                newArticlesData[oldArticlesDataIndex] = article
+              } else {
+                newArticlesData.push(article);
+              }
               return (
                 {
                   ...dataContent,
@@ -133,8 +141,48 @@ function Main() {
             }
           })
         },
-        onDeleteCLick() {
-          console.log('del');
+        onDeleteCLick(id, date) {
+          return function () {
+            setDataContent(dataContent => {
+              const newArticlesData = dataContent.articles[date].slice();
+              const articleIndex = newArticlesData.findIndex(item => {
+                return (item.id === id)
+              });
+              newArticlesData.splice(articleIndex, 1);
+              if (!newArticlesData.length) {
+                const articles = Object.assign({}, dataContent.articles);
+                delete articles[date];
+                return (
+                  {
+                    ...dataContent,
+                    articles: {
+                      ...articles
+                    }
+                  }
+                )
+              } else {
+                return (
+                  {
+                    ...dataContent,
+                    articles: {
+                      ...dataContent.articles,
+                      [date]: newArticlesData
+                    }
+                  }
+                )
+              }
+            });
+            setLayout(layout => {
+              return {
+                ...layout,
+                modal: {
+                  ...layout.modal,
+                  currentArticleData: null,
+                  isOpen: false
+                }
+              }
+            })
+          }
         }
       }
     }
@@ -178,19 +226,82 @@ function Main() {
       },
       onArticleClick(date, id) {
         const article = dataContent.articles[date].find(item => item.id === id);
+        console.log(article)
+        console.log(dataContent.articles[date])
+        const data = Object.values(article);
+        data.push(date);
         setLayout(layout => {
           return {
             ...layout,
             modal: {
               ...layout.modal,
               isOpen: true,
-              currentArticleData: Object.values(article).slice(0, 5)
+              currentArticleData: data
             }
           }
         })
       },
     }
   );
+  useEffect(() => {
+    setDataContent(dataContent => {
+      return (
+        {
+          ...dataContent,
+          onDeleteArticleClick(date, id) {
+            return function () {
+              setDataContent(dataContent => {
+                const newArticlesData = dataContent.articles[date].slice();
+                const articleIndex = newArticlesData.findIndex(item => {
+                  return (item.id === id)
+                });
+                newArticlesData.splice(articleIndex, 1);
+                if (!newArticlesData.length) {
+                  const articles = Object.assign({}, dataContent.articles);
+                  delete articles[date];
+                  return (
+                    {
+                      ...dataContent,
+                      articles: {
+                        ...articles
+                      }
+                    }
+                  )
+                } else {
+                  return (
+                    {
+                      ...dataContent,
+                      articles: {
+                        ...dataContent.articles,
+                        [date]: newArticlesData
+                      }
+                    }
+                  )
+                }
+              })
+            }
+          },
+          onArticleClick(date, id) {
+            const article = dataContent.articles[date].find(item => item.id === id);
+            console.log(article)
+            console.log(dataContent.articles[date])
+            const data = Object.values(article);
+            data.push(date);
+            setLayout(layout => {
+              return {
+                ...layout,
+                modal: {
+                  ...layout.modal,
+                  isOpen: true,
+                  currentArticleData: data
+                }
+              }
+            })
+          },
+        }
+      )
+    })
+  }, [dataContent.articles]);
   return (
     <Layout layoutData={layout}>
       <Calendar calendarData={dataContent}/>

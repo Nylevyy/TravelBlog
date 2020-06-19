@@ -1,65 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Calendar from "./calendar";
 import Layout from "../../layout";
-
-const data = {
-  articles: {
-    "12 июня": [
-      {
-        title: "Title for an article",
-        location: "Ulyanovsk, Russia. Vostochny airport",
-        time: "12:32",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aut cumque dolorem et eum, fugit harum, illo laudantium maiores maxime nihil nulla numquam optio provident qui sunt, tempora ullam ut?",
-        isImportant: true,
-        id: 12446329323
-      },
-      {
-        title: "Title for an article",
-        location: "Ulyanovsk, Russia. Vostochny airport",
-        time: "23:32",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aut cumque dolorem et eum, fugit harum, illo laudantium maiores maxime nihil nulla numquam optio provident qui sunt, tempora ullam ut?",
-        isImportant: true,
-        id: 12446329325
-      },
-      {
-        title: "Title for an article",
-        location: "Ulyanovsk, Russia. Vostochny airport",
-        time: "22:32",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aut cumque dolorem et eum, fugit harum, illo laudantium maiores maxime nihil nulla numquam optio provident qui sunt, tempora ullam ut?",
-        isImportant: false,
-        id: 12446329324
-      },
-    ],
-    "14 июня": [
-      {
-        title: "Title for an article",
-        location: "Ulyanovsk, Russia. Vostochny airport",
-        time: "18:42",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aut cumque dolorem et eum, fugit harum, illo laudantium maiores maxime nihil nulla numquam optio provident qui sunt, tempora ullam ut?",
-        isImportant: false,
-        id: 12446329329
-      },
-      {
-        title: "Title for an article",
-        location: "Ulyanovsk, Russia. Vostochny airport",
-        time: "12:32",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aut cumque dolorem et eum, fugit harum, illo laudantium maiores maxime nihil nulla numquam optio provident qui sunt, tempora ullam ut?",
-        isImportant: true,
-        id: 12446329328
-      }
-    ],
-    "15 июня": [
-      {
-        title: "Title for an article",
-        location: "Ulyanovsk, Russia. Vostochny airport",
-        time: "21:42",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aut cumque dolorem et eum, fugit harum, illo laudantium maiores maxime nihil nulla numquam optio provident qui sunt, tempora ullam ut?",
-        isImportant: false,
-        id: 12446329345
-      }
-    ]
-  }
-};
+import articlesData from "../../data";
 
 function Main() {
   const [layout, setLayout] = useState(
@@ -98,7 +40,6 @@ function Main() {
         },
         onSubmitFormClick(date, article) {
           setDataContent(dataContent => {
-
             if (!dataContent.articles[date]) {
               return (
                 {
@@ -190,7 +131,7 @@ function Main() {
 
   const [dataContent, setDataContent] = useState(
     {
-      ...data,
+      ...ArticlesData,
       onDeleteArticleClick(date, id) {
         return function () {
           setDataContent(dataContent => {
@@ -226,8 +167,6 @@ function Main() {
       },
       onArticleClick(date, id) {
         const article = dataContent.articles[date].find(item => item.id === id);
-        console.log(article)
-        console.log(dataContent.articles[date])
         const data = Object.values(article);
         data.push(date);
         setLayout(layout => {

@@ -1,10 +1,23 @@
+@keyframes modalRoll {
+  0% {
+    transform: translate(-100%) rotate(45deg);
+  }
+  95% {
+    transform: translate(10%);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+  transition: none;
+  background-color: rgba(0, 0, 0, 0.4);
   display: none;
   &_active {
     display: flex;
@@ -19,6 +32,7 @@
     border: none;
     flex: 0 1 580px;
     padding: 20px 15px;
+    animation: modalRoll .55s cubic-bezier(0.16, 1, 0.3, 1);
   }
   &__close {
     align-self: flex-end;

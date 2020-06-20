@@ -1,7 +1,11 @@
+import moment from "moment";
+import 'moment/locale/ru'
+moment.locale('ru');
+
 const generateArticle = (object) => (
   {
     ...object,
-    date: ("2020-06-" + (Math.round(Math.random() * 30)) + ' ' + (Math.round(Math.random() * 23)) + ":" + (Math.round(Math.random() * 59))),
+    date: moment().subtract((Math.random() * 2), "d").add((Math.random() * 20), "m").subtract((Math.random() * 14), "h"),
     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aut cumque dolorem et eum, fugit harum, illo laudantium maiores maxime nihil nulla numquam optio provident qui sunt, tempora ullam ut?",
     isImportant: (Math.random() > 0.5),
     id: Math.random()
@@ -15,7 +19,7 @@ const bodies = (
       location: "Ulyanovsk, Russia. Vostochny railway station",
     },
     {
-      title: "Title for an calendar-item",
+      title: "Title for a calendar-item",
       location: "Moscow, Russia. Vostochny District",
     },
     {

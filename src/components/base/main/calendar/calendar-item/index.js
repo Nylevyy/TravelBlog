@@ -4,6 +4,7 @@ import './index.scss';
 import moment from "moment";
 
 
+
 const CalendarItem = (props) => {
   return (
     <article
@@ -16,7 +17,7 @@ const CalendarItem = (props) => {
       >
         <div className="calendar-item__info">
           <div className="calendar-item__time">
-            {moment(props.date ,"YYYY-MM-DD hh:mm", 'fr').format("HH:MM")}
+            {moment(props.date).format("HH:mm")}
           </div>
           <div className="calendar-item__location">{props.location}</div>
         </div>

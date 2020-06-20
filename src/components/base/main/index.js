@@ -38,38 +38,21 @@ const Main = () => {
             }
           });
         },
-        onSubmitFormClick(date, article) {
+        onSubmitFormClick(article) {
           setDataContent(dataContent => {
-            if (!dataContent.articles[date]) {
-              return (
-                {
-                  ...dataContent,
-                  articles: {
-                    ...dataContent.articles,
-                    [date]: [article]
-                  }
-                }
-              )
+            const newArticlesData = dataContent.articles.slice();
+            const oldArticlesDataIndex = newArticlesData.findIndex(item => (item.id === article.id));
+            if (~oldArticlesDataIndex) {
+              newArticlesData[oldArticlesDataIndex] = article
             } else {
-              const newArticlesData = dataContent.articles[date].slice();
-              const oldArticlesDataIndex = newArticlesData.findIndex(item => {
-                return (item.id === article.id)
-              });
-              if (typeof oldArticlesDataIndex === "number") {
-                newArticlesData[oldArticlesDataIndex] = article
-              } else {
-                newArticlesData.push(article);
-              }
-              return (
-                {
-                  ...dataContent,
-                  articles: {
-                    ...dataContent.articles,
-                    [date]: newArticlesData
-                  }
-                }
-              )
+              newArticlesData.push(article);
             }
+            return (
+              {
+                ...dataContent,
+                articles: newArticlesData
+              }
+            )
           });
           setLayout(layout => {
             return {
@@ -82,36 +65,18 @@ const Main = () => {
             }
           })
         },
-        onDeleteCLick(id, date) {
+        onDeleteCLick(id) {
           return function () {
             setDataContent(dataContent => {
-              const newArticlesData = dataContent.articles[date].slice();
-              const articleIndex = newArticlesData.findIndex(item => {
-                return (item.id === id)
-              });
+              const newArticlesData = dataContent.articles.slice();
+              const articleIndex = newArticlesData.findIndex(item => (item.id === id));
               newArticlesData.splice(articleIndex, 1);
-              if (!newArticlesData.length) {
-                const articles = Object.assign({}, dataContent.articles);
-                delete articles[date];
-                return (
-                  {
-                    ...dataContent,
-                    articles: {
-                      ...articles
-                    }
-                  }
-                )
-              } else {
-                return (
-                  {
-                    ...dataContent,
-                    articles: {
-                      ...dataContent.articles,
-                      [date]: newArticlesData
-                    }
-                  }
-                )
-              }
+              return (
+                {
+                  ...dataContent,
+                  articles: newArticlesData
+                }
+              )
             });
             setLayout(layout => {
               return {
@@ -128,7 +93,6 @@ const Main = () => {
       }
     }
   );
-
   const [dataContent, setDataContent] = useState(
     {
       ...articlesData,
@@ -166,70 +130,50 @@ const Main = () => {
     }
   );
   useEffect(() => {
-    setDataContent(dataContent => {
-      return (
-        {
-          ...dataContent,
-          onDeleteArticleClick(date, id) {
-            return function () {
-              setDataContent(dataContent => {
-                const newArticlesData = dataContent.articles[date].slice();
-                const articleIndex = newArticlesData.findIndex(item => {
-                  return (item.id === id)
-                });
-                newArticlesData.splice(articleIndex, 1);
-                if (!newArticlesData.length) {
-                  const articles = Object.assign({}, dataContent.articles);
-                  delete articles[date];
-                  return (
-                    {
-                      ...dataContent,
-                      articles: {
-                        ...articles
-                      }
-                    }
-                  )
-                } else {
-                  return (
-                    {
-                      ...dataContent,
-                      articles: {
-                        ...dataContent.articles,
-                        [date]: newArticlesData
-                      }
-                    }
-                  )
+    setDataContent(dataContent => (
+      {
+        ...dataContent,
+        onDeleteArticleClick(id) {
+          return function () {
+            setDataContent(dataContent => {
+              const newArticlesData = dataContent.articles.slice();
+              const articleIndex = newArticlesData.findIndex(item => {
+                return (item.id === id)
+              });
+              newArticlesData.splice(articleIndex, 1);
+              return (
+                {
+                  ...dataContent,
+                  articles: newArticlesData
                 }
-              })
-            }
-          },
-          onArticleClick(date, id) {
-            const article = dataContent.articles[date].find(item => item.id === id);
-            console.log(article)
-            console.log(dataContent.articles[date])
-            const data = Object.values(article);
-            data.push(date);
-            setLayout(layout => {
-              return {
-                ...layout,
-                modal: {
-                  ...layout.modal,
-                  isOpen: true,
-                  currentArticleData: data
-                }
-              }
+              )
             })
-          },
+          }
+        },
+        onArticleClick(id) {
+          const article = dataContent.articles.find(item => item.id === id);
+          const data = Object.values(article);
+          setLayout(layout => (
+            {
+              ...layout,
+              modal: {
+                ...layout.modal,
+                isOpen: true,
+                currentArticleData: data
+              }
+            }
+          ))
         }
-      )
-    })
+      }
+    ))
   }, [dataContent.articles]);
+
   return (
     <Layout layoutData={layout}>
       <Calendar calendarData={dataContent}/>
     </Layout>
   )
-}
+};
 
 
 export default Main

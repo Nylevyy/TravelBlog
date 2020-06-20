@@ -5,9 +5,10 @@ import "./index.scss";
 import moment from "moment";
 
 const Form = (props) => {
-  const articleData = props.articleData;
   const [inputs, setInputs] = useState(
     {
+      articleData: null,
+      isEditMode: false,
       values: ['', '', '', '', false],
       onInput(index, value) {
         let newValue = value;
@@ -68,10 +69,13 @@ const Form = (props) => {
             }
           }
         }
+        const date = this.isEditMode ? moment(this.articleData[2]) : moment();
+        const hours = +this.values[2].slice(0, 2);
+        const minutes = +this.values[2].slice(3, 5);
         const article = {
           title: this.values[0],
           location: this.values[1],
-          date: moment("YYYY-MM-DD hh:mm"),
+          date: date.hour(hours).minute(minutes),
           description: this.values[3],
           isImportant: this.values[4],
           id: this.id
@@ -86,79 +90,31 @@ const Form = (props) => {
     }
   );
   useEffect(() => {
-    if (!articleData) {
+    if (!props.articleData) {
       setInputs(inputs => (
           {
             ...inputs,
+            articleData: null,
+            isEditMode: false,
             values: ['', '', '', '', false],
             id: Date.now(),
           }
         ))
     } else {
+      const values = props.articleData.slice(0, 5);
+      values[2] = moment(values[2]).format('HH:mm');
       setInputs(inputs => (
         {
           ...inputs,
-          values: articleData.slice(0, 5),
-          id: articleData[5],
+          articleData: props.articleData,
+          isEditMode: true,
+          values: values,
+          id: props.articleData[5],
         }
       ))
     }
-  }, [articleData]);
+  }, [props.articleData]);
 
-/* function onSubmitForm() {
-   for (let i = 0; i < inputs.values.length - 1; i++) {
-     if (!inputs.values[i]) {
-       alert("Не все поля заполнены");
-       return
-     }
-     if (i === 2) {
-       if (!validateTime(inputs.values[2])) {
-         alert('Неверно указано время');
-         return
-       }
-     }
-   }
-   const calendar-item = {
-     title: inputs.values[0],
-     location: inputs.values[1],
-     time: inputs.values[2],
-     description: inputs.values[3],
-     isImportant: inputs.values[4],
-     id: Date.now()
-   };
-   const date = getDate();
-   props.onSubmitFormClick(date, calendar-item);
-   props.closeModal();
-   setInputs(inputs => {
-     return {
-       ...inputs,
-       values: ['', '', '', '', false]
-     }
-   })
- }
-
- function maskInputTime(value) {
-   if (value.match(/[^0-9:]+/g)) return false;
-   if (value.length === 2) {
-     if (!value.includes(':')) (value += ':')
-   } else if (value.length > 5) return false;
-   return value
- }
-
- function validateTime(value) {
-   if (!value.match(/[0-1]\d[:][0-5]\d/)) {
-     return !!value.match(/[2][0-3][:][0-5]\d/);
-   } else return true;
- }
-
- function getDate() {
-   const day = new Date().getDate();
-   const month = new Date().getMonth();
-   const monthNames = [" января", " февраля", " марта", " апреля", " мая", " июня",
-     " июля", " августа", " сентября", " октября", " ноября", " декабря"];
-   const monthName = monthNames[month];
-   return (day + monthName)
- }*/
 
 return (
   <form
@@ -194,12 +150,12 @@ return (
           onClick={inputs.onSubmitForm.bind(inputs)}
         />
         {
-          articleData && (
+          props.articleData && (
             <Button
               value="Удалить"
               mod="_reset small"
               key="resetForm"
-              onClick={props.onDeleteClick(articleData[5])}
+              onClick={props.onDeleteClick(props.articleData[5])}
             />
           )
         }

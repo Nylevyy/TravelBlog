@@ -7,7 +7,6 @@ import moment from "moment";
 const Calendar = (props) => {
   const data = props.calendarData;
   let cachedDate = '';
-
   return (
     <div className="main-calendar">
       <div className="main-calendar__container">
@@ -24,9 +23,9 @@ const Calendar = (props) => {
             if (a.date > b.date) return -1;
             return 1
           }).map(item => {
-            const currentDate = moment(item.date, "YYYY-MM-DD hh:mm", 'ru').format("D MMMM");
-            cachedDate = currentDate;
-            if (cachedDate === currentDate) {
+            const currentDate = moment(item.date).format("D MMMM");
+            if (!(cachedDate === currentDate)) {
+              cachedDate = currentDate;
               return (
                 <React.Fragment key={currentDate}>
                   <div className="main-calendar__date">
@@ -36,6 +35,7 @@ const Calendar = (props) => {
                     {...item}
                     key={item.id}
                     onDeleteArticleClick={props.calendarData.onDeleteArticleClick}
+                    onArticleClick={props.calendarData.onArticleClick}
                   />
                 </React.Fragment>
               )
@@ -45,6 +45,7 @@ const Calendar = (props) => {
                 {...item}
                 key={item.id}
                 onDeleteArticleClick={props.calendarData.onDeleteArticleClick}
+                onArticleClick={props.calendarData.onArticleClick}
               />
             )
           })

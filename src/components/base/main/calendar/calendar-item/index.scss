@@ -7,9 +7,11 @@
   padding: 15px;
   margin-bottom: 10px;
   cursor: pointer;
-  transition: transform 0.5s ease-in-out, box-shadow .2s ease-out;
+  transition: border-left-width 0.2s ease-in-out, box-shadow .2s ease-out, border-top-left-radius 0.2s ease-in-out, border-bottom-left-radius 0.2s ease-in-out;
   &:hover {
-    transform: translate(15px, -5px);
+    border-left-width: 6px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
   }
   &:active {
     -webkit-box-shadow: 0 0 25px 10px rgba(169,216,95,1);
@@ -22,6 +24,7 @@
   }
   &__wrapper {
     display: flex;
+    flex: 1;
   }
   &__info {
     display: flex;

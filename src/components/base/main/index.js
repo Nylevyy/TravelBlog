@@ -3,7 +3,7 @@ import Calendar from "./calendar";
 import Layout from "../../layout";
 import articlesData from "../../data";
 
-function Main() {
+const Main = () => {
   const [layout, setLayout] = useState(
     {
       header: {
@@ -131,46 +131,29 @@ function Main() {
 
   const [dataContent, setDataContent] = useState(
     {
-      ...ArticlesData,
-      onDeleteArticleClick(date, id) {
+      ...articlesData,
+      onDeleteArticleClick(id) {
         return function () {
           setDataContent(dataContent => {
-            const newArticlesData = dataContent.articles[date].slice();
+            const newArticlesData = dataContent.articles.slice();
             const articleIndex = newArticlesData.findIndex(item => {
               return (item.id === id)
             });
             newArticlesData.splice(articleIndex, 1);
-            if (!newArticlesData.length) {
-              const articles = Object.assign({}, dataContent.articles);
-              delete articles[date];
-              return (
-                {
-                  ...dataContent,
-                  articles: {
-                    ...articles
-                  }
-                }
-              )
-            } else {
-              return (
-                {
-                  ...dataContent,
-                  articles: {
-                    ...dataContent.articles,
-                    [date]: newArticlesData
-                  }
-                }
-              )
-            }
+            return (
+              {
+                ...dataContent,
+                articles: newArticlesData
+              }
+            )
           })
         }
       },
-      onArticleClick(date, id) {
-        const article = dataContent.articles[date].find(item => item.id === id);
+      onArticleClick(id) {
+        const article = dataContent.articles.find(item => item.id === id);
         const data = Object.values(article);
-        data.push(date);
-        setLayout(layout => {
-          return {
+        setLayout(layout => (
+          {
             ...layout,
             modal: {
               ...layout.modal,
@@ -178,8 +161,8 @@ function Main() {
               currentArticleData: data
             }
           }
-        })
-      },
+        ))
+      }
     }
   );
   useEffect(() => {

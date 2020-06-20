@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.scss"
 
-function Input(props) {
+const Input = (props) => {
   const name = props.name;
   return (
     <div className={"input input_" + name}>
@@ -20,6 +20,6 @@ function Input(props) {
       </label>
     </div>
   );
-}
+};
 
 export default Input

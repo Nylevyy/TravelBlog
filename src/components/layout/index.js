@@ -3,7 +3,7 @@ import Header from "../core/header";
 import Footer from "../core/footer";
 import Modal from "../core/modal";
 
-function Layout(props) {
+const Layout = (props) => {
   return (
     <div className="layout">
       <Header headerData={props.layoutData.header}/>
@@ -14,6 +14,6 @@ function Layout(props) {
       <Modal modalData={props.layoutData.modal}/>
     </div>
   )
-}
+};
 
 export default Layout

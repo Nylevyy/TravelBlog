@@ -3,7 +3,7 @@ import Form from "./form";
 import "./index.scss"
 import CloseButton from "../../ui/close-button";
 
-function Modal(props) {
+const Modal = (props) => {
   return (
     <div className={"modal" + (props.modalData.isOpen ? " modal_active" : "")}>
       <div className="modal__container">
@@ -21,6 +21,6 @@ function Modal(props) {
       </div>
     </div>
   )
-}
+};
 
 export default Modal

@@ -3,7 +3,7 @@ import Input from "../../../../ui/input";
 import "./index.scss"
 
 
-function Inputs(props) {
+const Inputs = (props) => {
   return (
     <div className="inputs">
       <div className="inputs_small">
@@ -47,7 +47,7 @@ function Inputs(props) {
       />
     </div>
   )
-}
+};
 
 
 export default Inputs

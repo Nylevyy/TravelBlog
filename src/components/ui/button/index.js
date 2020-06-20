@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.scss"
 
-function Button(props) {
+const Button = (props) => {
   return (
     <div className="button__wrapper">
       <button
@@ -13,7 +13,7 @@ function Button(props) {
       </button>
     </div>
   )
-}
+};
 
 
 export default Button

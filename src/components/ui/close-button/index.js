@@ -2,7 +2,7 @@ import React from "react";
 import './index.scss'
 
 
-function CloseButton(props) {
+const CloseButton = (props) => {
   return (
     <div className="close">
       <button
@@ -12,7 +12,7 @@ function CloseButton(props) {
       </button>
     </div>
   )
-}
+};
 
 export default CloseButton
 

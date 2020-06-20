@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../../ui/button";
 import "./index.scss"
 
-function Header(props) {
+const Header = (props) => {
   return (
     <header className="header">
       <div className="header__container">
@@ -33,7 +33,7 @@ function Header(props) {
       </div>
     </header>
   )
-}
+};
 
 export default Header
 

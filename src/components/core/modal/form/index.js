@@ -80,12 +80,7 @@ const Form = (props) => {
           isImportant: this.values[4],
           id: this.id
         };
-        props.onSubmitFormClick(article);
-        setInputs(inputs => ({
-            ...inputs,
-            values: ['', '', '', '', false]
-          }
-        ))
+        props.onSubmitFormClick(article, this.isEditMode);
       },
     }
   );

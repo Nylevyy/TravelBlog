@@ -41,7 +41,7 @@ const articlesData = {
   articles: bodies.map(item => generateArticle(item))
 };*/
 
-const dataURL = "https://my-json-server.typicode.com/Nylevyy/TravelBlogFakeDB/db";
+const dataURL = "https://my-json-server.typicode.com/Nylevyy/TravelBlogFakeDB/";
 
 const sendRequest = (method, url, body) => {
   const headers = {
@@ -54,16 +54,38 @@ const sendRequest = (method, url, body) => {
   }).then(response => {
     if (response.ok) return response.json();
     return response.json().then(err => {
-      const error = new Error('wrong smth');
+      const error = new Error('Something went wrong...');
       error.data = err;
       throw error
     })
   })
 };
 
-const articlesData = sendRequest('GET', dataURL)
+const articlesData = sendRequest('GET', (dataURL + 'db'))
   .catch(err => {
     throw err
   });
 
-export default articlesData
+const createArticle = body => {
+  return sendRequest('POST', (dataURL + "articles"), body)
+    .catch(err => {
+      throw err
+    })
+};
+
+const editArticle = body => {
+  const id = body.id;
+  return sendRequest('PUT', (dataURL + "articles/" + id), body)
+    .catch(err => {
+      throw err
+    })
+};
+
+const deleteArticle = id => {
+  return sendRequest('DELETE', (dataURL + "articlesa/" + id))
+    .catch(err => {
+      throw err
+    })
+};
+
+export { articlesData, createArticle, editArticle, deleteArticle }

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Calendar from "./calendar";
 import Layout from "../../layout";
-import articlesData from "../../data";
+import {articlesData, createArticle, deleteArticle, editArticle} from "../../data";
 
 const Main = () => {
   const [layout, setLayout] = useState(
@@ -20,28 +20,20 @@ const Main = () => {
           });
         },
         onRefreshContentClick() {
-          const getData = async () => {
-            return await articlesData;
-          };
-          getData().then(response => {
-            setDataContent(dataContent => {
-              return {
-                ...dataContent,
-                ...response
-              }
-            })
-          }).catch(() => {
-            setDataContent(dataContent => (
-              {
-                ...dataContent,
-                status: "failed to fetch"
-              }
-            ))
+          setDataContent(dataContent => {
+            return {
+              ...dataContent,
+              dataStatus: "fetching",
+            }
           })
         }
       },
       modal: {
         isOpen: false,
+        request: {
+          isRequesting: false,
+          hasAnyError: false
+        },
         currentArticleData: null,
         onModalCloseClick() {
           setLayout(layout => {
@@ -50,61 +42,119 @@ const Main = () => {
               modal: {
                 ...layout.modal,
                 isOpen: false,
-                currentArticleData: null
+                currentArticleData: null,
+                request: {
+                  isRequesting: false,
+                  hasAnyError: false
+                },
               }
             }
           });
         },
-        onSubmitFormClick(article) {
-          setDataContent(dataContent => {
-            const newArticlesData = dataContent.articles.slice();
-            const oldArticlesDataIndex = newArticlesData.findIndex(item => (item.id === article.id));
-            if (~oldArticlesDataIndex) {
-              newArticlesData[oldArticlesDataIndex] = article
-            } else {
-              newArticlesData.push(article);
-            }
-            return (
-              {
-                ...dataContent,
-                articles: newArticlesData
-              }
-            )
-          });
-          setLayout(layout => {
-            return {
+        onSubmitFormClick(article, isEditMode) {
+          setLayout(layout => (
+            {
               ...layout,
               modal: {
                 ...layout.modal,
-                currentArticleData: null,
-                isOpen: false
+                request: {
+                  isRequesting: true,
+                  hasAnyError: false
+                },
               }
             }
-          })
-        },
-        onDeleteCLick(id) {
-          return function () {
+          ));
+          const request = async () => {
+            if (isEditMode) {
+              await editArticle(article);
+              return
+            }
+            await createArticle(article)
+          };
+          request().then(() => {
             setDataContent(dataContent => {
-              const newArticlesData = dataContent.articles.slice();
-              const articleIndex = newArticlesData.findIndex(item => (item.id === id));
-              newArticlesData.splice(articleIndex, 1);
               return (
                 {
                   ...dataContent,
-                  articles: newArticlesData
+                  status: "fetching",
+                  requestError: null
                 }
               )
             });
-            setLayout(layout => {
-              return {
+            setLayout(layout => (
+              {
                 ...layout,
                 modal: {
                   ...layout.modal,
                   currentArticleData: null,
-                  isOpen: false
+                  isOpen: false,
+                  request: {
+                    isRequesting: false,
+                    hasAnyError: false
+                  },
                 }
               }
-            })
+            ))
+          });
+        },
+        onDeleteCLick(id) {
+          return function () {
+            setLayout(layout => (
+              {
+                ...layout,
+                modal: {
+                  ...layout.modal,
+                  request: {
+                    isRequesting: true,
+                    hasAnyError: false
+                  },
+                }
+              }
+            ));
+            const request = async () => {
+              await deleteArticle(id)
+                .catch(err => {
+                  throw err
+                })
+            };
+            request()
+              .then(() => {
+                setDataContent(dataContent => (
+                  {
+                    ...dataContent,
+                    dataStatus: "fetching",
+                    requestError: null
+                  }
+                ));
+                setLayout(layout => (
+                  {
+                    ...layout,
+                    modal: {
+                      ...layout.modal,
+                      currentArticleData: null,
+                      isOpen: false,
+                      request: {
+                        isRequesting: false,
+                        hasAnyError: false
+                      },
+                    }
+                  }
+                ))
+              })
+              .catch(() => {
+                setLayout(layout => (
+                  {
+                    ...layout,
+                    modal: {
+                      ...layout.modal,
+                      request: {
+                        isRequesting: false,
+                        hasAnyError: true
+                      },
+                    },
+                  }
+                ))
+              })
           }
         }
       }
@@ -112,23 +162,34 @@ const Main = () => {
   );
   const [dataContent, setDataContent] = useState(
     {
-      status: "fetching",
+      dataStatus: "fetching",
+      requestError: null,
       articles: [],
       onDeleteArticleClick(id) {
         return function () {
-          setDataContent(dataContent => {
-            const newArticlesData = dataContent.articles.slice();
-            const articleIndex = newArticlesData.findIndex(item => {
-              return (item.id === id)
-            });
-            newArticlesData.splice(articleIndex, 1);
-            return (
-              {
-                ...dataContent,
-                articles: newArticlesData
-              }
-            )
-          })
+          const request = async () => {
+            await deleteArticle(id)
+              .catch(err => {
+                throw err
+              })
+          };
+          request()
+            .then(() => {
+              setDataContent(dataContent => (
+                {
+                  ...dataContent,
+                  dataStatus: "fetching"
+                }
+              ));
+            })
+            .catch(() => {
+              setDataContent(dataContent => (
+                {
+                  ...dataContent,
+                  requestError: id,
+                }
+              ));
+            })
         }
       },
       onArticleClick(id) {
@@ -154,23 +215,34 @@ const Main = () => {
     getData().then(response => {
       setDataContent((
         {
-          status: "loaded",
+          dataStatus: "loaded",
+          requestError: false,
           ...response,
           onDeleteArticleClick(id) {
             return function () {
-              setDataContent(dataContent => {
-                const newArticlesData = dataContent.articles.slice();
-                const articleIndex = newArticlesData.findIndex(item => {
-                  return (item.id === id)
-                });
-                newArticlesData.splice(articleIndex, 1);
-                return (
-                  {
-                    ...dataContent,
-                    articles: newArticlesData
-                  }
-                )
-              })
+              const request = async () => {
+                await deleteArticle(id)
+                  .catch(err => {
+                    throw err
+                  })
+              };
+              request()
+                .then(() => {
+                  setDataContent(dataContent => (
+                    {
+                      ...dataContent,
+                      dataStatus: "fetching"
+                    }
+                  ));
+                })
+                .catch(() => {
+                  setDataContent(dataContent => (
+                    {
+                      ...dataContent,
+                      requestError: id,
+                    }
+                  ));
+                })
             }
           },
           onArticleClick(id) {
@@ -193,11 +265,11 @@ const Main = () => {
       setDataContent(dataContent => (
         {
           ...dataContent,
-          status: "failed to fetch"
+          dataStatus: "failed to fetch"
         }
       ))
     })
-  }, [dataContent.articles]);
+  }, [dataContent.dataStatus]);
 
   return (
     <Layout layoutData={layout}>

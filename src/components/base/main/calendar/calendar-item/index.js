@@ -15,6 +15,15 @@ const CalendarItem = (props) => {
         className="calendar-item__wrapper"
         onClick={() => props.onArticleClick(props.id)}
       >
+        {
+          (props.hasRequestError) && (
+            <div className="calendar-item__error-log">
+              <span className="calendar-item__error-span">
+                Ошибка при выполнении запроса на сервер
+              </span>
+            </div>
+          )
+        }
         <div className="calendar-item__info">
           <div className="calendar-item__time">
             {moment(props.date).format("HH:mm")}

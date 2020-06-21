@@ -1,3 +1,5 @@
+@import "src/assets/style/fetching-indicator";
+
 @keyframes modalRoll {
   0% {
     transform: translate(-100%) rotate(45deg);
@@ -42,6 +44,27 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    position: relative;
+  }
+  &__error- {
+    &log {
+      position: absolute;
+      top: -20px;
+      left: 25px;
+    }
+    &span {
+      color: #fd1b3a;
+    }
+  }
+  &__loading-indicator {
+    display: flex;
+    flex: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.65);
   }
   &__buttons {
     display: flex;
@@ -55,6 +78,13 @@
       padding: 5px;
       width: auto;
       flex-basis: 65%;
+    }
+    &__loading-indicator {
+    }
+    &__error- {
+      &log {
+        right: 40px;
+      }
     }
   }
 }

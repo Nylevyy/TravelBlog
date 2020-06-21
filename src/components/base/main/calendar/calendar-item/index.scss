@@ -25,6 +25,17 @@
   &__wrapper {
     display: flex;
     flex: 1;
+    position: relative;
+  }
+  &__error- {
+    &log {
+      position: absolute;
+      top: -5px;
+      left: 20px;
+    }
+    &span {
+      color: #fd1b3a;
+    }
   }
   &__info {
     display: flex;
@@ -110,6 +121,11 @@
     &__content {
       padding: 5px;
     }
+    &__error- {
+      &log {
+        right: 20px;
+      }
+    }
   }
 }
 
@@ -128,6 +144,11 @@
     }
     &__location {
       margin-bottom: 5px;
+    }
+    &__error- {
+      &log {
+        left: 0;
+      }
     }
   }
 }

@@ -11,7 +11,33 @@ const Calendar = (props) => {
     <div className="main-calendar">
       <div className="main-calendar__container">
         {
-          (!data.articles.length) && (
+          (data.status === "fetching") && (
+            <div className="main-calendar_empty">
+              {/*fetching-indicator*/}
+              <div id="fountainG">
+                <div id="fountainG_1" className="fountainG"/>
+                <div id="fountainG_2" className="fountainG"/>
+                <div id="fountainG_3" className="fountainG"/>
+                <div id="fountainG_4" className="fountainG"/>
+                <div id="fountainG_5" className="fountainG"/>
+                <div id="fountainG_6" className="fountainG"/>
+                <div id="fountainG_7" className="fountainG"/>
+                <div id="fountainG_8" className="fountainG"/>
+              </div>
+            </div>
+          )
+        }
+        {
+          (data.status === "failed to fetch") && (
+            <div className="main-calendar_empty">
+              {/*fetching-indicator*/}
+              <h3>Ошибка соединения с сервером</h3>
+              <h3>Пожалуйста, повторите попытку</h3>
+            </div>
+          )
+        }
+        {
+          (!data.articles.length) && (data.status === "loaded") && (
             <div className="main-calendar_empty">
               <h1>No Articles found</h1>
               <h3>Try to create a new one by clicking the button above</h3>

@@ -1,3 +1,5 @@
+@import "../../../../assets/style/fetching-indicator";
+
 .main-calendar {
   display: flex;
   &__container {
@@ -23,7 +25,6 @@
     &__container {
       flex: 1;
       padding: 0 25px 100px;
-      margin-top: -20px;
     }
     &_empty {
       padding: 50px;

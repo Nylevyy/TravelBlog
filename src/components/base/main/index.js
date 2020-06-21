@@ -20,7 +20,24 @@ const Main = () => {
           });
         },
         onRefreshContentClick() {
-          console.log("trying2fetchData")
+          const getData = async () => {
+            return await articlesData;
+          };
+          getData().then(response => {
+            setDataContent(dataContent => {
+              return {
+                ...dataContent,
+                ...response
+              }
+            })
+          }).catch(() => {
+            setDataContent(dataContent => (
+              {
+                ...dataContent,
+                status: "failed to fetch"
+              }
+            ))
+          })
         }
       },
       modal: {
@@ -95,7 +112,8 @@ const Main = () => {
   );
   const [dataContent, setDataContent] = useState(
     {
-      ...articlesData,
+      status: "fetching",
+      articles: [],
       onDeleteArticleClick(id) {
         return function () {
           setDataContent(dataContent => {
@@ -130,42 +148,55 @@ const Main = () => {
     }
   );
   useEffect(() => {
-    setDataContent(dataContent => (
-      {
-        ...dataContent,
-        onDeleteArticleClick(id) {
-          return function () {
-            setDataContent(dataContent => {
-              const newArticlesData = dataContent.articles.slice();
-              const articleIndex = newArticlesData.findIndex(item => {
-                return (item.id === id)
-              });
-              newArticlesData.splice(articleIndex, 1);
-              return (
-                {
-                  ...dataContent,
-                  articles: newArticlesData
-                }
-              )
-            })
-          }
-        },
-        onArticleClick(id) {
-          const article = dataContent.articles.find(item => item.id === id);
-          const data = Object.values(article);
-          setLayout(layout => (
-            {
-              ...layout,
-              modal: {
-                ...layout.modal,
-                isOpen: true,
-                currentArticleData: data
-              }
+    const getData = async () => {
+      return await articlesData;
+    };
+    getData().then(response => {
+      setDataContent((
+        {
+          status: "loaded",
+          ...response,
+          onDeleteArticleClick(id) {
+            return function () {
+              setDataContent(dataContent => {
+                const newArticlesData = dataContent.articles.slice();
+                const articleIndex = newArticlesData.findIndex(item => {
+                  return (item.id === id)
+                });
+                newArticlesData.splice(articleIndex, 1);
+                return (
+                  {
+                    ...dataContent,
+                    articles: newArticlesData
+                  }
+                )
+              })
             }
-          ))
+          },
+          onArticleClick(id) {
+            const article = dataContent.articles.find(item => item.id === id);
+            const data = Object.values(article);
+            setLayout(layout => (
+              {
+                ...layout,
+                modal: {
+                  ...layout.modal,
+                  isOpen: true,
+                  currentArticleData: data
+                }
+              }
+            ))
+          }
         }
-      }
-    ))
+      ))
+    }).catch(() => {
+      setDataContent(dataContent => (
+        {
+          ...dataContent,
+          status: "failed to fetch"
+        }
+      ))
+    })
   }, [dataContent.articles]);
 
   return (

@@ -2,7 +2,7 @@ import moment from "moment";
 import 'moment/locale/ru'
 moment.locale('ru');
 
-const generateArticle = (object) => (
+/*const generateArticle = (object) => (
   {
     ...object,
     date: moment().subtract((Math.random() * 2), "d").add((Math.random() * 20), "m").subtract((Math.random() * 14), "h"),
@@ -39,6 +39,31 @@ const bodies = (
 
 const articlesData = {
   articles: bodies.map(item => generateArticle(item))
+};*/
+
+const dataURL = "https://my-json-server.typicode.com/Nylevyy/TravelBlogFakeDB/db";
+
+const sendRequest = (method, url, body) => {
+  const headers = {
+    'Content-Type': 'application/json'
+  };
+  return fetch(url, {
+    method: method,
+    body: body ? JSON.stringify(body) : null,
+    headers: headers
+  }).then(response => {
+    if (response.ok) return response.json();
+    return response.json().then(err => {
+      const error = new Error('wrong smth');
+      error.data = err;
+      throw error
+    })
+  })
 };
+
+const articlesData = sendRequest('GET', dataURL)
+  .catch(err => {
+    throw err
+  });
 
 export default articlesData

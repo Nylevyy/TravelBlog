@@ -44,6 +44,9 @@ $active:  #a9d85f;
       outline: none;
     }
   }
+  &_invalid {
+    background-color: rgba(253, 27, 58, 0.2);
+  }
 }
 
 @media screen and (orientation: landscape) and (max-height: 490px){

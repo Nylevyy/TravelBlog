@@ -12,7 +12,7 @@ const Modal = (props) => {
         </div>
         <div className="modal__form">
           {
-            (props.modalData.request.hasAnyError) && (
+            (props.modalData.request.hasError) && (
               <div className="modal__error-log">
                 <span className="modal__error-span">
                   Не удалось выполнить запрос, повторите попытку

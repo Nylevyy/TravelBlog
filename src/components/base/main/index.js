@@ -32,12 +32,12 @@ const Main = () => {
         isOpen: false,
         request: {
           isRequesting: false,
-          hasAnyError: false
+          hasError: false
         },
         currentArticleData: null,
         onModalCloseClick() {
-          setLayout(layout => {
-            return {
+          setLayout(layout => (
+            {
               ...layout,
               modal: {
                 ...layout.modal,
@@ -45,11 +45,11 @@ const Main = () => {
                 currentArticleData: null,
                 request: {
                   isRequesting: false,
-                  hasAnyError: false
+                  hasError: false
                 },
               }
             }
-          });
+          ))
         },
         onSubmitFormClick(article, isEditMode) {
           setLayout(layout => (
@@ -59,7 +59,7 @@ const Main = () => {
                 ...layout.modal,
                 request: {
                   isRequesting: true,
-                  hasAnyError: false
+                  hasError: false
                 },
               }
             }
@@ -71,7 +71,8 @@ const Main = () => {
             }
             await createArticle(article)
           };
-          request().then(() => {
+          request()
+            .then(() => {
             setDataContent(dataContent => {
               return (
                 {
@@ -90,12 +91,26 @@ const Main = () => {
                   isOpen: false,
                   request: {
                     isRequesting: false,
-                    hasAnyError: false
+                    hasError: false
                   },
                 }
               }
             ))
-          });
+          })
+            .catch(() => {
+              setLayout(layout => (
+                {
+                  ...layout,
+                  modal: {
+                    ...layout.modal,
+                    request: {
+                      isRequesting: false,
+                      hasError: true
+                    },
+                  }
+                }
+              ))
+            });
         },
         onDeleteCLick(id) {
           return function () {
@@ -106,7 +121,7 @@ const Main = () => {
                   ...layout.modal,
                   request: {
                     isRequesting: true,
-                    hasAnyError: false
+                    hasError: false
                   },
                 }
               }
@@ -135,7 +150,7 @@ const Main = () => {
                       isOpen: false,
                       request: {
                         isRequesting: false,
-                        hasAnyError: false
+                        hasError: false
                       },
                     }
                   }
@@ -149,7 +164,7 @@ const Main = () => {
                       ...layout.modal,
                       request: {
                         isRequesting: false,
-                        hasAnyError: true
+                        hasError: true
                       },
                     },
                   }
@@ -213,8 +228,9 @@ const Main = () => {
       return await articlesData;
     };
     getData().then(response => {
-      setDataContent((
+      setDataContent(dataContent => (
         {
+          ...dataContent,
           dataStatus: "loaded",
           requestError: false,
           ...response,

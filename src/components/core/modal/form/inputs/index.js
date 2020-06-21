@@ -14,7 +14,7 @@ const Inputs = (props) => {
           onInput={props.onInput}
           onChange={props.onChange}
           value={props.values[0]}
-
+          notValidated={props.notValidated}
         />
         <div className="inputs__wrapper">
           <Input
@@ -24,6 +24,7 @@ const Inputs = (props) => {
             onInput={props.onInput}
             onChange={props.onChange}
             value={props.values[1]}
+            notValidated={props.notValidated}
           />
           <Input
             name="time"
@@ -32,11 +33,12 @@ const Inputs = (props) => {
             onInput={props.onInput}
             onChange={props.onChange}
             value={props.values[2]}
+            notValidated={props.notValidated}
           />
         </div>
       </div>
       <textarea
-        className="inputs__textarea"
+        className={"inputs__textarea" + (props.notValidated.includes(3) ? " inputs_invalid" : "")}
         name="content"
         cols="25"
         rows="8"

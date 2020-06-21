@@ -82,7 +82,7 @@ const editArticle = body => {
 };
 
 const deleteArticle = id => {
-  return sendRequest('DELETE', (dataURL + "articlesa/" + id))
+  return sendRequest('DELETE', (dataURL + "articles/" + id))
     .catch(err => {
       throw err
     })

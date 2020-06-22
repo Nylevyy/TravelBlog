@@ -22,15 +22,14 @@ const Inputs = (props) => {
             label="Место"
             index={1}
             onInput={props.onInput}
-            onChange={props.onChange}
             value={props.values[1]}
             notValidated={props.notValidated}
+            onChange={props.onChange}
           />
           <Input
             name="time"
             label="Время"
             index={2}
-            onInput={props.onInput}
             onChange={props.onChange}
             value={props.values[2]}
             notValidated={props.notValidated}

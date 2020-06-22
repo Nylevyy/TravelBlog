@@ -13,10 +13,6 @@ const Form = (props) => {
       values: ['', '', '', '', false],
       onInput(index, value) {
         let newValue = value;
-        if (index === 2) {
-          newValue = inputs.maskInputTime(value);
-          if (newValue === false) return
-        }
         setInputs(inputs => {
           const newInputs = inputs.values.slice();
           newInputs[index] = newValue;
@@ -31,8 +27,7 @@ const Form = (props) => {
       onChange(index, value) {
         let newValue = value;
         if (index === 2) {
-          newValue = inputs.maskInputTime(value);
-          if (!newValue) return
+          newValue = value ? value : '';
         }
         setInputs(inputs => {
           const newInputs = inputs.values.slice();
@@ -45,25 +40,9 @@ const Form = (props) => {
           )
         })
       },
-      maskInputTime(value) {
-        if (value.match(/[^0-9:]+/g)) return false;
-        if (value.length === 2) {
-          if (!value.includes(':')) (value += ':')
-        } else if (value.length > 5) return false;
-        return value
-      },
-      validateTime(value) {
-        if (!value.match(/[0-1]\d[:][0-5]\d/)) {
-          return !!value.match(/[2][0-3][:][0-5]\d/);
-        } else return true;
-      },
       onSubmitForm() {
         const emptyFields = [];
         for (let i = 0; i < this.values.length - 1; i++) {
-          if ((i === 2) && (!inputs.validateTime(this.values[2]))) {
-              emptyFields.push(2);
-              continue;
-          }
           if (!this.values[i]) {
             emptyFields.push(i);
           }
@@ -77,13 +56,10 @@ const Form = (props) => {
           ));
           return;
         }
-        const date = this.isEditMode ? moment(this.articleData[2]) : moment();
-        const hours = +this.values[2].slice(0, 2);
-        const minutes = +this.values[2].slice(3, 5);
         const article = {
           title: this.values[0],
           location: this.values[1],
-          date: date.hour(hours).minute(minutes),
+          date: this.values[2],
           description: this.values[3],
           isImportant: this.values[4],
           id: this.id
@@ -112,7 +88,7 @@ const Form = (props) => {
       ))
     } else {
       const values = props.articleData.slice(0, 5);
-      values[2] = moment(values[2]).format('HH:mm');
+      values[2] = new Date(values[2]);
       setInputs(inputs => (
         {
           ...inputs,
@@ -137,6 +113,7 @@ const Form = (props) => {
         onChange={inputs.onChange}
         onInput={inputs.onInput}
         notValidated={inputs.notValidated}
+        onChangeDate={inputs.onChangeDate}
       />
 
       <div className="form__dashboard">

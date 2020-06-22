@@ -1,9 +1,5 @@
-$passive:  #a3a3a3;
-$active:  #a9d85f;
+@import "src/assets/style/datetime-picker.scss";
 
-.wrapper {
-
-}
 .input {
   display: flex;
   flex-direction: column;
@@ -13,17 +9,17 @@ $active:  #a9d85f;
     flex: 1;
   }
   &_location {
-    flex: 5 1;
+    flex: 2 1;
   }
   &_time {
     flex: 1 1;
   }
   &__label {
-    color: $passive;
+    color: #a3a3a3;
   }
   &__field {
     border: none;
-    border-bottom: 1px solid $passive;
+    border-bottom: 1px solid #a3a3a3;
     padding: 0 0 5px;
     margin: 0 0 10px;
     display: flex;
@@ -34,13 +30,9 @@ $active:  #a9d85f;
     &_location {
       padding-top: 12px;
     }
-    &_time {
-      font-size: 1.8em;
-      width: 190px;
-    }
     &:focus {
       margin-bottom: 9px;
-      border-bottom: 2px solid $active;
+      border-bottom: 2px solid #a9d85f;
       outline: none;
     }
   }
@@ -52,31 +44,12 @@ $active:  #a9d85f;
 @media screen and (orientation: landscape) and (max-height: 490px){
   .input {
     margin: 4px 0;
-    &__field{
-      &_time {
-        width: 100%;
-      }
-    }
   }
 }
 
-@media screen and (max-width: 767px){
-  .input {
-    &__field {
-      &_time {
-        width: 100px;
-      }
-    }
-  }
-}
 
 @media screen and (max-width: 480px) {
   .input {
     margin: 7px 0;
-    &__field{
-      &_time {
-        width: 100%;
-      }
-    }
   }
 }

@@ -1,0 +1,5 @@
+// stylelint-disable selector-pseudo-class-no-unknown
+:global {
+  @import './base';
+}
+// stylelint-enable selector-pseudo-class-no-unknown

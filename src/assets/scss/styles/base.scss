@@ -1,0 +1,86 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  &::after,
+  &::before {
+    box-sizing: border-box;
+  }
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: auto;
+  // font-family: $gilroy;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: $baseColor;
+  font-size: 14px;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  flex-grow: 1;
+}
+
+a {
+  text-decoration: none;
+  outline: 0;
+  color: $baseColor;
+  cursor: pointer;
+  transition: color 0.4s ease;
+
+  &:focus {
+    box-shadow: 0 0 10px 0 $active;
+  }
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+}
+
+input {
+  &[type="number"] {
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+button,
+input,
+textarea,
+select {
+  background-color: transparent;
+  // font-family: $gilroy;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  cursor: pointer;
+
+  &:focus {
+    box-shadow: 0 0 10px 0 $active;
+  }
+}

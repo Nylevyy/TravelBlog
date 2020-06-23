@@ -1,6 +1,7 @@
 import React from "react";
-import Input from "../../../../ui/input";
-import "./index.scss"
+import Input from "../../../../ui/input/Input";
+import "./FormInputs.scss"
+import DatePicker from "../../../../widgets/datePicker/DatePicker";
 
 
 const Inputs = (props) => {
@@ -26,11 +27,8 @@ const Inputs = (props) => {
             notValidated={props.notValidated}
             onChange={props.onChange}
           />
-          <Input
-            name="time"
-            label="Время"
-            index={2}
-            onChange={props.onChange}
+          <DatePicker
+            onChange={props.onChange.bind(null, 2)}
             value={props.values[2]}
             notValidated={props.notValidated}
           />

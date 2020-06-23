@@ -1,3 +1,14 @@
+.date-picker {
+  display: flex;
+  flex-direction: column;
+  padding: 0 7px;
+  margin: 20px 0;
+  flex: 1 1;
+  &__label {
+    color: #a3a3a3;
+  }
+}
+
 .react-datetime-picker {
   display: inline-flex;
   position: relative;
@@ -7,9 +18,11 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
   }
+
   &_invalid .react-datetime-picker__inputGroup__input {
     background: rgba(253, 27, 58, 0.2);
   }
+
   &--disabled {
     background-color: rgb(240, 240, 240);
     color: rgb(109, 109, 109);
@@ -23,6 +36,7 @@
     border-bottom: 1px solid #a3a3a3;
     padding: 0 0 6px;
     margin: 0 0 10px;
+
     &:focus-within {
       margin-bottom: 9px;
       border-bottom: 2px solid #a9d85f;
@@ -47,7 +61,7 @@
       min-width: $digit-width;
       height: calc(100% - 2px);
       position: relative;
-      padding: 7px 0 1px;
+      padding: 7px 2px 1px;
       border: 0;
       background: none;
       font: inherit;

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
-import Calendar from "./calendar";
-import Layout from "../../layout";
-import {articlesData, createArticle, deleteArticle, editArticle} from "../../data";
+import Calendar from "../../base/calendar/MainCalendar";
+import Layout from "../../layout/Layout";
+import {articlesData, createArticle, deleteArticle, editArticle} from "../../../data/Data";
 
 const Main = () => {
   const [layout, setLayout] = useState(

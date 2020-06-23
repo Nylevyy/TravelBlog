@@ -19,7 +19,7 @@ const bodies = (
       location: "Ulyanovsk, Russia. Vostochny railway station",
     },
     {
-      title: "Title for a calendar-item",
+      title: "Title for a item",
       location: "Moscow, Russia. Vostochny District",
     },
     {
@@ -27,11 +27,11 @@ const bodies = (
       location: "Dubai, UAE. Central airport",
     },
     {
-      title: "Main title for an calendar-item",
+      title: "Main title for an item",
       location: "Tyumen, Russia. Vostochny airport",
     },
     {
-      title: "Major title calendar-item with happy end",
+      title: "Major title item with happy end",
       location: "Orenburg, Russia. Central Street",
     }
   ]

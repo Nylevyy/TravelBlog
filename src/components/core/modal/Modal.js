@@ -1,7 +1,7 @@
 import React from "react";
-import Form from "./form";
-import "./index.scss"
-import CloseButton from "../../ui/close-button";
+import Form from "./form/ModalForm";
+import "./Modal.scss"
+import CloseButton from "../../ui/closeButton/CloseButton";
 
 const Modal = (props) => {
   return (

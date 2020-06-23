@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "../../ui/button";
-import "./index.scss"
+import Button from "../../ui/button/Button";
+import "./Header.scss"
 
 const Header = (props) => {
   return (

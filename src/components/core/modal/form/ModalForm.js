@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
-import Inputs from "./inputs";
-import Button from "../../../ui/button";
-import "./index.scss";
-import moment from "moment";
+import Inputs from "./inputs/FormInputs";
+import Button from "../../../ui/button/Button";
+import "./ModalForm.scss";
 
 const Form = (props) => {
   const [inputs, setInputs] = useState(

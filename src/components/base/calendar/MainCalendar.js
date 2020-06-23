@@ -1,10 +1,10 @@
 import React from "react";
-import "./index.scss"
-import CalendarItem from "./calendar-item";
+import "./MainCalendar.scss"
+import CalendarItem from "./item/CalendarItem";
 import moment from "moment";
 
 
-const Calendar = (props) => {
+const MainCalendar = (props) => {
   const data = props.calendarData;
   let cachedDate = '';
   return (

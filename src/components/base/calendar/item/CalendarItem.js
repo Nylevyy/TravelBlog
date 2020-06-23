@@ -1,6 +1,6 @@
 import React from "react";
-import CloseButton from "../../../../ui/close-button";
-import './index.scss';
+import CloseButton from "../../../ui/closeButton/CloseButton";
+import './CalendarItem.scss';
 import moment from "moment";
 
 
@@ -8,7 +8,7 @@ import moment from "moment";
 const CalendarItem = (props) => {
   return (
     <article
-      className={(props.isImportant ? "calendar-item_important " : "") + " calendar-item"}
+      className={(props.isImportant ? "calendar-item_important " : "") + " item"}
       key={props.id}
     >
       <div

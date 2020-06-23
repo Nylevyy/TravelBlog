@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../core/header";
-import Footer from "../core/footer";
-import Modal from "../core/modal";
+import Header from "../core/header/Header";
+import Footer from "../core/footer/Footer";
+import Modal from "../core/modal/Modal";
 
 const Layout = (props) => {
   return (

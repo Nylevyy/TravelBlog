@@ -1,8 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./assets/style/base.scss"
-import Main from "./components/pages/main/Main"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Main from './components/pages/main/Main';
+import '~/assets/scss/styles/index.scss';
 
 ReactDOM.render(
-  <Main />, document.getElementById('root')
+  <Main />, document.getElementById('root'),
 );

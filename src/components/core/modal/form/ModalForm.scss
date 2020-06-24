@@ -1,16 +1,19 @@
 .form {
   display: flex;
   flex-direction: column;
+
   &__dashboard {
     display: flex;
     padding: 5px 25px;
     justify-content: space-between;
     align-items: center;
   }
+
   &__checkbox {
     display: flex;
   }
 }
+
 .checkbox {
   &__label {
     margin-left: 10px;
@@ -32,6 +35,7 @@
       flex-direction: column;
       padding: 5px 15px;
     }
+
     &__checkbox {
       font-size: 0.9em;
       margin-bottom: 5px;

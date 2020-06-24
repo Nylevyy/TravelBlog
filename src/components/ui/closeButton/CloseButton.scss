@@ -4,6 +4,7 @@
   align-items: center;
   width: 30px;
   height: 30px;
+
   &__button {
     border-radius: 50%;
     width: 20px;
@@ -15,32 +16,36 @@
     display: flex;
     align-items: center;
     transition: box-shadow 0.5s ease-in-out;
-    &:after {
+
+    &::after {
       content: "\D7";
-      color: #000000;
+      color: #000;
       font-size: 25px;
       line-height: 0.5;
       font-weight: bold;
       margin: 0 auto;
     }
+
     &:focus {
       outline: none;
       -webkit-box-shadow: 0 0 5px 2px rgba(169, 216, 95, 1);
       -moz-box-shadow: 0 0 5px 2px rgba(169, 216, 95, 1);
-      box-shadow: 0 0 5px 2px rgba(169,216,95,1);
+      box-shadow: 0 0 5px 2px rgba(169, 216, 95, 1);
     }
+
     &:hover {
       transition: box-shadow 0.5s ease-in-out;
-      -webkit-box-shadow: 0 0 10px 7px rgba(169,216,95,1);
-      -moz-box-shadow: 0 0 10px 7px rgba(169,216,95,1);
-      box-shadow: 0 0 10px 7px rgba(169,216,95,1);
+      -webkit-box-shadow: 0 0 10px 7px rgba(169, 216, 95, 1);
+      -moz-box-shadow: 0 0 10px 7px rgba(169, 216, 95, 1);
+      box-shadow: 0 0 10px 7px rgba(169, 216, 95, 1);
     }
+
     &:active {
       margin-top: 2px;
       margin-left: 2px;
-      -webkit-box-shadow: 0 0 10px 5px rgba(169,216,95,1);
-      -moz-box-shadow: 0 0 10px 5px rgba(169,216,95,1);
-      box-shadow: 0 0 10px 5px rgba(169,216,95,1);
+      -webkit-box-shadow: 0 0 10px 5px rgba(169, 216, 95, 1);
+      -moz-box-shadow: 0 0 10px 5px rgba(169, 216, 95, 1);
+      box-shadow: 0 0 10px 5px rgba(169, 216, 95, 1);
     }
   }
 }

@@ -1,22 +1,45 @@
-import React from "react";
-import CloseButton from "../../../ui/closeButton/CloseButton";
+import React from 'react';
+import moment from 'moment';
+import PropTypes from 'prop-types';
+import CloseButton from '../../../ui/closeButton/CloseButton';
 import './CalendarItem.scss';
-import moment from "moment";
 
-
-
-const CalendarItem = (props) => {
+const CalendarItem = (
+  {
+    isImportant,
+    id,
+    onArticleClick,
+    hasRequestError,
+    title,
+    location,
+    date,
+    description,
+    onDeleteArticleClick,
+  },
+) => {
+  CalendarItem.propTypes = {
+    hasRequestError: PropTypes.number,
+    title: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    isImportant: PropTypes.bool.isRequired,
+    id: PropTypes.number.isRequired,
+    onArticleClick: PropTypes.func.isRequired,
+    onDeleteArticleClick: PropTypes.func.isRequired,
+  };
   return (
     <article
-      className={(props.isImportant ? "calendar-item_important " : "") + " item"}
-      key={props.id}
+      className={`${(isImportant ? 'calendar-item_important' : '')} item`}
+      key={id}
     >
-      <div
+      <button
         className="calendar-item__wrapper"
-        onClick={() => props.onArticleClick(props.id)}
+        onClick={() => onArticleClick(id)}
+        type="button"
       >
         {
-          (props.hasRequestError) && (
+          (hasRequestError) && (
             <div className="calendar-item__error-log">
               <span className="calendar-item__error-span">
                 Ошибка при выполнении запроса на сервер
@@ -26,20 +49,20 @@ const CalendarItem = (props) => {
         }
         <div className="calendar-item__info">
           <div className="calendar-item__time">
-            {moment(props.date).format("HH:mm")}
+            {moment(date).format('HH:mm')}
           </div>
-          <div className="calendar-item__location">{props.location}</div>
+          <div className="calendar-item__location">{location}</div>
         </div>
         <div className="calendar-item__content">
-          <h3 className="calendar-item__title">{props.title}</h3>
-          <div className="calendar-item__description">{props.description}</div>
+          <h3 className="calendar-item__title">{title}</h3>
+          <div className="calendar-item__description">{description}</div>
         </div>
-      </div>
+      </button>
       <div className="calendar-item__delete">
-        <CloseButton onClick={props.onDeleteArticleClick(props.id)}/>
+        <CloseButton onClick={onDeleteArticleClick(id)} />
       </div>
     </article>
-  )
+  );
 };
 
-export default CalendarItem
+export default CalendarItem;

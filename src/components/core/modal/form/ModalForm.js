@@ -1,106 +1,89 @@
-import React, {useEffect, useState} from "react";
-import Inputs from "./inputs/FormInputs";
-import Button from "../../../ui/button/Button";
-import "./ModalForm.scss";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+// import moment from 'moment';
+import Inputs from './inputs/FormInputs';
+import Button from '../../../ui/button/Button';
+import './ModalForm.scss';
 
-const Form = (props) => {
+const Form = (
+  {
+    onSubmitFormClick,
+    onDeleteClick,
+    articleData,
+  },
+) => {
+  Form.propTypes = {
+    onSubmitFormClick: PropTypes.func.isRequired,
+    onDeleteClick: PropTypes.func.isRequired,
+    articleData: PropTypes.arrayOf(PropTypes.any),
+  };
   const [inputs, setInputs] = useState(
     {
       notValidated: [],
-      articleData: null,
+      articleData,
       isEditMode: false,
       values: ['', '', '', '', false],
-      onInput(index, value) {
-        let newValue = value;
-        setInputs(inputs => {
-          const newInputs = inputs.values.slice();
-          newInputs[index] = newValue;
+      onInputChange(index, value) {
+        setInputs((prevInputs) => {
+          const newInputs = prevInputs.values.slice();
+          newInputs[index] = value;
           return (
             {
-              ...inputs,
-              values: newInputs
+              ...prevInputs,
+              values: newInputs,
             }
-          )
-        })
-      },
-      onChange(index, value) {
-        let newValue = value;
-        if (index === 2) {
-          newValue = value ? value : '';
-        }
-        setInputs(inputs => {
-          const newInputs = inputs.values.slice();
-          newInputs[index] = newValue;
-          return (
-            {
-              ...inputs,
-              values: newInputs
-            }
-          )
-        })
+          );
+        });
       },
       onSubmitForm() {
         const emptyFields = [];
-        for (let i = 0; i < this.values.length - 1; i++) {
-          if (!this.values[i]) {
+        for (let i = 0; i < inputs.values.length - 1; i++) {
+          if (!inputs.values[i]) {
             emptyFields.push(i);
           }
         }
         if (emptyFields.length) {
-          setInputs(inputs => (
+          setInputs((prevInputs) => (
             {
-              ...inputs,
+              ...prevInputs,
               notValidated: emptyFields,
             }
           ));
           return;
         }
         const article = {
-          title: this.values[0],
-          location: this.values[1],
-          date: this.values[2],
-          description: this.values[3],
-          isImportant: this.values[4],
-          id: this.id
+          title: inputs.values[0],
+          location: inputs.values[1],
+          date: inputs.values[2],
+          description: inputs.values[3],
+          isImportant: inputs.values[4],
+          id: inputs.id,
         };
-        setInputs(inputs => (
+        setInputs((prevInputs) => (
           {
-            ...inputs,
+            ...prevInputs,
             notValidated: [],
           }
         ));
-        props.onSubmitFormClick(article, this.isEditMode);
+        onSubmitFormClick(article, inputs.isEditMode);
       },
-    }
+    },
   );
   useEffect(() => {
-    if (!props.articleData) {
-      setInputs(inputs => (
-        {
-          ...inputs,
-          notValidated: [],
-          articleData: null,
-          isEditMode: false,
-          values: ['', '', '', '', false],
-          id: Date.now(),
-        }
-      ))
-    } else {
-      const values = props.articleData.slice(0, 5);
-      values[2] = new Date(values[2]);
-      setInputs(inputs => (
-        {
-          ...inputs,
-          notValidated: [],
-          articleData: props.articleData,
-          isEditMode: true,
-          values: values,
-          id: props.articleData[5],
-        }
-      ))
-    }
-  }, [props.articleData]);
-
+    if (!articleData) return;
+    const values = articleData.slice(0, 5);
+    values[2] = new Date(values[2]);
+    setInputs((prevInputs) => (
+      {
+        ...prevInputs,
+        notValidated: [],
+        articleData,
+        isEditMode: true,
+        values,
+        id: articleData[5],
+      }
+    ));
+  }, [articleData]);
 
   return (
     <form
@@ -108,25 +91,33 @@ const Form = (props) => {
       className="form"
     >
       <Inputs
-        values={[inputs.values[0], inputs.values[1], inputs.values[2], inputs.values[3]]}
-        onChange={inputs.onChange}
-        onInput={inputs.onInput}
+        values={
+          [
+            inputs.values[0],
+            inputs.values[1],
+            inputs.values[2],
+            inputs.values[3],
+          ]
+        }
+        onChange={inputs.onInputChange}
+        onInput={inputs.onInputChange}
         notValidated={inputs.notValidated}
         onChangeDate={inputs.onChangeDate}
       />
 
       <div className="form__dashboard">
         <div className="form__checkbox">
-          <input
-            type="checkbox"
-            className="checkbox"
-            id="form__checkbox"
-            onChange={(e) => inputs.onChange(4, e.target.checked)}
-            checked={!!inputs.values[4]}
-          />
           <label
             htmlFor="form__checkbox"
-            className="checkbox__label">
+            className="checkbox__label"
+          >
+            <input
+              type="checkbox"
+              className="checkbox"
+              id="form__checkbox"
+              onChange={(e) => inputs.onInputChange(4, e.target.checked)}
+              checked={!!inputs.values[4]}
+            />
             Пометить событие как важное
           </label>
         </div>
@@ -135,24 +126,22 @@ const Form = (props) => {
             value="Готово"
             mod="_submit small"
             key="submitForm"
-            onClick={inputs.onSubmitForm.bind(inputs)}
+            onClick={inputs.onSubmitForm}
           />
           {
-            props.articleData && (
+            articleData && (
               <Button
                 value="Удалить"
                 mod="_reset small"
                 key="resetForm"
-                onClick={props.onDeleteClick(props.articleData[5])}
+                onClick={onDeleteClick(articleData[5])}
               />
             )
           }
         </div>
       </div>
     </form>
-  )
+  );
 };
 
-export default Form
-
-
+export default Form;

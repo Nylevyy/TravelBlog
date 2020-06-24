@@ -1,26 +1,39 @@
-import React from "react";
-import "./Input.scss"
+import React from 'react';
+import PropTypes from 'prop-types';
+import './Input.scss';
 
-
-const Input = (props) => {
-  const name = props.name;
+const Input = (
+  {
+    name, notValidated, onChange, index, label, onInput, value,
+  },
+) => {
+  Input.propTypes = {
+    name: PropTypes.string,
+    notValidated: PropTypes.bool,
+    onChange: PropTypes.func.isRequired,
+    onInput: PropTypes.func.isRequired,
+    index: PropTypes.number.isRequired,
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string,
+  };
   return (
-    <div className={"input input_" + name}>
-      < input
-        className={"input__field input__field_" + name + (props.notValidated.includes(props.index) ? " input_invalid" : "")}
+    <div className={`input input_${name}`}>
+      <input
+        className={`input__field input__field_${name} ${(notValidated.includes(index) ? 'input_invalid' : '')}`}
         type="text"
-        id={"input_" + name}
-        onInput={(e) => props.onInput(props.index, e.target.value)}
-        onChange={(e) => props.onChange(props.index, e.target.value)}
-        value={props.value}
+        id={`input_${name}`}
+        onInput={(e) => onInput(index, e.target.value)}
+        onChange={(e) => onChange(index, e.target.value)}
+        value={value}
       />
       <label
-        htmlFor={"input_" + name}
-        className="input__label">
-          {props.label}
+        htmlFor={`input_${name}`}
+        className="input__label"
+      >
+        {label}
       </label>
     </div>
   );
 };
 
-export default Input
+export default Input;

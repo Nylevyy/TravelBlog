@@ -1,299 +1,260 @@
-import React, {useEffect, useState} from "react";
-import Calendar from "../../base/calendar/MainCalendar";
-import Layout from "../../layout/Layout";
-import {articlesData, createArticle, deleteArticle, editArticle} from "../../../data/Data";
+import React, { useEffect, useState } from 'react';
+import moment from 'moment';
+import {
+  articlesData, createArticle, deleteArticle, editArticle,
+} from '~/store/data/Data';
+import MainCalendar from '~/components/base/calendar/MainCalendar';
+import Layout from '~/components/layouts/Layout';
 
 const Main = () => {
+  const [dataContent, setDataContent] = useState(
+    {
+      dataStatus: 'fetching',
+      requestError: null,
+      articles: [],
+      onDeleteArticleClick(id) {
+        return () => {
+          const request = async () => {
+            await deleteArticle(id)
+              .catch((err) => {
+                throw err;
+              });
+          };
+          request()
+            .then(() => {
+              setDataContent((prevDataContent) => (
+                {
+                  ...prevDataContent,
+                  dataStatus: 'fetching',
+                }
+              ));
+            })
+            .catch(() => {
+              setDataContent((prevDataContent) => (
+                {
+                  ...prevDataContent,
+                  requestError: id,
+                }
+              ));
+            });
+        };
+      },
+      /* onArticleClick(id) {
+        const article = dataContent.articles.find((item) => item.id === id);
+        const data = Object.values(article);
+        data[2] = moment(data[2]).format();
+        setLayout((prevLayout) => (
+          {
+            ...prevLayout,
+            modal: {
+              ...prevLayout.modal,
+              isOpen: true,
+              currentArticleData: data,
+            },
+          }
+        ));
+      }, */
+    },
+  );
   const [layout, setLayout] = useState(
     {
       header: {
         title: 'Друзья, мои походы пока ещё не закончились, делюсь с вами!',
         onNewEventClick() {
-          setLayout(layout => {
-            return {
-              ...layout,
+          setLayout((prevLayout) => (
+            {
+              ...prevLayout,
               modal: {
-                ...layout.modal,
-                isOpen: true
-              }
+                ...prevLayout.modal,
+                isOpen: true,
+              },
             }
-          });
+          ));
         },
         onRefreshContentClick() {
-          setDataContent(dataContent => {
-            return {
-              ...dataContent,
-              dataStatus: "fetching",
+          /* setDataContent((prevDataContent) => (
+            {
+              ...prevDataContent,
+              dataStatus: 'fetching',
             }
-          })
-        }
+          )); */
+        },
       },
       modal: {
         isOpen: false,
         request: {
           isRequesting: false,
-          hasError: false
+          hasError: false,
         },
         currentArticleData: null,
-        onModalCloseClick() {
-          setLayout(layout => (
+        sendRequest() {
+          setLayout((prevLayout) => (
             {
-              ...layout,
+              ...prevLayout,
               modal: {
-                ...layout.modal,
-                isOpen: false,
-                currentArticleData: null,
-                request: {
-                  isRequesting: false,
-                  hasError: false
-                },
-              }
-            }
-          ))
-        },
-        onSubmitFormClick(article, isEditMode) {
-          setLayout(layout => (
-            {
-              ...layout,
-              modal: {
-                ...layout.modal,
+                ...prevLayout.modal,
                 request: {
                   isRequesting: true,
-                  hasError: false
+                  hasError: false,
                 },
-              }
+              },
             }
           ));
+        },
+        setRequestError() {
+          setLayout((prevLayout) => (
+            {
+              ...prevLayout,
+              modal: {
+                ...prevLayout.modal,
+                request: {
+                  isRequesting: false,
+                  hasError: true,
+                },
+              },
+            }
+          ));
+        },
+        resetModal() {
+          setLayout((prevLayout) => (
+            {
+              ...prevLayout,
+              modal: {
+                ...prevLayout.modal,
+                currentArticleData: null,
+                isOpen: false,
+                request: {
+                  isRequesting: false,
+                  hasError: false,
+                },
+              },
+            }
+          ));
+        },
+        onModalCloseClick() {
+          layout.modal.resetModal();
+        },
+        onSubmitFormClick(article, isEditMode) {
+          layout.modal.sendRequest();
           const request = async () => {
             if (isEditMode) {
               await editArticle(article);
-              return
+              return;
             }
-            await createArticle(article)
+            await createArticle(article);
           };
           request()
             .then(() => {
-            setDataContent(dataContent => {
-              return (
+              setDataContent((prevDataContent) => (
                 {
-                  ...dataContent,
-                  status: "fetching",
-                  requestError: null
+                  ...prevDataContent,
+                  status: 'fetching',
+                  requestError: null,
                 }
-              )
-            });
-            setLayout(layout => (
-              {
-                ...layout,
-                modal: {
-                  ...layout.modal,
-                  currentArticleData: null,
-                  isOpen: false,
-                  request: {
-                    isRequesting: false,
-                    hasError: false
-                  },
-                }
-              }
-            ))
-          })
+              ));
+              layout.modal.resetModal();
+            })
             .catch(() => {
-              setLayout(layout => (
-                {
-                  ...layout,
-                  modal: {
-                    ...layout.modal,
-                    request: {
-                      isRequesting: false,
-                      hasError: true
-                    },
-                  }
-                }
-              ))
+              layout.modal.setRequestError();
             });
         },
         onDeleteCLick(id) {
-          return function () {
-            setLayout(layout => (
-              {
-                ...layout,
-                modal: {
-                  ...layout.modal,
-                  request: {
-                    isRequesting: true,
-                    hasError: false
-                  },
-                }
-              }
-            ));
+          return () => {
+            layout.modal.sendRequest();
             const request = async () => {
-              await deleteArticle(id)
-                .catch(err => {
-                  throw err
-                })
+              const r = 12;
+              await deleteArticle(id, r)
+                .catch((err) => {
+                  throw err;
+                });
             };
             request()
               .then(() => {
-                setDataContent(dataContent => (
+                setDataContent((prevDataContent) => (
                   {
-                    ...dataContent,
-                    dataStatus: "fetching",
-                    requestError: null
+                    ...prevDataContent,
+                    dataStatus: 'fetching',
+                    requestError: null,
                   }
                 ));
-                setLayout(layout => (
-                  {
-                    ...layout,
-                    modal: {
-                      ...layout.modal,
-                      currentArticleData: null,
-                      isOpen: false,
-                      request: {
-                        isRequesting: false,
-                        hasError: false
-                      },
-                    }
-                  }
-                ))
+                layout.modal.resetModal();
               })
               .catch(() => {
-                setLayout(layout => (
-                  {
-                    ...layout,
-                    modal: {
-                      ...layout.modal,
-                      request: {
-                        isRequesting: false,
-                        hasError: true
-                      },
-                    },
-                  }
-                ))
-              })
-          }
-        }
-      }
-    }
-  );
-  const [dataContent, setDataContent] = useState(
-    {
-      dataStatus: "fetching",
-      requestError: null,
-      articles: [],
-      onDeleteArticleClick(id) {
-        return function () {
-          const request = async () => {
-            await deleteArticle(id)
-              .catch(err => {
-                throw err
-              })
+                layout.modal.setRequestError();
+              });
           };
-          request()
-            .then(() => {
-              setDataContent(dataContent => (
-                {
-                  ...dataContent,
-                  dataStatus: "fetching"
-                }
-              ));
-            })
-            .catch(() => {
-              setDataContent(dataContent => (
-                {
-                  ...dataContent,
-                  requestError: id,
-                }
-              ));
-            })
-        }
+        },
       },
-      onArticleClick(id) {
-        const article = dataContent.articles.find(item => item.id === id);
-        const data = Object.values(article);
-        setLayout(layout => (
-          {
-            ...layout,
-            modal: {
-              ...layout.modal,
-              isOpen: true,
-              currentArticleData: data
-            }
-          }
-        ))
-      }
-    }
+    },
   );
   useEffect(() => {
-    const getData = async () => {
-      return await articlesData;
-    };
-    getData().then(response => {
-      setDataContent(dataContent => (
+    const getData = async () => articlesData;
+    getData().then((response) => {
+      setDataContent((revDataContent) => (
         {
-          ...dataContent,
-          dataStatus: "loaded",
-          requestError: false,
+          ...revDataContent,
+          dataStatus: 'loaded',
+          requestError: null,
           ...response,
-          onDeleteArticleClick(id) {
-            return function () {
+          /* onDeleteArticleClick(id) {
+            return () => {
               const request = async () => {
                 await deleteArticle(id)
-                  .catch(err => {
-                    throw err
-                  })
+                  .catch((err) => {
+                    throw err;
+                  });
               };
               request()
                 .then(() => {
-                  setDataContent(dataContent => (
+                  setDataContent((prevDataContent) => (
                     {
-                      ...dataContent,
-                      dataStatus: "fetching"
+                      ...prevDataContent,
+                      dataStatus: 'fetching',
                     }
                   ));
                 })
                 .catch(() => {
-                  setDataContent(dataContent => (
+                  setDataContent((prevDataContent) => (
                     {
-                      ...dataContent,
+                      ...prevDataContent,
                       requestError: id,
                     }
                   ));
-                })
-            }
-          },
+                });
+            };
+          }, */
           onArticleClick(id) {
-            const article = dataContent.articles.find(item => item.id === id);
+            const article = dataContent.articles.find((item) => item.id === id);
             const data = Object.values(article);
-            setLayout(layout => (
+            data[2] = moment(data[2]);
+            setLayout((prevLayout) => (
               {
-                ...layout,
+                ...prevLayout,
                 modal: {
-                  ...layout.modal,
+                  ...prevLayout.modal,
                   isOpen: true,
-                  currentArticleData: data
-                }
+                  currentArticleData: data,
+                },
               }
-            ))
-          }
+            ));
+          },
         }
-      ))
+      ));
     }).catch(() => {
-      setDataContent(dataContent => (
+      setDataContent((prevDataContent) => (
         {
-          ...dataContent,
-          dataStatus: "failed to fetch"
+          ...prevDataContent,
+          dataStatus: 'failed to fetch',
         }
-      ))
-    })
+      ));
+    });
   }, [dataContent.dataStatus]);
 
   return (
     <Layout layoutData={layout}>
-      <Calendar calendarData={dataContent}/>
+      <MainCalendar calendarData={dataContent} />
     </Layout>
-  )
+  );
 };
 
-
-export default Main
-
+export default Main;

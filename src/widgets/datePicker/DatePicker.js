@@ -1,6 +1,6 @@
-import React from "react";
-import DateTimePicker from "react-datetime-picker/dist/entry.nostyle";
-import "./DatePicker.scss"
+import React from 'react';
+import DateTimePicker from 'react-datetime-picker/dist/entry.nostyle';
+import './DatePicker.scss';
 
 const DatePicker = (props) => {
   return (

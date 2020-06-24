@@ -1,8 +1,26 @@
-import React from "react";
-import Button from "../../ui/button/Button";
-import "./Header.scss"
+import React from 'react';
+import PropTypes from 'prop-types';
+import Button from '../../ui/button/Button';
+import './Header.scss';
 
-const Header = (props) => {
+const Header = (
+  {
+    headerData: {
+      title,
+      onNewEventClick,
+      onRefreshContentClick,
+    },
+  },
+) => {
+  Header.propTypes = {
+    headerData: PropTypes.exact(
+      {
+        title: PropTypes.string,
+        onNewEventClick: PropTypes.func,
+        onRefreshContentClick: PropTypes.func,
+      },
+    ),
+  };
   return (
     <header className="header">
       <div className="header__container">
@@ -11,19 +29,19 @@ const Header = (props) => {
         </div>
         <div className="header__subtitle">
           <h2 className="header__subtitle_text">
-            {props.headerData.title}
+            {title}
           </h2>
         </div>
         <div className="header__buttons buttons">
           <Button
-            onClick={props.headerData.onNewEventClick}
+            onClick={onNewEventClick}
             value="Событие +"
             key="newEvent"
             type="button"
             mod="_submit"
           />
           <Button
-            onClick={props.headerData.onRefreshContentClick}
+            onClick={onRefreshContentClick}
             value="Обновить"
             key="refresh"
             type="button"
@@ -32,9 +50,7 @@ const Header = (props) => {
         </div>
       </div>
     </header>
-  )
+  );
 };
 
-export default Header
-
-
+export default Header;

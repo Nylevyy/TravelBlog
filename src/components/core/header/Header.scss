@@ -1,13 +1,12 @@
-$background: url(../../../assets/img/jpg/headerBackground.jpg) center no-repeat;
-
-
+$background: url(../../../assets/images/jpg/headerBackground.jpg) center no-repeat;
 
 .header {
   display: flex;
   background: $background;
   background-size: cover;
-  color: #ffffff;
+  color: #fff;
   font-size: 1.1em;
+
   &__container {
     margin: 50px auto 30px;
     padding: 0 15px;
@@ -16,21 +15,25 @@ $background: url(../../../assets/img/jpg/headerBackground.jpg) center no-repeat;
     flex-direction: column;
     justify-content: space-between;
   }
+
   &__logo {
     padding: 0 5px 5px;
     border-bottom: 4px #a9d85f solid;
     border-radius: 50%;
     align-self: flex-start;
     width: 100px;
+
     &_text {
       margin-left: -22px;
       font-weight: bold;
       font-size: 26px;
     }
   }
+
   &__subtitle {
     width: 670px;
     align-self: flex-end;
+
     &_text {
       margin: 0;
       font-size: 40px;
@@ -39,6 +42,7 @@ $background: url(../../../assets/img/jpg/headerBackground.jpg) center no-repeat;
       letter-spacing: 0;
     }
   }
+
   &__buttons {
     padding: 0 20px;
     margin: 36px 0 0;
@@ -48,19 +52,20 @@ $background: url(../../../assets/img/jpg/headerBackground.jpg) center no-repeat;
   }
 }
 
-
-
-@media screen and (max-width: 767px){
-  .header{
+@media screen and (max-width: 767px) {
+  .header {
     &__container {
       margin: 10px auto;
     }
+
     &__subtitle {
       width: 300px;
+
       &_text {
         font-size: 20px;
       }
     }
+
     &__buttons {
       padding: 0;
       margin: 10px 10px 5px;
@@ -69,13 +74,14 @@ $background: url(../../../assets/img/jpg/headerBackground.jpg) center no-repeat;
   }
 }
 
-@media screen and (max-width: 480px){
-  .header{
+@media screen and (max-width: 480px) {
+  .header {
     &__buttons {
       padding: 0;
       margin: 10px 10px 5px;
       justify-content: space-around;
     }
+
     &__subtitle {
       width: 250px;
     }

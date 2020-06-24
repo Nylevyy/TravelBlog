@@ -1,7 +1,6 @@
 /*! normalize.style v8.0.1 | MIT License | github.com/necolas/normalize.style */
-@import url(../fonts/GothamPro/GothamProFont.css);
-@import url(../fonts/IntroBold/IntroBold.css);
-
+//@import url(../../fonts/GothamPro/GothamProFont.css);
+//@import url(../../fonts/IntroBold/IntroBold.css);
 
 /* Document
    ========================================================================== */
@@ -71,7 +70,7 @@ hr {
  */
 
 pre {
-  font-family: monospace, monospace; /* 1 */
+  font-family: monospace; /* 1 */
   font-size: 1em; /* 2 */
 }
 
@@ -93,7 +92,6 @@ a {
 
 abbr[title] {
   border-bottom: none; /* 1 */
-  text-decoration: underline; /* 2 */
   text-decoration: underline dotted; /* 2 */
 }
 
@@ -114,7 +112,7 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace; /* 1 */
+  font-family: monospace; /* 1 */
   font-size: 1em; /* 2 */
 }
 

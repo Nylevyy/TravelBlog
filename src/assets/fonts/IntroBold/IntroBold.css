@@ -1,9 +1,10 @@
 @font-face {
-    font-family: 'Intro Bold Alt';
-    src: url('Intro-Bold-Alt.eot');
-    src: url('Intro-Bold-Alt.eot?#iefix') format('embedded-opentype'),
+  font-family: 'Intro Bold Alt';
+  src: url('Intro-Bold-Alt.eot');
+  src:
+    url('Intro-Bold-Alt.eot?#iefix') format('embedded-opentype'),
     url('Intro-Bold-Alt.woff') format('woff'),
     url('Intro-Bold-Alt.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-weight: normal;
+  font-style: normal;
 }

@@ -11,8 +11,9 @@ $refreshButtonColor: transparent;
   white-space: nowrap;
   cursor: pointer;
   flex: 100%;
-  color: #ffffff;
-  transition: box-shadow .4s ease-in-out;
+  color: #fff;
+  transition: box-shadow 0.4s ease-in-out;
+
   &__wrapper {
     display: flex;
     padding: 10px;
@@ -20,36 +21,43 @@ $refreshButtonColor: transparent;
     align-items: center;
     flex-basis: 155px;
   }
+
   &__name {
     margin: 0 auto;
   }
+
   &:hover {
-    -webkit-box-shadow: 0 0 25px 10px rgba(169,216,95,1);
-    -moz-box-shadow: 0 0 25px 10px rgba(169,216,95,1);
-    box-shadow: 0 0 25px 10px rgba(169,216,95,1);
+    -webkit-box-shadow: 0 0 25px 10px rgba(169, 216, 95, 1);
+    -moz-box-shadow: 0 0 25px 10px rgba(169, 216, 95, 1);
+    box-shadow: 0 0 25px 10px rgba(169, 216, 95, 1);
   }
+
   &:focus {
     outline: none;
-    -webkit-box-shadow: 0 0 15px 5px rgba(169,216,95,1);
-    -moz-box-shadow: 0 0 15px 5px rgba(169,216,95,1);
-    box-shadow: 0 0 15px 5px rgba(169,216,95,1);
+    -webkit-box-shadow: 0 0 15px 5px rgba(169, 216, 95, 1);
+    -moz-box-shadow: 0 0 15px 5px rgba(169, 216, 95, 1);
+    box-shadow: 0 0 15px 5px rgba(169, 216, 95, 1);
   }
+
   &:active {
-    -webkit-box-shadow: 0 0 25px 10px rgba(169,216,95,1);
-    -moz-box-shadow: 0 0 25px 10px rgba(169,216,95,1);
-    box-shadow: 0 0 25px 10px rgba(169,216,95,1);
+    -webkit-box-shadow: 0 0 25px 10px rgba(169, 216, 95, 1);
+    -moz-box-shadow: 0 0 25px 10px rgba(169, 216, 95, 1);
+    box-shadow: 0 0 25px 10px rgba(169, 216, 95, 1);
     border-top: 4px solid #a9d85f;
     border-left: 4px solid #a9d85f;
     border-bottom: 2px solid #a9d85f;
     border-right: 2px solid #a9d85f;
   }
+
   &_submit {
     background-color: $submitButtonColor;
   }
+
   &_refresh {
     background-color: $refreshButtonColor;
   }
-  &_reset{
+
+  &_reset {
     background-color: $refreshButtonColor;
     color: #a3a3a3;
   }
@@ -60,12 +68,7 @@ $refreshButtonColor: transparent;
   font-size: 1em;
 }
 
-@media screen and (max-width: 767px){
-  .small {
-  }
-}
-
-@media screen and (max-width: 480px){
+@media screen and (max-width: 480px) {
   .button {
     width: 110px;
   }

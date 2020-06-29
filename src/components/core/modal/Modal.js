@@ -7,17 +7,15 @@ import CloseButton from '~/components/ui/closeButton/CloseButton';
 
 const modalClasses = classNames.bind(styles);
 
-const Modal = (
-  {
-    isOpen,
-    hasError,
-    isRequesting,
-    currentArticleData,
-    onModalCloseClick,
-    onSubmitFormClick,
-    onDeleteClick,
-  },
-) => {
+const Modal = ({
+  isOpen,
+  hasError,
+  isRequesting,
+  currentArticleData,
+  onModalCloseClick,
+  onSubmitFormClick,
+  onDeleteClick,
+}) => {
   Modal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onModalCloseClick: PropTypes.func.isRequired,
@@ -34,18 +32,14 @@ const Modal = (
           <CloseButton onClick={onModalCloseClick} />
         </div>
         <div className={styles.modal__form}>
-          {
-            isRequesting && <div className={styles.modal__errorlog} />
-          }
-          {
-            (hasError) && (
-              <div className={styles.modal__errorLog}>
-                <span className={styles.modal__errorSpan}>
-                  Не удалось выполнить запрос, повторите попытку
-                </span>
-              </div>
-            )
-          }
+          {isRequesting && <div className={styles.modal__errorlog} />}
+          {hasError && (
+            <div className={styles.modal__errorLog}>
+              <span className={styles.modal__errorSpan}>
+                Не удалось выполнить запрос, повторите попытку
+              </span>
+            </div>
+          )}
           <ModalForm
             onSubmitFormClick={onSubmitFormClick}
             onDeleteClick={onDeleteClick}

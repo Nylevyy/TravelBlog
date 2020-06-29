@@ -13,4 +13,12 @@
   &_invalid {
     background: rgba(253, 27, 58, 0.2);
   }
+
+  // stylelint-disable selector-pseudo-class-no-unknown
+  :global {
+    .react-datepicker__header {
+      background-color: red;
+    }
+  }
+  // stylelint-enable selector-pseudo-class-no-unknown
 }

@@ -1,6 +1,4 @@
-import {
-  take, put, call, all,
-} from '@redux-saga/core/effects';
+import { take, put, call, all } from '@redux-saga/core/effects';
 import { appStoreAPI } from '~/store/data/Data';
 
 export const sendRequest = () => ({ type: 'REQUEST_DATA' });
@@ -9,8 +7,8 @@ export const sendArticle = (payload) => ({ type: 'SEND_DATA', payload });
 
 // export const receiveData = (data) =>
 // ({ type: 'RECEIVE_DATA', payload: data });
-const request = async (method = 'GET', body = null) => appStoreAPI[method](body)
-  .catch((err) => {
+const request = async (method = 'GET', body = null) =>
+  appStoreAPI[method](body).catch((err) => {
     throw err;
   });
 /* const headers = {
@@ -79,10 +77,7 @@ function* receiveData() {
 function* sendData() {
   while (true) {
     const {
-      payload: {
-        method,
-        body,
-      },
+      payload: { method, body },
     } = yield take('SEND_DATA');
     try {
       yield call(request, method, JSON.stringify(body));
@@ -95,8 +90,5 @@ function* sendData() {
 }
 
 export function* rootSaga() {
-  yield all([
-    receiveData(),
-    sendData(),
-  ]);
+  yield all([receiveData(), sendData()]);
 }

@@ -4,20 +4,15 @@ import Header from '../core/header/Header';
 import Footer from '../core/footer/Footer';
 import Modal from '../core/modal/Modal';
 
-const Layout = (
-  {
-    layout: {
-      header,
-      modal,
-    },
-    children,
-    onModalCloseClick,
-    onNewEventClick,
-    onRefreshContentClick,
-    onSubmitFormClick,
-    onDeleteClick,
-  },
-) => {
+const Layout = ({
+  layout: { header, modal },
+  children,
+  onModalCloseClick,
+  onNewEventClick,
+  onRefreshContentClick,
+  onSubmitFormClick,
+  onDeleteClick,
+}) => {
   Layout.propTypes = {
     layout: PropTypes.shape({
       header: PropTypes.object.isRequired,
@@ -37,9 +32,7 @@ const Layout = (
         onNewEventClick={onNewEventClick}
         onRefreshContentClick={onRefreshContentClick}
       />
-      <div className="layout__content">
-        {children}
-      </div>
+      <div className="layout__content">{children}</div>
       <Footer />
       <Modal
         {...modal}

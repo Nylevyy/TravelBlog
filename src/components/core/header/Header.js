@@ -3,13 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '../../ui/button/Button';
 import styles from './Header.scss';
 
-const Header = (
-  {
-    title,
-    onNewEventClick,
-    onRefreshContentClick,
-  },
-) => {
+const Header = ({ title, onNewEventClick, onRefreshContentClick }) => {
   Header.propTypes = {
     title: PropTypes.string,
     onNewEventClick: PropTypes.func,
@@ -22,9 +16,7 @@ const Header = (
           <h1 className={styles.header__logo_text}>Мой Календарь</h1>
         </div>
         <div className={styles.header__subtitle}>
-          <h2 className={styles.header__subtitle_text}>
-            {title}
-          </h2>
+          <h2 className={styles.header__subtitle_text}>{title}</h2>
         </div>
         <div className={`${styles.header__buttons} ${styles.buttons}`}>
           <Button
@@ -44,7 +36,6 @@ const Header = (
         </div>
       </div>
     </header>
-
   );
 };
 

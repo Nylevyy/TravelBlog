@@ -8,7 +8,7 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 
 const { env } = process;
 const mode = env.NODE_ENV || 'development';
-const isEnvProd = (mode === 'production');
+const isEnvProd = mode === 'production';
 const port = env.PORT || '3000';
 const host = env.HOST || '0.0.0.0';
 const publicUrl = env.PUBLIC_URL || '';
@@ -75,6 +75,10 @@ module.exports = () => {
           loader: 'babel-loader',
         },
         {
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader'],
+        },
+        {
           test: /\.scss$/,
           use: [
             'style-loader',
@@ -107,14 +111,14 @@ module.exports = () => {
             name: 'assets/images/[name].[ext]',
           },
         },
-        // start todo
         {
           test: /\.(eot|svg|ttf|woff|woff2)$/,
           loader: 'file-loader',
+          exclude: /node_modules/,
           options: {
-            name: 'assets/fonts/[path]/[name].[ext]',
+            name: 'assets/fonts/[name].[ext]',
           },
-        }, // end
+        },
         {
           test: /\.svg$/,
           exclude: /node_modules/,

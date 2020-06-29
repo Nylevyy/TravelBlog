@@ -3,18 +3,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Input from '~/components/ui/input/Input';
 import styles from './FormInputs.scss';
-import DatePicker from '~/widgets/datePicker/DatePicker';
+import DatePicker from '~/widgets/date-picker/DatePicker';
 
 const inputsClasses = classNames.bind(styles);
 
-const Inputs = (
-  {
-    onInput,
-    onChange,
-    values,
-    notValidated,
-  },
-) => {
+const Inputs = ({ onInput, onChange, values, notValidated }) => {
   Inputs.propTypes = {
     onInput: PropTypes.func,
     onChange: PropTypes.func,
@@ -51,7 +44,9 @@ const Inputs = (
         </div>
       </div>
       <textarea
-        className={inputsClasses('formInputs__textarea', { formInputs_invalid: notValidated.includes(3) })}
+        className={inputsClasses('formInputs__textarea', {
+          formInputs_invalid: notValidated.includes(3),
+        })}
         name="content"
         cols="25"
         rows="8"

@@ -1,16 +1,19 @@
 // const path = require('path');
 
 module.exports = {
+  parser: 'babel-eslint',
   extends: [
     'airbnb',
+    'plugin:prettier/recommended',
     'plugin:sonarjs/recommended',
     'eslint:recommended',
   ],
-  plugins: ['sonarjs'],
+  plugins: ['prettier', 'sonarjs'],
   globals: {
     document: true,
     window: true,
     fetch: false,
+    localStorage: true,
   },
   settings: {
     'import/resolver': {
@@ -21,6 +24,13 @@ module.exports = {
   },
   rules: {
     'no-plusplus': 0,
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        endOfLine: 'auto',
+      },
+    ],
     'import/no-unresolved': 0,
     'import/no-extraneous-dependencies': 0,
     'import/prefer-default-export': 0,
@@ -30,13 +40,13 @@ module.exports = {
       'ignorePackages',
       {
         js: 'never',
-      }
+      },
     ],
     'react/require-default-props': 0,
-    "no-bitwise": [
-      "error", 
-      { 
-        "allow": ["~"],
+    'no-bitwise': [
+      'error',
+      {
+        allow: ['~'],
       },
     ],
     'max-len': [

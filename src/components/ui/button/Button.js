@@ -5,14 +5,7 @@ import styles from './Button.scss';
 
 const buttonClasses = classNames.bind(styles);
 
-const Button = (
-  {
-    onClick,
-    mod,
-    value,
-    isSmall,
-  },
-) => {
+const Button = ({ onClick, mod, value, isSmall }) => {
   Button.propTypes = {
     onClick: PropTypes.func.isRequired,
     mod: PropTypes.string,
@@ -26,7 +19,9 @@ const Button = (
   return (
     <div className={styles.button__wrapper}>
       <button
-        className={`${styles.button} ${styles[`button${mod}`]} ${buttonClasses({ button_small: isSmall })}`}
+        className={`${styles.button} ${styles[`button${mod}`]} ${buttonClasses({
+          button_small: isSmall,
+        })}`}
         type="button"
         onClick={(e) => handleClick(e.target.closest('button'))}
       >

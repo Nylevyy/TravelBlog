@@ -7,11 +7,11 @@ const inputClasses = classNames.bind(styles);
 
 const Input = (
   {
-    name, notValidated, onChange, index, label, onInput, value,
+    className, notValidated, onChange, index, label, onInput, value,
   },
 ) => {
   Input.propTypes = {
-    name: PropTypes.string,
+    className: PropTypes.string,
     notValidated: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onInput: PropTypes.func.isRequired,
@@ -20,17 +20,19 @@ const Input = (
     value: PropTypes.string,
   };
   return (
-    <div className={`${styles.input} ${styles[`input_${name}`]}`}>
+    <div className={classNames('input', className)}>
       <input
-        className={`${styles.input__field} ${styles[`input__field_${name}`]} ${inputClasses({ input_invalid: notValidated })}`}
+        className={inputClasses('input__field', className, {
+          input_invalid: notValidated,
+        })}
         type="text"
-        id={`input_${name}`}
+        id={className}
         onInput={(e) => onInput(index, e.target.value)}
         onChange={(e) => onChange(index, e.target.value)}
         value={value}
       />
       <label
-        htmlFor={`input_${name}`}
+        htmlFor={className}
         className={styles.input__label}
       >
         {label}

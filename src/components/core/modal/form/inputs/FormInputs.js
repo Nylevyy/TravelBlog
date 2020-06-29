@@ -25,7 +25,7 @@ const Inputs = (
     <div className={styles.formInputs}>
       <div className={styles.formInputs_small}>
         <Input
-          name="title"
+          className="input__field_title"
           label="Событие"
           index={0}
           onInput={onInput}
@@ -35,7 +35,7 @@ const Inputs = (
         />
         <div className={styles.formInputs__wrapper}>
           <Input
-            name="location"
+            className="input__field_location"
             label="Место"
             index={1}
             onInput={onInput}
@@ -51,7 +51,9 @@ const Inputs = (
         </div>
       </div>
       <textarea
-        className={inputsClasses('formInputs__textarea', { formInputs_invalid: notValidated.includes(3) })}
+        className={inputsClasses('formInputs__textarea', {
+          formInputs_invalid: notValidated.includes(3),
+        })}
         name="content"
         cols="25"
         rows="8"

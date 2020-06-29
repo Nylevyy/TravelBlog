@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Inputs from './inputs/FormInputs';
 import Button from '../../../ui/button/Button';
 import styles from './ModalForm.scss';
+import Checkbox from '~/components/ui/checkbox/Checkbox';
 
 const Form = (
   {
@@ -156,26 +157,17 @@ const Form = (
       />
 
       <div className={styles.form__dashboard}>
-        <div className={styles.form__checkbox}>
-          <label
-            htmlFor="form__checkbox"
-            className={styles.checkbox__label}
-          >
-            <input
-              type="checkbox"
-              className={styles.checkbox}
-              id="form__checkbox"
-              onChange={(e) => inputs.onInputChange(4, e.target.checked)}
-              checked={!!inputs.values[4]}
-            />
-            {' Пометить событие как важное'}
-          </label>
-        </div>
+        <Checkbox
+          index={4}
+          label=" Пометить событие как важное"
+          onChange={inputs.onInputChange}
+          checked={!!inputs.values[4]}
+          id="form__checkbox"
+        />
         <div className={styles.form__buttons}>
           <Button
             value="Готово"
-            mod="_submit"
-            isSmall
+            className="button_submit button_small"
             key="submitForm"
             onClick={inputs.onSubmitForm}
           />
@@ -183,8 +175,7 @@ const Form = (
             articleData && (
               <Button
                 value="Удалить"
-                mod="_reset"
-                isSmall
+                className="button_reset button_small"
                 key="resetForm"
                 onClick={onDeleteClick(articleData[5])}
               />

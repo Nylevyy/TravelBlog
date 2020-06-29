@@ -34,7 +34,10 @@ const CalendarItem = (
   return (
     <article
       className={calendarItemClasses(
-        { calendarItem: true, calendarItem_important: isImportant },
+        {
+          calendarItem: true,
+          calendarItem_important: isImportant,
+        },
       )}
       key={id}
     >

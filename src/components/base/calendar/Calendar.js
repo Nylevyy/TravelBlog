@@ -9,7 +9,6 @@ const Calendar = (
   {
     isFetching,
     hasError,
-    // didInvalidate,
     articles,
     onDeleteArticleClick,
     onArticleClick,
@@ -19,7 +18,6 @@ const Calendar = (
   Calendar.propTypes = {
     isFetching: PropTypes.bool.isRequired,
     hasError: PropTypes.bool.isRequired,
-    // didInvalidate: PropTypes.bool.isRequired,
     articles: PropTypes.arrayOf(PropTypes.object).isRequired,
     onDeleteArticleClick: PropTypes.func.isRequired,
     onArticleClick: PropTypes.func.isRequired,

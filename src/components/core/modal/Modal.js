@@ -28,7 +28,10 @@ const Modal = (
     onDeleteClick: PropTypes.func,
   };
   return (
-    <div className={modalClasses('modal', { modal_active: isOpen })}>
+    <div className={modalClasses('modal', {
+      modal_active: isOpen,
+    })}
+    >
       <div className={styles.modal__container}>
         <div className={styles.modal__close}>
           <CloseButton onClick={onModalCloseClick} />

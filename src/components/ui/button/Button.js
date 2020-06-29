@@ -1,21 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
+import classNames from 'classnames';
 import styles from './Button.scss';
-
-const buttonClasses = classNames.bind(styles);
 
 const Button = (
   {
     onClick,
-    mod,
+    className,
     value,
     isSmall,
   },
 ) => {
   Button.propTypes = {
     onClick: PropTypes.func.isRequired,
-    mod: PropTypes.string,
+    className: PropTypes.string,
     value: PropTypes.string,
     isSmall: PropTypes.bool,
   };
@@ -26,7 +24,9 @@ const Button = (
   return (
     <div className={styles.button__wrapper}>
       <button
-        className={`${styles.button} ${styles[`button${mod}`]} ${buttonClasses({ button_small: isSmall })}`}
+        className={classNames(styles[className], styles.button, {
+          [styles.button_small]: isSmall,
+        })}
         type="button"
         onClick={(e) => handleClick(e.target.closest('button'))}
       >

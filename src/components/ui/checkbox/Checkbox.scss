@@ -1,0 +1,10 @@
+.checkbox {
+  &__label {
+    margin-left: 10px;
+    color: #5b5b5b;
+
+    &__input {
+      vertical-align: middle;
+    }
+  }
+}

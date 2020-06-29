@@ -13,4 +13,12 @@
   &_invalid {
     background: rgba(253, 27, 58, 0.2);
   }
+
+  &__input {
+    border: none;
+    border-bottom: 1px solid #a3a3a3;
+    padding: 0 0 5px;
+    margin: 0 0 10px;
+    display: flex;
+  }
 }

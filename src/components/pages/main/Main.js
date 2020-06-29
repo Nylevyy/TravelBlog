@@ -1,6 +1,6 @@
 import React from 'react';
-import LayoutContainer from '~/containers/layoutContainer';
-import CalendarContainer from '~/containers/calendarContainer';
+import LayoutContainer from '~/containers/LayoutContainer';
+import CalendarContainer from '~/containers/CalendarContainer';
 
 const Main = () => (
   <LayoutContainer>

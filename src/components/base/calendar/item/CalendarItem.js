@@ -7,17 +7,19 @@ import styles from './CalendarItem.scss';
 
 const calendarItemClasses = classNames.bind(styles);
 
-const CalendarItem = ({
-  isImportant,
-  id,
-  onArticleClick,
-  hasRequestError,
-  title,
-  location,
-  date,
-  description,
-  onDeleteArticleClick,
-}) => {
+const CalendarItem = (
+  {
+    isImportant,
+    id,
+    onArticleClick,
+    hasRequestError,
+    title,
+    location,
+    date,
+    description,
+    onDeleteArticleClick,
+  },
+) => {
   CalendarItem.propTypes = {
     hasRequestError: PropTypes.number,
     title: PropTypes.string.isRequired,
@@ -31,27 +33,36 @@ const CalendarItem = ({
   };
   return (
     <article
-      className={calendarItemClasses({
-        calendarItem: true,
-        calendarItem_important: isImportant,
-      })}
+      className={calendarItemClasses(
+        {
+          calendarItem: true,
+          calendarItem_important: isImportant,
+        },
+      )}
       key={id}
     >
       <button
         className={styles.calendarItem__wrapper}
         type="button"
-        onClick={() => {
-          onArticleClick([title, location, date, description, isImportant, id]);
-        }}
+        onClick={() => onArticleClick([
+          title,
+          location,
+          date,
+          description,
+          isImportant,
+          id,
+        ])}
         aria-label="article-edit"
       >
-        {hasRequestError && (
-          <div className={styles.calendarItem__errorLog}>
-            <span className={styles.calendarItem__errorSpan}>
-              Ошибка при выполнении запроса на сервер
-            </span>
-          </div>
-        )}
+        {
+          (hasRequestError) && (
+            <div className={styles.calendarItem__errorLog}>
+              <span className={styles.calendarItem__errorSpan}>
+                Ошибка при выполнении запроса на сервер
+              </span>
+            </div>
+          )
+        }
         <div className={styles.calendarItem__info}>
           <div className={styles.calendarItem__time}>
             {moment(date).format('HH:mm')}

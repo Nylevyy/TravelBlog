@@ -18,20 +18,21 @@ const Header = ({ title, onNewEventClick, onRefreshContentClick }) => {
         <div className={styles.header__subtitle}>
           <h2 className={styles.header__subtitle_text}>{title}</h2>
         </div>
-        <div className={`${styles.header__buttons} ${styles.buttons}`}>
+        <div className={styles.header__buttons}>
           <Button
             onClick={onNewEventClick}
             value="Событие +"
             key="newEvent"
             type="button"
-            mod="_submit"
+            className="button_submit"
           />
           <Button
             onClick={onRefreshContentClick}
             value="Обновить"
             key="refresh"
             type="button"
-            mod="_refresh"
+            className="button_refresh"
+            isSmall
           />
         </div>
       </div>

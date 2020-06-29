@@ -1,22 +1,41 @@
 import React from 'react';
-import DateTimePicker from 'react-datetime-picker/dist/entry.nostyle';
-import './DatePicker.scss';
+import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
+import DateTimePicker from 'react-datepicker';
+import 'react-datepicker/src/stylesheets/datepicker.scss';
+import styles from './DatePicker.scss';
 
-const DatePicker = (props) => {
+const datePickerClasses = classNames.bind(styles);
+
+const DatePicker = (
+  {
+    notValidated,
+    value,
+    onChange,
+  },
+) => {
+  DatePicker.propTypes = {
+    notValidated: PropTypes.bool,
+    value: PropTypes.instanceOf(Date),
+    onChange: PropTypes.func,
+  };
   return (
-    <div className="date-picker">
+    <div className={styles.datePicker}>
       <DateTimePicker
-        className={(props.notValidated.includes(2)) ? 'react-datetime-picker_invalid' : ''}
-        value={props.value}
-        onChange={props.onChange}
+        className={datePickerClasses({ datePicker_invalid: notValidated })}
+        value={value}
+        onChange={onChange}
         id="date"
+        wrapperClassName="styles.datePicker__wrapperNewClassSAKJDsdfhasdjkfglakfa"
       />
-      <label
-        className="date-picker__label">
+      <span
+        className={styles.datePicker__label}
+        // htmlFor="date"
+      >
         Время
-      </label>
+      </span>
     </div>
-  )
-}
+  );
+};
 
-export default DatePicker
+export default DatePicker;

@@ -61,11 +61,11 @@ $refreshButtonColor: transparent;
     background-color: $refreshButtonColor;
     color: #a3a3a3;
   }
-}
 
-.small {
-  width: 110px;
-  font-size: 1em;
+  &_small {
+    width: 110px;
+    font-size: 1em;
+  }
 }
 
 @media screen and (max-width: 480px) {

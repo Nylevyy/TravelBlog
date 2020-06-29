@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-// import moment from 'moment';
 import Inputs from './inputs/FormInputs';
 import Button from '../../../ui/button/Button';
-import './ModalForm.scss';
+import styles from './ModalForm.scss';
 
 const Form = (
   {
@@ -14,15 +13,15 @@ const Form = (
 ) => {
   Form.propTypes = {
     onSubmitFormClick: PropTypes.func.isRequired,
-    onDeleteClick: PropTypes.func.isRequired,
+    onDeleteClick: PropTypes.func,
     articleData: PropTypes.arrayOf(PropTypes.any),
   };
   const [inputs, setInputs] = useState(
     {
       notValidated: [],
-      articleData,
       isEditMode: false,
-      values: ['', '', '', '', false],
+      id: Date.now(),
+      values: ['', '', new Date(), '', false],
       onInputChange(index, value) {
         setInputs((prevInputs) => {
           const newInputs = prevInputs.values.slice();
@@ -35,9 +34,12 @@ const Form = (
           );
         });
       },
+      /*
       onSubmitForm() {
         const emptyFields = [];
         for (let i = 0; i < inputs.values.length - 1; i++) {
+          console.log(inputs.values[i]);
+          console.log(!!inputs.values[i]);
           if (!inputs.values[i]) {
             emptyFields.push(i);
           }
@@ -57,7 +59,7 @@ const Form = (
           date: inputs.values[2],
           description: inputs.values[3],
           isImportant: inputs.values[4],
-          id: inputs.id,
+          id: articleData ? articleData[5] : Date.now(),
         };
         setInputs((prevInputs) => (
           {
@@ -65,22 +67,70 @@ const Form = (
             notValidated: [],
           }
         ));
-        onSubmitFormClick(article, inputs.isEditMode);
+        const isEditMode = !!articleData;
+        onSubmitFormClick(article, isEditMode);
+      }, */
+      onSubmitForm() {
+        let article;
+        let isEditing;
+        setInputs((prevInputs) => {
+          const emptyFields = [];
+          for (let i = 0; i < prevInputs.values.length - 1; i++) {
+            if (!prevInputs.values[i]) {
+              emptyFields.push(i);
+            }
+          }
+          if (emptyFields.length) {
+            return (
+              {
+                ...prevInputs,
+                notValidated: emptyFields,
+              }
+            );
+          }
+          isEditing = prevInputs.isEditMode;
+          article = {
+            title: prevInputs.values[0],
+            location: prevInputs.values[1],
+            date: prevInputs.values[2],
+            description: prevInputs.values[3],
+            isImportant: prevInputs.values[4],
+            id: prevInputs.id,
+          };
+          return (
+            {
+              ...prevInputs,
+              notValidated: [],
+            }
+          );
+        });
+        if (!article) return;
+        onSubmitFormClick(article, isEditing);
       },
     },
   );
   useEffect(() => {
-    if (!articleData) return;
+    if (!articleData) {
+      setInputs((prevInputs) => (
+        {
+          ...prevInputs,
+          values: ['', '', new Date(), '', false],
+          notValidated: [],
+          isEditMode: false,
+          id: Date.now(),
+        }
+      ));
+      return;
+    }
     const values = articleData.slice(0, 5);
     values[2] = new Date(values[2]);
     setInputs((prevInputs) => (
       {
         ...prevInputs,
         notValidated: [],
-        articleData,
-        isEditMode: true,
         values,
-        id: articleData[5],
+        isEditMode: true,
+        id: values[5],
       }
     ));
   }, [articleData]);
@@ -88,7 +138,7 @@ const Form = (
   return (
     <form
       action=""
-      className="form"
+      className={styles.form}
     >
       <Inputs
         values={
@@ -105,26 +155,27 @@ const Form = (
         onChangeDate={inputs.onChangeDate}
       />
 
-      <div className="form__dashboard">
-        <div className="form__checkbox">
+      <div className={styles.form__dashboard}>
+        <div className={styles.form__checkbox}>
           <label
             htmlFor="form__checkbox"
-            className="checkbox__label"
+            className={styles.checkbox__label}
           >
             <input
               type="checkbox"
-              className="checkbox"
+              className={styles.checkbox}
               id="form__checkbox"
               onChange={(e) => inputs.onInputChange(4, e.target.checked)}
               checked={!!inputs.values[4]}
             />
-            Пометить событие как важное
+            {' Пометить событие как важное'}
           </label>
         </div>
-        <div className="modal__buttons">
+        <div className={styles.form__buttons}>
           <Button
             value="Готово"
-            mod="_submit small"
+            mod="_submit"
+            isSmall
             key="submitForm"
             onClick={inputs.onSubmitForm}
           />
@@ -132,7 +183,8 @@ const Form = (
             articleData && (
               <Button
                 value="Удалить"
-                mod="_reset small"
+                mod="_reset"
+                isSmall
                 key="resetForm"
                 onClick={onDeleteClick(articleData[5])}
               />

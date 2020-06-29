@@ -12,12 +12,20 @@
   &__checkbox {
     display: flex;
   }
+
+  &__buttons {
+    display: flex;
+  }
 }
 
 .checkbox {
   &__label {
     margin-left: 10px;
     color: #5b5b5b;
+
+    &__input {
+      vertical-align: middle;
+    }
   }
 }
 

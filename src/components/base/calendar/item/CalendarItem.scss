@@ -30,6 +30,18 @@
     display: flex;
     flex: 1;
     position: relative;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    color: #000;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   &__error- {

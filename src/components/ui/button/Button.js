@@ -1,31 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Button.scss';
+import classNames from 'classnames/bind';
+import styles from './Button.scss';
+
+const buttonClasses = classNames.bind(styles);
 
 const Button = (
   {
     onClick,
     mod,
     value,
+    isSmall,
   },
 ) => {
   Button.propTypes = {
-    onClick: PropTypes.func,
+    onClick: PropTypes.func.isRequired,
     mod: PropTypes.string,
     value: PropTypes.string,
+    isSmall: PropTypes.bool,
   };
   const handleClick = (button) => {
     button.blur();
     onClick();
   };
   return (
-    <div className="button__wrapper">
+    <div className={styles.button__wrapper}>
       <button
-        className={`button button ${mod}`}
+        className={`${styles.button} ${styles[`button${mod}`]} ${buttonClasses({ button_small: isSmall })}`}
         type="button"
         onClick={(e) => handleClick(e.target.closest('button'))}
       >
-        <span className="button__name">{value}</span>
+        <span className={styles.button__name}>{value}</span>
       </button>
     </div>
   );

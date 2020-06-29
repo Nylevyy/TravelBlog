@@ -1,8 +1,11 @@
 import React from 'react';
 import moment from 'moment';
+import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import CloseButton from '../../../ui/closeButton/CloseButton';
-import './CalendarItem.scss';
+import styles from './CalendarItem.scss';
+
+const calendarItemClasses = classNames.bind(styles);
 
 const CalendarItem = (
   {
@@ -30,35 +33,45 @@ const CalendarItem = (
   };
   return (
     <article
-      className={`${(isImportant ? 'calendar-item_important' : '')} item`}
+      className={calendarItemClasses(
+        { calendarItem: true, calendarItem_important: isImportant },
+      )}
       key={id}
     >
       <button
-        className="calendar-item__wrapper"
-        onClick={() => onArticleClick(id)}
+        className={styles.calendarItem__wrapper}
         type="button"
+        onClick={() => onArticleClick([
+          title,
+          location,
+          date,
+          description,
+          isImportant,
+          id,
+        ])}
+        aria-label="article-edit"
       >
         {
           (hasRequestError) && (
-            <div className="calendar-item__error-log">
-              <span className="calendar-item__error-span">
+            <div className={styles.calendarItem__errorLog}>
+              <span className={styles.calendarItem__errorSpan}>
                 Ошибка при выполнении запроса на сервер
               </span>
             </div>
           )
         }
-        <div className="calendar-item__info">
-          <div className="calendar-item__time">
+        <div className={styles.calendarItem__info}>
+          <div className={styles.calendarItem__time}>
             {moment(date).format('HH:mm')}
           </div>
-          <div className="calendar-item__location">{location}</div>
+          <div className={styles.calendarItem__location}>{location}</div>
         </div>
-        <div className="calendar-item__content">
-          <h3 className="calendar-item__title">{title}</h3>
-          <div className="calendar-item__description">{description}</div>
+        <div className={styles.calendarItem__content}>
+          <h3 className={styles.calendarItem__title}>{title}</h3>
+          <div className={styles.calendarItem__description}>{description}</div>
         </div>
       </button>
-      <div className="calendar-item__delete">
+      <div className={styles.calendarItem__delete}>
         <CloseButton onClick={onDeleteArticleClick(id)} />
       </div>
     </article>

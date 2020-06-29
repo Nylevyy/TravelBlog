@@ -17,16 +17,18 @@ $background: url(../../../assets/images/jpg/headerBackground.jpg) center no-repe
   }
 
   &__logo {
+    font-family: 'Intro Bold Alt', serif;
     padding: 0 5px 5px;
     border-bottom: 4px #a9d85f solid;
     border-radius: 50%;
     align-self: flex-start;
     width: 100px;
+    white-space: nowrap;
 
     &_text {
-      margin-left: -22px;
+      margin-left: -33px;
       font-weight: bold;
-      font-size: 26px;
+      font-size: 22px;
     }
   }
 

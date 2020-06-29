@@ -1,38 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../ui/button/Button';
-import './Header.scss';
+import styles from './Header.scss';
 
 const Header = (
   {
-    headerData: {
-      title,
-      onNewEventClick,
-      onRefreshContentClick,
-    },
+    title,
+    onNewEventClick,
+    onRefreshContentClick,
   },
 ) => {
   Header.propTypes = {
-    headerData: PropTypes.exact(
-      {
-        title: PropTypes.string,
-        onNewEventClick: PropTypes.func,
-        onRefreshContentClick: PropTypes.func,
-      },
-    ),
+    title: PropTypes.string,
+    onNewEventClick: PropTypes.func,
+    onRefreshContentClick: PropTypes.func,
   };
   return (
-    <header className="header">
-      <div className="header__container">
-        <div className="header__logo">
-          <h1 className="header__logo_text">Календарь</h1>
+    <header className={styles.header}>
+      <div className={styles.header__container}>
+        <div className={styles.header__logo}>
+          <h1 className={styles.header__logo_text}>Мой Календарь</h1>
         </div>
-        <div className="header__subtitle">
-          <h2 className="header__subtitle_text">
+        <div className={styles.header__subtitle}>
+          <h2 className={styles.header__subtitle_text}>
             {title}
           </h2>
         </div>
-        <div className="header__buttons buttons">
+        <div className={`${styles.header__buttons} ${styles.buttons}`}>
           <Button
             onClick={onNewEventClick}
             value="Событие +"
@@ -50,6 +44,7 @@ const Header = (
         </div>
       </div>
     </header>
+
   );
 };
 

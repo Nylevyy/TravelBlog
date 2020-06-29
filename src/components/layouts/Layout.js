@@ -6,28 +6,47 @@ import Modal from '../core/modal/Modal';
 
 const Layout = (
   {
-    layoutData: {
+    layout: {
       header,
       modal,
     },
     children,
+    onModalCloseClick,
+    onNewEventClick,
+    onRefreshContentClick,
+    onSubmitFormClick,
+    onDeleteClick,
   },
 ) => {
   Layout.propTypes = {
-    layoutData: {
+    layout: PropTypes.shape({
       header: PropTypes.object.isRequired,
       modal: PropTypes.object.isRequired,
-    },
-    children: PropTypes.elementType,
+    }).isRequired,
+    children: PropTypes.element,
+    onModalCloseClick: PropTypes.func,
+    onNewEventClick: PropTypes.func,
+    onRefreshContentClick: PropTypes.func,
+    onSubmitFormClick: PropTypes.func,
+    onDeleteClick: PropTypes.func,
   };
   return (
     <div className="layout">
-      <Header headerData={header} />
+      <Header
+        {...header}
+        onNewEventClick={onNewEventClick}
+        onRefreshContentClick={onRefreshContentClick}
+      />
       <div className="layout__content">
         {children}
       </div>
       <Footer />
-      <Modal modalData={modal} />
+      <Modal
+        {...modal}
+        onModalCloseClick={onModalCloseClick}
+        onSubmitFormClick={onSubmitFormClick}
+        onDeleteClick={onDeleteClick}
+      />
     </div>
   );
 };

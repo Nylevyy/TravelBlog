@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
 import Input from '~/components/ui/input/Input';
-import './FormInputs.scss';
-// import DatePicker from '~/components/widgets/datePicker/DatePicker';
+import styles from './FormInputs.scss';
+import DatePicker from '~/widgets/datePicker/DatePicker';
+
+const inputsClasses = classNames.bind(styles);
 
 const Inputs = (
   {
@@ -19,8 +22,8 @@ const Inputs = (
     notValidated: PropTypes.arrayOf(PropTypes.number),
   };
   return (
-    <div className="inputs">
-      <div className="inputs_small">
+    <div className={styles.formInputs}>
+      <div className={styles.formInputs_small}>
         <Input
           name="title"
           label="Событие"
@@ -28,27 +31,27 @@ const Inputs = (
           onInput={onInput}
           onChange={onChange}
           value={values[0]}
-          notValidated={notValidated}
+          notValidated={notValidated.includes(0)}
         />
-        <div className="inputs__wrapper">
+        <div className={styles.formInputs__wrapper}>
           <Input
             name="location"
             label="Место"
             index={1}
             onInput={onInput}
             value={values[1]}
-            notValidated={notValidated}
+            notValidated={notValidated.includes(1)}
             onChange={onChange}
           />
-          {/* <DatePicker
-            onChange={onChange.bind(null, 2)}
+          <DatePicker
+            onChange={onChange}
             value={values[2]}
-            notValidated={notValidated}
-          /> */}
+            notValidated={notValidated.includes(2)}
+          />
         </div>
       </div>
       <textarea
-        className={`inputs__textarea ${(notValidated.includes(3) ? ' inputs_invalid' : '')}`}
+        className={inputsClasses('formInputs__textarea', { formInputs_invalid: notValidated.includes(3) })}
         name="content"
         cols="25"
         rows="8"

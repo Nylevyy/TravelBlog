@@ -107,6 +107,14 @@ module.exports = () => {
             name: 'assets/images/[name].[ext]',
           },
         },
+        // start todo
+        {
+          test: /\.(eot|svg|ttf|woff|woff2)$/,
+          loader: 'file-loader',
+          options: {
+            name: 'assets/fonts/[path]/[name].[ext]',
+          },
+        }, // end
         {
           test: /\.svg$/,
           exclude: /node_modules/,

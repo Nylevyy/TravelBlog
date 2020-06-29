@@ -1,4 +1,4 @@
-.inputs {
+.form-inputs {
   display: flex;
   flex-direction: column;
   padding: 10px 15px;
@@ -30,13 +30,13 @@
 }
 
 @media screen and (max-width: 767px) {
-  .inputs {
+  .form-inputs {
     padding: 7px;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .inputs {
+  .form-inputs {
     &__wrapper {
       flex-direction: column;
     }
@@ -48,7 +48,7 @@
 }
 
 @media screen and (orientation: landscape) and (max-height: 490px) {
-  .inputs {
+  .form-inputs {
     padding: 2px;
     flex-direction: row;
     align-items: stretch;

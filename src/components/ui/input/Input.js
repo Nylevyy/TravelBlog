@@ -1,6 +1,9 @@
 import React from 'react';
+import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
-import './Input.scss';
+import styles from './Input.scss';
+
+const inputClasses = classNames.bind(styles);
 
 const Input = (
   {
@@ -17,9 +20,9 @@ const Input = (
     value: PropTypes.string,
   };
   return (
-    <div className={`input input_${name}`}>
+    <div className={`${styles.input} ${styles[`input_${name}`]}`}>
       <input
-        className={`input__field input__field_${name} ${(notValidated.includes(index) ? 'input_invalid' : '')}`}
+        className={`${styles.input__field} ${styles[`input__field_${name}`]} ${inputClasses({ input_invalid: notValidated })}`}
         type="text"
         id={`input_${name}`}
         onInput={(e) => onInput(index, e.target.value)}
@@ -28,7 +31,7 @@ const Input = (
       />
       <label
         htmlFor={`input_${name}`}
-        className="input__label"
+        className={styles.input__label}
       >
         {label}
       </label>

@@ -56,18 +56,18 @@ export const appStoreAPI = {
   },
   POST(article) {
     this._articles.push(JSON.parse(article));
-    return new Promise(resolve => setTimeout(resolve, 1000))
+    return new Promise(resolve => setTimeout(() => resolve(JSON.stringify(this._articles)), 1000))
   },
   PUT(json) {
     const article = JSON.parse(json);
     const idx = this._articles.findIndex(item => item.id === article.id);
     this._articles[idx] = article;
-    return new Promise(resolve => setTimeout(resolve, 800))
+    return new Promise(resolve => setTimeout(() => resolve(JSON.stringify(this._articles)), 800))
   },
   DELETE(id) {
     const idx = this._articles.findIndex(item => item.id === +id);
     this._articles.splice(idx, 1);
-    return new Promise(resolve => setTimeout(resolve, 700))
+    return new Promise(resolve => setTimeout(() => resolve(JSON.stringify(this._articles)), 700))
   }
 };
 

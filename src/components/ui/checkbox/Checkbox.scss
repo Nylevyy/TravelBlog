@@ -1,10 +1,12 @@
 .checkbox {
   &__label {
     margin-left: 10px;
-    color: #5b5b5b;
+    color: $secondaryColor;
+    cursor: pointer;
+  }
 
-    &__input {
-      vertical-align: middle;
-    }
+  &__input {
+    vertical-align: middle;
+    cursor: pointer;
   }
 }

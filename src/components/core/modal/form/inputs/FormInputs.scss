@@ -17,15 +17,15 @@
     resize: none;
     margin: 35px 10px 0;
     padding: 15px;
-    border: 1px solid #a3a3a3;
+    border: 1px solid $passive;
 
     &:focus {
-      outline: 2px solid #a9d85f;
+      outline: 2px solid $active;
     }
   }
 
   &_invalid {
-    background: rgba(253, 27, 58, 0.2);
+    background: $invalid;
   }
 }
 

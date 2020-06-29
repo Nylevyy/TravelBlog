@@ -7,8 +7,8 @@ import DatePicker from '~/widgets/date-picker/DatePicker';
 
 const inputsClasses = classNames.bind(styles);
 
-const Inputs = ({ onInput, onChange, values, notValidated }) => {
-  Inputs.propTypes = {
+const FormInputs = ({ onInput, onChange, values, notValidated }) => {
+  FormInputs.propTypes = {
     onInput: PropTypes.func,
     onChange: PropTypes.func,
     values: PropTypes.arrayOf(PropTypes.any),
@@ -18,7 +18,7 @@ const Inputs = ({ onInput, onChange, values, notValidated }) => {
     <div className={styles.formInputs}>
       <div className={styles.formInputs_small}>
         <Input
-          className="input__field_title"
+          name="title"
           label="Событие"
           index={0}
           onInput={onInput}
@@ -28,7 +28,7 @@ const Inputs = ({ onInput, onChange, values, notValidated }) => {
         />
         <div className={styles.formInputs__wrapper}>
           <Input
-            className="input__field_location"
+            name="location"
             label="Место"
             index={1}
             onInput={onInput}
@@ -59,4 +59,4 @@ const Inputs = ({ onInput, onChange, values, notValidated }) => {
   );
 };
 
-export default Inputs;
+export default FormInputs;

@@ -1,9 +1,6 @@
-$submitButtonColor: #a9d85f;
-$refreshButtonColor: transparent;
-
 .button {
   display: flex;
-  border: 3px solid $submitButtonColor;
+  border: 3px solid $green;
   font-size: 1.15em;
   line-height: 2.2;
   font-weight: bold;
@@ -11,7 +8,7 @@ $refreshButtonColor: transparent;
   white-space: nowrap;
   cursor: pointer;
   flex: 100%;
-  color: #fff;
+  color: $contrastColor;
   transition: box-shadow 0.4s ease-in-out;
 
   &__wrapper {
@@ -19,7 +16,13 @@ $refreshButtonColor: transparent;
     padding: 10px;
     justify-content: center;
     align-items: center;
-    flex-basis: 155px;
+    flex: 0 0;
+    flex-basis: $baseButtons;
+
+    &_small {
+      flex-basis: $modalButtons;
+      font-size: 1em;
+    }
   }
 
   &__name {
@@ -27,49 +30,50 @@ $refreshButtonColor: transparent;
   }
 
   &:hover {
-    -webkit-box-shadow: 0 0 25px 10px rgba(169, 216, 95, 1);
-    -moz-box-shadow: 0 0 25px 10px rgba(169, 216, 95, 1);
-    box-shadow: 0 0 25px 10px rgba(169, 216, 95, 1);
+    -webkit-box-shadow: 0 0 25px 10px $green;
+    -moz-box-shadow: 0 0 25px 10px $green;
+    box-shadow: 0 0 25px 10px $green;
   }
 
   &:focus {
     outline: none;
-    -webkit-box-shadow: 0 0 15px 5px rgba(169, 216, 95, 1);
-    -moz-box-shadow: 0 0 15px 5px rgba(169, 216, 95, 1);
-    box-shadow: 0 0 15px 5px rgba(169, 216, 95, 1);
+    -webkit-box-shadow: 0 0 15px 5px $green;
+    -moz-box-shadow: 0 0 15px 5px $green;
+    box-shadow: 0 0 15px 5px $green;
   }
 
   &:active {
-    -webkit-box-shadow: 0 0 25px 10px rgba(169, 216, 95, 1);
-    -moz-box-shadow: 0 0 25px 10px rgba(169, 216, 95, 1);
-    box-shadow: 0 0 25px 10px rgba(169, 216, 95, 1);
-    border-top: 4px solid #a9d85f;
-    border-left: 4px solid #a9d85f;
-    border-bottom: 2px solid #a9d85f;
-    border-right: 2px solid #a9d85f;
+    -webkit-box-shadow: 0 0 25px 10px $green;
+    -moz-box-shadow: 0 0 25px 10px $green;
+    box-shadow: 0 0 25px 10px $green;
+    border-top: 4px solid $green;
+    border-left: 4px solid $green;
+    border-bottom: 2px solid $green;
+    border-right: 2px solid $green;
   }
 
   &_submit {
-    background-color: $submitButtonColor;
+    background-color: $green;
   }
 
   &_refresh {
-    background-color: $refreshButtonColor;
+    background-color: transparent;
   }
 
   &_reset {
-    background-color: $refreshButtonColor;
-    color: #a3a3a3;
-  }
-
-  &_small {
-    width: 110px;
-    font-size: 1em;
+    background-color: transparent;
+    color: $resetColor;
   }
 }
 
 @media screen and (max-width: 480px) {
   .button {
-    width: 110px;
+    &__wrapper {
+      flex-basis: $smallDevicesButtons;
+
+      &_small {
+        flex-basis: $modalButtons;
+      }
+    }
   }
 }

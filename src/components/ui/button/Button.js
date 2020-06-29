@@ -3,14 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './Button.scss';
 
-const Button = (
-  {
-    onClick,
-    className,
-    value,
-    isSmall,
-  },
-) => {
+const Button = ({ onClick, className, value, isSmall }) => {
   Button.propTypes = {
     onClick: PropTypes.func.isRequired,
     className: PropTypes.string,
@@ -22,11 +15,13 @@ const Button = (
     onClick();
   };
   return (
-    <div className={styles.button__wrapper}>
+    <div
+      className={classNames(styles.button__wrapper, {
+        [styles.button__wrapper_small]: isSmall,
+      })}
+    >
       <button
-        className={classNames(styles[className], styles.button, {
-          [styles.button_small]: isSmall,
-        })}
+        className={classNames(styles[className], styles.button)}
         type="button"
         onClick={(e) => handleClick(e.target.closest('button'))}
       >

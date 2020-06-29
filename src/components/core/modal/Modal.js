@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ModalForm from './form/ModalForm';
 import styles from './Modal.scss';
-import CloseButton from '~/components/ui/closeButton/CloseButton';
+import CloseButton from '~/components/ui/close-button/CloseButton';
+import FetchingSpinner from '~/assets/spinners/FetchingSpinner';
 
 const modalClasses = classNames.bind(styles);
 
 const Modal = ({
   isOpen,
   hasError,
-  isRequesting,
+  isFetching,
   currentArticleData,
   onModalCloseClick,
   onSubmitFormClick,
@@ -20,22 +21,27 @@ const Modal = ({
     isOpen: PropTypes.bool.isRequired,
     onModalCloseClick: PropTypes.func.isRequired,
     hasError: PropTypes.bool,
-    isRequesting: PropTypes.bool.isRequired,
+    isFetching: PropTypes.bool.isRequired,
     currentArticleData: PropTypes.arrayOf(PropTypes.any),
     onSubmitFormClick: PropTypes.func,
     onDeleteClick: PropTypes.func,
   };
   return (
-    <div className={modalClasses('modal', {
-      modal_active: isOpen,
-    })}
+    <div
+      className={modalClasses('modal', {
+        modal_active: isOpen,
+      })}
     >
       <div className={styles.modal__container}>
         <div className={styles.modal__close}>
           <CloseButton onClick={onModalCloseClick} />
         </div>
         <div className={styles.modal__form}>
-          {isRequesting && <div className={styles.modal__errorlog} />}
+          {isFetching && (
+            <div className={styles.modal__loadingIndicator}>
+              <FetchingSpinner />
+            </div>
+          )}
           {hasError && (
             <div className={styles.modal__errorLog}>
               <span className={styles.modal__errorSpan}>

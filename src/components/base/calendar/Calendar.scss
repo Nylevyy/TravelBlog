@@ -15,7 +15,7 @@
   }
 
   &__date {
-    font-family: 'Intro Bold Alt', serif;
+    font-family: $secondaryFont;
     font-size: 27px;
   }
 }
@@ -29,6 +29,14 @@
 
     &_empty {
       padding: 50px;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .main-calendar {
+    &_empty {
+      padding: 15px;
     }
   }
 }

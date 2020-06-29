@@ -1,5 +1,4 @@
 import React from 'react';
-// import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import ReactDOM from 'react-dom';
 import moment from 'moment';

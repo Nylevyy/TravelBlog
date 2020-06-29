@@ -1,0 +1,20 @@
+.fetching-spinner {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > div > div:nth-child(even) {
+    background-color: $active;
+  }
+
+  & > div > div:nth-child(odd) {
+    background-color: $important;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .fetching-spinner {
+    padding: 0;
+  }
+}

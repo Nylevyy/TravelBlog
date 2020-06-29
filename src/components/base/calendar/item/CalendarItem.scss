@@ -1,9 +1,9 @@
 .calendar-item {
   display: flex;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: $secondaryBackground;
   letter-spacing: 0;
-  border-left: 3px solid #a9d85f;
+  border-left: 3px solid $active;
   padding: 15px;
   margin-bottom: 10px;
   cursor: pointer;
@@ -16,14 +16,14 @@
   }
 
   &:active {
-    -webkit-box-shadow: 0 0 25px 10px rgba(169, 216, 95, 1);
-    -moz-box-shadow: 0 0 25px 10px rgba(169, 216, 95, 1);
-    box-shadow: 0 0 25px 10px rgba(169, 216, 95, 1);
+    -webkit-box-shadow: 0 0 25px 10px $active;
+    -moz-box-shadow: 0 0 25px 10px $active;
+    box-shadow: 0 0 25px 10px $active;
     border-radius: 5px;
   }
 
   &_important {
-    border-left: 3px solid #d8378e;
+    border-left: 3px solid $important;
   }
 
   &__wrapper {
@@ -37,7 +37,7 @@
     border: none;
     cursor: pointer;
     text-align: left;
-    color: #000;
+    color: $baseColor;
 
     &:focus {
       outline: none;
@@ -52,7 +52,7 @@
     }
 
     &span {
-      color: #fd1b3a;
+      color: $error;
     }
   }
 
@@ -75,7 +75,7 @@
     padding: 15px 0 0;
     margin-bottom: 15px;
     max-width: 230px;
-    color: #5b5b5b;
+    color: $secondaryColor;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -99,11 +99,11 @@
     font-size: 1.25em;
     font-weight: 500;
     font-style: normal;
-    color: #000;
+    color: $baseColor;
   }
 
   &__description {
-    color: #a3a3a3;
+    color: $labels;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;

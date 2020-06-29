@@ -32,7 +32,6 @@ const Header = ({ title, onNewEventClick, onRefreshContentClick }) => {
             key="refresh"
             type="button"
             className="button_refresh"
-            isSmall
           />
         </div>
       </div>

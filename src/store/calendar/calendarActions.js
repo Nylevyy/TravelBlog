@@ -80,9 +80,10 @@ function* sendData() {
       payload: { method, body },
     } = yield take('SEND_DATA');
     try {
-      yield call(request, method, JSON.stringify(body));
+      const data = yield call(request, method, JSON.stringify(body));
+      const articles = yield call(() => JSON.parse(data));
       yield put({ type: 'SET_MODAL_DEFAULT' });
-      yield put({ type: 'REQUEST_DATA' });
+      yield put({ type: 'RECEIVE_DATA', payload: articles });
     } catch (err) {
       yield put({ type: 'CATCH_ERROR', payload: err });
     }

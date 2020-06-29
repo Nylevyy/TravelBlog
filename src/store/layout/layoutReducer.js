@@ -5,7 +5,7 @@ const initialState = {
   modal: {
     isOpen: false,
     currentArticleData: null,
-    isRequesting: false,
+    isFetching: false,
     hasError: false,
   },
 };
@@ -19,13 +19,19 @@ const layoutReducer = (state = initialState, action) => {
           title: action.payload,
         },
       };
+    case 'REQUEST_DATA':
+      return {
+        ...state,
+        isFetching: true,
+        hasError: false,
+      };
     case 'SET_MODAL_DEFAULT':
       return {
         ...state,
         modal: {
           isOpen: false,
           currentArticleData: null,
-          isRequesting: false,
+          isFetching: false,
           hasError: false,
         },
       };
@@ -34,7 +40,7 @@ const layoutReducer = (state = initialState, action) => {
         ...state,
         modal: {
           ...state.modal,
-          isRequesting: true,
+          isFetching: true,
         },
       };
     case 'CATCH_ERROR':
@@ -42,7 +48,7 @@ const layoutReducer = (state = initialState, action) => {
         ...state,
         modal: {
           ...state.modal,
-          isRequesting: false,
+          isFetching: false,
           hasError: true,
         },
       };
@@ -52,7 +58,7 @@ const layoutReducer = (state = initialState, action) => {
         modal: {
           isOpen: true,
           currentArticleData: action.payload,
-          isRequesting: false,
+          isFetching: false,
           hasError: false,
         },
       };

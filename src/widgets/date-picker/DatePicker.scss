@@ -1,4 +1,3 @@
-//197, 347 & *
 .date-picker {
   display: flex;
   flex-direction: column;
@@ -7,18 +6,58 @@
   flex: 1 1;
 
   &__label {
-    color: #a3a3a3;
+    color: $labels;
   }
 
   &_invalid {
-    background: rgba(253, 27, 58, 0.2);
+    background: $invalid;
+  }
+
+  &__calendar {
+    font-family: $secondaryFont;
+    background: $background;
   }
 
   &__input {
     border: none;
-    border-bottom: 1px solid #a3a3a3;
+    border-bottom: 1px solid $labels;
     padding: 0 0 5px;
     margin: 0 0 10px;
     display: flex;
+    background: $secondaryBackground;
+
+    &:focus {
+      outline: none;
+    }
+  }
+  // stylelint-disable selector-pseudo-class-no-unknown
+  :global {
+    & .react-datepicker__header {
+      background: $active;
+    }
+
+    & .react-datepicker__day--selected {
+      background: $important;
+    }
+
+    & .react-datepicker__navigation--previous {
+      border-right-color: $important;
+    }
+
+    & .react-datepicker__navigation--next {
+      border-left-color: $important;
+    }
+  }
+
+  &__popper {
+    font-family: $secondaryFont;
+  }
+}
+
+@media screen and (max-height: 450px) {
+  .date-picker {
+    &__popper {
+      transform: none !important;
+    }
   }
 }

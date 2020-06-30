@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(openModal(article));
   },
   onDeleteArticleClick: (id) => () => {
-    dispatch(sendRequest('DELETE', id));
+    dispatch(sendRequest(null, id));
   },
   initFetchData: () => {
     dispatch(sendRequest());

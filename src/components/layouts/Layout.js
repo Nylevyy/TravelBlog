@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import Header from '../core/header/Header';
 import Footer from '../core/footer/Footer';
 import Modal from '../core/modal/Modal';
+import FetchingSpinner from '~/components/core/spinners/FetchingSpinner';
 
 const Layout = ({
   layout: { header, modal },
+  isFetching,
   children,
   onModalCloseClick,
   onNewEventClick,
@@ -18,6 +20,7 @@ const Layout = ({
       header: PropTypes.object.isRequired,
       modal: PropTypes.object.isRequired,
     }).isRequired,
+    isFetching: PropTypes.bool.isRequired,
     children: PropTypes.element,
     onModalCloseClick: PropTypes.func,
     onNewEventClick: PropTypes.func,
@@ -27,6 +30,7 @@ const Layout = ({
   };
   return (
     <div className="layout">
+      {!isFetching && <FetchingSpinner />}
       <Header
         {...header}
         onNewEventClick={onNewEventClick}

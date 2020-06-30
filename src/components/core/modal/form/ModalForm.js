@@ -13,8 +13,7 @@ const Form = ({ onSubmitFormClick, onDeleteClick, articleData }) => {
   };
   const [inputs, setInputs] = useState({
     notValidated: [],
-    isEditMode: false,
-    id: Date.now(),
+    id: null,
     values: ['', '', new Date(), '', false],
     onInputChange(index, value) {
       setInputs((prevInputs) => {
@@ -33,8 +32,7 @@ const Form = ({ onSubmitFormClick, onDeleteClick, articleData }) => {
         ...prevInputs,
         values: ['', '', new Date(), '', false],
         notValidated: [],
-        isEditMode: false,
-        id: Date.now(),
+        id: null,
       }));
       return;
     }
@@ -44,7 +42,6 @@ const Form = ({ onSubmitFormClick, onDeleteClick, articleData }) => {
       ...prevInputs,
       notValidated: [],
       values,
-      isEditMode: true,
       id: articleData[5],
     }));
   }, [articleData]);
@@ -68,13 +65,12 @@ const Form = ({ onSubmitFormClick, onDeleteClick, articleData }) => {
       date: inputs.values[2],
       description: inputs.values[3],
       isImportant: inputs.values[4],
-      id: inputs.id,
     };
     setInputs((prevInputs) => ({
       ...prevInputs,
       notValidated: [],
     }));
-    onSubmitFormClick(article, inputs.isEditMode);
+    onSubmitFormClick(article, inputs.id);
   };
 
   return (

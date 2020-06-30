@@ -7,9 +7,9 @@ const initialState = {
   modal: {
     isOpen: false,
     currentArticleData: null,
-    isFetching: false,
     hasError: false,
   },
+  isFetching: false,
   calendar: {
     isFetching: true,
     hasError: false,
@@ -32,9 +32,9 @@ const calendarReducer = (state = initialState, action) => {
         modal: {
           isOpen: true,
           currentArticleData: action.payload,
-          isFetching: false,
           hasError: false,
         },
+        isFetching: false,
       };
     case types.SET_MODAL_DEFAULT:
       return {
@@ -42,21 +42,20 @@ const calendarReducer = (state = initialState, action) => {
         modal: {
           isOpen: false,
           currentArticleData: null,
-          isFetching: false,
           hasError: false,
         },
+        isFetching: false,
       };
     case types.SEND_REQUEST:
       return {
         ...state,
         modal: {
           ...state.modal,
-          isFetching: true,
           hasError: false,
         },
+        isFetching: true,
         calendar: {
           ...state.calendar,
-          isFetching: true,
           hasError: false,
         },
       };
@@ -64,22 +63,21 @@ const calendarReducer = (state = initialState, action) => {
       return {
         ...state,
         calendar: {
-          isFetching: false,
           hasError: false,
           articles: action.payload,
         },
+        isFetching: false,
       };
     case types.CATCH_ERROR:
       return {
         ...state,
         modal: {
           ...state.modal,
-          isFetching: false,
           hasError: true,
         },
+        isFetching: false,
         calendar: {
           ...state,
-          isFetching: false,
           hasError: true,
           articles: [],
         },

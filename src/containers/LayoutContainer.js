@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => ({
     header: state.header,
     modal: state.modal,
   },
+  isFetching: state.isFetching,
   children: ownProps.children,
 });
 const mapDispatchToProps = (dispatch) => ({
@@ -21,15 +22,15 @@ const mapDispatchToProps = (dispatch) => ({
   onRefreshContentClick: () => {
     dispatch(sendRequest());
   },
-  onSubmitFormClick: (article, isEdit) => {
-    if (isEdit) {
-      dispatch(sendRequest('PUT', article));
+  onSubmitFormClick: (article, id) => {
+    if (id) {
+      dispatch(sendRequest(article, id));
       return;
     }
-    dispatch(sendRequest('POST', article));
+    dispatch(sendRequest(article));
   },
   onDeleteClick: (id) => () => {
-    dispatch(sendRequest('DELETE', id));
+    dispatch(sendRequest(null, id));
   },
 });
 

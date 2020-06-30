@@ -14,11 +14,11 @@ const setModalDefault = () => ({
   type: types.SET_MODAL_DEFAULT,
 });
 
-const sendRequest = (method = 'GET', body = null) => ({
+const sendRequest = (body, id) => ({
   type: types.SEND_REQUEST,
   payload: {
-    method,
     body,
+    id,
   },
 });
 

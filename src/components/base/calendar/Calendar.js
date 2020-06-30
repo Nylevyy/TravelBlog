@@ -3,10 +3,8 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import styles from './Calendar.scss';
 import CalendarItem from './item/CalendarItem';
-import FetchingSpinner from '~/assets/spinners/FetchingSpinner';
 
 const Calendar = ({
-  isFetching,
   hasError,
   articles,
   onDeleteArticleClick,
@@ -14,7 +12,6 @@ const Calendar = ({
   initFetchData,
 }) => {
   Calendar.propTypes = {
-    isFetching: PropTypes.bool.isRequired,
     hasError: PropTypes.bool.isRequired,
     articles: PropTypes.arrayOf(PropTypes.object).isRequired,
     onDeleteArticleClick: PropTypes.func.isRequired,
@@ -26,18 +23,13 @@ const Calendar = ({
   return (
     <div className={styles.mainCalendar}>
       <div className={styles.mainCalendar__container}>
-        {isFetching && (
-          <div className={styles.mainCalendar_empty}>
-            <FetchingSpinner />
-          </div>
-        )}
-        {!isFetching && hasError && (
+        {hasError && (
           <div className={styles.mainCalendar_empty}>
             <h3>Ошибка соединения с сервером</h3>
             <h3>Пожалуйста, повторите попытку</h3>
           </div>
         )}
-        {!articles.length && !isFetching && !hasError && (
+        {!articles.length && !hasError && (
           <div className={styles.mainCalendar_empty}>
             <h1>No Articles found</h1>
             <h3>Try to create a new one by clicking the button above</h3>

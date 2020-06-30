@@ -1,20 +1,21 @@
 import { connect } from 'react-redux';
 import Calendar from '~/components/base/calendar/Calendar';
-import { openModal } from '~/store/layout/layoutActions';
-import { sendArticle, sendRequest } from '~/store/calendar/calendarActions';
+import { calendarActions } from '~/store/ducks/calendar';
 
 const mapStateToProps = (state) => ({
   ...state.calendar,
 });
 
+const { openModal, sendRequest } = calendarActions;
+
 const mapDispatchToProps = (dispatch) => ({
-  onArticleClick: (id) => {
-    dispatch(openModal(id));
+  onArticleClick: (article) => {
+    dispatch(openModal(article));
   },
   onDeleteArticleClick: (id) => () => {
-    dispatch(sendArticle({ method: 'DELETE', body: id }));
+    dispatch(sendRequest('DELETE', id));
   },
-  refreshData: () => {
+  initFetchData: () => {
     dispatch(sendRequest());
   },
 });

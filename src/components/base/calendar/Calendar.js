@@ -11,7 +11,7 @@ const Calendar = ({
   articles,
   onDeleteArticleClick,
   onArticleClick,
-  refreshData,
+  initFetchData,
 }) => {
   Calendar.propTypes = {
     isFetching: PropTypes.bool.isRequired,
@@ -19,9 +19,9 @@ const Calendar = ({
     articles: PropTypes.arrayOf(PropTypes.object).isRequired,
     onDeleteArticleClick: PropTypes.func.isRequired,
     onArticleClick: PropTypes.func.isRequired,
-    refreshData: PropTypes.func.isRequired,
+    initFetchData: PropTypes.func.isRequired,
   };
-  useEffect(() => refreshData(), []);
+  useEffect(() => initFetchData(), []);
   let cachedDate = '';
   return (
     <div className={styles.mainCalendar}>
@@ -62,7 +62,6 @@ const Calendar = ({
                     key={item.id}
                     onDeleteArticleClick={onDeleteArticleClick}
                     onArticleClick={onArticleClick}
-                    // hasRequestError={requestError === item.id}
                   />
                 </React.Fragment>
               );
@@ -73,7 +72,6 @@ const Calendar = ({
                 key={item.id}
                 onDeleteArticleClick={onDeleteArticleClick}
                 onArticleClick={onArticleClick}
-                // hasRequestError={requestError === item.id}
               />
             );
           })}

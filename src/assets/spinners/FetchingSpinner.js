@@ -5,7 +5,7 @@ import styles from './FetchingSpinner.scss';
 const FetchingSpinner = () => {
   return (
     <div className={styles.fetchingSpinner}>
-      <BeatLoader loading="true" size="75" />
+      <BeatLoader loading="true" size="75px" />
     </div>
   );
 };

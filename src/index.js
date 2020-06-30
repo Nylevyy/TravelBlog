@@ -1,26 +1,18 @@
 import React from 'react';
-import createSagaMiddleware from 'redux-saga';
-import ReactDOM from 'react-dom';
-import moment from 'moment';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
+import moment from 'moment';
+import 'moment/locale/ru';
+import store from '~/store/store';
 import Main from './components/pages/main/Main';
 import '~/assets/scss/styles/index.scss';
-import reducer from '~/store/reducer';
-import 'moment/locale/ru';
-import { rootSaga } from '~/store/calendar/calendarActions';
 
 moment.locale('ru');
 
-const saga = createSagaMiddleware();
-
-const store = createStore(reducer, applyMiddleware(saga));
-
-saga.run(rootSaga);
-
-ReactDOM.render(
+const RootApp = () => (
   <Provider store={store}>
     <Main />
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 );
+
+render(<RootApp />, document.getElementById('root'));

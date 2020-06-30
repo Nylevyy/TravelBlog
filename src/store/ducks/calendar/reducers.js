@@ -1,3 +1,5 @@
+import * as types from './types';
+
 const initialState = {
   header: {
     title: 'Друзья, мои походы пока ещё не закончились, делюсь с вами!',
@@ -8,51 +10,23 @@ const initialState = {
     isFetching: false,
     hasError: false,
   },
+  calendar: {
+    isFetching: true,
+    hasError: false,
+    articles: [],
+  },
 };
 
-const layoutReducer = (state = initialState, action) => {
+const calendarReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_TITLE':
+    case types.SET_TITLE:
       return {
         ...state,
         header: {
           title: action.payload,
         },
       };
-    case 'REQUEST_DATA':
-      return {
-        ...state,
-        isFetching: true,
-        hasError: false,
-      };
-    case 'SET_MODAL_DEFAULT':
-      return {
-        ...state,
-        modal: {
-          isOpen: false,
-          currentArticleData: null,
-          isFetching: false,
-          hasError: false,
-        },
-      };
-    case 'SEND_DATA':
-      return {
-        ...state,
-        modal: {
-          ...state.modal,
-          isFetching: true,
-        },
-      };
-    case 'CATCH_ERROR':
-      return {
-        ...state,
-        modal: {
-          ...state.modal,
-          isFetching: false,
-          hasError: true,
-        },
-      };
-    case 'OPEN_MODAL':
+    case types.OPEN_MODAL:
       return {
         ...state,
         modal: {
@@ -62,9 +36,57 @@ const layoutReducer = (state = initialState, action) => {
           hasError: false,
         },
       };
+    case types.SET_MODAL_DEFAULT:
+      return {
+        ...state,
+        modal: {
+          isOpen: false,
+          currentArticleData: null,
+          isFetching: false,
+          hasError: false,
+        },
+      };
+    case types.SEND_REQUEST:
+      return {
+        ...state,
+        modal: {
+          ...state.modal,
+          isFetching: true,
+          hasError: false,
+        },
+        calendar: {
+          ...state.calendar,
+          isFetching: true,
+          hasError: false,
+        },
+      };
+    case types.RECEIVE_DATA:
+      return {
+        ...state,
+        calendar: {
+          isFetching: false,
+          hasError: false,
+          articles: action.payload,
+        },
+      };
+    case types.CATCH_ERROR:
+      return {
+        ...state,
+        modal: {
+          ...state.modal,
+          isFetching: false,
+          hasError: true,
+        },
+        calendar: {
+          ...state,
+          isFetching: false,
+          hasError: true,
+          articles: [],
+        },
+      };
     default:
       return state;
   }
 };
 
-export { layoutReducer as layout };
+export default calendarReducer;

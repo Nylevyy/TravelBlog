@@ -1,10 +1,14 @@
 import { connect } from 'react-redux';
-import { openModal, setModalDefault } from '~/store/layout/layoutActions';
+import { calendarActions } from '~/store/ducks/calendar';
 import Layout from '~/components/layouts/Layout';
-import { sendArticle, sendRequest } from '~/store/calendar/calendarActions';
+
+const { openModal, sendRequest, setModalDefault } = calendarActions;
 
 const mapStateToProps = (state, ownProps) => ({
-  layout: state.layout,
+  layout: {
+    header: state.header,
+    modal: state.modal,
+  },
   children: ownProps.children,
 });
 const mapDispatchToProps = (dispatch) => ({
@@ -19,14 +23,13 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onSubmitFormClick: (article, isEdit) => {
     if (isEdit) {
-      const payload = { method: 'PUT', body: article };
-      dispatch(sendArticle(payload));
+      dispatch(sendRequest('PUT', article));
       return;
     }
-    dispatch(sendArticle({ method: 'POST', body: article }));
+    dispatch(sendRequest('POST', article));
   },
   onDeleteClick: (id) => () => {
-    dispatch(sendArticle({ method: 'DELETE', body: id }));
+    dispatch(sendRequest('DELETE', id));
   },
 });
 

@@ -11,7 +11,7 @@ const setTitle = (title) => ({
 });
 
 const setModalDefault = () => ({
-  type: types.SET_MODAL_DEFAULT,
+  type: types.SET_DEFAULT,
 });
 
 const sendRequest = (body, id) => ({

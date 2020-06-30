@@ -27,6 +27,9 @@ const articles = [
   identifyArticle(generateTemplate()),
   identifyArticle(generateTemplate()),
   identifyArticle(generateTemplate()),
+  identifyArticle(generateTemplate()),
+  identifyArticle(generateTemplate()),
+  identifyArticle(generateTemplate()),
 ];
 
 module.exports = {

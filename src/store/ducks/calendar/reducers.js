@@ -11,7 +11,6 @@ const initialState = {
   },
   isFetching: false,
   calendar: {
-    isFetching: true,
     hasError: false,
     articles: [],
   },
@@ -34,9 +33,8 @@ const calendarReducer = (state = initialState, action) => {
           currentArticleData: action.payload,
           hasError: false,
         },
-        isFetching: false,
       };
-    case types.SET_MODAL_DEFAULT:
+    case types.SET_DEFAULT:
       return {
         ...state,
         modal: {
@@ -66,7 +64,6 @@ const calendarReducer = (state = initialState, action) => {
           hasError: false,
           articles: action.payload,
         },
-        isFetching: false,
       };
     case types.CATCH_ERROR:
       return {

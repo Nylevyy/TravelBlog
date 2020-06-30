@@ -23,8 +23,7 @@ app.get(calendarDataPath, (req, res) => {
 });
 
 app.post(calendarDataPath, (req, res) => {
-  const idae = calendarData.identifyArticle(req.body)
-  mainStore.push(idae);
+  mainStore.push(calendarData.identifyArticle(req.body));
   res.status(200).json(mainStore);
 });
 

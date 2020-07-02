@@ -4,7 +4,7 @@ const articlesPath = 'api/calendarData/articles';
 const titlePath = 'api/calendarData/title';
 
 export const getData = async () => {
-  const res = await Api.get();
+  const res = await Api.get('api/calendarData');
   return res.data;
 };
 

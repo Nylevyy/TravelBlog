@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import styles from './Calendar.scss';
@@ -9,16 +9,13 @@ const Calendar = ({
   articles,
   onDeleteArticleClick,
   onArticleClick,
-  initFetchData,
 }) => {
   Calendar.propTypes = {
     hasError: PropTypes.bool.isRequired,
     articles: PropTypes.arrayOf(PropTypes.object).isRequired,
     onDeleteArticleClick: PropTypes.func.isRequired,
     onArticleClick: PropTypes.func.isRequired,
-    initFetchData: PropTypes.func.isRequired,
   };
-  useEffect(() => initFetchData(), []);
   let cachedDate = '';
   return (
     <div className={styles.mainCalendar}>

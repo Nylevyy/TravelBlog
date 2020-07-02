@@ -1,9 +1,9 @@
 import {
   START_REQUEST,
   RECEIVE_DATA,
-  RECEIVE_NEW_TITLE,
+  RECEIVE_TITLE,
   RECEIVE_ARTICLES,
-  CATCH_ERROR,
+  CRASH_WITH_ERROR,
   OPEN_MODAL,
   SET_DEFAULT,
 } from './types';
@@ -26,7 +26,7 @@ const initialState = {
 
 const calendarReducer = (state = initialState, action) => {
   switch (action.type) {
-    case RECEIVE_NEW_TITLE:
+    case RECEIVE_TITLE:
       return {
         ...state,
         header: {
@@ -80,11 +80,11 @@ const calendarReducer = (state = initialState, action) => {
       return {
         ...state,
         calendar: {
+          ...state.calendar,
           articles: action.payload,
         },
       };
-    case CATCH_ERROR:
-      console.log(action.err);
+    case CRASH_WITH_ERROR:
       return {
         ...state,
         modal: {
@@ -93,7 +93,7 @@ const calendarReducer = (state = initialState, action) => {
         },
         isFetching: false,
         calendar: {
-          ...state,
+          ...state.calendar,
           hasError: true,
           articles: [],
         },

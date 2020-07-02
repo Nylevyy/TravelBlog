@@ -1,61 +1,35 @@
 import Api from '~/plugins/api/api';
 
-// Почему не прописать логику здесь?
-// ex.
-// export const changeTitle = () => {
-//   Api
-//     .changeTitle(title)
-//     .then(Api.getTitle()
-//       .then(res => res.title))
-//     .catch((err) => {
-//       throw err;
-//     });
-// };
+const articlesPath = 'api/calendarData/articles';
+const titlePath = 'api/calendarData/title';
 
-export const initApp = () => {
-  Api.initRequest()
-    .then((res) => res.data)
-    .catch((err) => {
-      throw err;
-    });
+export const getData = async () => {
+  const res = await Api.get();
+  return res.data;
 };
 
-export const getTitle = () => {
-  Api.getTitle()
-    .then((res) => res.title)
-    .catch((err) => {
-      throw err;
-    });
+export const getTitle = async () => {
+  const res = await Api.get(titlePath);
+  return res.data;
 };
 
-export const changeTitle = (title) => {
-  Api.changeTitle(title).catch((err) => {
-    throw err;
-  });
+export const changeTitle = async (title) => {
+  await Api.put(titlePath, title);
 };
 
-export const getArticles = () => {
-  Api.getArticles()
-    .then((res) => res.data)
-    .catch((err) => {
-      throw err;
-    });
+export const getArticles = async () => {
+  const res = await Api.get(articlesPath);
+  return res.data;
 };
 
-export const postArticle = (article) => {
-  Api.postArticle(article).catch((err) => {
-    throw err;
-  });
+export const postArticle = async (article) => {
+  await Api.post(articlesPath, article);
 };
 
-export const putArticle = (article, id) => {
-  Api.putArticle(article, id).catch((err) => {
-    throw err;
-  });
+export const putArticle = async (article, id) => {
+  await Api.get(articlesPath, article, id);
 };
 
-export const deleteArticle = (id) => {
-  Api.deleteArticle(id).catch((err) => {
-    throw err;
-  });
+export const deleteArticle = async (id) => {
+  await Api.get(articlesPath, id);
 };

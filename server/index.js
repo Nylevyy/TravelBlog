@@ -1,3 +1,4 @@
+/* eslint-disable */
 const express = require('express');
 const cors = require('cors');
 const calendarData = require('./calendarData');
@@ -11,8 +12,8 @@ app.use(cors());
 
 const articlesPath = '/api/calendarData/articles';
 const titlePath = '/api/calendarData/title';
-let { title } = calendarData; // Читается отсюда!!! ?
-const { articles } = calendarData; // Читается отсюда!!! ?
+let { title } = calendarData;
+const { articles, identifyArticle } = calendarData;
 
 // middleware
 app.use((req, res, next) => {
@@ -21,34 +22,42 @@ app.use((req, res, next) => {
 });
 
 app.get('/api/calendarData', (req, res) => {
-  res.status(200).json(title, articles);
+  res.status(200).json({title, articles});
 });
 
 app.get(titlePath, (req, res) => {
-  res.status(200).json(title);
+  res.status(200).json({title});
 });
 
-app.put(titlePath, (req) => {
+app.put(titlePath, (req, res) => {
   title = req.body;
+  res.status(200).json('succeed');
 });
 
 app.get(articlesPath, (req, res) => {
   res.status(200).json(articles);
 });
 
-app.post(articlesPath, (req) => {
-  articles.push(calendarData.identifyArticle(req.body));
+app.post(articlesPath, (req, res) => {
+  articles.push(identifyArticle(req.body));
+  res.status(200).json('succeed');
 });
 
-app.put(articlesPath, (req) => {
+app.put(articlesPath, (req, res) => {
   req.body.id = +req.query.id;
   const idx = articles.findIndex((item) => item.id === +req.query.id);
+  if (~idx) {
+    res.status(404).json('Not found')
+    return;
+  }
   articles[idx] = req.body;
+  res.status(200).json('succeed');
 });
 
-app.delete(articlesPath, (req) => {
+app.delete(articlesPath, (req, res) => {
   const idx = articles.findIndex((item) => item.id === +req.query.id);
   articles.splice(idx, 1);
+  setTimeout(() => res.status(200).json('succeed'), 3500);
 });
 
 app.use((err, req, res) => {

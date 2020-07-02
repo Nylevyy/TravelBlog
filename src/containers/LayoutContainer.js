@@ -5,7 +5,7 @@ import Layout from '~/components/layouts/Layout';
 const {
   openModal,
   refresh,
-  setModalDefault,
+  setDefault,
   deleteArticle,
   postNewArticle,
   updateArticle,
@@ -21,7 +21,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   onModalCloseClick: () => {
-    dispatch(setModalDefault());
+    dispatch(setDefault());
   },
   onNewEventClick: () => {
     dispatch(openModal());

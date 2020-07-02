@@ -6,7 +6,7 @@ const mapStateToProps = (state) => ({
   ...state.calendar,
 });
 
-const { openModal, refresh, deleteArticle } = calendarActions;
+const { openModal, deleteArticle } = calendarActions;
 
 const mapDispatchToProps = (dispatch) => ({
   onArticleClick: (article) => {
@@ -14,9 +14,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onDeleteArticleClick: (id) => () => {
     dispatch(deleteArticle(id));
-  },
-  initFetchData: () => {
-    dispatch(refresh());
   },
 });
 

@@ -1,49 +1,32 @@
 import axios from 'axios';
 
-const articlesPath = 'http://localhost:3001/api/calendarData/articles';
-const titlePath = 'http://localhost:3001/api/calendarData/title';
-
-// API служит для связи с сервером/сторонними фичами
+const server = axios.create({
+  baseURL: process.env.BASE_URL,
+});
 
 class Api {
-  static initRequest() {
-    return axios.get('http://localhost:3001/api/calendarData');
-  }
-
-  static getTitle() {
-    return axios.get(titlePath);
-  }
-
-  static changeTitle(title) {
-    return axios.put(titlePath, { title });
-  }
-
-  static getArticles() {
-    return axios.get(articlesPath);
-  }
-
-  static postArticle(article) {
-    return axios.post(articlesPath, { article });
-  }
-
-  static putArticle(article, id) {
-    return axios.get(
-      articlesPath,
-      { article },
-      {
-        params: {
-          id,
-        },
-      }
-    );
-  }
-
-  static deleteArticle(id) {
-    return axios.get(articlesPath, {
-      params: {
-        id,
-      },
+  static send(method, url, ...args) {
+    return server.request({
+      method,
+      url,
+      ...args,
     });
+  }
+
+  static get(url) {
+    return this.send('get', url);
+  }
+
+  static post(url, data) {
+    return this.send('post', url, data);
+  }
+
+  static put(url, data, params) {
+    return this.send('put', url, data, params);
+  }
+
+  static delete(url, params) {
+    return this.send('delete', url, params);
   }
 }
 

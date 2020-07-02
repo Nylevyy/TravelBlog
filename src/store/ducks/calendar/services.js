@@ -1,33 +1,61 @@
-import calendarAPI from '~/store/api/calendarApi';
+import Api from '~/plugins/api/api';
 
-const requestServer = (body, id) => {
-  if (!body && !id)
-    return calendarAPI
-      .get()
-      .then((res) => res.data)
-      .catch((err) => {
-        throw err;
-      });
-  if (!body)
-    return calendarAPI
-      .delete(id)
-      .then((res) => res.data)
-      .catch((err) => {
-        throw err;
-      });
-  if (!id)
-    return calendarAPI
-      .post(body)
-      .then((res) => res.data)
-      .catch((err) => {
-        throw err;
-      });
-  return calendarAPI
-    .put(body, id)
+// Почему не прописать логику здесь?
+// ex.
+// export const changeTitle = () => {
+//   Api
+//     .changeTitle(title)
+//     .then(Api.getTitle()
+//       .then(res => res.title))
+//     .catch((err) => {
+//       throw err;
+//     });
+// };
+
+export const initApp = () => {
+  Api.initRequest()
     .then((res) => res.data)
     .catch((err) => {
       throw err;
     });
 };
 
-export default requestServer;
+export const getTitle = () => {
+  Api.getTitle()
+    .then((res) => res.title)
+    .catch((err) => {
+      throw err;
+    });
+};
+
+export const changeTitle = (title) => {
+  Api.changeTitle(title).catch((err) => {
+    throw err;
+  });
+};
+
+export const getArticles = () => {
+  Api.getArticles()
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err;
+    });
+};
+
+export const postArticle = (article) => {
+  Api.postArticle(article).catch((err) => {
+    throw err;
+  });
+};
+
+export const putArticle = (article, id) => {
+  Api.putArticle(article, id).catch((err) => {
+    throw err;
+  });
+};
+
+export const deleteArticle = (id) => {
+  Api.deleteArticle(id).catch((err) => {
+    throw err;
+  });
+};

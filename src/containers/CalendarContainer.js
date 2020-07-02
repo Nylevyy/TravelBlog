@@ -6,17 +6,17 @@ const mapStateToProps = (state) => ({
   ...state.calendar,
 });
 
-const { openModal, sendRequest } = calendarActions;
+const { openModal, refresh, deleteArticle } = calendarActions;
 
 const mapDispatchToProps = (dispatch) => ({
   onArticleClick: (article) => {
     dispatch(openModal(article));
   },
   onDeleteArticleClick: (id) => () => {
-    dispatch(sendRequest(null, id));
+    dispatch(deleteArticle(id));
   },
   initFetchData: () => {
-    dispatch(sendRequest());
+    dispatch(refresh());
   },
 });
 

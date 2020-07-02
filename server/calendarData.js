@@ -1,11 +1,11 @@
 const moment = require('moment');
 
 const description =
-  'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi soluta quisquam totam voluptatum vel sequi asperiores odio. Sequi vitae fuga nulla numquam eius at. Molestiae eum ullam nulla vitae mollitia.';
+  'Начните ваш рассказ, пусть все узнают о ваших начинаниях. Quasi soluta quisquam totam voluptatum vel sequi asperiores odio. Sequi vitae fuga nulla numquam eius at. Molestiae eum ullam nulla vitae mollitia.';
 
 const generateTemplate = () => ({
-  title: 'Generated(not) original Title',
-  location: 'Ulyanovsk, Russia. Vostochny airport',
+  title: 'Здесь могло бы быть название статьи...',
+  location: 'Ваше любимое кафе',
   date: moment()
     .subtract(Math.random() * 4, 'd')
     .add(Math.random() * 20, 'm')
@@ -16,10 +16,12 @@ const generateTemplate = () => ({
 
 const identifyArticle = (body) => {
   return {
-    ...body,
     id: Math.random(),
+    ...body,
   };
 };
+
+const title = 'Придумайте название для своего сайта';
 
 const articles = [
   identifyArticle(generateTemplate()),
@@ -33,7 +35,7 @@ const articles = [
 ];
 
 module.exports = {
-  title: 'Default title',
+  title,
   articles,
   identifyArticle,
 };

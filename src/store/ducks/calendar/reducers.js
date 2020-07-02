@@ -1,8 +1,16 @@
-import * as types from './types';
+import {
+  START_REQUEST,
+  RECEIVE_DATA,
+  RECEIVE_NEW_TITLE,
+  RECEIVE_ARTICLES,
+  CATCH_ERROR,
+  OPEN_MODAL,
+  SET_DEFAULT,
+} from './types';
 
 const initialState = {
   header: {
-    title: 'Друзья, мои походы пока ещё не закончились, делюсь с вами!',
+    title: 'Please wait...',
   },
   modal: {
     isOpen: false,
@@ -18,23 +26,23 @@ const initialState = {
 
 const calendarReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.SET_TITLE:
+    case RECEIVE_NEW_TITLE:
       return {
         ...state,
         header: {
           title: action.payload,
         },
       };
-    case types.OPEN_MODAL:
+    case OPEN_MODAL:
       return {
         ...state,
         modal: {
           isOpen: true,
-          currentArticleData: action.payload,
+          currentArticleData: action.data,
           hasError: false,
         },
       };
-    case types.SET_DEFAULT:
+    case SET_DEFAULT:
       return {
         ...state,
         modal: {
@@ -44,7 +52,7 @@ const calendarReducer = (state = initialState, action) => {
         },
         isFetching: false,
       };
-    case types.SEND_REQUEST:
+    case START_REQUEST:
       return {
         ...state,
         modal: {
@@ -57,15 +65,26 @@ const calendarReducer = (state = initialState, action) => {
           hasError: false,
         },
       };
-    case types.RECEIVE_DATA:
+    case RECEIVE_DATA:
+      return {
+        ...state,
+        header: {
+          title: action.payload.title,
+        },
+        calendar: {
+          hasError: false,
+          articles: action.payload.articles,
+        },
+      };
+    case RECEIVE_ARTICLES:
       return {
         ...state,
         calendar: {
-          hasError: false,
           articles: action.payload,
         },
       };
-    case types.CATCH_ERROR:
+    case CATCH_ERROR:
+      console.log(action.err);
       return {
         ...state,
         modal: {

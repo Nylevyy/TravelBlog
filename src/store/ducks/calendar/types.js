@@ -1,6 +1,12 @@
-export const SEND_REQUEST = 'SEND_REQUEST';
+export const REQUEST_DATA = 'REQUEST_DATA';
+export const START_REQUEST = 'START_REQUEST';
 export const RECEIVE_DATA = 'RECEIVE_DATA';
+export const SET_TITLE = 'SET_TITLE';
+export const RECEIVE_NEW_TITLE = 'RECEIVE_NEW_TITLE';
+export const RECEIVE_ARTICLES = 'RECEIVE_ARTICLES';
+export const SEND_NEW_ARTICLE = 'SEND_NEW_ARTICLE';
+export const UPDATE_ARTICLE = 'UPDATE_ARTICLE';
+export const DELETE_ARTICLE = 'DELETE_ARTICLE';
 export const CATCH_ERROR = 'CATCH_ERROR';
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const SET_DEFAULT = 'SET_DEFAULT';
-export const SET_TITLE = 'SET_TITLE';

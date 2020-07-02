@@ -1,25 +1,53 @@
-import * as types from './types';
+import {
+  OPEN_MODAL,
+  REQUEST_DATA,
+  SET_TITLE,
+  SEND_NEW_ARTICLE,
+  UPDATE_ARTICLE,
+  DELETE_ARTICLE,
+  SET_DEFAULT,
+} from './types';
 
 const openModal = (data = null) => ({
-  type: types.OPEN_MODAL,
-  payload: data,
+  type: OPEN_MODAL,
+  data,
 });
 
 const setTitle = (title) => ({
-  type: types.SET_TITLE,
-  payload: title,
+  type: SET_TITLE,
+  title,
 });
 
 const setModalDefault = () => ({
-  type: types.SET_DEFAULT,
+  type: SET_DEFAULT,
 });
 
-const sendRequest = (body, id) => ({
-  type: types.SEND_REQUEST,
-  payload: {
-    body,
-    id,
-  },
+const refresh = () => ({
+  type: REQUEST_DATA,
 });
 
-export default { openModal, setTitle, setModalDefault, sendRequest };
+const postNewArticle = (article) => ({
+  type: SEND_NEW_ARTICLE,
+  article,
+});
+
+const updateArticle = (article, id) => ({
+  type: UPDATE_ARTICLE,
+  article,
+  id,
+});
+
+const deleteArticle = (id) => ({
+  type: DELETE_ARTICLE,
+  id,
+});
+
+export default {
+  openModal,
+  setTitle,
+  setModalDefault,
+  refresh,
+  postNewArticle,
+  updateArticle,
+  deleteArticle,
+};

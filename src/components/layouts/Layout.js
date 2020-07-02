@@ -30,7 +30,7 @@ const Layout = ({
   };
   return (
     <div className="layout">
-      {!isFetching && <FetchingSpinner />}
+      {isFetching && <FetchingSpinner />}
       <Header
         {...header}
         onNewEventClick={onNewEventClick}

@@ -2,7 +2,14 @@ import { connect } from 'react-redux';
 import { calendarActions } from '~/store/ducks/calendar';
 import Layout from '~/components/layouts/Layout';
 
-const { openModal, sendRequest, setModalDefault } = calendarActions;
+const {
+  openModal,
+  refresh,
+  setModalDefault,
+  deleteArticle,
+  postNewArticle,
+  updateArticle,
+} = calendarActions;
 
 const mapStateToProps = (state, ownProps) => ({
   layout: {
@@ -20,17 +27,17 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(openModal());
   },
   onRefreshContentClick: () => {
-    dispatch(sendRequest());
+    dispatch(refresh());
   },
   onSubmitFormClick: (article, id) => {
     if (id) {
-      dispatch(sendRequest(article, id));
+      dispatch(updateArticle(article, id));
       return;
     }
-    dispatch(sendRequest(article));
+    dispatch(postNewArticle(article));
   },
   onDeleteClick: (id) => () => {
-    dispatch(sendRequest(null, id));
+    dispatch(deleteArticle(null, id));
   },
 });
 

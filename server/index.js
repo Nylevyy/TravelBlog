@@ -46,7 +46,7 @@ app.post(articlesPath, (req, res) => {
 app.put(articlesPath, (req, res) => {
   req.body.id = +req.query.id;
   const idx = articles.findIndex((item) => item.id === +req.query.id);
-  if (!!(~idx)) {
+  if (!(~idx)) {
     res.status(404).json('Not found')
     return;
   }

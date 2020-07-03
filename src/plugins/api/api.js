@@ -1,12 +1,12 @@
-import axios from 'axios';
+import Axios from 'axios';
 
-const server = axios.create({
+const axios = Axios.create({
   baseURL: process.env.BASE_URL,
 });
 
 class Api {
-  static send(method, url, data, params) {
-    return server.request({
+  static send({ method, url, data, params }) {
+    return axios.request({
       method,
       url,
       data,
@@ -14,20 +14,32 @@ class Api {
     });
   }
 
-  static get(url) {
-    return this.send('get', url);
+  static get(request) {
+    return this.send({
+      ...request,
+      method: 'GET',
+    });
   }
 
-  static post(url, data) {
-    return this.send('post', url, data, null);
+  static post(request) {
+    return this.send({
+      ...request,
+      method: 'POST',
+    });
   }
 
-  static put(url, data, params) {
-    return this.send('put', url, data, params);
+  static put(request) {
+    return this.send({
+      ...request,
+      method: 'PUT',
+    });
   }
 
-  static delete(url, params) {
-    return this.send('delete', url, null, params);
+  static delete(request) {
+    return this.send({
+      ...request,
+      method: 'DELETE',
+    });
   }
 }
 

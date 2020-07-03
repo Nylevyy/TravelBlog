@@ -57,14 +57,10 @@ const crossConnectionCounter = () => {
         counter = yield call(counterManager, action, counter);
         if (!counter) yield put(setDefault());
       }
-      console.log(counter);
-
       while (counter) {
         yield take(END_REQUEST);
         counter--;
       }
-      console.log(`${counter}after`);
-
       while (!errorBuffer.isEmpty()) {
         const { err } = yield take(errorChan);
         yield put(reportError(err));

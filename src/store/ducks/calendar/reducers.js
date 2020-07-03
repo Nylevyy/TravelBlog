@@ -30,7 +30,7 @@ const calendarReducer = (state = initialState, action) => {
       return {
         ...state,
         header: {
-          title: action.payload,
+          title: action.title,
         },
       };
     case OPEN_MODAL:
@@ -69,11 +69,11 @@ const calendarReducer = (state = initialState, action) => {
       return {
         ...state,
         header: {
-          title: action.payload.title,
+          title: action.title,
         },
         calendar: {
           hasError: false,
-          articles: action.payload.articles,
+          articles: action.articles,
         },
       };
     case RECEIVE_ARTICLES:
@@ -81,7 +81,7 @@ const calendarReducer = (state = initialState, action) => {
         ...state,
         calendar: {
           ...state.calendar,
-          articles: action.payload,
+          articles: action.articles,
         },
       };
     case CRASH_WITH_ERROR:

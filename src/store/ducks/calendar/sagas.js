@@ -2,8 +2,8 @@ import {
   all,
   call,
   put,
+  fork,
   take,
-  takeEvery,
   takeLatest,
   actionChannel,
   cancelled,
@@ -41,47 +41,43 @@ import {
 
 const counterManager = (action, counter) => {
   let newCounter = counter;
-  if (action.type === START_REQUEST) return ++newCounter;
-  if (action.type === END_REQUEST) return --newCounter;
+  if (action.type === 'START_REQUEST') return ++newCounter;
+  if (action.type === 'END_REQUEST') return --newCounter;
   return newCounter;
 };
 
 const crossConnectionCounter = () => {
   let counter = 0;
   return function* crossConnectionController() {
-    const errorBuffer = buffers.none();
-    const errorChan = yield actionChannel(CATCH_ERROR, errorBuffer);
-    while (errorBuffer.isEmpty()) {
-      const action = yield take([START_REQUEST, END_REQUEST, CATCH_ERROR]);
-      yield call(counterManager, action, counter);
+    while (true) {
+      const errorBuffer = buffers.expanding(5);
+      const errorChan = yield actionChannel(CATCH_ERROR, errorBuffer);
+      while (errorBuffer.isEmpty()) {
+        const action = yield take([START_REQUEST, END_REQUEST, CATCH_ERROR]);
+        counter = yield call(counterManager, action, counter);
+        if (!counter) yield put(setDefault());
+      }
       console.log(counter);
-      if (!counter) yield put(setDefault());
+
+      while (counter) {
+        yield take(END_REQUEST);
+        counter--;
+      }
+      console.log(`${counter}after`);
+
+      while (!errorBuffer.isEmpty()) {
+        const { err } = yield take(errorChan);
+        yield put(reportError(err));
+      }
     }
-    while (!counter) {
-      yield take(END_REQUEST);
-      counter--;
-    }
-    const { err } = yield take(errorChan);
-    yield put(reportError(err));
   };
 };
 const crossConnectionManager = crossConnectionCounter();
 
-function* crossConnectionWatcher() {
-  yield takeEvery(
-    [START_REQUEST, END_REQUEST, CATCH_ERROR],
-    crossConnectionManager
-  );
-}
-
 function* mainProvider() {
   try {
-    console.log('start');
-    // debugger;
     yield put(startRequest());
     const data = yield call(getData);
-    console.log(data);
-
     yield put(receiveData(data.title, data.articles));
     yield put(endRequest());
   } catch (err) {
@@ -102,10 +98,9 @@ function* articlesProvider() {
   }
 }
 
-function* newTitleHandler() {
+function* newTitleHandler(title) {
   try {
     yield put(startRequest());
-    const { title } = yield take(SET_TITLE);
     yield call(changeTitle, title);
     const newTitle = yield call(getTitle);
     yield put(receiveTitle(newTitle));
@@ -115,10 +110,9 @@ function* newTitleHandler() {
   }
 }
 
-function* newArticleHandler() {
+function* newArticleHandler(article) {
   try {
     yield put(startRequest());
-    const { article } = yield take(SEND_NEW_ARTICLE);
     yield call(postArticle, article);
     yield call(articlesProvider);
     yield put(endRequest());
@@ -127,10 +121,9 @@ function* newArticleHandler() {
   }
 }
 
-function* editArticleHandler() {
+function* editArticleHandler(article, id) {
   try {
     yield put(startRequest());
-    const { article, id } = yield take(UPDATE_ARTICLE);
     yield call(putArticle, article, id);
     yield call(articlesProvider);
     yield put(endRequest());
@@ -139,10 +132,9 @@ function* editArticleHandler() {
   }
 }
 
-function* deleteArticleHandler() {
+function* deleteArticleHandler(id) {
   try {
     yield put(startRequest());
-    const { id } = yield take(DELETE_ARTICLE);
     yield call(deleteArticle, id);
     yield call(articlesProvider);
     yield put(endRequest());
@@ -153,42 +145,44 @@ function* deleteArticleHandler() {
 
 function* newTitleWatcher() {
   while (true) {
-    yield takeEvery(SET_TITLE, newTitleHandler);
+    const { title } = yield take(SET_TITLE);
+    yield fork(newTitleHandler, title);
   }
 }
 
 function* refreshWatcher() {
-  while (true) {
-    yield takeLatest(REQUEST_DATA, mainProvider);
-  }
+  yield takeLatest(REQUEST_DATA, mainProvider);
 }
 
 function* newArticleWatcher() {
   while (true) {
-    yield takeEvery(SEND_NEW_ARTICLE, newArticleHandler);
+    const { article } = yield take(SEND_NEW_ARTICLE);
+    yield fork(newArticleHandler, article);
   }
 }
 
 function* editArticleWatcher() {
   while (true) {
-    yield takeEvery(UPDATE_ARTICLE, editArticleHandler);
+    const { article, id } = yield take(UPDATE_ARTICLE);
+    yield fork(editArticleHandler, article, id);
   }
 }
 
 function* deleteArticleWatcher() {
   while (true) {
-    yield takeEvery(DELETE_ARTICLE, deleteArticleHandler);
+    const { id } = yield take(DELETE_ARTICLE);
+    yield fork(deleteArticleHandler, id);
   }
 }
 
 function* rootCalendarSaga() {
   yield all([
-    crossConnectionWatcher(),
     newTitleWatcher(),
     refreshWatcher(),
     newArticleWatcher(),
     editArticleWatcher(),
     deleteArticleWatcher(),
+    crossConnectionManager(),
     mainProvider(), // init
   ]);
 }

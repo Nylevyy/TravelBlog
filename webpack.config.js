@@ -5,6 +5,9 @@ const CopyPlugin = require('copy-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+require('dotenv').config({
+  path: path.resolve(__dirname, '.env'),
+});
 
 const { env } = process;
 const mode = env.NODE_ENV || 'development';
@@ -43,6 +46,9 @@ module.exports = () => {
     }),
     new StyleLintPlugin({
       fix: true,
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
     }),
   ];
 
@@ -169,11 +175,6 @@ module.exports = () => {
       ...config,
       devtool: '#source-map',
       plugins: plugins.concat([
-        new webpack.DefinePlugin({
-          'process.env': {
-            NODE_ENV: '"production"',
-          },
-        }),
         new webpack.LoaderOptionsPlugin({
           minimize: true,
         }),

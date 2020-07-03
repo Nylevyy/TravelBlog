@@ -46,7 +46,7 @@ app.post(articlesPath, (req, res) => {
 app.put(articlesPath, (req, res) => {
   req.body.id = +req.query.id;
   const idx = articles.findIndex((item) => item.id === +req.query.id);
-  if (~idx) {
+  if (!!(~idx)) {
     res.status(404).json('Not found')
     return;
   }
@@ -57,12 +57,11 @@ app.put(articlesPath, (req, res) => {
 app.delete(articlesPath, (req, res) => {
   const idx = articles.findIndex((item) => item.id === +req.query.id);
   articles.splice(idx, 1);
-  setTimeout(() => res.status(200).json('succeed'), 3500);
+  setTimeout(() => res.status(200).json('succeed'), 6500);
 });
 
 app.use((err, req, res) => {
   console.log('err');
   res.status(500).send(`Error: ${err}`);
 });
-
 app.listen(port, () => console.log(`Server is listening on ${port}`));

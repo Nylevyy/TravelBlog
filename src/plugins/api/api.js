@@ -5,11 +5,12 @@ const server = axios.create({
 });
 
 class Api {
-  static send(method, url, ...args) {
+  static send(method, url, data, params) {
     return server.request({
       method,
       url,
-      ...args,
+      data,
+      params,
     });
   }
 
@@ -18,7 +19,7 @@ class Api {
   }
 
   static post(url, data) {
-    return this.send('post', url, data);
+    return this.send('post', url, data, null);
   }
 
   static put(url, data, params) {
@@ -26,7 +27,7 @@ class Api {
   }
 
   static delete(url, params) {
-    return this.send('delete', url, params);
+    return this.send('delete', url, null, params);
   }
 }
 

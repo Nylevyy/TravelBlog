@@ -27,9 +27,9 @@ export const postArticle = async (article) => {
 };
 
 export const putArticle = async (article, id) => {
-  await Api.get(articlesPath, article, id);
+  await Api.put(articlesPath, article, { id });
 };
 
 export const deleteArticle = async (id) => {
-  await Api.get(articlesPath, id);
+  await Api.delete(articlesPath, { id });
 };

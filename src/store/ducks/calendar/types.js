@@ -1,14 +1,6 @@
-export const REQUEST_DATA = 'REQUEST_DATA';
-export const START_REQUEST = 'START_REQUEST';
-export const END_REQUEST = 'END_REQUEST';
 export const RECEIVE_DATA = 'RECEIVE_DATA';
-export const SET_TITLE = 'SET_TITLE';
-export const RECEIVE_TITLE = 'RECEIVE_TITLE';
 export const RECEIVE_ARTICLES = 'RECEIVE_ARTICLES';
 export const SEND_NEW_ARTICLE = 'SEND_NEW_ARTICLE';
 export const UPDATE_ARTICLE = 'UPDATE_ARTICLE';
 export const DELETE_ARTICLE = 'DELETE_ARTICLE';
-export const CATCH_ERROR = 'CATCH_ERROR';
-export const CRASH_WITH_ERROR = 'CRASH_WITH_ERROR';
-export const OPEN_MODAL = 'OPEN_MODAL';
-export const SET_DEFAULT = 'SET_DEFAULT';
+export const REFRESH_ARTICLES = 'REFRESH_ARTICLES';

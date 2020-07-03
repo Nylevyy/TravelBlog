@@ -1,84 +1,37 @@
 import {
-  REQUEST_DATA,
-  START_REQUEST,
-  END_REQUEST,
-  RECEIVE_DATA,
-  SET_TITLE,
-  RECEIVE_TITLE,
   RECEIVE_ARTICLES,
   SEND_NEW_ARTICLE,
   UPDATE_ARTICLE,
   DELETE_ARTICLE,
-  CATCH_ERROR,
-  CRASH_WITH_ERROR,
-  OPEN_MODAL,
-  SET_DEFAULT,
+  REFRESH_ARTICLES,
+  RECEIVE_DATA,
 } from './types';
 
-export const startRequest = () => ({
-  type: START_REQUEST,
-});
-
-export const endRequest = () => ({
-  type: END_REQUEST,
-});
-
-export const receiveData = (title, articles) => ({
+export const receiveData = (payload) => ({
   type: RECEIVE_DATA,
-  title,
-  articles,
+  ...payload,
 });
 
-export const receiveArticles = (articles) => ({
+export const receiveArticles = (payload) => ({
   type: RECEIVE_ARTICLES,
-  articles,
+  ...payload,
 });
 
-export const receiveTitle = (title) => ({
-  type: RECEIVE_TITLE,
-  title,
+export const postNewArticle = (payload) => ({
+  type: SEND_NEW_ARTICLE,
+  ...payload,
 });
 
-export const catchError = (err) => ({
-  type: CATCH_ERROR,
-  err,
+export const updateArticle = (payload) => ({
+  type: UPDATE_ARTICLE,
+  ...payload,
 });
 
-export const reportError = (err) => ({
-  type: CRASH_WITH_ERROR,
-  err,
-});
-
-export const openModal = (data = null) => ({
-  type: OPEN_MODAL,
-  data,
-});
-
-export const setTitle = (title) => ({
-  type: SET_TITLE,
-  title,
-});
-
-export const setDefault = () => ({
-  type: SET_DEFAULT,
+export const deleteArticle = (payload) => ({
+  type: DELETE_ARTICLE,
+  ...payload,
 });
 
 export const refresh = () => ({
-  type: REQUEST_DATA,
-});
-
-export const postNewArticle = (article) => ({
-  type: SEND_NEW_ARTICLE,
-  article,
-});
-
-export const updateArticle = (article, id) => ({
-  type: UPDATE_ARTICLE,
-  article,
-  id,
-});
-
-export const deleteArticle = (id) => ({
-  type: DELETE_ARTICLE,
-  id,
+  type: REFRESH_ARTICLES,
 });

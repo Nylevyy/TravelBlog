@@ -16,6 +16,7 @@ const Calendar = ({
     onDeleteArticleClick: PropTypes.func.isRequired,
     onArticleClick: PropTypes.func.isRequired,
   };
+
   let cachedDate = '';
   return (
     <div className={styles.mainCalendar}>

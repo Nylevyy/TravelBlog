@@ -1,0 +1,2 @@
+export const RECEIVE_TITLE = 'RECEIVE_TITLE';
+export const SET_TITLE = 'SET_TITLE';

@@ -32,6 +32,6 @@ export const deleteArticle = (payload) => ({
   ...payload,
 });
 
-export const refresh = () => ({
+export const refreshArticles = () => ({
   type: REFRESH_ARTICLES,
 });

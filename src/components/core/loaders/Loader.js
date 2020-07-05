@@ -1,10 +1,10 @@
 import React from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
-import styles from './FetchingSpinner.scss';
+import styles from './Loader.scss';
 
-const FetchingSpinner = () => {
+const Loader = () => {
   return (
-    <div className={styles.fetchingSpinner}>
+    <div className={styles.loader}>
       <BeatLoader loading="true" size="75px" key={Math.random()} />
       <BeatLoader loading="true" size="75px" key={Math.random()} />
       <BeatLoader loading="true" size="75px" key={Math.random()} />
@@ -16,4 +16,4 @@ const FetchingSpinner = () => {
   );
 };
 
-export default FetchingSpinner;
+export default Loader;

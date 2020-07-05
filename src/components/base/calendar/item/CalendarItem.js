@@ -2,24 +2,22 @@ import React from 'react';
 import moment from 'moment';
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
-import CloseButton from '../../../ui/close-button/CloseButton';
+import CloseButton from '~/components/ui/close-button/CloseButton';
 import styles from './CalendarItem.scss';
 
 const calendarItemClasses = classNames.bind(styles);
 
 const CalendarItem = ({
-  isImportant,
-  id,
-  onArticleClick,
-  hasRequestError,
   title,
   location,
   date,
   description,
+  isImportant,
+  id,
+  onArticleClick,
   onDeleteArticleClick,
 }) => {
   CalendarItem.propTypes = {
-    hasRequestError: PropTypes.number,
     title: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
@@ -45,13 +43,6 @@ const CalendarItem = ({
         }}
         aria-label="article-edit"
       >
-        {hasRequestError && (
-          <div className={styles.calendarItem__errorLog}>
-            <span className={styles.calendarItem__errorSpan}>
-              Ошибка при выполнении запроса на сервер
-            </span>
-          </div>
-        )}
         <div className={styles.calendarItem__info}>
           <div className={styles.calendarItem__time}>
             {moment(date).format('HH:mm')}

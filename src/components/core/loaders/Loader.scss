@@ -1,4 +1,4 @@
-.fetching-spinner {
+.loader {
   position: fixed;
   top: 0;
   bottom: 1000;
@@ -49,7 +49,7 @@
 }
 
 @media screen and (max-width: 1800px) {
-  .fetching-spinner {
+  .loader {
     & > div:nth-child(7) {
       display: none;
     }
@@ -57,7 +57,7 @@
 }
 
 @media screen and (max-width: 1480px) {
-  .fetching-spinner {
+  .loader {
     & > div:nth-child(6) {
       display: none;
     }
@@ -65,7 +65,7 @@
 }
 
 @media screen and (max-width: 1280px) {
-  .fetching-spinner {
+  .loader {
     & > div:nth-child(5) {
       display: none;
     }
@@ -73,7 +73,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .fetching-spinner {
+  .loader {
     & > div:nth-child(4) {
       display: none;
     }
@@ -81,7 +81,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .fetching-spinner {
+  .loader {
     & > div:nth-child(3) {
       display: none;
     }
@@ -89,7 +89,7 @@
 }
 
 @media screen and (max-width: 520px) {
-  .fetching-spinner {
+  .loader {
     & > div:nth-child(2) {
       display: none;
     }
@@ -97,7 +97,7 @@
 }
 
 @media screen and (max-width: 450px) {
-  .fetching-spinner {
+  .loader {
     padding: 0;
   }
 }

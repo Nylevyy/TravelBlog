@@ -4,7 +4,7 @@ import Layout from '~/components/layouts/Layout';
 
 const {
   openModal,
-  refresh,
+  refreshArticles,
   setDefault,
   deleteArticle,
   postNewArticle,
@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(openModal());
   },
   onRefreshContentClick: () => {
-    dispatch(refresh());
+    dispatch(refreshArticles());
   },
   onSubmitFormClick: (article, id) => {
     if (id) {

@@ -1,14 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../ui/button/Button';
 import styles from './Header.scss';
+import { calendarActions } from '~/store/ducks/calendar';
+import { appActions } from '~/store/ducks/app';
 
-const Header = ({ title, onNewEventClick, onRefreshContentClick }) => {
-  Header.propTypes = {
-    title: PropTypes.string,
-    onNewEventClick: PropTypes.func,
-    onRefreshContentClick: PropTypes.func,
-  };
+const { refreshArticles } = calendarActions;
+const { openModal } = appActions;
+
+const Header = () => {
+  const { title } = useSelector((state) => state.header);
+  const dispatch = useDispatch();
+  const onNewEventClick = useCallback(() => {
+    dispatch(openModal({ type: 'articleEditor', data: null }));
+  }, [dispatch]);
+  const onRefreshContentClick = useCallback(() => {
+    dispatch(refreshArticles());
+  }, [dispatch]);
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>

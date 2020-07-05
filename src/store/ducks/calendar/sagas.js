@@ -7,7 +7,6 @@ import {
   takeLatest,
   cancelled,
 } from '@redux-saga/core/effects';
-// import { buffers } from 'redux-saga';
 import {
   SEND_NEW_ARTICLE,
   UPDATE_ARTICLE,
@@ -25,37 +24,6 @@ import { receiveArticles, receiveData } from './actions';
 import { appActions } from '../app';
 
 const { setDefault, startRequest, endRequest, reportError } = appActions;
-
-// const counterManager = (action, counter) => {
-//   let newCounter = counter;
-//   if (action.type === 'START_REQUEST') return ++newCounter;
-//   if (action.type === 'END_REQUEST') return --newCounter;
-//   return newCounter;
-// };
-
-// const crossConnectionCounter = () => {
-//   let counter = 0;
-//   return function* crossConnectionController() {
-//     while (true) {
-//       const errorBuffer = buffers.expanding(5);
-//       const errorChan = yield actionChannel(CATCH_ERROR, errorBuffer);
-//       while (errorBuffer.isEmpty()) {
-//         const action = yield take([START_REQUEST, END_REQUEST, CATCH_ERROR]);
-//         counter = yield call(counterManager, action, counter);
-//         if (!counter) yield put(setDefault());
-//       }
-//       while (counter) {
-//         yield take(END_REQUEST);
-//         counter--;
-//       }
-//       while (!errorBuffer.isEmpty()) {
-//         const { err } = yield take(errorChan);
-//         yield put(reportError(err));
-//       }
-//     }
-//   };
-// };
-// const crossConnectionManager = crossConnectionCounter();
 
 function* mainCalendarProvider() {
   try {

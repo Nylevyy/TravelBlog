@@ -44,18 +44,6 @@
     }
   }
 
-  &__error- {
-    &log {
-      position: absolute;
-      top: -5px;
-      left: 20px;
-    }
-
-    &span {
-      color: $error;
-    }
-  }
-
   &__info {
     display: flex;
     flex-direction: column;
@@ -178,12 +166,6 @@
 
     &__location {
       margin-bottom: 5px;
-    }
-
-    &__error- {
-      &log {
-        left: 0;
-      }
     }
   }
 }

@@ -12,7 +12,7 @@ const Calendar = ({
 }) => {
   Calendar.propTypes = {
     hasError: PropTypes.bool.isRequired,
-    articles: PropTypes.arrayOf(PropTypes.object).isRequired,
+    articles: PropTypes.arrayOf(PropTypes.object),
     onDeleteArticleClick: PropTypes.func.isRequired,
     onArticleClick: PropTypes.func.isRequired,
   };
@@ -27,7 +27,7 @@ const Calendar = ({
             <h3>Пожалуйста, повторите попытку</h3>
           </div>
         )}
-        {!articles.length && !hasError && (
+        {!articles && !hasError && (
           <div className={styles.mainCalendar_empty}>
             <h1>No Articles found</h1>
             <h3>Try to create a new one by clicking the button above</h3>

@@ -1,12 +1,4 @@
-import {
-  all,
-  call,
-  put,
-  fork,
-  take,
-  takeLatest,
-  cancelled,
-} from '@redux-saga/core/effects';
+import { all, call, put, fork, take } from '@redux-saga/core/effects';
 import {
   SEND_NEW_ARTICLE,
   UPDATE_ARTICLE,
@@ -14,88 +6,38 @@ import {
   REFRESH_ARTICLES,
 } from './types';
 import {
-  getData,
   getArticles,
   postArticle,
   putArticle,
   deleteArticle,
 } from './services';
-import { receiveArticles, receiveData } from './actions';
-import { appActions } from '../app';
-
-const { setDefault, startRequest, endRequest, reportError } = appActions;
-
-function* mainCalendarProvider() {
-  try {
-    yield put(startRequest());
-    const { title, articles } = yield call(getData);
-    yield put(receiveData({ title, articles }));
-    yield put(endRequest());
-  } catch (err) {
-    yield put(reportError(err));
-  } finally {
-    if (yield cancelled()) yield put(endRequest());
-  }
-}
+import { receiveArticles } from './actions';
 
 function* articlesProvider() {
-  try {
-    yield put(startRequest());
-    const { articles } = yield call(getArticles);
-    yield put(receiveArticles({ articles }));
-    yield put(endRequest());
-  } catch (err) {
-    yield put(reportError(err));
-  }
-}
-
-function* refreshHandler() {
-  try {
-    yield put(startRequest());
-    const { articles } = yield call(getArticles);
-    yield put(setDefault());
-    yield put(receiveArticles({ articles }));
-    yield put(endRequest());
-  } catch (err) {
-    yield put(reportError(err));
-  }
+  const { articles } = yield call(getArticles);
+  yield put(receiveArticles({ articles }));
 }
 
 function* newArticleHandler(article) {
-  try {
-    yield put(startRequest());
-    yield call(postArticle, { data: article });
-    yield call(articlesProvider);
-    yield put(endRequest());
-  } catch (err) {
-    yield put(reportError(err));
-  }
+  yield call(postArticle, { data: article });
+  yield call(articlesProvider);
 }
 
 function* editArticleHandler(article, id) {
-  try {
-    yield put(startRequest());
-    yield call(putArticle, { data: article, params: { id } });
-    yield call(articlesProvider);
-    yield put(endRequest());
-  } catch (err) {
-    yield put(reportError(err));
-  }
+  yield call(putArticle, { data: article, params: { id } });
+  yield call(articlesProvider);
 }
 
 function* deleteArticleHandler(id) {
-  try {
-    yield put(startRequest());
-    yield call(deleteArticle, { params: { id } });
-    yield call(articlesProvider);
-    yield put(endRequest());
-  } catch (err) {
-    yield put(reportError(err));
-  }
+  yield call(deleteArticle, { params: { id } });
+  yield call(articlesProvider);
 }
 
 function* refreshWatcher() {
-  yield takeLatest(REFRESH_ARTICLES, refreshHandler);
+  while (true) {
+    yield take(REFRESH_ARTICLES);
+    yield fork(articlesProvider);
+  }
 }
 
 function* newArticleWatcher() {
@@ -125,7 +67,6 @@ function* rootCalendarSaga() {
     newArticleWatcher(),
     editArticleWatcher(),
     deleteArticleWatcher(),
-    mainCalendarProvider(),
   ]);
 }
 

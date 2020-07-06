@@ -7,6 +7,6 @@ export const getTitle = async () => {
   return data;
 };
 
-export const changeTitle = async (data) => {
-  await Api.put({ url: titlePath, ...data });
+export const changeTitle = async (request) => {
+  await Api.put({ url: titlePath, ...request });
 };

@@ -38,13 +38,14 @@ const appReducer = (state = initialState, action) => {
           type: null,
         },
         requestError: true,
+        isFetching: state.isFetching - 1,
       };
     case OPEN_MODAL:
       return {
         ...state,
         modal: {
           isOpen: true,
-          data: action.modalData,
+          data: action.data,
           type: action.modalType,
         },
       };
@@ -52,18 +53,17 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         modal: {
-          isOpen: true,
+          isOpen: false,
           data: null,
           type: null,
         },
         requestError: false,
-        isFetching: null,
       };
     case CLOSE_MODAL:
       return {
         ...state,
         modal: {
-          isOpen: true,
+          isOpen: false,
           data: null,
           type: null,
         },
@@ -73,4 +73,4 @@ const appReducer = (state = initialState, action) => {
   }
 };
 
-export default appReducer;
+export { appReducer };

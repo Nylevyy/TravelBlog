@@ -1,0 +1,10 @@
+.modal-title-form {
+  display: flex;
+  flex-direction: column;
+
+  &__buttons {
+    display: flex;
+    align-self: flex-end;
+    padding: 5px 25px;
+  }
+}

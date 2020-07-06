@@ -1,25 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import ModalForm from './form/ModalForm';
+import ModalArticleForm from './article-form/ModalArticleForm';
 import styles from './Modal.scss';
 import CloseButton from '~/components/ui/close-button/CloseButton';
+import ModalTitleForm from '~/components/core/modal/title-form/ModalTitleForm';
 
 const modalClasses = classNames.bind(styles);
 
 const Modal = ({
   isOpen,
-  hasError,
-  currentArticleData,
+  type,
+  data,
   onModalCloseClick,
   onSubmitFormClick,
   onDeleteClick,
 }) => {
   Modal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
+    type: PropTypes.string,
     onModalCloseClick: PropTypes.func.isRequired,
-    hasError: PropTypes.bool,
-    currentArticleData: PropTypes.arrayOf(PropTypes.any),
+    data: PropTypes.objectOf(PropTypes.any),
     onSubmitFormClick: PropTypes.func,
     onDeleteClick: PropTypes.func,
   };
@@ -34,18 +35,20 @@ const Modal = ({
           <CloseButton onClick={onModalCloseClick} />
         </div>
         <div className={styles.modal__form}>
-          {hasError && (
-            <div className={styles.modal__errorLog}>
-              <span className={styles.modal__errorSpan}>
-                Не удалось выполнить запрос, повторите попытку
-              </span>
-            </div>
+          {type === 'articleEditor' && (
+            <ModalArticleForm
+              onSubmitFormClick={onSubmitFormClick}
+              onDeleteClick={onDeleteClick}
+              data={data}
+            />
           )}
-          <ModalForm
-            onSubmitFormClick={onSubmitFormClick}
-            onDeleteClick={onDeleteClick}
-            articleData={currentArticleData}
-          />
+          {type === 'titleEditor' && (
+            <ModalTitleForm
+              onSubmitFormClick={onSubmitFormClick}
+              onDeleteClick={onDeleteClick}
+              title={data.title}
+            />
+          )}
         </div>
       </div>
     </div>

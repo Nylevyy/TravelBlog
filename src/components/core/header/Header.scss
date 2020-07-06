@@ -23,18 +23,46 @@
     width: 100px;
     white-space: nowrap;
 
-    &_text {
+    &__text {
       margin-left: -33px;
       font-weight: bold;
       font-size: 22px;
     }
   }
 
-  &__subtitle {
+  &__title-button {
     width: 670px;
     align-self: flex-end;
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    border-radius: 7px;
+    color: $contrastColor;
+    text-align: left;
 
-    &_text {
+    &:hover {
+      -webkit-box-shadow: 0 0 25px 10px $active;
+      -moz-box-shadow: 0 0 25px 10px $active;
+      box-shadow: 0 0 25px 10px $active;
+    }
+
+    &:focus {
+      outline: none;
+      -webkit-box-shadow: 0 0 15px 5px $active;
+      -moz-box-shadow: 0 0 15px 5px $active;
+      box-shadow: 0 0 15px 5px $active;
+    }
+
+    &:active {
+      -webkit-box-shadow: 0 0 25px 10px $active;
+      -moz-box-shadow: 0 0 25px 10px $active;
+      box-shadow: 0 0 25px 10px $active;
+      position: relative;
+      left: 0.2%;
+      top: 0.2%;
+    }
+
+    &__text {
       margin: 0;
       font-size: 40px;
       font-weight: bold;
@@ -58,10 +86,10 @@
       margin: 10px auto;
     }
 
-    &__subtitle {
+    &__title-button {
       width: 300px;
 
-      &_text {
+      &__text {
         font-size: 20px;
       }
     }
@@ -82,7 +110,7 @@
       justify-content: space-around;
     }
 
-    &__subtitle {
+    &__title-button {
       width: 250px;
     }
   }

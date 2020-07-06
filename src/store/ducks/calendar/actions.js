@@ -4,13 +4,7 @@ import {
   UPDATE_ARTICLE,
   DELETE_ARTICLE,
   REFRESH_ARTICLES,
-  RECEIVE_DATA,
 } from './types';
-
-export const receiveData = (payload) => ({
-  type: RECEIVE_DATA,
-  ...payload,
-});
 
 export const receiveArticles = (payload) => ({
   type: RECEIVE_ARTICLES,

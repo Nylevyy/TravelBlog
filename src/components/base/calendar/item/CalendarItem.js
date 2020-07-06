@@ -15,7 +15,7 @@ const CalendarItem = ({
   isImportant,
   id,
   onArticleClick,
-  onDeleteArticleClick,
+  onDeleteClick,
 }) => {
   CalendarItem.propTypes = {
     title: PropTypes.string.isRequired,
@@ -25,7 +25,7 @@ const CalendarItem = ({
     isImportant: PropTypes.bool.isRequired,
     id: PropTypes.number.isRequired,
     onArticleClick: PropTypes.func.isRequired,
-    onDeleteArticleClick: PropTypes.func.isRequired,
+    onDeleteClick: PropTypes.func.isRequired,
   };
   return (
     <article
@@ -39,7 +39,10 @@ const CalendarItem = ({
         className={styles.calendarItem__wrapper}
         type="button"
         onClick={() => {
-          onArticleClick([title, location, date, description, isImportant, id]);
+          onArticleClick({
+            data: { title, location, date, description, isImportant, id },
+            modalType: 'articleEditor',
+          });
         }}
         aria-label="article-edit"
       >
@@ -55,7 +58,7 @@ const CalendarItem = ({
         </div>
       </button>
       <div className={styles.calendarItem__delete}>
-        <CloseButton onClick={onDeleteArticleClick(id)} />
+        <CloseButton onClick={onDeleteClick(id)} />
       </div>
     </article>
   );

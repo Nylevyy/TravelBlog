@@ -1,21 +1,16 @@
-import { put, call, take, fork } from '@redux-saga/core/effects';
-import { SET_TITLE } from './types';
+import { put, call, take, fork, all } from '@redux-saga/core/effects';
+import { SET_TITLE, GET_TITLE } from './types';
 import { receiveTitle } from './actions';
 import { changeTitle, getTitle } from './services';
-import { appActions } from '../app';
 
-const { startRequest, endRequest, reportError } = appActions;
+function* getTitleHandler() {
+  const newTitle = yield call(getTitle);
+  yield put(receiveTitle(newTitle));
+}
 
 function* newTitleHandler(title) {
-  try {
-    yield put(startRequest());
-    yield call(changeTitle, { data: title });
-    const newTitle = yield call(getTitle);
-    yield put(receiveTitle({ newTitle }));
-    yield put(endRequest());
-  } catch (err) {
-    yield put(reportError(err));
-  }
+  yield call(changeTitle, { data: { title } });
+  yield call(getTitleHandler);
 }
 
 function* newTitleWatcher() {
@@ -25,8 +20,15 @@ function* newTitleWatcher() {
   }
 }
 
-function* rootSaga() {
-  yield newTitleWatcher();
+function* getTitleWatcher() {
+  while (true) {
+    yield take(GET_TITLE);
+    yield fork(getTitleHandler);
+  }
 }
 
-export default rootSaga;
+function* rootSaga() {
+  yield all([newTitleWatcher(), getTitleWatcher()]);
+}
+
+export { rootSaga };

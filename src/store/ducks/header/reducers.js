@@ -5,6 +5,7 @@ const initialState = {
 };
 
 const headerReducer = (state = initialState, action) => {
+  // eslint-disable-next-line sonarjs/no-small-switch
   switch (action.type) {
     case RECEIVE_TITLE:
       return {

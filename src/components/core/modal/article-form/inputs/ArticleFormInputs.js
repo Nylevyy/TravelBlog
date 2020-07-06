@@ -2,21 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Input from '~/components/ui/input/Input';
-import styles from './FormInputs.scss';
+import styles from './ArticleFormInputs.scss';
 import DatePicker from '~/widgets/date-picker/DatePicker';
 
 const inputsClasses = classNames.bind(styles);
 
-const FormInputs = ({ onInput, onChange, values, notValidated }) => {
-  FormInputs.propTypes = {
+const ArticleFormInputs = ({ onInput, onChange, values, notValidated }) => {
+  ArticleFormInputs.propTypes = {
     onInput: PropTypes.func,
     onChange: PropTypes.func,
     values: PropTypes.arrayOf(PropTypes.any),
     notValidated: PropTypes.arrayOf(PropTypes.number),
   };
   return (
-    <div className={styles.formInputs}>
-      <div className={styles.formInputs_small}>
+    <div className={styles.articleFormInputs}>
+      <div className={styles.articleFormInputs_small}>
         <Input
           name="title"
           label="Событие"
@@ -24,39 +24,39 @@ const FormInputs = ({ onInput, onChange, values, notValidated }) => {
           onInput={onInput}
           onChange={onChange}
           value={values[0]}
-          notValidated={notValidated.includes(0)}
+          isValid={!notValidated.includes(0)}
         />
-        <div className={styles.formInputs__wrapper}>
+        <div className={styles.articleFormInputs__wrapper}>
           <Input
             name="location"
             label="Место"
             index={1}
             onInput={onInput}
             value={values[1]}
-            notValidated={notValidated.includes(1)}
+            isValid={!notValidated.includes(1)}
             onChange={onChange}
           />
           <DatePicker
             onChange={onChange}
             value={values[2]}
-            notValidated={notValidated.includes(2)}
+            isValid={!notValidated.includes(2)}
           />
         </div>
       </div>
       <textarea
-        className={inputsClasses('formInputs__textarea', {
-          formInputs_invalid: notValidated.includes(3),
+        className={inputsClasses('articleFormInputs__textarea', {
+          articleFormInputs_invalid: notValidated.includes(3),
         })}
         name="content"
         cols="25"
         rows="8"
         placeholder="Описание"
-        onInput={(e) => onInput(3, e.target.value)}
-        onChange={(e) => onChange(3, e.target.value)}
+        onInput={(e) => onInput({ index: 3, value: e.target.value })}
+        onChange={(e) => onChange({ index: 3, value: e.target.value })}
         value={values[3]}
       />
     </div>
   );
 };
 
-export default FormInputs;
+export default ArticleFormInputs;

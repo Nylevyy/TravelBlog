@@ -24,8 +24,8 @@ const DatePicker = ({ notValidated, value, onChange }) => {
           datePicker_invalid: notValidated,
         })}
         calendarClassName={styles.datePicker__calendar}
-        onChange={(date) => onChange(2, date)}
-        onSelect={(date) => onChange(2, date)}
+        onChange={(date) => onChange({ index: 2, value: date })}
+        onSelect={(date) => onChange({ index: 2, value: date })}
         selected={value}
         id="date"
         showTimeInput

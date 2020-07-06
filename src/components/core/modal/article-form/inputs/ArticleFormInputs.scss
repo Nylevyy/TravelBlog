@@ -1,4 +1,4 @@
-.form-inputs {
+.article-form-inputs {
   display: flex;
   flex-direction: column;
   padding: 10px 15px;
@@ -30,13 +30,13 @@
 }
 
 @media screen and (max-width: 767px) {
-  .form-inputs {
+  .article-form-inputs {
     padding: 7px;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .form-inputs {
+  .article-form-inputs {
     &__wrapper {
       flex-direction: column;
     }
@@ -48,7 +48,7 @@
 }
 
 @media screen and (orientation: landscape) and (max-height: 490px) {
-  .form-inputs {
+  .article-form-inputs {
     padding: 2px;
     flex-direction: row;
     align-items: stretch;

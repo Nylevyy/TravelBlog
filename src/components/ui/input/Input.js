@@ -5,23 +5,15 @@ import styles from './Input.scss';
 
 const inputClasses = classNames.bind(styles);
 
-const Input = ({
-  name,
-  notValidated,
-  onChange,
-  index,
-  label,
-  onInput,
-  value,
-}) => {
+const Input = ({ name, isValid, onChange, index, label, onInput, value }) => {
   Input.propTypes = {
     name: PropTypes.string,
-    notValidated: PropTypes.bool,
+    isValid: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onInput: PropTypes.func.isRequired,
-    index: PropTypes.number.isRequired,
+    index: PropTypes.number,
     label: PropTypes.string.isRequired,
-    value: PropTypes.string,
+    value: PropTypes.string.isRequired,
   };
   const wrapperClassName = `input_${name}`;
   const inputFieldClassName = `input__field_${name}`;
@@ -32,13 +24,13 @@ const Input = ({
           styles.input__field,
           styles[inputFieldClassName],
           {
-            input_invalid: notValidated,
+            input_invalid: !isValid,
           }
         )}
         type="text"
         id={name}
-        onInput={(e) => onInput(index, e.target.value)}
-        onChange={(e) => onChange(index, e.target.value)}
+        onInput={(e) => onInput({ index, value: e.target.value })}
+        onChange={(e) => onChange({ index, value: e.target.value })}
         value={value}
       />
       <label htmlFor={name} className={styles.input__label}>

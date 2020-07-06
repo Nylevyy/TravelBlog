@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Inputs from './inputs/FormInputs';
 import Button from '~/components/ui/button/Button';
-import styles from './ModalForm.scss';
+import styles from './ModalArticleForm.scss';
 import Checkbox from '~/components/ui/checkbox/Checkbox';
+import ArticleFormInputs from './inputs/ArticleFormInputs';
 
-const Form = ({ onSubmitFormClick, onDeleteClick, articleData }) => {
-  Form.propTypes = {
+const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
+  ModalArticleForm.propTypes = {
     onSubmitFormClick: PropTypes.func.isRequired,
     onDeleteClick: PropTypes.func,
-    articleData: PropTypes.arrayOf(PropTypes.any),
+    data: PropTypes.exact({
+      title: PropTypes.string.isRequired,
+      location: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      isImportant: PropTypes.bool.isRequired,
+      id: PropTypes.number.isRequired,
+    }),
   };
   const [inputs, setInputs] = useState({
     notValidated: [],
     id: null,
     values: ['', '', new Date(), '', false],
-    onInputChange(index, value) {
+    onInputChange({ index, value }) {
       setInputs((prevInputs) => {
         const newInputs = prevInputs.values.slice();
         newInputs[index] = value;
@@ -27,7 +34,7 @@ const Form = ({ onSubmitFormClick, onDeleteClick, articleData }) => {
     },
   });
   useEffect(() => {
-    if (!articleData) {
+    if (!data) {
       setInputs((prevInputs) => ({
         ...prevInputs,
         values: ['', '', new Date(), '', false],
@@ -36,15 +43,15 @@ const Form = ({ onSubmitFormClick, onDeleteClick, articleData }) => {
       }));
       return;
     }
-    const values = articleData.slice(0, 5);
-    values[2] = new Date(values[2]);
+    const { title, location, date, description, isImportant, id } = data;
+    const dateValue = new Date(date);
     setInputs((prevInputs) => ({
       ...prevInputs,
       notValidated: [],
-      values,
-      id: articleData[5],
+      values: [title, location, dateValue, description, isImportant],
+      id,
     }));
-  }, [articleData]);
+  }, [data]);
   const onSubmitForm = () => {
     const emptyFields = [];
     for (let i = 0; i < inputs.values.length - 1; i++) {
@@ -70,12 +77,20 @@ const Form = ({ onSubmitFormClick, onDeleteClick, articleData }) => {
       ...prevInputs,
       notValidated: [],
     }));
-    onSubmitFormClick(article, inputs.id);
+    onSubmitFormClick(
+      {
+        article,
+      },
+      {
+        id: inputs.id,
+        type: 'articleEditor',
+      }
+    );
   };
 
   return (
-    <form action="" className={styles.form}>
-      <Inputs
+    <form action="" className={styles.modalArticleForm}>
+      <ArticleFormInputs
         values={[
           inputs.values[0],
           inputs.values[1],
@@ -88,7 +103,7 @@ const Form = ({ onSubmitFormClick, onDeleteClick, articleData }) => {
         onChangeDate={inputs.onChangeDate}
       />
 
-      <div className={styles.form__dashboard}>
+      <div className={styles.modalArticleForm__dashboard}>
         <Checkbox
           index={4}
           label=" Пометить событие как важное"
@@ -96,7 +111,7 @@ const Form = ({ onSubmitFormClick, onDeleteClick, articleData }) => {
           checked={!!inputs.values[4]}
           id="form__checkbox"
         />
-        <div className={styles.form__buttons}>
+        <div className={styles.modalArticleForm__buttons}>
           <Button
             value="Готово"
             className="button_submit"
@@ -104,12 +119,12 @@ const Form = ({ onSubmitFormClick, onDeleteClick, articleData }) => {
             onClick={onSubmitForm}
             isSmall
           />
-          {articleData && (
+          {data && (
             <Button
               value="Удалить"
               className="button_reset"
               key="resetForm"
-              onClick={onDeleteClick(articleData[5])}
+              onClick={onDeleteClick(data.id)}
               isSmall
             />
           )}
@@ -119,4 +134,4 @@ const Form = ({ onSubmitFormClick, onDeleteClick, articleData }) => {
   );
 };
 
-export default Form;
+export default ModalArticleForm;

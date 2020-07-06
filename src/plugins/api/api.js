@@ -1,17 +1,28 @@
 import Axios from 'axios';
+import { appActions } from '~/store/ducks/app';
+import store from '~/store/store';
 
+const { startRequest, endRequest, reportError } = appActions;
 const axios = Axios.create({
   baseURL: process.env.BASE_URL,
 });
 
 class Api {
-  static send({ method, url, data, params }) {
-    return axios.request({
-      method,
-      url,
-      data,
-      params,
-    });
+  static async send({ method, url, data, params }) {
+    try {
+      store.dispatch(startRequest());
+      const response = await axios.request({
+        method,
+        url,
+        data,
+        params,
+      });
+      store.dispatch(endRequest());
+      return response;
+    } catch (e) {
+      store.dispatch(reportError(e));
+      return e;
+    }
   }
 
   static get(request) {

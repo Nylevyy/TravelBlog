@@ -5,18 +5,14 @@ import Footer from '../core/footer/Footer';
 import Modal from '../core/modal/Modal';
 
 const Layout = ({
-  isOpen,
-  type,
-  data,
+  modal,
   children,
   onModalCloseClick,
   onSubmitFormClick,
   onDeleteClick,
 }) => {
   Layout.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    type: PropTypes.string.isRequired,
-    data: PropTypes.bool,
+    modal: PropTypes.objectOf(PropTypes.any).isRequired,
     children: PropTypes.element,
     onModalCloseClick: PropTypes.func,
     onSubmitFormClick: PropTypes.func,
@@ -28,9 +24,7 @@ const Layout = ({
       <div className="layout__content">{children}</div>
       <Footer />
       <Modal
-        isOpen={isOpen}
-        type={type}
-        data={data}
+        {...modal}
         onModalCloseClick={onModalCloseClick}
         onSubmitFormClick={onSubmitFormClick}
         onDeleteClick={onDeleteClick}

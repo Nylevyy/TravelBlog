@@ -1,6 +1,6 @@
 .button {
   display: flex;
-  border: 3px solid $green;
+  border: 3px solid $active;
   font-size: 1.15em;
   line-height: 2.2;
   font-weight: bold;
@@ -30,30 +30,30 @@
   }
 
   &:hover {
-    -webkit-box-shadow: 0 0 25px 10px $green;
-    -moz-box-shadow: 0 0 25px 10px $green;
-    box-shadow: 0 0 25px 10px $green;
+    -webkit-box-shadow: 0 0 25px 10px $active;
+    -moz-box-shadow: 0 0 25px 10px $active;
+    box-shadow: 0 0 25px 10px $active;
   }
 
   &:focus {
     outline: none;
-    -webkit-box-shadow: 0 0 15px 5px $green;
-    -moz-box-shadow: 0 0 15px 5px $green;
-    box-shadow: 0 0 15px 5px $green;
+    -webkit-box-shadow: 0 0 15px 5px $active;
+    -moz-box-shadow: 0 0 15px 5px $active;
+    box-shadow: 0 0 15px 5px $active;
   }
 
   &:active {
-    -webkit-box-shadow: 0 0 25px 10px $green;
-    -moz-box-shadow: 0 0 25px 10px $green;
-    box-shadow: 0 0 25px 10px $green;
-    border-top: 4px solid $green;
-    border-left: 4px solid $green;
-    border-bottom: 2px solid $green;
-    border-right: 2px solid $green;
+    -webkit-box-shadow: 0 0 25px 10px $active;
+    -moz-box-shadow: 0 0 25px 10px $active;
+    box-shadow: 0 0 25px 10px $active;
+    border-top: 4px solid $active;
+    border-left: 4px solid $active;
+    border-bottom: 2px solid $active;
+    border-right: 2px solid $active;
   }
 
   &_submit {
-    background-color: $green;
+    background-color: $active;
   }
 
   &_refresh {

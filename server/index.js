@@ -26,21 +26,21 @@ app.get('/api/calendarData', (req, res) => {
 });
 
 app.get(titlePath, (req, res) => {
-  res.status(200).json({title});
-});
+  setTimeout(() => res.status(200).json({title}), 6500);});
 
 app.put(titlePath, (req, res) => {
-  title = req.body;
+  console.log(req.body.title)
+  title = req.body.title;
   res.status(200).json('succeed');
 });
 
 app.get(articlesPath, (req, res) => {
-  res.status(200).json(articles);
+  res.status(200).json({articles});
 });
 
 app.post(articlesPath, (req, res) => {
   articles.push(identifyArticle(req.body));
-  res.status(200).json('succeed');
+  setTimeout(() => res.status(200).json('succeed'), 4500);
 });
 
 app.put(articlesPath, (req, res) => {
@@ -51,13 +51,17 @@ app.put(articlesPath, (req, res) => {
     return;
   }
   articles[idx] = req.body;
-  res.status(200).json('succeed');
+  setTimeout(() => res.status(200).json('succeed'), 2500);
 });
 
 app.delete(articlesPath, (req, res) => {
   const idx = articles.findIndex((item) => item.id === +req.query.id);
+  if (!(~idx)) {
+    res.status(404).json('Not found');
+    return;
+  }
   articles.splice(idx, 1);
-  setTimeout(() => res.status(200).json('succeed'), 6500);
+  setTimeout(() => res.status(200).json('succeed'), 7500);
 });
 
 app.use((err, req, res) => {

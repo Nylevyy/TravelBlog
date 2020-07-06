@@ -1,7 +1,6 @@
 import * as headerTypes from './types';
 import * as headerActions from './actions';
 
-export { headerTypes };
-export { headerActions };
+export { headerTypes, headerActions };
 export { default as headerReducer } from './reducers';
-export { default as headerSagas } from './sagas';
+export { rootSaga as headerSagas } from './sagas';

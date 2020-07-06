@@ -1,61 +1,43 @@
-import React, { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { appActions } from '~/store/ducks/app';
-import { calendarActions } from '~/store/ducks/calendar';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Layout from '~/components/layouts/Layout';
 import Calendar from '~/components/base/calendar/Calendar';
-import { headerActions } from '~/store/ducks/header';
 import Loader from '~/components/core/loaders/Loader';
 
-const { setTitle } = headerActions;
-const { closeModal, openModal } = appActions;
-const { updateArticle, postNewArticle, deleteArticle } = calendarActions;
-
-const Main = ({ modal, requestError, isFetching }) => {
-  const dispatch = useDispatch();
-  const onModalCloseClick = useCallback(() => {
-    dispatch(closeModal());
-  }, [dispatch]);
-  const onSubmitFormClick = useCallback(
-    (payload, { type, id }) => {
-      if (type === 'articleEditor') {
-        if (id) {
-          dispatch(updateArticle({ ...payload, id }));
-          return;
-        }
-        dispatch(postNewArticle({ ...payload }));
-      }
-      dispatch(setTitle({ ...payload }));
-    },
-    [dispatch]
-  );
-  const onDeleteClick = useCallback(
-    (payload) => () => {
-      dispatch(deleteArticle({ ...payload }));
-    },
-    [dispatch]
-  );
-  const onArticleClick = useCallback(
-    (payload) => {
-      dispatch(openModal({ ...payload }));
-    },
-    [dispatch]
-  );
-  const calendar = useSelector((state) => state.calendar);
+const Main = ({
+  modal,
+  onModalCloseClick,
+  onSubmitFormClick,
+  onDeleteClick,
+  onArticleClick,
+  calendar,
+  requestError,
+}) => {
+  Main.propTypes = {
+    modal: PropTypes.objectOf(PropTypes.any).isRequired,
+    onModalCloseClick: PropTypes.func.isRequired,
+    onSubmitFormClick: PropTypes.func.isRequired,
+    onDeleteClick: PropTypes.func.isRequired,
+    onArticleClick: PropTypes.func.isRequired,
+    calendar: PropTypes.objectOf(PropTypes.any).isRequired,
+    requestError: PropTypes.bool.isRequired,
+  };
   return (
     <Layout
-      {...modal}
+      modal={modal}
       onModalCloseClick={onModalCloseClick}
       onSubmitFormClick={onSubmitFormClick}
       onDeleteClick={onDeleteClick}
     >
-      {requestError && <h1>ERROR</h1>}
-      {isFetching && <Loader />}
-      <Calendar
-        {...calendar}
-        onDeleteClick={onDeleteClick}
-        onArticleClick={onArticleClick}
-      />
+      <div>
+        {!!isFetching && <Loader />}
+        <Calendar
+          {...calendar}
+          requestError={requestError}
+          onDeleteClick={onDeleteClick}
+          onArticleClick={onArticleClick}
+        />
+      </div>
     </Layout>
   );
 };

@@ -1,4 +1,4 @@
-.form {
+.modal-article-form {
   display: flex;
   flex-direction: column;
 
@@ -19,16 +19,8 @@
   }
 }
 
-@media screen and (max-width: 767px) {
-  .form {
-    &__submit {
-      flex-direction: column;
-    }
-  }
-}
-
 @media screen and (max-width: 480px) {
-  .form {
+  .modal-article-form {
     &__dashboard {
       flex-direction: column;
       padding: 5px 15px;

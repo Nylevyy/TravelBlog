@@ -6,31 +6,37 @@ import {
   REFRESH_ARTICLES,
 } from './types';
 import {
-  getArticles,
+  fetchArticles,
   postArticle,
   putArticle,
   deleteArticle,
 } from './services';
 import { receiveArticles } from './actions';
+import { appTypes } from '~/store/ducks/app';
+
+const { INIT } = appTypes;
 
 function* articlesProvider() {
-  const { articles } = yield call(getArticles);
+  const { articles } = yield call(fetchArticles);
   yield put(receiveArticles({ articles }));
 }
 
 function* newArticleHandler(article) {
-  yield call(postArticle, { data: article });
-  yield call(articlesProvider);
+  const { articles } = yield call(postArticle, { data: article });
+  yield put(receiveArticles({ articles }));
 }
 
 function* editArticleHandler(article, id) {
-  yield call(putArticle, { data: article, params: { id } });
-  yield call(articlesProvider);
+  const { articles } = yield call(putArticle, {
+    data: article,
+    params: { id },
+  });
+  yield put(receiveArticles({ articles }));
 }
 
 function* deleteArticleHandler(id) {
-  yield call(deleteArticle, { params: { id } });
-  yield call(articlesProvider);
+  const { articles } = yield call(deleteArticle, { params: { id } });
+  yield put(receiveArticles({ articles }));
 }
 
 function* refreshWatcher() {
@@ -61,12 +67,18 @@ function* deleteArticleWatcher() {
   }
 }
 
+function* initApp() {
+  yield take(INIT);
+  yield fork(articlesProvider);
+}
+
 function* rootCalendarSaga() {
   yield all([
     refreshWatcher(),
     newArticleWatcher(),
     editArticleWatcher(),
     deleteArticleWatcher(),
+    initApp(),
   ]);
 }
 

@@ -5,20 +5,33 @@ import {
   OPEN_MODAL,
   SET_DEFAULT,
   CLOSE_MODAL,
+  INIT,
 } from './types';
 
 const initialState = {
+  init: null,
   modal: {
-    isOpen: false,
+    isOpen: null,
     type: null,
     data: null,
   },
-  requestError: false,
+  requestError: null,
   isFetching: null,
 };
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
+    case INIT:
+      return {
+        init: true,
+        modal: {
+          isOpen: false,
+          type: null,
+          data: null,
+        },
+        requestError: false,
+        isFetching: 0,
+      };
     case START_REQUEST:
       return {
         ...state,

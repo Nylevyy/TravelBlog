@@ -1,0 +1,10 @@
+.error-layout {
+  display: flex;
+  background: url('../../../assets/images/jpg/errorBackground.jpg') center;
+  background-position: center;
+  background-size: cover;
+
+  &__header {
+    background: url(../../../assets/images/jpg/footerBackground.jpg);
+  }
+}

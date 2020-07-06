@@ -1,15 +1,15 @@
-import { RECEIVE_TITLE, SET_TITLE, GET_TITLE } from './types';
+import { RECEIVE_TITLE, EDIT_TITLE, FETCH_TITLE } from './types';
 
 export const receiveTitle = (payload) => ({
   type: RECEIVE_TITLE,
   ...payload,
 });
 
-export const setTitle = (payload) => ({
-  type: SET_TITLE,
+export const editTitle = (payload) => ({
+  type: EDIT_TITLE,
   ...payload,
 });
 
-export const getTitle = () => ({
-  type: GET_TITLE,
+export const fetchTitle = () => ({
+  type: FETCH_TITLE,
 });

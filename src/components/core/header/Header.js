@@ -1,13 +1,11 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../ui/button/Button';
 import styles from './Header.scss';
 import { calendarActions } from '~/store/ducks/calendar';
 import { appActions } from '~/store/ducks/app';
-import { headerActions } from '~/store/ducks/header';
 
 const { refreshArticles } = calendarActions;
-const { getTitle } = headerActions;
 const { openModal, setDefault } = appActions;
 
 const Header = () => {
@@ -28,9 +26,6 @@ const Header = () => {
     },
     [dispatch]
   );
-  useEffect(() => {
-    dispatch(getTitle());
-  }, []);
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>

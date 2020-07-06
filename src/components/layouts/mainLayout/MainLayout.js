@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from '../core/header/Header';
-import Footer from '../core/footer/Footer';
-import Modal from '../core/modal/Modal';
+import Header from '../../core/header/Header';
+import Footer from '../../core/footer/Footer';
+import Modal from '../../core/modal/Modal';
 
-const Layout = ({
+const MainLayout = ({
   modal,
   children,
   onModalCloseClick,
   onSubmitFormClick,
   onDeleteClick,
 }) => {
-  Layout.propTypes = {
+  MainLayout.propTypes = {
     modal: PropTypes.objectOf(PropTypes.any).isRequired,
     children: PropTypes.element,
     onModalCloseClick: PropTypes.func,
@@ -19,9 +19,9 @@ const Layout = ({
     onDeleteClick: PropTypes.func,
   };
   return (
-    <div className="layout">
+    <div className="mainLayout">
       <Header />
-      <div className="layout__content">{children}</div>
+      <div className="mainLayout__content">{children}</div>
       <Footer />
       <Modal
         {...modal}
@@ -33,4 +33,4 @@ const Layout = ({
   );
 };
 
-export default Layout;
+export default MainLayout;

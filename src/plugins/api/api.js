@@ -17,10 +17,12 @@ class Api {
         data,
         params,
       });
+
       store.dispatch(endRequest());
       return response;
     } catch (e) {
       store.dispatch(reportError(e));
+      console.log(e);
       return e;
     }
   }

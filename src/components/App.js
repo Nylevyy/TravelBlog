@@ -6,19 +6,15 @@ import { calendarActions } from '~/store/ducks/calendar';
 import { headerActions } from '~/store/ducks/header';
 import ErrorPage from '~/components/pages/404/ErrorPage';
 import Main from '~/components/pages/main/Main';
+import Loader from './core/loaders/Loader';
 
-const { setTitle } = headerActions;
-const { closeModal, openModal } = appActions;
-const {
-  updateArticle,
-  postNewArticle,
-  deleteArticle,
-  refreshArticles,
-} = calendarActions;
+const { editTitle } = headerActions;
+const { closeModal, openModal, initApp } = appActions;
+const { updateArticle, postNewArticle, deleteArticle } = calendarActions;
 
 const App = () => {
   const appData = useSelector((state) => state.app);
-  const { modal, requestError, isFetching } = appData;
+  const { init, modal, requestError, isFetching } = appData;
   const dispatch = useDispatch();
   const onModalCloseClick = useCallback(() => {
     dispatch(closeModal());
@@ -33,7 +29,7 @@ const App = () => {
         dispatch(postNewArticle({ ...payload }));
         return;
       }
-      dispatch(setTitle({ ...payload }));
+      dispatch(editTitle({ ...payload }));
     },
     [dispatch]
   );
@@ -56,24 +52,30 @@ const App = () => {
     if (!isFetching) dispatch(closeModal());
   }, [isFetching]);
   useEffect(() => {
-    dispatch(refreshArticles());
+    dispatch(initApp());
   }, []);
   return (
     <Switch>
-      <Route exact path="/">
-        <Main
-          modal={modal}
-          onModalCloseClick={onModalCloseClick}
-          onSubmitFormClick={onSubmitFormClick}
-          onDeleteClick={onDeleteClick}
-          onArticleClick={onArticleClick}
-          calendar={calendar}
-          requestError={requestError}
-        />
-      </Route>
-      <Route path="*">
-        <ErrorPage />
-      </Route>
+      {!init && <Loader />}
+      {init && (
+        <>
+          <Route exact path="/">
+            <Main
+              modal={modal}
+              onModalCloseClick={onModalCloseClick}
+              onSubmitFormClick={onSubmitFormClick}
+              onDeleteClick={onDeleteClick}
+              onArticleClick={onArticleClick}
+              calendar={calendar}
+              requestError={requestError}
+              isFetching={isFetching}
+            />
+          </Route>
+          <Route path="*">
+            <ErrorPage />
+          </Route>
+        </>
+      )}
     </Switch>
   );
 };

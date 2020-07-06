@@ -1,34 +1,42 @@
 import { put, call, take, fork, all } from '@redux-saga/core/effects';
-import { SET_TITLE, GET_TITLE } from './types';
+import { EDIT_TITLE, FETCH_TITLE } from './types';
+import { appTypes } from '~/store/ducks/app';
 import { receiveTitle } from './actions';
-import { changeTitle, getTitle } from './services';
+import { changeTitle, fetchTitle } from './services';
 
-function* getTitleHandler() {
-  const newTitle = yield call(getTitle);
+const { INIT } = appTypes;
+
+function* fetchTitleHandler() {
+  const newTitle = yield call(fetchTitle);
   yield put(receiveTitle(newTitle));
 }
 
 function* newTitleHandler(title) {
-  yield call(changeTitle, { data: { title } });
-  yield call(getTitleHandler);
+  const newTitle = yield call(changeTitle, { data: { title } });
+  yield put(receiveTitle(newTitle));
 }
 
 function* newTitleWatcher() {
   while (true) {
-    const { title } = yield take(SET_TITLE);
+    const { title } = yield take(EDIT_TITLE);
     yield fork(newTitleHandler, title);
   }
 }
 
-function* getTitleWatcher() {
+function* fetchTitleWatcher() {
   while (true) {
-    yield take(GET_TITLE);
-    yield fork(getTitleHandler);
+    yield take(FETCH_TITLE);
+    yield fork(fetchTitleHandler);
   }
 }
 
+function* init() {
+  yield take(INIT);
+  yield call(fetchTitleHandler);
+}
+
 function* rootSaga() {
-  yield all([newTitleWatcher(), getTitleWatcher()]);
+  yield all([newTitleWatcher(), fetchTitleWatcher(), init()]);
 }
 
 export { rootSaga };

@@ -26,12 +26,13 @@ app.get('/api/calendarData', (req, res) => {
 });
 
 app.get(titlePath, (req, res) => {
-  setTimeout(() => res.status(200).json({title}), 6500);});
+  res.status(200).json({title});
+});
 
 app.put(titlePath, (req, res) => {
   console.log(req.body.title)
   title = req.body.title;
-  res.status(200).json('succeed');
+  res.status(200).json({title});
 });
 
 app.get(articlesPath, (req, res) => {
@@ -40,7 +41,7 @@ app.get(articlesPath, (req, res) => {
 
 app.post(articlesPath, (req, res) => {
   articles.push(identifyArticle(req.body));
-  setTimeout(() => res.status(200).json('succeed'), 4500);
+  res.status(200).json({articles});
 });
 
 app.put(articlesPath, (req, res) => {
@@ -51,7 +52,7 @@ app.put(articlesPath, (req, res) => {
     return;
   }
   articles[idx] = req.body;
-  setTimeout(() => res.status(200).json('succeed'), 2500);
+  res.status(200).json({articles});
 });
 
 app.delete(articlesPath, (req, res) => {
@@ -61,7 +62,7 @@ app.delete(articlesPath, (req, res) => {
     return;
   }
   articles.splice(idx, 1);
-  setTimeout(() => res.status(200).json('succeed'), 7500);
+  res.status(200).json({articles});
 });
 
 app.use((err, req, res) => {

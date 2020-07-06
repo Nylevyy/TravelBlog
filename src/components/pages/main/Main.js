@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Layout from '~/components/layouts/Layout';
+import MainLayout from '~/components/layouts/mainLayout/MainLayout';
 import Calendar from '~/components/base/calendar/Calendar';
 import Loader from '~/components/core/loaders/Loader';
 
@@ -12,6 +12,7 @@ const Main = ({
   onArticleClick,
   calendar,
   requestError,
+  isFetching,
 }) => {
   Main.propTypes = {
     modal: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -21,9 +22,10 @@ const Main = ({
     onArticleClick: PropTypes.func.isRequired,
     calendar: PropTypes.objectOf(PropTypes.any).isRequired,
     requestError: PropTypes.bool.isRequired,
+    isFetching: PropTypes.number.isRequired,
   };
   return (
-    <Layout
+    <MainLayout
       modal={modal}
       onModalCloseClick={onModalCloseClick}
       onSubmitFormClick={onSubmitFormClick}
@@ -38,7 +40,7 @@ const Main = ({
           onArticleClick={onArticleClick}
         />
       </div>
-    </Layout>
+    </MainLayout>
   );
 };
 

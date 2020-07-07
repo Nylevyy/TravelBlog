@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ErrorLayout from '~/components/layouts/errorLayout/ErrorLayout';
+import LayoutError from '~/components/layouts/error/LayoutError';
 import styles from './ErrorPage.scss';
 
 const ErrorPage = () => {
   return (
-    <ErrorLayout>
+    <LayoutError>
       <div className={styles.errorPage}>
         <h1>
           <strong>Ошибка 404</strong>
@@ -16,7 +16,7 @@ const ErrorPage = () => {
           <i>Вернитесь на главную</i>
         </Link>
       </div>
-    </ErrorLayout>
+    </LayoutError>
   );
 };
 

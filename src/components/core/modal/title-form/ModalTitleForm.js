@@ -5,10 +5,6 @@ import styles from '~/components/core/modal/article-form/ModalArticleForm.scss';
 import Button from '~/components/ui/button/Button';
 
 const ModalTitleForm = ({ title, onSubmitFormClick }) => {
-  ModalTitleForm.propTypes = {
-    title: PropTypes.string,
-    onSubmitFormClick: PropTypes.func.isRequired,
-  };
   const [input, setInput] = useState({
     value: '',
     isValid: true,
@@ -57,6 +53,11 @@ const ModalTitleForm = ({ title, onSubmitFormClick }) => {
       </div>
     </form>
   );
+};
+
+ModalTitleForm.propTypes = {
+  title: PropTypes.string,
+  onSubmitFormClick: PropTypes.func.isRequired,
 };
 
 export default ModalTitleForm;

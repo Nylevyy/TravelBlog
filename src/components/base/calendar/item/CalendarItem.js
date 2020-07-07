@@ -16,52 +16,51 @@ const CalendarItem = ({
   id,
   onArticleClick,
   onDeleteClick,
-}) => {
-  CalendarItem.propTypes = {
-    title: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    isImportant: PropTypes.bool.isRequired,
-    id: PropTypes.number.isRequired,
-    onArticleClick: PropTypes.func.isRequired,
-    onDeleteClick: PropTypes.func.isRequired,
-  };
-  return (
-    <article
-      className={calendarItemClasses({
-        calendarItem: true,
-        calendarItem_important: isImportant,
-      })}
-      key={id}
+}) => (
+  <article
+    className={calendarItemClasses({
+      calendarItem: true,
+      calendarItem_important: isImportant,
+    })}
+    key={id}
+  >
+    <button
+      className={styles.calendarItem__wrapper}
+      type="button"
+      onClick={() => {
+        onArticleClick({
+          data: { title, location, date, description, isImportant, id },
+          modalType: 'articleEditor',
+        });
+      }}
+      aria-label="article-edit"
     >
-      <button
-        className={styles.calendarItem__wrapper}
-        type="button"
-        onClick={() => {
-          onArticleClick({
-            data: { title, location, date, description, isImportant, id },
-            modalType: 'articleEditor',
-          });
-        }}
-        aria-label="article-edit"
-      >
-        <div className={styles.calendarItem__info}>
-          <div className={styles.calendarItem__time}>
-            {moment(date).format('HH:mm')}
-          </div>
-          <div className={styles.calendarItem__location}>{location}</div>
+      <div className={styles.calendarItem__info}>
+        <div className={styles.calendarItem__time}>
+          {moment(date).format('HH:mm')}
         </div>
-        <div className={styles.calendarItem__content}>
-          <h3 className={styles.calendarItem__title}>{title}</h3>
-          <div className={styles.calendarItem__description}>{description}</div>
-        </div>
-      </button>
-      <div className={styles.calendarItem__delete}>
-        <CloseButton onClick={onDeleteClick(id)} />
+        <div className={styles.calendarItem__location}>{location}</div>
       </div>
-    </article>
-  );
+      <div className={styles.calendarItem__content}>
+        <h3 className={styles.calendarItem__title}>{title}</h3>
+        <div className={styles.calendarItem__description}>{description}</div>
+      </div>
+    </button>
+    <div className={styles.calendarItem__delete}>
+      <CloseButton onClick={onDeleteClick(id)} />
+    </div>
+  </article>
+);
+
+CalendarItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  isImportant: PropTypes.bool.isRequired,
+  id: PropTypes.number.isRequired,
+  onArticleClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
 };
 
 export default CalendarItem;

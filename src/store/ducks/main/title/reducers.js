@@ -6,7 +6,7 @@ const initialState = {
   title: null,
 };
 
-const headerReducer = (state = initialState, action) => {
+const titleReducer = (state = initialState, action) => {
   // eslint-disable-next-line sonarjs/no-small-switch
   switch (action.type) {
     case INIT:
@@ -23,4 +23,4 @@ const headerReducer = (state = initialState, action) => {
   }
 };
 
-export default headerReducer;
+export default titleReducer;

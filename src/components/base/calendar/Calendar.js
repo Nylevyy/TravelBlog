@@ -1,21 +1,36 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './Calendar.scss';
 import CalendarItem from './item/CalendarItem';
+import {
+  articlesActions,
+  articlesSelectors,
+} from '~/store/ducks/main/articles';
+import { appActions } from '~/store/ducks/app';
 
-const Calendar = ({
-  requestError,
-  articles,
-  onDeleteClick,
-  onArticleClick,
-}) => {
-  Calendar.propTypes = {
-    requestError: PropTypes.bool.isRequired,
-    articles: PropTypes.arrayOf(PropTypes.object),
-    onDeleteClick: PropTypes.func.isRequired,
-    onArticleClick: PropTypes.func.isRequired,
-  };
+const { deleteArticle } = articlesActions;
+const { openModal } = appActions;
+const { articlesSelector } = articlesSelectors;
+
+const Calendar = ({ requestError }) => {
+  const articles = useSelector((state) => articlesSelector(state));
+  const dispatch = useDispatch();
+  const onArticleClick = useCallback(
+    (payload) => {
+      dispatch(openModal({ ...payload }));
+    },
+    [dispatch]
+  );
+  const onDeleteClick = useCallback(
+    (id) => {
+      return () => {
+        dispatch(deleteArticle({ id }));
+      };
+    },
+    [dispatch]
+  );
   let cachedDate = '';
   return (
     <div className={styles.mainCalendar}>
@@ -68,6 +83,10 @@ const Calendar = ({
       </div>
     </div>
   );
+};
+
+Calendar.propTypes = {
+  requestError: PropTypes.bool.isRequired,
 };
 
 export default Calendar;

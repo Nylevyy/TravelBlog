@@ -23,7 +23,7 @@
     width: 100px;
     white-space: nowrap;
 
-    &__text {
+    &-text {
       margin-left: -33px;
       font-weight: bold;
       font-size: 22px;
@@ -62,7 +62,7 @@
       top: 0.2%;
     }
 
-    &__text {
+    &-text {
       margin: 0;
       font-size: 40px;
       font-weight: bold;
@@ -89,7 +89,7 @@
     &__title-button {
       width: 300px;
 
-      &__text {
+      &-text {
         font-size: 20px;
       }
     }

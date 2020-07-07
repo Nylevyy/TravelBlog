@@ -30,7 +30,6 @@ app.get(titlePath, (req, res) => {
 });
 
 app.put(titlePath, (req, res) => {
-  console.log(req.body.title)
   title = req.body.title;
   res.status(200).json({title});
 });

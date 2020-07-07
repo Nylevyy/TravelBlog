@@ -6,18 +6,6 @@ import Checkbox from '~/components/ui/checkbox/Checkbox';
 import ArticleFormInputs from './inputs/ArticleFormInputs';
 
 const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
-  ModalArticleForm.propTypes = {
-    onSubmitFormClick: PropTypes.func.isRequired,
-    onDeleteClick: PropTypes.func,
-    data: PropTypes.exact({
-      title: PropTypes.string.isRequired,
-      location: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      isImportant: PropTypes.bool.isRequired,
-      id: PropTypes.number.isRequired,
-    }),
-  };
   const [inputs, setInputs] = useState({
     notValidated: [],
     id: null,
@@ -55,7 +43,9 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
   const onSubmitForm = () => {
     const emptyFields = [];
     for (let i = 0; i < inputs.values.length - 1; i++) {
-      if (!inputs.values[i]) {
+      let value = inputs.values[i];
+      if (typeof value === 'string') value = value.trim();
+      if (!value) {
         emptyFields.push(i);
       }
     }
@@ -132,6 +122,19 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
       </div>
     </form>
   );
+};
+
+ModalArticleForm.propTypes = {
+  onSubmitFormClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func,
+  data: PropTypes.exact({
+    title: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    isImportant: PropTypes.bool.isRequired,
+    id: PropTypes.number.isRequired,
+  }),
 };
 
 export default ModalArticleForm;

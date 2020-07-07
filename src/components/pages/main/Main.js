@@ -1,47 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import MainLayout from '~/components/layouts/mainLayout/MainLayout';
+import { useDispatch } from 'react-redux';
+import { mainActions } from '~/store/ducks/main';
+import LayoutMain from '~/components/layouts/main/LayoutMain';
 import Calendar from '~/components/base/calendar/Calendar';
-import Loader from '~/components/core/loaders/Loader';
+import Loader from '~/components/core/loader/Loader';
 
-const Main = ({
-  modal,
-  onModalCloseClick,
-  onSubmitFormClick,
-  onDeleteClick,
-  onArticleClick,
-  calendar,
-  requestError,
-  isFetching,
-}) => {
-  Main.propTypes = {
-    modal: PropTypes.objectOf(PropTypes.any).isRequired,
-    onModalCloseClick: PropTypes.func.isRequired,
-    onSubmitFormClick: PropTypes.func.isRequired,
-    onDeleteClick: PropTypes.func.isRequired,
-    onArticleClick: PropTypes.func.isRequired,
-    calendar: PropTypes.objectOf(PropTypes.any).isRequired,
-    requestError: PropTypes.bool.isRequired,
-    isFetching: PropTypes.number.isRequired,
-  };
+const { initMain } = mainActions;
+
+const Main = ({ modal, requestError, isFetching }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(initMain());
+  }, []);
   return (
-    <MainLayout
-      modal={modal}
-      onModalCloseClick={onModalCloseClick}
-      onSubmitFormClick={onSubmitFormClick}
-      onDeleteClick={onDeleteClick}
-    >
-      <div>
+    <LayoutMain modal={modal}>
+      <>
         {!!isFetching && <Loader />}
-        <Calendar
-          {...calendar}
-          requestError={requestError}
-          onDeleteClick={onDeleteClick}
-          onArticleClick={onArticleClick}
-        />
-      </div>
-    </MainLayout>
+        <Calendar requestError={requestError} />
+      </>
+    </LayoutMain>
   );
+};
+
+Main.propTypes = {
+  modal: PropTypes.objectOf(PropTypes.any).isRequired,
+  requestError: PropTypes.bool.isRequired,
+  isFetching: PropTypes.number.isRequired,
 };
 
 export default Main;

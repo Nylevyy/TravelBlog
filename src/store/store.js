@@ -1,24 +1,23 @@
 import { applyMiddleware, createStore, combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { all } from '@redux-saga/core/effects';
-import { calendarSagas, calendarReducer } from './ducks/calendar';
+import { rootArticlesSaga, articlesReducer } from './ducks/main/articles';
+import { rootMainSaga } from './ducks/main';
 import { appReducer } from './ducks/app';
-import { headerSagas, headerReducer } from './ducks/header';
+import { titleSagas, titleReducer } from './ducks/main/title';
 
 const rootReducer = combineReducers({
-  calendar: calendarReducer,
+  articles: articlesReducer,
   app: appReducer,
-  header: headerReducer,
+  title: titleReducer,
 });
 
 function* rootSaga() {
-  yield all([calendarSagas(), headerSagas()]);
+  yield all([rootArticlesSaga(), titleSagas(), rootMainSaga()]);
 }
 
 const saga = createSagaMiddleware();
 
-const store = createStore(rootReducer, applyMiddleware(saga));
+export const store = createStore(rootReducer, applyMiddleware(saga));
 
 saga.run(rootSaga);
-
-export default store;

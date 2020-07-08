@@ -1,42 +1,27 @@
-.main-calendar {
+.calendar {
   display: flex;
+  justify-content: center;
+  padding: 10px;
+  background: $background;
+  $parent: &;
 
   &__container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    flex: 0 0 71.25%;
-    margin: 5px auto;
-    padding-bottom: 100px;
-  }
+    flex: 0.8;
 
-  &_empty {
-    padding: 100px;
-  }
-
-  &__date {
-    font-family: $secondaryFont;
-    font-size: 27px;
-  }
-}
-
-@media screen and (max-width: 991px) {
-  .main-calendar {
-    &__container {
-      flex: 1;
-      padding: 0 25px 100px;
+    & #{$parent}_empty {
+      padding: 20px;
     }
 
-    &_empty {
-      padding: 50px;
-    }
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .main-calendar {
-    &_empty {
+    & #{$parent}__date {
+      font-family: $secondaryFont;
+      font-size: 18px;
       padding: 15px;
+
+      @media all and (min-width: 768px) {
+        font-size: 30px;
+      }
     }
   }
 }

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Button from '~/components/ui/button/Button';
+import Button, {
+  uiButton_submit,
+  uiButton_reset,
+  uiButton_small,
+} from '~/components/ui/button/Button';
 import styles from './ModalArticleForm.scss';
 import Checkbox from '~/components/ui/checkbox/Checkbox';
 import ArticleFormInputs from './inputs/ArticleFormInputs';
@@ -103,19 +107,17 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
         />
         <div className={styles.modalArticleForm__buttons}>
           <Button
-            value="Готово"
-            className="button_submit"
+            label="Готово"
+            className={{ uiButton_submit, uiButton_small }}
             key="submitForm"
             onClick={onSubmitForm}
-            isSmall
           />
           {data && (
             <Button
-              value="Удалить"
-              className="button_reset"
+              label="Удалить"
+              className={{ uiButton_reset, uiButton_small }}
               key="resetForm"
               onClick={onDeleteClick(data.id)}
-              isSmall
             />
           )}
         </div>

@@ -1,79 +1,81 @@
-.button {
+.ui-button {
   display: flex;
-  border: 3px solid $active;
-  font-size: 1.15em;
-  line-height: 2.2;
-  font-weight: bold;
-  border-radius: 6px;
-  white-space: nowrap;
-  cursor: pointer;
-  flex: 100%;
-  color: $contrastColor;
-  transition: box-shadow 0.4s ease-in-out;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  width: $smallDevicesButtons;
+  $parent: &;
 
-  &__wrapper {
-    display: flex;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    flex: 0 0;
-    flex-basis: $baseButtons;
-
-    &_small {
-      flex-basis: $modalButtons;
-      font-size: 1em;
+  &_submit {
+    & #{$parent}__button {
+      background-color: $active;
     }
   }
 
-  &__name {
-    margin: 0 auto;
-  }
-
-  &:hover {
-    -webkit-box-shadow: 0 0 25px 10px $active;
-    -moz-box-shadow: 0 0 25px 10px $active;
-    box-shadow: 0 0 25px 10px $active;
-  }
-
-  &:focus {
-    outline: none;
-    -webkit-box-shadow: 0 0 15px 5px $active;
-    -moz-box-shadow: 0 0 15px 5px $active;
-    box-shadow: 0 0 15px 5px $active;
-  }
-
-  &:active {
-    -webkit-box-shadow: 0 0 25px 10px $active;
-    -moz-box-shadow: 0 0 25px 10px $active;
-    box-shadow: 0 0 25px 10px $active;
-    border-top: 4px solid $active;
-    border-left: 4px solid $active;
-    border-bottom: 2px solid $active;
-    border-right: 2px solid $active;
-  }
-
-  &_submit {
-    background-color: $active;
-  }
-
   &_refresh {
-    background-color: transparent;
+    & #{$parent}__button {
+      background-color: transparent;
+    }
   }
 
   &_reset {
-    background-color: transparent;
-    color: $resetColor;
+    & #{$parent}__button {
+      background-color: transparent;
+      color: $resetColor;
+    }
+  }
+
+  &_small {
+    width: $modalButtons;
+  }
+
+  &__button {
+    display: flex;
+    border: 3px solid $active;
+    line-height: 2.2;
+    font-size: 15px;
+    border-radius: 6px;
+    white-space: nowrap;
+    flex: 1;
+    color: $contrastColor;
+    transition: box-shadow 0.4s ease-in-out;
+
+    &:active {
+      -webkit-box-shadow: 0 0 25px 10px $active;
+      -moz-box-shadow: 0 0 25px 10px $active;
+      box-shadow: 0 0 25px 10px $active;
+      border-top: 4px solid $active;
+      border-left: 4px solid $active;
+      border-bottom: 2px solid $active;
+      border-right: 2px solid $active;
+    }
+
+    &:hover {
+      -webkit-box-shadow: 0 0 25px 10px $active;
+      -moz-box-shadow: 0 0 25px 10px $active;
+      box-shadow: 0 0 25px 10px $active;
+    }
+
+    &:focus {
+      outline: none;
+      -webkit-box-shadow: 0 0 15px 5px $active;
+      -moz-box-shadow: 0 0 15px 5px $active;
+      box-shadow: 0 0 15px 5px $active;
+    }
+
+    & #{$parent}__label {
+      margin: 0 auto;
+      font-weight: 500;
+    }
   }
 }
 
-@media screen and (max-width: 480px) {
-  .button {
-    &__wrapper {
-      flex-basis: $smallDevicesButtons;
+@media all and (min-width: 768px) {
+  .ui-button {
+    width: $baseButtons;
 
-      &_small {
-        flex-basis: $modalButtons;
-      }
+    &_small {
+      width: $modalButtons;
     }
   }
 }

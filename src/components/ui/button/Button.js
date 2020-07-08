@@ -3,25 +3,28 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './Button.scss';
 
-const buttonClasses = classNames.bind(styles);
+const ccn = classNames.bind(styles);
 
-const Button = ({ onClick, className, value, isSmall }) => {
+export const {
+  uiButton_submit,
+  uiButton_refresh,
+  uiButton_reset,
+  uiButton_small,
+} = styles;
+
+const Button = ({ onClick, className, label }) => {
   const handleClick = (button) => {
     button.blur();
     onClick();
   };
   return (
-    <div
-      className={buttonClasses('button__wrapper', {
-        button__wrapper_small: isSmall,
-      })}
-    >
+    <div className={ccn('ui-button', className)}>
       <button
-        className={buttonClasses([className], 'button')}
+        className={styles.uiButton__button}
         type="button"
         onClick={(e) => handleClick(e.target.closest('button'))}
       >
-        <span className={styles.button__name}>{value}</span>
+        <span className={styles.uiButton__label}>{label}</span>
       </button>
     </div>
   );
@@ -29,9 +32,11 @@ const Button = ({ onClick, className, value, isSmall }) => {
 
 Button.propTypes = {
   onClick: PropTypes.func.isRequired,
-  className: PropTypes.string,
-  value: PropTypes.string,
-  isSmall: PropTypes.bool,
+  className: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
+  label: PropTypes.string,
 };
 
 export default Button;

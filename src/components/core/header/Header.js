@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '../../ui/button/Button';
+import Button, {
+  uiButton_submit,
+  uiButton_refresh,
+} from '../../ui/button/Button';
 import styles from './Header.scss';
 
 const Header = ({
@@ -12,7 +15,8 @@ const Header = ({
   <header className={styles.header}>
     <div className={styles.header__container}>
       <div className={styles.header__logo}>
-        <h1 className={styles.header__logoText}>Мой Календарь</h1>
+        <h3 className={styles.header__logoText}>Мой Календарь</h3>
+        <div className={styles.header__logoBorder} />
       </div>
       <button
         className={styles.header__titleButton}
@@ -24,17 +28,17 @@ const Header = ({
       <div className={styles.header__buttons}>
         <Button
           onClick={onNewEventClick}
-          value="Событие +"
+          label="Событие +"
           key="newEvent"
           type="button"
-          className="button_submit"
+          className={uiButton_submit}
         />
         <Button
           onClick={onRefreshContentClick}
-          value="Обновить"
+          label="Обновить"
           key="refresh"
           type="button"
-          className="button_refresh"
+          className={uiButton_refresh}
         />
       </div>
     </div>

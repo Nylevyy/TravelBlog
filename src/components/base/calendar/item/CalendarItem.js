@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import CloseButton from '~/components/ui/close-button/CloseButton';
 import styles from './CalendarItem.scss';
 
-const calendarItemClasses = classNames.bind(styles);
+const ccn = classNames.bind(styles);
 
 const CalendarItem = ({
   title,
@@ -18,14 +18,13 @@ const CalendarItem = ({
   onDeleteClick,
 }) => (
   <article
-    className={calendarItemClasses({
+    className={ccn({
       calendarItem: true,
       calendarItem_important: isImportant,
     })}
-    key={id}
   >
     <button
-      className={styles.calendarItem__wrapper}
+      className={styles.calendarItem__button}
       type="button"
       onClick={() => {
         onArticleClick({
@@ -37,13 +36,15 @@ const CalendarItem = ({
     >
       <div className={styles.calendarItem__info}>
         <div className={styles.calendarItem__time}>
-          {moment(date).format('HH:mm')}
+          <span>{moment(date).format('HH:mm')}</span>
         </div>
-        <div className={styles.calendarItem__location}>{location}</div>
+        <div className={styles.calendarItem__location}>
+          <span className={styles.calendarItem__locationText}>{location}</span>
+        </div>
       </div>
       <div className={styles.calendarItem__content}>
         <h3 className={styles.calendarItem__title}>{title}</h3>
-        <div className={styles.calendarItem__description}>{description}</div>
+        <span className={styles.calendarItem__description}>{description}</span>
       </div>
     </button>
     <div className={styles.calendarItem__delete}>

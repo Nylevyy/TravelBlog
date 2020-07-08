@@ -33,16 +33,16 @@ const Calendar = ({ requestError }) => {
   );
   let cachedDate = '';
   return (
-    <div className={styles.mainCalendar}>
-      <div className={styles.mainCalendar__container}>
+    <div className={styles.calendar}>
+      <div className={styles.calendar__container}>
         {requestError && (
-          <div className={styles.mainCalendar_empty}>
+          <div className={styles.calendar_empty}>
             <h3>Ошибка соединения с сервером</h3>
             <h3>Пожалуйста, повторите попытку</h3>
           </div>
         )}
         {!articles.length && !requestError && (
-          <div className={styles.mainCalendar_empty}>
+          <div className={styles.calendar_empty}>
             <h1>No Articles found</h1>
             <h3>Try to create a new one by clicking the button above</h3>
           </div>
@@ -59,7 +59,7 @@ const Calendar = ({ requestError }) => {
                 cachedDate = currentDate;
                 return (
                   <React.Fragment key={currentDate}>
-                    <div className={styles.mainCalendar__date}>
+                    <div className={styles.calendar__date}>
                       <h3>{currentDate}</h3>
                     </div>
                     <CalendarItem

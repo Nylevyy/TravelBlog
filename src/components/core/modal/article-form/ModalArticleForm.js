@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Button, {
+import classNames from 'classnames/bind';
+import UiButton, {
   uiButton_submit,
   uiButton_reset,
   uiButton_small,
-} from '~/components/ui/button/Button';
+} from '~/components/ui/button/UiButton';
 import styles from './ModalArticleForm.scss';
-import Checkbox from '~/components/ui/checkbox/Checkbox';
+import UiCheckbox from '~/components/ui/checkbox/UiCheckbox';
 import ArticleFormInputs from './inputs/ArticleFormInputs';
+
+const ccn = classNames.bind(styles);
 
 const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
   const [inputs, setInputs] = useState({
@@ -98,25 +101,23 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
       />
 
       <div className={styles.modalArticleForm__dashboard}>
-        <Checkbox
+        <UiCheckbox
           index={4}
           label=" Пометить событие как важное"
           onChange={inputs.onInputChange}
           checked={!!inputs.values[4]}
-          id="form__checkbox"
+          id="articleForm__checkbox"
         />
         <div className={styles.modalArticleForm__buttons}>
-          <Button
+          <UiButton
             label="Готово"
-            className={{ uiButton_submit, uiButton_small }}
-            key="submitForm"
+            className={ccn(uiButton_submit, uiButton_small)}
             onClick={onSubmitForm}
           />
           {data && (
-            <Button
+            <UiButton
               label="Удалить"
-              className={{ uiButton_reset, uiButton_small }}
-              key="resetForm"
+              className={ccn(uiButton_reset, uiButton_small)}
               onClick={onDeleteClick(data.id)}
             />
           )}

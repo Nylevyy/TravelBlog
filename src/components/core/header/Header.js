@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button, {
+import classNames from 'classnames/bind';
+import UiButton, {
   uiButton_submit,
   uiButton_refresh,
-} from '../../ui/button/Button';
+} from '../../ui/button/UiButton';
 import styles from './Header.scss';
+
+const ccn = classNames.bind(styles);
 
 const Header = ({
   title,
@@ -26,19 +29,15 @@ const Header = ({
         <h2 className={styles.header__titleButtonText}>{title}</h2>
       </button>
       <div className={styles.header__buttons}>
-        <Button
+        <UiButton
           onClick={onNewEventClick}
           label="Событие +"
-          key="newEvent"
-          type="button"
-          className={uiButton_submit}
+          className={ccn(uiButton_submit)}
         />
-        <Button
+        <UiButton
           onClick={onRefreshContentClick}
           label="Обновить"
-          key="refresh"
-          type="button"
-          className={uiButton_refresh}
+          className={ccn(uiButton_refresh)}
         />
       </div>
     </div>

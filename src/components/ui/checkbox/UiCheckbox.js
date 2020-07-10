@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Checkbox.scss';
+import styles from './UiCheckbox.scss';
 
-const Checkbox = ({ onChange, checked, id, label, index }) => (
-  <div className={styles.checkbox}>
-    <label htmlFor="form__checkbox" className={styles.checkbox__label}>
+const UiCheckbox = ({ onChange, checked, id, label, index }) => (
+  <div className={styles.uiCheckbox}>
+    <label htmlFor={id} className={styles.uiCheckbox__label}>
       <input
         type="checkbox"
-        className={styles.checkbox__input}
+        className={styles.uiCheckbox__input}
         id={id}
         onChange={(e) => onChange({ index, value: e.target.checked })}
         checked={checked}
@@ -17,7 +17,7 @@ const Checkbox = ({ onChange, checked, id, label, index }) => (
   </div>
 );
 
-Checkbox.propTypes = {
+UiCheckbox.propTypes = {
   onChange: PropTypes.func.isRequired,
   checked: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
@@ -25,4 +25,4 @@ Checkbox.propTypes = {
   index: PropTypes.number.isRequired,
 };
 
-export default Checkbox;
+export default UiCheckbox;

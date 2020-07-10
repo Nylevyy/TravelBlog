@@ -39,12 +39,22 @@ const CalendarItem = ({
           <span>{moment(date).format('HH:mm')}</span>
         </div>
         <div className={styles.calendarItem__location}>
-          <span className={styles.calendarItem__locationText}>{location}</span>
+          <span
+            className={ccn('calendarItem__text', 'calendarItem__locationText')}
+          >
+            {location}
+          </span>
         </div>
       </div>
       <div className={styles.calendarItem__content}>
-        <h3 className={styles.calendarItem__title}>{title}</h3>
-        <span className={styles.calendarItem__description}>{description}</span>
+        <h3 className={ccn('calendarItem__text', 'calendarItem__title')}>
+          {title}
+        </h3>
+        <span
+          className={ccn('calendarItem__text', 'calendarItem__description')}
+        >
+          {description}
+        </span>
       </div>
     </button>
     <div className={styles.calendarItem__delete}>

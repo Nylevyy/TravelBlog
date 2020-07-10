@@ -6,7 +6,7 @@ import styles from './Modal.scss';
 import CloseButton from '~/components/ui/close-button/CloseButton';
 import ModalTitleForm from '~/components/core/modal/title-form/ModalTitleForm';
 
-const modalClasses = classNames.bind(styles);
+const ccn = classNames.bind(styles);
 
 const Modal = ({
   isOpen,
@@ -17,7 +17,7 @@ const Modal = ({
   onDeleteClick,
 }) => (
   <div
-    className={modalClasses('modal', {
+    className={ccn('modal', {
       modal_active: isOpen,
     })}
   >

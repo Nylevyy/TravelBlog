@@ -1,0 +1,53 @@
+.ui-input {
+  display: flex;
+  flex-direction: column;
+  padding: 0 7px;
+  margin-bottom: 10px;
+  $parent: &;
+
+  &_title {
+    flex: 1;
+
+    & #{$parent}__field {
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+
+  &_location {
+    flex: 2 1;
+
+    & #{$parent}__field {
+      flex: 4 1;
+    }
+  }
+
+  &__field {
+    border: none;
+    border-bottom: 1px solid $passive;
+    padding: 0 0 5px;
+    margin: 0 0 5px;
+    display: flex;
+    background: $secondaryBackground;
+
+    &:focus {
+      margin-bottom: 9px;
+      box-shadow: none;
+      border-bottom: 2px solid $active;
+      outline: none;
+    }
+
+    &_invalid {
+      background-color: $invalid;
+    }
+  }
+
+  &__label {
+    color: $labels;
+    font-size: 13px;
+  }
+
+  @media all and (min-width: 768px) {
+    margin-bottom: 20px;
+  }
+}

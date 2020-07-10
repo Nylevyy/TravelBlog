@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import styles from './Button.scss';
+import styles from './UiButton.scss';
 
 const ccn = classNames.bind(styles);
 
@@ -12,7 +12,7 @@ export const {
   uiButton_small,
 } = styles;
 
-const Button = ({ onClick, className, label }) => {
+const UiButton = ({ onClick, className, label }) => {
   const handleClick = (button) => {
     button.blur();
     onClick();
@@ -30,13 +30,10 @@ const Button = ({ onClick, className, label }) => {
   );
 };
 
-Button.propTypes = {
+UiButton.propTypes = {
   onClick: PropTypes.func.isRequired,
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
+  className: PropTypes.string,
   label: PropTypes.string,
 };
 
-export default Button;
+export default UiButton;

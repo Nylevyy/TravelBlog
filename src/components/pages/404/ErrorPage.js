@@ -7,13 +7,16 @@ const ErrorPage = () => {
   return (
     <LayoutError>
       <div className={styles.errorPage}>
-        <h1>
-          <strong>Ошибка 404</strong>
-        </h1>
+        <h1>Ошибка 404</h1>
         <i>К сожалению, страница не найдена.</i>
         <br />
+        <br />
+        <br />
+        <br />
         <Link to="/">
-          <i>Вернитесь на главную</i>
+          <span className={styles.errorPage__link}>
+            Нажмите, чтобы вернуться на главную
+          </span>
         </Link>
       </div>
     </LayoutError>

@@ -1,34 +1,42 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
-import styles from './Input.scss';
+import styles from './UiInput.scss';
 
-const inputClasses = classNames.bind(styles);
+const ccn = classNames.bind(styles);
 
-const Input = ({ name, isValid, onChange, index, label, onInput, value }) => {
-  const wrapperClassName = `input_${name}`;
-  const inputFieldClassName = `input__field_${name}`;
+export const { uiInput_title, uiInput_location } = styles;
+
+const UiInput = ({
+  className,
+  isValid,
+  onChange,
+  index,
+  label,
+  onInput,
+  value,
+}) => {
   return (
-    <div className={inputClasses('input', [wrapperClassName])}>
+    <div className={ccn('ui-input', [className])}>
       <input
-        className={inputClasses('input__field', [inputFieldClassName], {
-          input_invalid: !isValid,
+        className={ccn('ui-input__field', {
+          uiInput__field_invalid: !isValid,
         })}
         type="text"
-        id={name}
+        id={className}
         onInput={(e) => onInput({ index, value: e.target.value })}
         onChange={(e) => onChange({ index, value: e.target.value })}
         value={value}
       />
-      <label htmlFor={name} className={styles.input__label}>
+      <label htmlFor={className} className={styles.uiInput__label}>
         {label}
       </label>
     </div>
   );
 };
 
-Input.propTypes = {
-  name: PropTypes.string,
+UiInput.propTypes = {
+  className: PropTypes.string,
   isValid: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   onInput: PropTypes.func.isRequired,
@@ -37,4 +45,4 @@ Input.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
-export default Input;
+export default UiInput;

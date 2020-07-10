@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import Input from '~/components/ui/input/Input';
+import UiInput, {
+  uiInput_title,
+  uiInput_location,
+} from '~/components/ui/input/UiInput';
 import styles from './ArticleFormInputs.scss';
 import DatePicker from '~/widgets/date-picker/DatePicker';
 
-const inputsClasses = classNames.bind(styles);
+const ccn = classNames.bind(styles);
 
 const ArticleFormInputs = ({ onInput, onChange, values, notValidated }) => (
   <div className={styles.articleFormInputs}>
-    <div className={styles.articleFormInputs_small}>
-      <Input
-        name="title"
+    <div className={styles.articleFormInputs__wrapper}>
+      <UiInput
+        className={ccn(uiInput_title)}
         label="Событие"
         index={0}
         onInput={onInput}
@@ -19,9 +22,9 @@ const ArticleFormInputs = ({ onInput, onChange, values, notValidated }) => (
         value={values[0]}
         isValid={!notValidated.includes(0)}
       />
-      <div className={styles.articleFormInputs__wrapper}>
-        <Input
-          name="location"
+      <div className={styles.articleFormInputs__wrap}>
+        <UiInput
+          className={ccn(uiInput_location)}
           label="Место"
           index={1}
           onInput={onInput}
@@ -37,7 +40,7 @@ const ArticleFormInputs = ({ onInput, onChange, values, notValidated }) => (
       </div>
     </div>
     <textarea
-      className={inputsClasses('articleFormInputs__textarea', {
+      className={ccn('articleFormInputs__textarea', {
         articleFormInputs_invalid: notValidated.includes(3),
       })}
       name="content"

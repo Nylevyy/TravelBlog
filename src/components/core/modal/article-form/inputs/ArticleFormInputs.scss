@@ -1,21 +1,23 @@
 .article-form-inputs {
   display: flex;
   flex-direction: column;
-  padding: 10px 15px;
+  padding: 7px;
 
-  &__small {
+  &__wrapper {
+    flex: 0.1;
     display: flex;
     flex-direction: column;
   }
 
-  &__wrapper {
+  &__wrap {
     display: flex;
-    flex: 1;
+    flex-direction: column;
+    margin-bottom: 10px;
   }
 
   &__textarea {
     resize: none;
-    margin: 35px 10px 0;
+    flex: 0.8;
     padding: 15px;
     border: 1px solid $passive;
 
@@ -27,40 +29,22 @@
   &_invalid {
     background: $invalid;
   }
-}
 
-@media screen and (max-width: 767px) {
-  .article-form-inputs {
-    padding: 7px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .article-form-inputs {
-    &__wrapper {
-      flex-direction: column;
-    }
-
-    &__textarea {
-      margin-top: 10px;
+  @media all and (min-width: 768px) {
+    &__wrap {
+      flex-direction: row;
     }
   }
-}
 
-@media screen and (orientation: landscape) and (max-height: 490px) {
-  .article-form-inputs {
+  @media screen and (orientation: landscape) and (max-height: 479px) {
     padding: 2px;
     flex-direction: row;
-    align-items: stretch;
     flex-wrap: nowrap;
+    justify-content: space-around;
 
-    &__wrapper {
+    &__wrap {
       flex-direction: column;
-      flex: 3;
-    }
-
-    &__textarea {
-      margin-top: 10px;
+      margin-bottom: 0;
     }
   }
 }

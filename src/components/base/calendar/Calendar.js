@@ -43,7 +43,8 @@ const Calendar = ({ requestError }) => {
         )}
         {!articles.length && !requestError && (
           <div className={styles.calendar_empty}>
-            <h1>No Articles found</h1>
+            <h3>No Articles found</h3>
+            <br />
             <h3>Try to create a new one by clicking the button above</h3>
           </div>
         )}

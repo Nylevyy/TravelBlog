@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Input from '~/components/ui/input/Input';
-import styles from '~/components/core/modal/article-form/ModalArticleForm.scss';
-import Button from '~/components/ui/button/Button';
+import classNames from 'classnames/bind';
+import UiInput from '~/components/ui/input/UiInput';
+import styles from '~/components/core/modal/title-form/ModalTitleForm.scss';
+import UiButton, {
+  uiButton_submit,
+  uiButton_small,
+} from '~/components/ui/button/UiButton';
+
+const ccn = classNames.bind(styles);
 
 const ModalTitleForm = ({ title, onSubmitFormClick }) => {
   const [input, setInput] = useState({
@@ -34,7 +40,7 @@ const ModalTitleForm = ({ title, onSubmitFormClick }) => {
   };
   return (
     <form className={styles.modalTitleForm} action="">
-      <Input
+      <UiInput
         name="title"
         isValid={input.isValid}
         value={input.value}
@@ -43,12 +49,10 @@ const ModalTitleForm = ({ title, onSubmitFormClick }) => {
         label="Заголовок"
       />
       <div className={styles.modalTitleForm__buttons}>
-        <Button
-          value="Готово"
-          className="button_submit"
-          key="submitForm"
+        <UiButton
+          label="Готово"
+          className={ccn(uiButton_submit, uiButton_small)}
           onClick={onSubmitForm}
-          isSmall
         />
       </div>
     </form>

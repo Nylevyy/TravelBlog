@@ -1,0 +1,27 @@
+stages:
+  - push-gitlab
+
+variables:
+  CI_REGISTRY: registry.digital-insider.ru
+  PROJECT_PATH: di/pages-frontend
+  DOCKER_IMAGE: $CI_REGISTRY/$PROJECT_PATH
+  TAG: $CI_COMMIT_REF_SLUG
+
+image: docker/compose:latest
+services:
+  - docker:dind
+
+push-gitlab:
+  stage: push-gitlab
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $CI_REGISTRY/di/pages-frontend:$TAG -f Dockerfile .
+    - docker push $CI_REGISTRY/di/pages-frontend:$TAG
+    - |
+      echo '### Trigger: deploy develop di/test-stand/'
+      curl -X POST  -F token=$PUSH_STAND_TOKEN -F ref=develop $PUSH_STAND_ADDRESS
+  only:
+    refs:
+      - develop
+  tags:
+    - review

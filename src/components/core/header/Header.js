@@ -1,40 +1,54 @@
-import React from "react";
-import Button from "../../ui/button/Button";
-import "./Header.scss"
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
+import UiButton, {
+  uiButton_submit,
+  uiButton_refresh,
+} from '../../ui/button/UiButton';
+import styles from './Header.scss';
 
-const Header = (props) => {
-  return (
-    <header className="header">
-      <div className="header__container">
-        <div className="header__logo">
-          <h1 className="header__logo_text">Календарь</h1>
-        </div>
-        <div className="header__subtitle">
-          <h2 className="header__subtitle_text">
-            {props.headerData.title}
-          </h2>
-        </div>
-        <div className="header__buttons buttons">
-          <Button
-            onClick={props.headerData.onNewEventClick}
-            value="Событие +"
-            key="newEvent"
-            type="button"
-            mod="_submit"
-          />
-          <Button
-            onClick={props.headerData.onRefreshContentClick}
-            value="Обновить"
-            key="refresh"
-            type="button"
-            mod="_refresh"
-          />
-        </div>
+const ccn = classNames.bind(styles);
+
+const Header = ({
+  title,
+  onNewEventClick,
+  onRefreshContentClick,
+  onTitleClick,
+}) => (
+  <header className={styles.header}>
+    <div className={styles.header__container}>
+      <div className={styles.header__logo}>
+        <h3 className={styles.header__logoText}>Мой Календарь</h3>
+        <div className={styles.header__logoBorder} />
       </div>
-    </header>
-  )
+      <button
+        className={styles.header__titleButton}
+        type="button"
+        onClick={() => onTitleClick(title)}
+      >
+        <h2 className={styles.header__titleButtonText}>{title}</h2>
+      </button>
+      <div className={styles.header__buttons}>
+        <UiButton
+          onClick={onNewEventClick}
+          label="Событие +"
+          className={ccn(uiButton_submit)}
+        />
+        <UiButton
+          onClick={onRefreshContentClick}
+          label="Обновить"
+          className={ccn(uiButton_refresh)}
+        />
+      </div>
+    </div>
+  </header>
+);
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
+  onNewEventClick: PropTypes.func.isRequired,
+  onRefreshContentClick: PropTypes.func.isRequired,
+  onTitleClick: PropTypes.func.isRequired,
 };
 
-export default Header
-
-
+export default Header;

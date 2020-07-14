@@ -1,45 +1,77 @@
-import React from "react";
-import CloseButton from "../../../ui/closeButton/CloseButton";
-import './CalendarItem.scss';
-import moment from "moment";
+import React from 'react';
+import moment from 'moment';
+import classNames from 'classnames/bind';
+import PropTypes from 'prop-types';
+import CloseButton from '~/components/ui/close-button/CloseButton';
+import styles from './CalendarItem.scss';
 
+const ccn = classNames.bind(styles);
 
-
-const CalendarItem = (props) => {
-  return (
-    <article
-      className={(props.isImportant ? "calendar-item_important " : "") + " item"}
-      key={props.id}
+const CalendarItem = ({
+  title,
+  location,
+  date,
+  description,
+  isImportant,
+  id,
+  onArticleClick,
+  onDeleteClick,
+}) => (
+  <article
+    className={ccn({
+      calendarItem: true,
+      calendarItem_important: isImportant,
+    })}
+  >
+    <button
+      className={styles.calendarItem__button}
+      type="button"
+      onClick={() => {
+        onArticleClick({
+          data: { title, location, date, description, isImportant, id },
+          modalType: 'articleEditor',
+        });
+      }}
+      aria-label="article-edit"
     >
-      <div
-        className="calendar-item__wrapper"
-        onClick={() => props.onArticleClick(props.id)}
-      >
-        {
-          (props.hasRequestError) && (
-            <div className="calendar-item__error-log">
-              <span className="calendar-item__error-span">
-                Ошибка при выполнении запроса на сервер
-              </span>
-            </div>
-          )
-        }
-        <div className="calendar-item__info">
-          <div className="calendar-item__time">
-            {moment(props.date).format("HH:mm")}
-          </div>
-          <div className="calendar-item__location">{props.location}</div>
+      <div className={styles.calendarItem__info}>
+        <div className={styles.calendarItem__time}>
+          <span>{moment(date).format('HH:mm')}</span>
         </div>
-        <div className="calendar-item__content">
-          <h3 className="calendar-item__title">{props.title}</h3>
-          <div className="calendar-item__description">{props.description}</div>
+        <div className={styles.calendarItem__location}>
+          <span
+            className={ccn('calendarItem__text', 'calendarItem__locationText')}
+          >
+            {location}
+          </span>
         </div>
       </div>
-      <div className="calendar-item__delete">
-        <CloseButton onClick={props.onDeleteArticleClick(props.id)}/>
+      <div className={styles.calendarItem__content}>
+        <h3 className={ccn('calendarItem__text', 'calendarItem__title')}>
+          {title}
+        </h3>
+        <span
+          className={ccn('calendarItem__text', 'calendarItem__description')}
+        >
+          {description}
+        </span>
       </div>
-    </article>
-  )
+    </button>
+    <div className={styles.calendarItem__delete}>
+      <CloseButton onClick={onDeleteClick(id)} />
+    </div>
+  </article>
+);
+
+CalendarItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  isImportant: PropTypes.bool.isRequired,
+  id: PropTypes.number.isRequired,
+  onArticleClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
 };
 
-export default CalendarItem
+export default CalendarItem;

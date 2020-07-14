@@ -1,0 +1,13 @@
+.ui-checkbox {
+  display: flex;
+  padding: 5px;
+
+  &__label {
+    color: $secondaryColor;
+    cursor: pointer;
+  }
+
+  &__input {
+    vertical-align: middle;
+  }
+}

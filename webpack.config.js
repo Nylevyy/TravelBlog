@@ -56,6 +56,7 @@ module.exports = () => {
     mode,
     context: process.cwd(),
     entry: {
+      polyfill: '@babel/polyfill',
       index: './src/index.js',
     },
     output: {

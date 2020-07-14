@@ -18,10 +18,13 @@
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      ">0.2%",
+      "not dead"
     ]
   },
   "dependencies": {
+    "@babel/polyfill": "^7.10.4",
     "@reduxjs/toolkit": "^1.4.0",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
@@ -30,6 +33,7 @@
     "moment": "^2.27.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-app-polyfill": "^1.0.6",
     "react-datepicker": "^3.0.0",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",

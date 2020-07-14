@@ -4,11 +4,7 @@
       "@babel/preset-env",
       {
         "loose": true,
-        "modules": false,
-        "exclude": [
-          "transform-async-to-generator",
-          "transform-regenerator"
-        ]
+        "modules": false
       }
     ],
     "@babel/preset-react"

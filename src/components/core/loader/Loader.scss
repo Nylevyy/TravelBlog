@@ -11,32 +11,8 @@
   background: $subSecondaryBackground;
   z-index: 1000;
 
-  & > div:nth-child(1) {
-    display: block;
-  }
-
-  & > div:nth-child(2) {
-    display: block;
-  }
-
-  & > div:nth-child(3) {
-    display: block;
-  }
-
-  & > div:nth-child(4) {
-    display: block;
-  }
-
-  & > div:nth-child(5) {
-    display: block;
-  }
-
-  & > div:nth-child(6) {
-    display: block;
-  }
-
-  & > div:nth-child(7) {
-    display: block;
+  & > div:nth-child(n+2) {
+    display: none;
   }
 
   & > div > div:nth-child(even) {
@@ -46,58 +22,34 @@
   & > div > div:nth-child(odd) {
     background-color: $important;
   }
-}
 
-@media screen and (max-width: 1800px) {
-  .loader {
-    & > div:nth-child(7) {
-      display: none;
+  @media screen and (min-width: 768px) {
+    & > div:nth-child(-n+3) {
+      display: block;
     }
   }
-}
 
-@media screen and (max-width: 1480px) {
-  .loader {
-    & > div:nth-child(6) {
-      display: none;
+  @media screen and (min-width: 1024px) {
+    & > div:nth-child(-n+4) {
+      display: block;
     }
   }
-}
 
-@media screen and (max-width: 1280px) {
-  .loader {
-    & > div:nth-child(5) {
-      display: none;
+  @media screen and (min-width: 1280px) {
+    & > div:nth-child(-n+5) {
+      display: block;
     }
   }
-}
 
-@media screen and (max-width: 1024px) {
-  .loader {
-    & > div:nth-child(4) {
-      display: none;
+  @media screen and (min-width: 1480px) {
+    & > div:nth-child(-n+6) {
+      display: block;
     }
   }
-}
 
-@media screen and (max-width: 767px) {
-  .loader {
-    & > div:nth-child(3) {
-      display: none;
+  @media screen and (min-width: 1800px) {
+    & > div:nth-child(-n+7) {
+      display: block;
     }
-  }
-}
-
-@media screen and (max-width: 520px) {
-  .loader {
-    & > div:nth-child(2) {
-      display: none;
-    }
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .loader {
-    padding: 0;
   }
 }

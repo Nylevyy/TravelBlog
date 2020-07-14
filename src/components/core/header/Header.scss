@@ -12,80 +12,82 @@
     align-items: stretch;
     flex: 0.7;
     margin: 0 auto;
+  }
 
-    & #{$parent}__logo {
-      position: relative;
-      font-family: $secondaryFont;
-      font-size: 18px;
-      line-height: 2;
-      white-space: nowrap;
-      align-content: center;
-      text-align: center;
-      padding: 10px 0;
+  &__logo {
+    position: relative;
+    font-family: $secondaryFont;
+    font-size: 18px;
+    line-height: 2;
+    white-space: nowrap;
+    align-content: center;
+    text-align: center;
+    padding: 10px 0;
 
-      &-border {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 50%;
-        margin-left: -50px;
-        border-bottom: 4px $active solid;
-        border-radius: 50%;
-        width: 100px;
-      }
-
-      &-text {
-        color: $contrastColor;
-      }
+    &-border {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -50px;
+      border-bottom: 4px $active solid;
+      border-radius: 50%;
+      width: 100px;
     }
 
-    & #{$parent}__title-button {
-      background: transparent;
-      border: none;
-      border-radius: 7px;
-      padding: 0;
-      max-width: 670px;
+    &-text {
       color: $contrastColor;
-      font-size: 16px;
-      text-align: left;
-      word-break: break-word;
+    }
+  }
 
-      &:hover {
-        -webkit-box-shadow: 0 0 25px 10px $active;
-        -moz-box-shadow: 0 0 25px 10px $active;
-        box-shadow: 0 0 25px 10px $active;
-      }
+  &__title-button {
+    background: transparent;
+    border: none;
+    border-radius: 7px;
+    padding: 0;
+    max-width: 670px;
+    color: $contrastColor;
+    font-size: 16px;
+    text-align: left;
+    word-break: break-word;
 
-      &:focus {
-        outline: none;
-        -webkit-box-shadow: 0 0 15px 5px $active;
-        -moz-box-shadow: 0 0 15px 5px $active;
-        box-shadow: 0 0 15px 5px $active;
-      }
-
-      &:active {
-        -webkit-box-shadow: 0 0 25px 10px $active;
-        -moz-box-shadow: 0 0 25px 10px $active;
-        box-shadow: 0 0 25px 10px $active;
-        position: relative;
-        left: 0.2%;
-        top: 0.2%;
-      }
+    &:hover {
+      -webkit-box-shadow: 0 0 25px 10px $active;
+      -moz-box-shadow: 0 0 25px 10px $active;
+      box-shadow: 0 0 25px 10px $active;
     }
 
-    & #{$parent}__buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: nowrap;
+    &:focus {
+      outline: none;
+      -webkit-box-shadow: 0 0 15px 5px $active;
+      -moz-box-shadow: 0 0 15px 5px $active;
+      box-shadow: 0 0 15px 5px $active;
     }
 
-    @media all and (min-width: 768px) {
+    &:active {
+      -webkit-box-shadow: 0 0 25px 10px $active;
+      -moz-box-shadow: 0 0 25px 10px $active;
+      box-shadow: 0 0 25px 10px $active;
+      position: relative;
+      left: 0.2%;
+      top: 0.2%;
+    }
+  }
+
+  & #{$parent}__buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+
+  @media all and (min-width: 768px) {
+    &__container {
       align-items: flex-start;
+    }
 
-      & #{$parent}__title-button {
-        align-self: flex-end;
-        font-size: 22px;
-      }
+    &__title-button {
+      align-self: flex-end;
+      font-size: 22px;
     }
   }
 }

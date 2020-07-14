@@ -59,14 +59,14 @@ const LayoutMain = ({ modal, children }) => {
     [dispatch]
   );
   return (
-    <div>
+    <>
       <Header
         title={title}
         onNewEventClick={onNewEventClick}
         onRefreshContentClick={onRefreshContentClick}
         onTitleClick={onTitleClick}
       />
-      <div>{children}</div>
+      {children}
       <Footer />
       <Modal
         {...modal}
@@ -74,7 +74,7 @@ const LayoutMain = ({ modal, children }) => {
         onSubmitFormClick={onSubmitFormClick}
         onDeleteClick={onDeleteClick}
       />
-    </div>
+    </>
   );
 };
 

@@ -31,8 +31,8 @@
     background: $secondaryBackground;
 
     &:focus {
-      margin-bottom: 9px;
       box-shadow: none;
+      padding: 0 0 4px;
       border-bottom: 2px solid $active;
       outline: none;
     }

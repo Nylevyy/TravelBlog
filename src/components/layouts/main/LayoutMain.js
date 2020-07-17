@@ -11,15 +11,24 @@ import { titleActions, titleSelectors } from '~/store/ducks/main/title';
 
 const { initMain } = mainActions;
 const { updateArticle, postNewArticle, deleteArticle } = articlesActions;
-const { openModal, setDefault, closeModal } = appActions;
+const {
+  openModal,
+  setDefault,
+  closeModal,
+  requestLogOut,
+  requestLogIn,
+} = appActions;
 const { editTitle } = titleActions;
 const { titleSelector } = titleSelectors;
 
-const LayoutMain = ({ modal, children }) => {
+const LayoutMain = ({ modal, children, isLoggedIn }) => {
   const title = useSelector((state) => titleSelector(state));
   const dispatch = useDispatch();
   const onNewEventClick = useCallback(() => {
     dispatch(openModal({ modalType: 'articleEditor', data: null }));
+  }, [dispatch]);
+  const onLogOutClick = useCallback(() => {
+    dispatch(requestLogOut());
   }, [dispatch]);
   const onRefreshContentClick = useCallback(() => {
     dispatch(setDefault());
@@ -33,6 +42,9 @@ const LayoutMain = ({ modal, children }) => {
     },
     [dispatch]
   );
+  const onLogoClick = useCallback(() => {
+    dispatch(openModal({ modalType: 'loginForm', data: null }));
+  }, [dispatch]);
   const onModalCloseClick = useCallback(() => {
     dispatch(closeModal());
   }, [dispatch]);
@@ -44,6 +56,10 @@ const LayoutMain = ({ modal, children }) => {
           return;
         }
         dispatch(postNewArticle({ ...payload }));
+        return;
+      }
+      if (type === 'loginForm') {
+        dispatch(requestLogIn({ ...payload }));
         return;
       }
       dispatch(editTitle({ ...payload }));
@@ -62,16 +78,20 @@ const LayoutMain = ({ modal, children }) => {
     <>
       <Header
         title={title}
+        isLoggedIn={isLoggedIn}
         onNewEventClick={onNewEventClick}
         onRefreshContentClick={onRefreshContentClick}
         onTitleClick={onTitleClick}
+        onLogoClick={onLogoClick}
       />
       {children}
       <Footer />
       <Modal
         {...modal}
+        isLoggedIn={isLoggedIn}
         onModalCloseClick={onModalCloseClick}
         onSubmitFormClick={onSubmitFormClick}
+        onLogOutClick={onLogOutClick}
         onDeleteClick={onDeleteClick}
       />
     </>
@@ -81,6 +101,7 @@ const LayoutMain = ({ modal, children }) => {
 LayoutMain.propTypes = {
   modal: PropTypes.objectOf(PropTypes.any).isRequired,
   children: PropTypes.element,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default LayoutMain;

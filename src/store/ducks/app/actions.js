@@ -1,6 +1,10 @@
 import {
   START_REQUEST,
   END_REQUEST,
+  REQUEST_LOG_IN,
+  REQUEST_LOG_OUT,
+  LOG_IN,
+  LOG_OUT,
   CRASH_WITH_ERROR,
   OPEN_MODAL,
   CLOSE_MODAL,
@@ -14,6 +18,24 @@ export const startRequest = () => ({
 
 export const endRequest = () => ({
   type: END_REQUEST,
+});
+
+export const requestLogIn = (payload) => ({
+  type: REQUEST_LOG_IN,
+  ...payload,
+});
+
+export const requestLogOut = () => ({
+  type: REQUEST_LOG_OUT,
+});
+
+export const logIn = (payload) => ({
+  type: LOG_IN,
+  ...payload,
+});
+
+export const logOut = () => ({
+  type: LOG_OUT,
 });
 
 export const reportError = (err) => ({

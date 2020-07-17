@@ -14,7 +14,7 @@ const { deleteArticle } = articlesActions;
 const { openModal } = appActions;
 const { articlesSelector } = articlesSelectors;
 
-const Calendar = ({ requestError }) => {
+const Calendar = ({ requestError, isLoggedIn }) => {
   const articles = useSelector((state) => articlesSelector(state));
   const dispatch = useDispatch();
   const onArticleClick = useCallback(
@@ -41,7 +41,12 @@ const Calendar = ({ requestError }) => {
             <h3>Пожалуйста, повторите попытку</h3>
           </div>
         )}
-        {!articles.length && !requestError && (
+        {!requestError && !isLoggedIn && (
+          <div className={styles.calendar_empty}>
+            <h3>Пожалуйста, войдите в систему</h3>
+          </div>
+        )}
+        {!articles.length && !requestError && isLoggedIn && (
           <div className={styles.calendar_empty}>
             <h3>No Articles found</h3>
             <br />
@@ -49,6 +54,7 @@ const Calendar = ({ requestError }) => {
           </div>
         )}
         {!requestError &&
+          isLoggedIn &&
           articles
             .sort((a, b) => {
               if (a.date > b.date) return -1;
@@ -88,6 +94,7 @@ const Calendar = ({ requestError }) => {
 
 Calendar.propTypes = {
   requestError: PropTypes.bool.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default Calendar;

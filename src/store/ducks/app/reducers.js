@@ -5,11 +5,14 @@ import {
   OPEN_MODAL,
   SET_DEFAULT,
   CLOSE_MODAL,
+  LOG_OUT,
+  LOG_IN,
   INIT,
 } from './types';
 
 const initialState = {
   init: null,
+  userName: null,
   modal: {
     isOpen: null,
     type: null,
@@ -24,6 +27,7 @@ const appReducer = (state = initialState, action) => {
     case INIT:
       return {
         init: true,
+        userName: null,
         modal: {
           isOpen: false,
           type: null,
@@ -41,6 +45,16 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: state.isFetching - 1,
+      };
+    case LOG_IN:
+      return {
+        ...state,
+        userName: action.userName,
+      };
+    case LOG_OUT:
+      return {
+        ...state,
+        userName: null,
       };
     case CRASH_WITH_ERROR:
       return {

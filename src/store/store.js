@@ -3,7 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import { all } from '@redux-saga/core/effects';
 import { rootArticlesSaga, articlesReducer } from './ducks/main/articles';
 import { rootMainSaga } from './ducks/main';
-import { appReducer } from './ducks/app';
+import { appReducer, rootAppSaga } from './ducks/app';
 import { titleSagas, titleReducer } from './ducks/main/title';
 
 const rootReducer = combineReducers({
@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
 });
 
 function* rootSaga() {
-  yield all([rootArticlesSaga(), titleSagas(), rootMainSaga()]);
+  yield all([rootArticlesSaga(), titleSagas(), rootMainSaga(), rootAppSaga()]);
 }
 
 const saga = createSagaMiddleware();

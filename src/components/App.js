@@ -7,12 +7,13 @@ import Main from '~/components/pages/main/Main';
 import Loader from './core/loader/Loader';
 
 const { closeModal, initApp } = appActions;
-const { appSelector } = appSelectors;
+const { appSelector, logInSelector } = appSelectors;
 
 const App = () => {
   const { init, modal, requestError, isFetching } = useSelector((state) =>
     appSelector(state)
   );
+  const isLoggedIn = useSelector((state) => logInSelector(state));
   const dispatch = useDispatch();
   useEffect(() => {
     if (!isFetching) dispatch(closeModal());
@@ -28,6 +29,7 @@ const App = () => {
           <Route exact path="/">
             <Main
               modal={modal}
+              isLoggedIn={isLoggedIn}
               requestError={requestError}
               isFetching={isFetching}
             />

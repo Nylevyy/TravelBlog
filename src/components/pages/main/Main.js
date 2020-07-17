@@ -8,16 +8,16 @@ import Loader from '~/components/core/loader/Loader';
 
 const { initMain } = mainActions;
 
-const Main = ({ modal, requestError, isFetching }) => {
+const Main = ({ modal, requestError, isFetching, isLoggedIn }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(initMain());
   }, []);
   return (
-    <LayoutMain modal={modal}>
+    <LayoutMain modal={modal} isLoggedIn={isLoggedIn}>
       <>
         {!!isFetching && <Loader />}
-        <Calendar requestError={requestError} />
+        <Calendar requestError={requestError} isLoggedIn={isLoggedIn} />
       </>
     </LayoutMain>
   );
@@ -27,6 +27,7 @@ Main.propTypes = {
   modal: PropTypes.objectOf(PropTypes.any).isRequired,
   requestError: PropTypes.bool.isRequired,
   isFetching: PropTypes.number.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default Main;

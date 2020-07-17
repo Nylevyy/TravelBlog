@@ -9,6 +9,7 @@ export const {
   uiButton_submit,
   uiButton_refresh,
   uiButton_reset,
+  uiButton_cancel,
   uiButton_small,
 } = styles;
 

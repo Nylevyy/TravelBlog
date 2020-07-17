@@ -5,6 +5,7 @@ import ModalArticleForm from './article-form/ModalArticleForm';
 import styles from './Modal.scss';
 import CloseButton from '~/components/ui/close-button/CloseButton';
 import ModalTitleForm from '~/components/core/modal/title-form/ModalTitleForm';
+import ModalLoginForm from '~/components/core/modal/login-form/ModalLoginForm';
 
 const ccn = classNames.bind(styles);
 
@@ -12,9 +13,11 @@ const Modal = ({
   isOpen,
   type,
   data,
+  isLoggedIn,
   onModalCloseClick,
   onSubmitFormClick,
   onDeleteClick,
+  onLogOutClick,
 }) => (
   <div
     className={ccn('modal', {
@@ -40,6 +43,13 @@ const Modal = ({
             title={data.title}
           />
         )}
+        {type === 'loginForm' && (
+          <ModalLoginForm
+            onSubmitFormClick={onSubmitFormClick}
+            onLogOutClick={onLogOutClick}
+            isLoggedIn={isLoggedIn}
+          />
+        )}
       </div>
     </div>
   </div>
@@ -47,11 +57,13 @@ const Modal = ({
 
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
   type: PropTypes.string,
-  onModalCloseClick: PropTypes.func.isRequired,
   data: PropTypes.objectOf(PropTypes.any),
+  onModalCloseClick: PropTypes.func.isRequired,
   onSubmitFormClick: PropTypes.func,
   onDeleteClick: PropTypes.func,
+  onLogOutClick: PropTypes.func,
 };
 
 export default Modal;

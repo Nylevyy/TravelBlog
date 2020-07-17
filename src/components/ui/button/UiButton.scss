@@ -25,6 +25,13 @@
     }
   }
 
+  &_cancel {
+    & #{$parent}__button {
+      background-color: $error;
+      color: $contrastColor;
+    }
+  }
+
   &_small {
     width: $modalButtons;
   }

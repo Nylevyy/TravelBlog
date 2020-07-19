@@ -39,7 +39,7 @@ const ModalLoginForm = ({ isLoggedIn, onSubmitFormClick, onLogOutClick }) => {
     //   return;
     // }
     onSubmitFormClick(
-      { login: inputs.values[0], password: inputs.values[1] },
+      { username: inputs.values[0], password: inputs.values[1] },
       { type: 'loginForm' }
     );
   };

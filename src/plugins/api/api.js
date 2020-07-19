@@ -11,6 +11,7 @@ class Api {
       url,
       data,
       params,
+      withCredentials: true,
     });
   }
 

@@ -9,10 +9,10 @@ import {
 } from './actions';
 import { auth, unAuth } from './services';
 
-function* authHandler(login, password) {
+function* authHandler(username, password) {
   try {
     yield put(startRequest());
-    const { userName } = yield call(auth, { data: { login, password } });
+    const { userName } = yield call(auth, { data: { username, password } });
     yield put(logIn({ userName }));
     yield put(endRequest());
   } catch (e) {
@@ -33,8 +33,8 @@ function* unAuthHandler() {
 
 function* authWatcher() {
   while (true) {
-    const { login, password } = yield take(REQUEST_LOG_IN);
-    yield call(authHandler, login, password);
+    const { username, password } = yield take(REQUEST_LOG_IN);
+    yield call(authHandler, username, password);
   }
 }
 

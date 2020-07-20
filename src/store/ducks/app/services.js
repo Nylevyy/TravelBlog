@@ -1,8 +1,12 @@
 import Api from '~/plugins/api/api';
 
+export const authLogin = async (request) => {
+  await Api.post({ url: 'api/auth/login', ...request });
+};
+
 export const auth = async (request) => {
-  const { userName } = await Api.post({ url: 'api/auth/login', ...request });
-  return userName;
+  const { data } = await Api.get({ url: 'api/auth', ...request });
+  return data;
 };
 
 export const unAuth = async () => {

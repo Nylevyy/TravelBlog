@@ -1,5 +1,5 @@
 import { put, call, take, all } from '@redux-saga/core/effects';
-import { REQUEST_LOG_IN, REQUEST_LOG_OUT } from './types';
+import { REQUEST_LOG_IN, REQUEST_LOG_OUT, INIT } from './types';
 import {
   logIn,
   logOut,
@@ -7,13 +7,29 @@ import {
   endRequest,
   reportError,
 } from './actions';
-import { auth, unAuth } from './services';
+import { auth, authLogin, unAuth } from './services';
 
-function* authHandler(username, password) {
+function* authHandler() {
   try {
     yield put(startRequest());
-    const { userName } = yield call(auth, { data: { username, password } });
+    const { userName } = yield call(auth);
     yield put(logIn({ userName }));
+    yield put(endRequest());
+  } catch (e) {
+    yield put(logIn({ userName: null }));
+    if (e.response.status === 401) {
+      yield put(endRequest());
+      return;
+    }
+    yield put(reportError(e));
+  }
+}
+
+function* authLoginHandler(username, password) {
+  try {
+    yield put(startRequest());
+    yield call(authLogin, { data: { username, password } });
+    yield call(authHandler);
     yield put(endRequest());
   } catch (e) {
     yield put(reportError(e));
@@ -31,10 +47,10 @@ function* unAuthHandler() {
   }
 }
 
-function* authWatcher() {
+function* authLoginWatcher() {
   while (true) {
     const { username, password } = yield take(REQUEST_LOG_IN);
-    yield call(authHandler, username, password);
+    yield call(authLoginHandler, username, password);
   }
 }
 
@@ -45,8 +61,15 @@ function* unAuthWatcher() {
   }
 }
 
+function* authWatcher() {
+  while (true) {
+    yield take(INIT);
+    yield call(authHandler);
+  }
+}
+
 function* rootAppSaga() {
-  yield all([authWatcher(), unAuthWatcher()]);
+  yield all([authLoginWatcher(), unAuthWatcher(), authWatcher()]);
 }
 
 export default rootAppSaga;

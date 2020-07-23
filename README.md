@@ -21,5 +21,5 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
-If you use my [Test API-Server](https://github.com/Nylevyy/travelBlogBackend), then don't forget to set your static server port same as on API-server,
+If you use my [Test API-Server](https://github.com/Nylevyy/travelBlogBackend), then don't forget to set your static server port same as on API-server CORS settings,
 which is default http://localhost:3000.<br /> 

@@ -11,8 +11,9 @@ const { initMain } = mainActions;
 const Main = ({ modal, requestError, isFetching, isLoggedIn }) => {
   const dispatch = useDispatch();
   useEffect(() => {
+    if (!isLoggedIn) return;
     dispatch(initMain());
-  }, []);
+  }, [isLoggedIn]);
   return (
     <LayoutMain modal={modal} isLoggedIn={isLoggedIn}>
       <>

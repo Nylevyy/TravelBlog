@@ -1,7 +1,7 @@
 import { RECEIVE_TITLE } from './types';
 import { appTypes } from '~/store/ducks/app';
 
-const { INIT } = appTypes;
+const { INIT, LOG_OUT } = appTypes;
 const initialState = {
   title: null,
 };
@@ -17,6 +17,11 @@ const titleReducer = (state = initialState, action) => {
       return {
         ...state,
         title: action.title,
+      };
+    case LOG_OUT:
+      return {
+        ...state,
+        title: 'Возвращайтесь...',
       };
     default:
       return state;

@@ -1,26 +1,10 @@
 import { all, call, put, fork, take } from '@redux-saga/core/effects';
 import { SEND_NEW_ARTICLE, UPDATE_ARTICLE, DELETE_ARTICLE } from './types';
-import {
-  // fetchArticles,
-  postArticle,
-  putArticle,
-  deleteArticle,
-} from './services';
+import { postArticle, putArticle, deleteArticle } from './services';
 import { receiveArticles } from './actions';
 import { appActions } from '~/store/ducks/app';
 
 const { startRequest, endRequest, reportError } = appActions;
-
-// function* articlesProvider() {
-//   try {
-//     yield put(startRequest());
-//     const { articles } = yield call(fetchArticles);
-//     yield put(receiveArticles({ articles }));
-//     yield put(endRequest());
-//   } catch (err) {
-//     yield put(reportError(err));
-//   }
-// }
 
 function* newArticleHandler(article) {
   try {

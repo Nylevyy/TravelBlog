@@ -49,7 +49,7 @@ const appReducer = (state = initialState, action) => {
     case LOG_IN:
       return {
         ...state,
-        userName: action.userName,
+        userName: action.username,
       };
     case LOG_OUT:
       return {

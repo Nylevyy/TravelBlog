@@ -135,8 +135,8 @@ ModalArticleForm.propTypes = {
     location: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    isImportant: PropTypes.bool.isRequired,
-    id: PropTypes.number.isRequired,
+    isImportant: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
   }),
 };
 

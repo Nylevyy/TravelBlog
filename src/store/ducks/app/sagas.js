@@ -12,12 +12,12 @@ import { auth, authLogin, unAuth } from './services';
 function* authHandler() {
   try {
     yield put(startRequest());
-    const { userName } = yield call(auth);
-    yield put(logIn({ userName }));
+    const { username } = yield call(auth);
+    yield put(logIn({ username }));
     yield put(endRequest());
   } catch (e) {
-    yield put(logIn({ userName: null }));
     if (e.response.status === 401) {
+      yield put(logIn({ username: null }));
       yield put(endRequest());
       return;
     }

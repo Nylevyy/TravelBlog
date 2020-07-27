@@ -15,6 +15,7 @@ const UiInput = ({
   label,
   onInput,
   value,
+  type = 'text',
 }) => {
   return (
     <div className={ccn('ui-input', [className])}>
@@ -22,7 +23,7 @@ const UiInput = ({
         className={ccn('ui-input__field', {
           uiInput__field_invalid: !isValid,
         })}
-        type="text"
+        type={type}
         id={className}
         onInput={(e) => onInput({ index, value: e.target.value })}
         onChange={(e) => onChange({ index, value: e.target.value })}
@@ -43,6 +44,7 @@ UiInput.propTypes = {
   index: PropTypes.number,
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
+  type: PropTypes.string,
 };
 
 export default UiInput;

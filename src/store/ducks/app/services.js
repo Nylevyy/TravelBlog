@@ -9,6 +9,10 @@ export const auth = async (request) => {
   return data;
 };
 
-export const unAuth = async () => {
+export const authLogout = async () => {
   await Api.get({ url: 'api/auth/logout' });
+};
+
+export const authJoin = async (request) => {
+  await Api.post({ url: 'api/auth/join', ...request });
 };

@@ -11,7 +11,6 @@ const ccn = classNames.bind(styles);
 
 const Header = ({
   title,
-  isLoggedIn,
   onNewEventClick,
   onRefreshContentClick,
   onTitleClick,
@@ -19,16 +18,16 @@ const Header = ({
 }) => (
   <header className={styles.header}>
     <div className={styles.header__container}>
-      <button
-        className={ccn('header__logo', {
-          header__logo_loggedIn: isLoggedIn,
-        })}
-        type="button"
-        onClick={() => onLogoClick()}
-      >
-        <h3 className={styles.header__logoText}>Мой Календарь</h3>
-        <div className={styles.header__logoBorder} />
-      </button>
+      <div className={styles.header__dashboard}>
+        <button
+          className={ccn('header__logo')}
+          type="button"
+          onClick={() => onLogoClick()}
+        >
+          <h3 className={styles.header__logoText}>Мой Календарь</h3>
+          <div className={styles.header__logoBorder} />
+        </button>
+      </div>
       <button
         className={styles.header__titleButton}
         type="button"
@@ -54,7 +53,6 @@ const Header = ({
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
   onNewEventClick: PropTypes.func.isRequired,
   onRefreshContentClick: PropTypes.func.isRequired,
   onTitleClick: PropTypes.func.isRequired,

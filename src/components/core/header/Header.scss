@@ -14,6 +14,11 @@
     margin: 0 auto;
   }
 
+  &__dashboard {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__logo {
     position: relative;
     font-family: $secondaryFont;
@@ -23,6 +28,7 @@
     align-content: center;
     text-align: center;
     padding: 10px 0;
+    margin-bottom: 5px;
 
     &:hover {
       -webkit-box-shadow: 0 0 25px 10px $active;
@@ -109,6 +115,15 @@
   @media all and (min-width: 768px) {
     &__container {
       align-items: flex-start;
+    }
+
+    &__dashboard {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &__logo {
+      margin-bottom: 0;
     }
 
     &__title-button {

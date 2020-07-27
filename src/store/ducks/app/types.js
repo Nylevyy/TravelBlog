@@ -5,6 +5,7 @@ export const OPEN_MODAL = 'OPEN_MODAL';
 export const REQUEST_LOG_IN = 'REQUEST_LOG_IN';
 export const REQUEST_LOG_OUT = 'REQUEST_LOG_OUT';
 export const LOG_IN = 'LOG_IN';
+export const JOIN = 'JOIN';
 export const LOG_OUT = 'LOG_OUT';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const SET_DEFAULT = 'SET_DEFAULT';

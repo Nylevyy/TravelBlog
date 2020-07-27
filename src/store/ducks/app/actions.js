@@ -5,6 +5,7 @@ import {
   REQUEST_LOG_OUT,
   LOG_IN,
   LOG_OUT,
+  JOIN,
   CRASH_WITH_ERROR,
   OPEN_MODAL,
   CLOSE_MODAL,
@@ -36,6 +37,11 @@ export const logIn = (payload) => ({
 
 export const logOut = () => ({
   type: LOG_OUT,
+});
+
+export const join = (payload) => ({
+  type: JOIN,
+  ...payload,
 });
 
 export const reportError = (err) => ({

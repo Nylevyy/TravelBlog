@@ -1,4 +1,4 @@
-Test project to learn React, Redux. 
+## Test project to learn React, Redux. 
 
 ## Available Scripts
 

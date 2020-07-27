@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { history } from '~/history/history';
 
 const axios = Axios.create({
   baseURL: process.env.BASE_URL,
@@ -6,13 +7,17 @@ const axios = Axios.create({
 
 class Api {
   static send({ method, url, data, params }) {
-    return axios.request({
-      method,
-      url,
-      data,
-      params,
-      withCredentials: true,
-    });
+    return axios
+      .request({
+        method,
+        url,
+        data,
+        params,
+        withCredentials: true,
+      })
+      .catch((err) => {
+        if (err.response.status === 401) history.push('/login');
+      });
   }
 
   static get(request) {

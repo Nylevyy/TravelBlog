@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import React, { useEffect, useCallback } from 'react';
+import { Switch, Route, Router, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { history } from '~/history/history';
 import { appActions, appSelectors } from '~/store/ducks/app';
 import ErrorPage from '~/components/pages/404/ErrorPage';
+import LoginPage from '~/components/pages/login/LoginPage';
 import Main from '~/components/pages/main/Main';
-import Loader from './core/loader/Loader';
+// import Loader from './core/loader/Loader';
 
-const { closeModal, initApp } = appActions;
+const { closeModal, initApp, join, requestLogIn } = appActions;
 const { appSelector, logInSelector } = appSelectors;
 
 const App = () => {
@@ -15,15 +17,28 @@ const App = () => {
   );
   const isLoggedIn = useSelector((state) => logInSelector(state));
   const dispatch = useDispatch();
+  const onJoinClick = useCallback(
+    (userInfo) => {
+      dispatch(join({ userInfo }));
+    },
+    [dispatch]
+  );
+  const onLogInClick = useCallback(
+    (userInfo) => {
+      dispatch(requestLogIn({ ...userInfo }));
+    },
+    [dispatch]
+  );
   useEffect(() => {
     if (!isFetching) dispatch(closeModal());
   }, [isFetching]);
   useEffect(() => {
     dispatch(initApp());
   }, []);
+  console.log(history.location);
   return (
-    <BrowserRouter>
-      {!init && <Loader />}
+    <Router history={history}>
+      {/* {!init && <Loader />} */}
       {init && (
         <Switch>
           <Route exact path="/">
@@ -34,10 +49,14 @@ const App = () => {
               isFetching={isFetching}
             />
           </Route>
+          <Route path="/login">
+            {isLoggedIn && <Redirect to="/" />}
+            <LoginPage onJoinClick={onJoinClick} onLogInClick={onLogInClick} />
+          </Route>
           <Route path="*" component={ErrorPage} />
         </Switch>
       )}
-    </BrowserRouter>
+    </Router>
   );
 };
 

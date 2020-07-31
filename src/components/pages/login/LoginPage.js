@@ -15,7 +15,7 @@ import UiButton, {
 
 const ccn = classNames.bind(styles);
 
-const LoginPage = ({ onLogInClick, onJoinClick }) => {
+const LoginPage = ({ onLogInClick, onJoinClick, requestError }) => {
   const [inputs, setInputs] = useState({
     values: ['', ''],
     isValid: true,
@@ -40,8 +40,13 @@ const LoginPage = ({ onLogInClick, onJoinClick }) => {
     <LayoutError>
       <div className={styles.loginPage}>
         <div className={styles.loginPage__container}>
-          <span className={styles.loginPage__greeting}>
-            Пожалуйста, войдите в аккаунт
+          <span
+            className={ccn('loginPage__message', {
+              loginPage__message_error: requestError,
+            })}
+          >
+            {(requestError && 'Неправильно введен логин или пароль') ||
+              'Пожалуйста, войдите в аккаунт'}
           </span>
           <form action="*" className={styles.loginPage__form}>
             <UiInput
@@ -85,6 +90,7 @@ const LoginPage = ({ onLogInClick, onJoinClick }) => {
 LoginPage.propTypes = {
   onJoinClick: PropTypes.func.isRequired,
   onLogInClick: PropTypes.func.isRequired,
+  requestError: PropTypes.bool,
 };
 
 export default LoginPage;

@@ -6,6 +6,7 @@ import {
   startRequest,
   endRequest,
   reportError,
+  setDefault,
 } from './actions';
 import { auth, authLogin, authLogout, authJoin } from './services';
 
@@ -14,10 +15,11 @@ function* authHandler() {
     yield put(startRequest());
     const { username } = yield call(auth);
     yield put(logIn({ username }));
+    yield put(setDefault());
     yield put(endRequest());
   } catch (e) {
     yield put(logIn({ username: null }));
-    yield put(reportError(e));
+    yield put(endRequest());
   }
 }
 
@@ -28,7 +30,15 @@ function* authLoginHandler(username, password) {
     yield call(authHandler);
     yield put(endRequest());
   } catch (e) {
-    yield put(reportError(e));
+    if (e.response?.data === 'Incorrect password.') {
+      yield put(reportError(e));
+      return;
+    }
+    if (e.response?.data === 'Incorrect password.') {
+      yield put(reportError(e));
+      return;
+    }
+    yield put(reportError());
   }
 }
 
@@ -38,8 +48,8 @@ function* AuthLogoutHandler() {
     yield call(authLogout);
     yield put(logOut());
     yield put(endRequest());
-  } catch (e) {
-    yield put(reportError(e));
+  } catch {
+    yield put(reportError());
   }
 }
 
@@ -48,8 +58,8 @@ function* joinHandler(userInfo) {
     yield put(startRequest());
     yield call(authJoin, { data: userInfo });
     yield put(endRequest());
-  } catch (e) {
-    yield put(reportError(e));
+  } catch {
+    yield put(reportError());
   }
 }
 

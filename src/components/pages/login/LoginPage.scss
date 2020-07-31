@@ -16,9 +16,13 @@
     justify-content: center;
   }
 
-  &__greeting {
+  &__message {
     text-align: center;
     margin-bottom: 10px;
+
+    &_error {
+      color: $error;
+    }
   }
 
   &__form {

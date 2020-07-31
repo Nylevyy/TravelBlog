@@ -1,12 +1,11 @@
 import React, { useEffect, useCallback } from 'react';
-import { Switch, Route, Router, Redirect } from 'react-router-dom';
+import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { history } from '~/history/history';
 import { appActions, appSelectors } from '~/store/ducks/app';
 import ErrorPage from '~/components/pages/404/ErrorPage';
 import LoginPage from '~/components/pages/login/LoginPage';
 import Main from '~/components/pages/main/Main';
-// import Loader from './core/loader/Loader';
+import Loader from './core/loader/Loader';
 
 const { closeModal, initApp, join, requestLogIn } = appActions;
 const { appSelector, logInSelector } = appSelectors;
@@ -35,13 +34,21 @@ const App = () => {
   useEffect(() => {
     dispatch(initApp());
   }, []);
-  console.log(history.location);
   return (
-    <Router history={history}>
-      {/* {!init && <Loader />} */}
+    <BrowserRouter>
+      {!init && <Loader />}
       {init && (
         <Switch>
+          <Route path="/login">
+            {isLoggedIn && <Redirect to="/" />}
+            <LoginPage
+              onJoinClick={onJoinClick}
+              onLogInClick={onLogInClick}
+              requestError={requestError}
+            />
+          </Route>
           <Route exact path="/">
+            {!isLoggedIn && <Redirect to="/login" />}
             <Main
               modal={modal}
               isLoggedIn={isLoggedIn}
@@ -49,14 +56,10 @@ const App = () => {
               isFetching={isFetching}
             />
           </Route>
-          <Route path="/login">
-            {isLoggedIn && <Redirect to="/" />}
-            <LoginPage onJoinClick={onJoinClick} onLogInClick={onLogInClick} />
-          </Route>
           <Route path="*" component={ErrorPage} />
         </Switch>
       )}
-    </Router>
+    </BrowserRouter>
   );
 };
 

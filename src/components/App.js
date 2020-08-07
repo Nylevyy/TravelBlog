@@ -36,7 +36,7 @@ const App = () => {
   }, []);
   return (
     <BrowserRouter>
-      {(!init || isFetching) && <Loader />}
+      {(!init || isFetching || null) && <Loader />}
       {init && (
         <Switch>
           <Route path="/login">

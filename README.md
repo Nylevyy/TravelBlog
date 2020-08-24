@@ -23,3 +23,5 @@ Your app is ready to be deployed!
 
 If you use my [Test API-Server](https://github.com/Nylevyy/travelBlogBackend), then don't forget to set your static server port same as on API-server CORS settings,
 which is default http://localhost:3000.<br /> 
+
+test branch

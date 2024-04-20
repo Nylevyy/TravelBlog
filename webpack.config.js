@@ -18,6 +18,7 @@ const publicUrl = env.PUBLIC_URL || '';
 
 module.exports = () => {
   const plugins = [
+    new webpack.ProgressPlugin(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
@@ -62,7 +63,6 @@ module.exports = () => {
     output: {
       path: path.resolve(__dirname, './build/'),
       publicPath: '/',
-      filename: '[name].js',
     },
     plugins,
     module: {
@@ -92,8 +92,8 @@ module.exports = () => {
             {
               loader: 'css-loader',
               options: {
-                localsConvention: 'dashes',
                 modules: {
+                  exportLocalsConvention: 'dashes',
                   mode: 'local',
                   localIdentName: '[path]-[local]',
                 },
@@ -109,21 +109,21 @@ module.exports = () => {
         },
         {
           test: /\.(png|jpg|gif|svg)$/,
-          loader: 'file-loader',
+          type: 'asset/resource',
           exclude: [
             /node_modules/,
             path.resolve(__dirname, 'src/components/svg'),
           ],
-          options: {
-            name: 'assets/images/[name].[ext]',
+          generator: {
+            filename: 'assets/images/[name].[ext]',
           },
         },
         {
           test: /\.(eot|svg|ttf|woff|woff2)$/,
-          loader: 'file-loader',
+          type: 'asset/resource',
           exclude: /node_modules/,
-          options: {
-            name: 'assets/fonts/[name].[ext]',
+          generator: {
+            filename: 'assets/fonts/[name].[ext]',
           },
         },
         {
@@ -131,7 +131,7 @@ module.exports = () => {
           exclude: /node_modules/,
           include: path.resolve(__dirname, 'src/components/svg'),
           use: [
-            'babel-loader',
+            { loader: 'babel-loader' },
             {
               loader: 'react-svg-loader',
               options: {
@@ -149,32 +149,35 @@ module.exports = () => {
       extensions: ['.json', '.js'],
     },
     devServer: {
-      clientLogLevel: 'debug',
       port,
       host,
       open: false,
       hot: true,
-      disableHostCheck: true,
-      noInfo: false,
-      stats: 'minimal',
+      allowedHosts: 'all',
       historyApiFallback: true,
-      overlay: true,
-      publicPath: '/',
-      onListening({ listeningApp }) {
-        const { port } = listeningApp.address();
+      onListening(devServer) {
+        const { port } = devServer.options;
         console.log('\x1b[36m%s\x1b[0m', `Starting the development server on port: ${port}\n`);
+      },
+      client: {
+        logging: 'verbose',
+        progress: true,
+      },
+      devMiddleware: {
+        publicPath: '/',
+        stats: 'minimal',
       },
     },
     performance: {
       hints: false,
     },
-    devtool: '#eval-source-map',
+    devtool: 'eval-source-map',
   };
 
   if (isEnvProd) {
     config = {
       ...config,
-      devtool: '#source-map',
+      devtool: 'source-map',
       plugins: plugins.concat([
         new webpack.LoaderOptionsPlugin({
           minimize: true,

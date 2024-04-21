@@ -20,7 +20,7 @@ body {
   height: auto;
   font-family: $baseFont;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   color: $baseColor;
   font-size: 14px;
 }
@@ -55,11 +55,11 @@ img {
 
 input {
   &[type="number"] {
-    -moz-appearance: textfield;
+    appearance: textfield;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
+      appearance: none;
       margin: 0;
     }
   }

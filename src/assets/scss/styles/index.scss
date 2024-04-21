@@ -1,6 +1,2 @@
-// stylelint-disable selector-pseudo-class-no-unknown
-:global {
-  @import 'base';
-  @import url(includeFonts.scss);
-}
-// stylelint-enable selector-pseudo-class-no-unknown
+@import './base';
+@import "./includeFonts";

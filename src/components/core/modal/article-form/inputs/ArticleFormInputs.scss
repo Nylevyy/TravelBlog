@@ -38,8 +38,7 @@
 
   @media screen and (orientation: landscape) and (max-height: 479px) {
     padding: 2px;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-flow: row nowrap;
     justify-content: space-around;
 
     &__wrap {

@@ -28,10 +28,10 @@ const LayoutMain = ({ modal, children }) => {
   const onTitleClick = useCallback(
     (oldTitle) => {
       dispatch(
-        openModal({ data: { title: oldTitle }, modalType: 'titleEditor' })
+        openModal({ data: { title: oldTitle }, modalType: 'titleEditor' }),
       );
     },
-    [dispatch]
+    [dispatch],
   );
   const onLogoClick = useCallback(() => {
     dispatch(requestLogOut());
@@ -51,7 +51,7 @@ const LayoutMain = ({ modal, children }) => {
       }
       dispatch(editTitle({ ...payload }));
     },
-    [dispatch]
+    [dispatch],
   );
   const onDeleteClick = useCallback(
     (id) => {
@@ -59,7 +59,7 @@ const LayoutMain = ({ modal, children }) => {
         dispatch(deleteArticle({ id }));
       };
     },
-    [dispatch]
+    [dispatch],
   );
   return (
     <>

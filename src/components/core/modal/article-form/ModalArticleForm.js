@@ -81,7 +81,7 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
       {
         id: inputs.id,
         type: 'articleEditor',
-      }
+      },
     );
   };
 

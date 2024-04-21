@@ -21,7 +21,7 @@ const Calendar = ({ requestError, isLoggedIn }) => {
     (payload) => {
       dispatch(openModal({ ...payload }));
     },
-    [dispatch]
+    [dispatch],
   );
   const onDeleteClick = useCallback(
     (id) => {
@@ -29,7 +29,7 @@ const Calendar = ({ requestError, isLoggedIn }) => {
         dispatch(deleteArticle({ id }));
       };
     },
-    [dispatch]
+    [dispatch],
   );
   let cachedDate = '';
   return (

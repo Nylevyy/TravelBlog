@@ -6,5 +6,5 @@ const articlesState = (state) => {
 
 export const articlesSelector = createSelector(
   articlesState,
-  ({ articles }) => articles
+  ({ articles }) => articles,
 );

@@ -1,10 +1,10 @@
-// const path = require('path');
-
 module.exports = {
   parser: '@babel/eslint-parser',
   extends: [
     'airbnb',
+    'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
+    "plugin:react/recommended",
     'plugin:sonarjs/recommended',
     'eslint:recommended',
   ],
@@ -67,6 +67,9 @@ module.exports = {
     'react/jsx-filename-extension': 0,
     'react/jsx-props-no-spreading': 0,
     'react/jsx-indent': ['warn', 2],
+    'react/function-component-definition': [2, {
+      'namedComponents': 'arrow-function',
+    }],
     camelcase: 0,
   },
 };

@@ -15,35 +15,37 @@ const Modal = ({
   onModalCloseClick,
   onSubmitFormClick,
   onDeleteClick,
-}) => (
-  <div
-    className={ccn('modal', {
-      modal_active: isOpen,
-    })}
-  >
-    <div className={styles.modal__container}>
-      <div className={styles.modal__close}>
-        <CloseButton onClick={onModalCloseClick} />
-      </div>
-      <div className={styles.modal__form}>
-        {type === 'articleEditor' && (
-          <ModalArticleForm
-            onSubmitFormClick={onSubmitFormClick}
-            onDeleteClick={onDeleteClick}
-            data={data}
-          />
-        )}
-        {type === 'titleEditor' && (
-          <ModalTitleForm
-            onSubmitFormClick={onSubmitFormClick}
-            onDeleteClick={onDeleteClick}
-            title={data.title}
-          />
-        )}
+}) => {
+  return (
+    <div
+      className={ccn('modal', {
+        modal_active: isOpen,
+      })}
+    >
+      <div className={styles.modal__container}>
+        <div className={styles.modal__close}>
+          <CloseButton onClick={onModalCloseClick} />
+        </div>
+        <div className={styles.modal__form}>
+          {type === 'articleEditor' && (
+            <ModalArticleForm
+              onSubmitFormClick={onSubmitFormClick}
+              onDeleteClick={onDeleteClick}
+              data={data}
+            />
+          )}
+          {type === 'titleEditor' && (
+            <ModalTitleForm
+              onSubmitFormClick={onSubmitFormClick}
+              onDeleteClick={onDeleteClick}
+              title={data.title}
+            />
+          )}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,

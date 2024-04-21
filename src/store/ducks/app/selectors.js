@@ -6,7 +6,7 @@ const appState = (state) => {
 
 export const logInSelector = createSelector(
   appState,
-  ({ userName }) => !!userName
+  ({ userName }) => !!userName,
 );
 
 export const appSelector = createSelector(
@@ -16,5 +16,5 @@ export const appSelector = createSelector(
     modal,
     requestError,
     isFetching,
-  })
+  }),
 );

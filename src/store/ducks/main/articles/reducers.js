@@ -6,8 +6,7 @@ const initialState = {
   articles: null,
 };
 
-const calendarReducer = (state = initialState, action) => {
-  // eslint-disable-next-line sonarjs/no-small-switch
+const calendarReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case INIT:
     case LOG_OUT:

@@ -9,10 +9,12 @@ import App from '~/components/App';
 
 moment.locale('ru');
 
-const RootApp = () => (
-  <Provider store={store}>
-    <App />
-  </Provider>
-);
+const RootApp = () => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+};
 
 render(<RootApp />, document.getElementById('root'));

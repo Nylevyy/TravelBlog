@@ -10,7 +10,7 @@ registerLocale('ru', ru);
 
 const ccn = classNames.bind(styles);
 
-function DatePicker({ notValidated, value, onChange }) {
+const DatePicker = ({ notValidated, value, onChange }) => {
   return (
     <div className={styles.datePicker}>
       <DateTimePicker
@@ -35,7 +35,7 @@ function DatePicker({ notValidated, value, onChange }) {
       </label>
     </div>
   );
-}
+};
 
 DatePicker.propTypes = {
   notValidated: PropTypes.bool,

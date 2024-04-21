@@ -12,7 +12,7 @@ const { appSelector, logInSelector } = appSelectors;
 
 const App = () => {
   const { init, modal, requestError, isFetching } = useSelector((state) =>
-    appSelector(state)
+    appSelector(state),
   );
   const isLoggedIn = useSelector((state) => logInSelector(state));
   const dispatch = useDispatch();
@@ -20,13 +20,13 @@ const App = () => {
     (userInfo) => {
       dispatch(join({ userInfo }));
     },
-    [dispatch]
+    [dispatch],
   );
   const onLogInClick = useCallback(
     (userInfo) => {
       dispatch(requestLogIn({ ...userInfo }));
     },
-    [dispatch]
+    [dispatch],
   );
   useEffect(() => {
     if (!isFetching) dispatch(closeModal());

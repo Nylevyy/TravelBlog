@@ -5,6 +5,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 require('dotenv/config');
 
 const { env } = process;
@@ -33,6 +34,7 @@ module.exports = () => {
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env),
     }),
+    new ESLintPlugin({ fix: true }),
   ];
 
   let config = {
@@ -45,15 +47,6 @@ module.exports = () => {
     plugins,
     module: {
       rules: [
-        {
-          enforce: 'pre',
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader: 'eslint-loader',
-          options: {
-            fix: true,
-          },
-        },
         {
           test: /\.js$/,
           exclude: /node_modules/,

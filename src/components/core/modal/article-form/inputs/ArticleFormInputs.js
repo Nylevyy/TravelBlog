@@ -5,8 +5,8 @@ import UiInput, {
   uiInput_title,
   uiInput_location,
 } from '~/components/ui/input/UiInput';
-import styles from './ArticleFormInputs.scss';
 import DatePicker from '~/widgets/date-picker/DatePicker';
+import * as styles from './ArticleFormInputs.scss';
 
 const ccn = classNames.bind(styles);
 

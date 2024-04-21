@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './CloseButton.scss';
+import * as styles from './CloseButton.scss';
 
 const CloseButton = ({ onClick }) => (
   <div className={styles.closeButton}>

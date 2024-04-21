@@ -3,7 +3,7 @@ import moment from 'moment';
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import CloseButton from '~/components/ui/close-button/CloseButton';
-import styles from './CalendarItem.scss';
+import * as styles from './CalendarItem.scss';
 
 const ccn = classNames.bind(styles);
 

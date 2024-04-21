@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import UiInput from '~/components/ui/input/UiInput';
-import styles from '~/components/core/modal/title-form/ModalTitleForm.scss';
+import * as styles from '~/components/core/modal/title-form/ModalTitleForm.scss';
 import UiButton, {
   uiButton_submit,
   uiButton_small,

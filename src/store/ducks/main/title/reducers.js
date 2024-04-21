@@ -1,5 +1,5 @@
-import { RECEIVE_TITLE } from './types';
 import { appTypes } from '~/store/ducks/app';
+import { RECEIVE_TITLE } from './types';
 
 const { INIT, LOG_OUT } = appTypes;
 const initialState = {

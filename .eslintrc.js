@@ -1,7 +1,7 @@
 // const path = require('path');
 
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   extends: [
     'airbnb',
     'plugin:prettier/recommended',
@@ -43,6 +43,7 @@ module.exports = {
       },
     ],
     'react/require-default-props': 0,
+    'react/forbid-prop-types': 0,
     'no-bitwise': [
       'error',
       {

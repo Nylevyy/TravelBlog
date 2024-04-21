@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import ModalArticleForm from './article-form/ModalArticleForm';
-import styles from './Modal.scss';
 import CloseButton from '~/components/ui/close-button/CloseButton';
 import ModalTitleForm from '~/components/core/modal/title-form/ModalTitleForm';
+import ModalArticleForm from './article-form/ModalArticleForm';
+import * as styles from './Modal.scss';
 
 const ccn = classNames.bind(styles);
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
-import styles from './Loader.scss';
+import * as styles from './Loader.scss';
 
 const Loader = () => {
   const items = [];

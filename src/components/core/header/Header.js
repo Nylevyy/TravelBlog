@@ -5,7 +5,7 @@ import UiButton, {
   uiButton_submit,
   uiButton_refresh,
 } from '../../ui/button/UiButton';
-import styles from './Header.scss';
+import * as styles from './Header.scss';
 
 const ccn = classNames.bind(styles);
 
@@ -33,7 +33,7 @@ const Header = ({
         type="button"
         onClick={() => onTitleClick(title)}
       >
-        <h2 className={styles.header__titleButtonText}>{title}</h2>
+        <h2>{title}</h2>
       </button>
       <div className={styles.header__buttons}>
         <UiButton

@@ -5,9 +5,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-require('dotenv').config({
-  path: path.resolve(__dirname, '.env'),
-});
+require('dotenv/config');
 
 const { env } = process;
 const mode = env.NODE_ENV || 'development';
@@ -20,23 +18,7 @@ module.exports = () => {
   const plugins = [
     new webpack.ProgressPlugin(),
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      ...(isEnvProd && {
-        minify: {
-          removeComments: true,
-          collapseWhitespace: true,
-          removeRedundantAttributes: true,
-          useShortDoctype: true,
-          removeEmptyAttributes: true,
-          removeStyleLinkTypeAttributes: true,
-          keepClosingSlash: true,
-          minifyJS: true,
-          minifyCSS: true,
-          minifyURLs: true,
-        },
-      }),
-    }),
+    new HtmlWebpackPlugin({ template: 'src/index.html' }),
     new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
       PUBLIC_URL: publicUrl,
     }),
@@ -56,10 +38,6 @@ module.exports = () => {
   let config = {
     mode,
     context: process.cwd(),
-    entry: {
-      polyfill: '@babel/polyfill',
-      index: './src/index.js',
-    },
     output: {
       path: path.resolve(__dirname, './build/'),
       publicPath: '/',
@@ -102,7 +80,8 @@ module.exports = () => {
             {
               loader: 'sass-loader',
               options: {
-                prependData: '@import "./src/assets/scss/variables/index.scss";',
+                additionalData:
+                  '@import "./src/assets/scss/variables/index.scss";',
               },
             },
           ],
@@ -157,7 +136,10 @@ module.exports = () => {
       historyApiFallback: true,
       onListening(devServer) {
         const { port } = devServer.options;
-        console.log('\x1b[36m%s\x1b[0m', `Starting the development server on port: ${port}\n`);
+        console.log(
+          '\x1b[36m%s\x1b[0m',
+          `Starting the development server on port: ${port}\n`
+        );
       },
       client: {
         logging: 'verbose',

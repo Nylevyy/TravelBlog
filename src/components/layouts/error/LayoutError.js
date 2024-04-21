@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Footer from '../../core/footer/Footer';
-import styles from './LayoutError.scss';
+import * as styles from './LayoutError.scss';
 
 const LayoutError = ({ children }) => (
   <div className={styles.layoutError}>

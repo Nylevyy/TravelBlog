@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './UiCheckbox.scss';
+import * as styles from './UiCheckbox.scss';
 
 const UiCheckbox = ({ onChange, checked, id, label, index }) => (
   <div className={styles.uiCheckbox}>

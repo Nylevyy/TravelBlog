@@ -1,8 +1,8 @@
 import { put, call, take, fork, all } from '@redux-saga/core/effects';
+import { appActions } from '~/store/ducks/app';
 import { EDIT_TITLE, FETCH_TITLE } from './types';
 import { receiveTitle } from './actions';
 import { changeTitle, fetchTitle } from './services';
-import { appActions } from '~/store/ducks/app';
 
 const { startRequest, endRequest, reportError } = appActions;
 

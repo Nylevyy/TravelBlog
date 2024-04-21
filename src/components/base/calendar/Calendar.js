@@ -2,13 +2,13 @@ import React, { useCallback } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './Calendar.scss';
-import CalendarItem from './item/CalendarItem';
 import {
   articlesActions,
   articlesSelectors,
 } from '~/store/ducks/main/articles';
 import { appActions } from '~/store/ducks/app';
+import * as styles from './Calendar.scss';
+import CalendarItem from './item/CalendarItem';
 
 const { deleteArticle } = articlesActions;
 const { openModal } = appActions;

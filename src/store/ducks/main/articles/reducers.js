@@ -1,5 +1,5 @@
-import { RECEIVE_ARTICLES } from './types';
 import { appTypes } from '~/store/ducks/app';
+import { RECEIVE_ARTICLES } from './types';
 
 const { INIT, CRASH_WITH_ERROR, LOG_OUT } = appTypes;
 const initialState = {

@@ -5,7 +5,7 @@ import * as styles from './Loader.scss';
 const Loader = () => {
   const items = [];
   for (let i = 0; i < 7; i++) {
-    items.push(<BeatLoader loading="true" size="75px" key={Math.random()} />);
+    items.push(<BeatLoader loading="true" size="75px" key={i} />);
   }
   return <div className={styles.loader}>{items}</div>;
 };

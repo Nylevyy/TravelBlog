@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import moment from 'moment';
 import 'moment/locale/ru';
@@ -17,4 +17,6 @@ const RootApp = () => {
   );
 };
 
-render(<RootApp />, document.getElementById('root'));
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(<RootApp tab="home" />);

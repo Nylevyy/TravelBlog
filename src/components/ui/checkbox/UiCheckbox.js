@@ -1,21 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './UiCheckbox.scss';
+import * as styles from './UiCheckbox.scss';
 
-const UiCheckbox = ({ onChange, checked, id, label, index }) => (
-  <div className={styles.uiCheckbox}>
-    <label htmlFor={id} className={styles.uiCheckbox__label}>
-      <input
-        type="checkbox"
-        className={styles.uiCheckbox__input}
-        id={id}
-        onChange={(e) => onChange({ index, value: e.target.checked })}
-        checked={checked}
-      />
-      {label}
-    </label>
-  </div>
-);
+const UiCheckbox = ({ onChange, checked, id, label, index }) => {
+  return (
+    <div className={styles.uiCheckbox}>
+      <label htmlFor={id} className={styles.uiCheckbox__label}>
+        <input
+          type="checkbox"
+          className={styles.uiCheckbox__input}
+          id={id}
+          onChange={(e) => onChange({ index, value: e.target.checked })}
+          checked={checked}
+        />
+        {label}
+      </label>
+    </div>
+  );
+};
 
 UiCheckbox.propTypes = {
   onChange: PropTypes.func.isRequired,

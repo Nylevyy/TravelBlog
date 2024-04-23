@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import Header from '../../core/header/Header';
-import Footer from '../../core/footer/Footer';
-import Modal from '../../core/modal/Modal';
 import { mainActions } from '~/store/ducks/main';
 import { articlesActions } from '~/store/ducks/main/articles';
 import { appActions } from '~/store/ducks/app';
 import { titleActions, titleSelectors } from '~/store/ducks/main/title';
+import Modal from '../../core/modal/Modal';
+import Footer from '../../core/footer/Footer';
+import Header from '../../core/header/Header';
 
 const { initMain } = mainActions;
 const { updateArticle, postNewArticle, deleteArticle } = articlesActions;
@@ -28,10 +28,10 @@ const LayoutMain = ({ modal, children }) => {
   const onTitleClick = useCallback(
     (oldTitle) => {
       dispatch(
-        openModal({ data: { title: oldTitle }, modalType: 'titleEditor' })
+        openModal({ data: { title: oldTitle }, modalType: 'titleEditor' }),
       );
     },
-    [dispatch]
+    [dispatch],
   );
   const onLogoClick = useCallback(() => {
     dispatch(requestLogOut());
@@ -51,7 +51,7 @@ const LayoutMain = ({ modal, children }) => {
       }
       dispatch(editTitle({ ...payload }));
     },
-    [dispatch]
+    [dispatch],
   );
   const onDeleteClick = useCallback(
     (id) => {
@@ -59,7 +59,7 @@ const LayoutMain = ({ modal, children }) => {
         dispatch(deleteArticle({ id }));
       };
     },
-    [dispatch]
+    [dispatch],
   );
   return (
     <>

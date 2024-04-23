@@ -1,13 +1,12 @@
-import { RECEIVE_TITLE } from './types';
 import { appTypes } from '~/store/ducks/app';
+import { RECEIVE_TITLE } from './types';
 
 const { INIT, LOG_OUT } = appTypes;
 const initialState = {
   title: null,
 };
 
-const titleReducer = (state = initialState, action) => {
-  // eslint-disable-next-line sonarjs/no-small-switch
+const titleReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case INIT:
       return {

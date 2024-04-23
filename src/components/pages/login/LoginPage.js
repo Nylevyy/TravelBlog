@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import styles from './LoginPage.scss';
 import UiInput, {
   uiInput_title,
   uiInput_location,
@@ -12,6 +11,7 @@ import UiButton, {
   uiButton_reset,
   uiButton_small,
 } from '~/components/ui/button/UiButton';
+import * as styles from './LoginPage.scss';
 
 const ccn = classNames.bind(styles);
 

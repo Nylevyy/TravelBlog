@@ -3,7 +3,7 @@ import moment from 'moment';
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import CloseButton from '~/components/ui/close-button/CloseButton';
-import styles from './CalendarItem.scss';
+import * as styles from './CalendarItem.scss';
 
 const ccn = classNames.bind(styles);
 
@@ -16,52 +16,57 @@ const CalendarItem = ({
   id,
   onArticleClick,
   onDeleteClick,
-}) => (
-  <article
-    className={ccn({
-      calendarItem: true,
-      calendarItem_important: isImportant,
-    })}
-  >
-    <button
-      className={styles.calendarItem__button}
-      type="button"
-      onClick={() => {
-        onArticleClick({
-          data: { title, location, date, description, isImportant, id },
-          modalType: 'articleEditor',
-        });
-      }}
-      aria-label="article-edit"
+}) => {
+  return (
+    <article
+      className={ccn({
+        calendarItem: true,
+        calendarItem_important: isImportant,
+      })}
     >
-      <div className={styles.calendarItem__info}>
-        <div className={styles.calendarItem__time}>
-          <span>{moment(date).format('HH:mm')}</span>
+      <button
+        className={styles.calendarItem__button}
+        type="button"
+        onClick={() => {
+          onArticleClick({
+            data: { title, location, date, description, isImportant, id },
+            modalType: 'articleEditor',
+          });
+        }}
+        aria-label="article-edit"
+      >
+        <div className={styles.calendarItem__info}>
+          <div className={styles.calendarItem__time}>
+            <span>{moment(date).format('HH:mm')}</span>
+          </div>
+          <div className={styles.calendarItem__location}>
+            <span
+              className={ccn(
+                'calendarItem__text',
+                'calendarItem__locationText',
+              )}
+            >
+              {location}
+            </span>
+          </div>
         </div>
-        <div className={styles.calendarItem__location}>
+        <div className={styles.calendarItem__content}>
+          <h3 className={ccn('calendarItem__text', 'calendarItem__title')}>
+            {title}
+          </h3>
           <span
-            className={ccn('calendarItem__text', 'calendarItem__locationText')}
+            className={ccn('calendarItem__text', 'calendarItem__description')}
           >
-            {location}
+            {description}
           </span>
         </div>
+      </button>
+      <div className={styles.calendarItem__delete}>
+        <CloseButton onClick={onDeleteClick(id)} />
       </div>
-      <div className={styles.calendarItem__content}>
-        <h3 className={ccn('calendarItem__text', 'calendarItem__title')}>
-          {title}
-        </h3>
-        <span
-          className={ccn('calendarItem__text', 'calendarItem__description')}
-        >
-          {description}
-        </span>
-      </div>
-    </button>
-    <div className={styles.calendarItem__delete}>
-      <CloseButton onClick={onDeleteClick(id)} />
-    </div>
-  </article>
-);
+    </article>
+  );
+};
 
 CalendarItem.propTypes = {
   title: PropTypes.string.isRequired,

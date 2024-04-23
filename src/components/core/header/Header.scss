@@ -1,9 +1,10 @@
 .header {
   display: flex;
-  background: url(../../../assets/images/jpg/headerBackground.jpg) center no-repeat;
+  background: url("../../../assets/images/jpg/headerBackground.jpg") center no-repeat;
   background-size: cover;
   color: $contrastColor;
   padding: 10px 15px;
+
   $parent: &;
 
   &__container {
@@ -31,21 +32,15 @@
     margin-bottom: 5px;
 
     &:hover {
-      -webkit-box-shadow: 0 0 25px 10px $active;
-      -moz-box-shadow: 0 0 25px 10px $active;
       box-shadow: 0 0 25px 10px $active;
     }
 
     &:focus {
       outline: none;
-      -webkit-box-shadow: 0 0 15px 5px $active;
-      -moz-box-shadow: 0 0 15px 5px $active;
       box-shadow: 0 0 15px 5px $active;
     }
 
     &:active {
-      -webkit-box-shadow: 0 0 25px 10px $active;
-      -moz-box-shadow: 0 0 25px 10px $active;
       box-shadow: 0 0 25px 10px $active;
       position: relative;
       left: 0.2%;
@@ -84,21 +79,15 @@
     word-break: break-word;
 
     &:hover {
-      -webkit-box-shadow: 0 0 25px 10px $active;
-      -moz-box-shadow: 0 0 25px 10px $active;
       box-shadow: 0 0 25px 10px $active;
     }
 
     &:focus {
       outline: none;
-      -webkit-box-shadow: 0 0 15px 5px $active;
-      -moz-box-shadow: 0 0 15px 5px $active;
       box-shadow: 0 0 15px 5px $active;
     }
 
     &:active {
-      -webkit-box-shadow: 0 0 25px 10px $active;
-      -moz-box-shadow: 0 0 25px 10px $active;
       box-shadow: 0 0 25px 10px $active;
       position: relative;
       left: 0.2%;

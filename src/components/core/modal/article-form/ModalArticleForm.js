@@ -6,8 +6,8 @@ import UiButton, {
   uiButton_reset,
   uiButton_small,
 } from '~/components/ui/button/UiButton';
-import styles from './ModalArticleForm.scss';
 import UiCheckbox from '~/components/ui/checkbox/UiCheckbox';
+import * as styles from './ModalArticleForm.scss';
 import ArticleFormInputs from './inputs/ArticleFormInputs';
 
 const ccn = classNames.bind(styles);
@@ -81,7 +81,7 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
       {
         id: inputs.id,
         type: 'articleEditor',
-      }
+      },
     );
   };
 

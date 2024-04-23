@@ -26,23 +26,17 @@
 
     &:focus {
       outline: none;
-      -webkit-box-shadow: 0 0 5px 2px $active;
-      -moz-box-shadow: 0 0 5px 2px $active;
       box-shadow: 0 0 5px 2px $active;
     }
 
     &:hover {
       transition: box-shadow 0.5s ease-in-out;
-      -webkit-box-shadow: 0 0 10px 7px $active;
-      -moz-box-shadow: 0 0 10px 7px $active;
       box-shadow: 0 0 10px 7px $active;
     }
 
     &:active {
       margin-top: 2px;
       margin-left: 2px;
-      -webkit-box-shadow: 0 0 10px 5px $active;
-      -moz-box-shadow: 0 0 10px 5px $active;
       box-shadow: 0 0 10px 5px $active;
     }
   }

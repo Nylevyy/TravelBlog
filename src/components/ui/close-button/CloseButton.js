@@ -1,17 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './CloseButton.scss';
+import * as styles from './CloseButton.scss';
 
-const CloseButton = ({ onClick }) => (
-  <div className={styles.closeButton}>
-    <button
-      aria-label="close-button"
-      className={styles.closeButton__button}
-      onClick={() => onClick()}
-      type="button"
-    />
-  </div>
-);
+const CloseButton = ({ onClick }) => {
+  return (
+    <div className={styles.closeButton}>
+      <button
+        aria-label="close-button"
+        className={styles.closeButton__button}
+        onClick={() => onClick()}
+        type="button"
+      />
+    </div>
+  );
+};
 
 CloseButton.propTypes = {
   onClick: PropTypes.func,

@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import UiInput, {
@@ -11,11 +13,17 @@ import UiButton, {
   uiButton_reset,
   uiButton_small,
 } from '~/components/ui/button/UiButton';
+import { join, requestLogIn } from '~/store/ducks/app/actions';
+import { logInSelector } from '~/store/ducks/app/selectors';
 import * as styles from './LoginPage.scss';
 
 const ccn = classNames.bind(styles);
 
-const LoginPage = ({ onLogInClick, onJoinClick, requestError }) => {
+const LoginPage = ({ requestError }) => {
+  const dispatch = useDispatch();
+
+  const isLoggedIn = useSelector((state) => logInSelector(state));
+
   const [inputs, setInputs] = useState({
     values: ['', ''],
     isValid: true,
@@ -30,12 +38,31 @@ const LoginPage = ({ onLogInClick, onJoinClick, requestError }) => {
       });
     },
   });
+
+  const onJoinClick = useCallback(
+    (userInfo) => {
+      dispatch(join({ userInfo }));
+    },
+    [dispatch],
+  );
+  const onLogInClick = useCallback(
+    (userInfo) => {
+      dispatch(requestLogIn({ ...userInfo }));
+    },
+    [dispatch],
+  );
+
   const onSubmitForm = () => {
     onLogInClick({ username: inputs.values[0], password: inputs.values[1] });
   };
   const onCreateUserClick = () => {
     onJoinClick({ username: inputs.values[0], password: inputs.values[1] });
   };
+
+  if (isLoggedIn) {
+    return <Navigate to="/" replace />;
+  }
+
   return (
     <LayoutError>
       <div className={styles.loginPage}>
@@ -88,8 +115,6 @@ const LoginPage = ({ onLogInClick, onJoinClick, requestError }) => {
 };
 
 LoginPage.propTypes = {
-  onJoinClick: PropTypes.func.isRequired,
-  onLogInClick: PropTypes.func.isRequired,
   requestError: PropTypes.bool,
 };
 

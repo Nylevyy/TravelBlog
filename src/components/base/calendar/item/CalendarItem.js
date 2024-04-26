@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
-import CloseButton from '~/components/ui/close-button/CloseButton';
+import { UiCloseButton } from '~/shared/ui/close-button';
 import * as styles from './CalendarItem.scss';
 
 const ccn = classNames.bind(styles);
@@ -62,7 +62,7 @@ const CalendarItem = ({
         </div>
       </button>
       <div className={styles.calendarItem__delete}>
-        <CloseButton onClick={onDeleteClick(id)} />
+        <UiCloseButton onClick={onDeleteClick(id)} />
       </div>
     </article>
   );

@@ -6,7 +6,7 @@ import UiButton, {
   uiButton_reset,
   uiButton_small,
 } from '~/components/ui/button/UiButton';
-import UiCheckbox from '~/components/ui/checkbox/UiCheckbox';
+import { UiCheckbox } from '~/shared/ui/checkbox';
 import * as styles from './ModalArticleForm.scss';
 import ArticleFormInputs from './inputs/ArticleFormInputs';
 

@@ -1,4 +1,4 @@
-import Api from '~/plugins/api/api';
+import { Api } from '~/shared/api';
 
 export const fetchMainData = async () => {
   const { data } = await Api.get({ url: 'api/calendarData' });

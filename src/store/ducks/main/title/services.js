@@ -1,4 +1,4 @@
-import Api from '~/plugins/api/api';
+import { Api } from '~/shared/api';
 
 const titlePath = 'api/calendarData/title';
 

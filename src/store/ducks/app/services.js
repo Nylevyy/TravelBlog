@@ -1,4 +1,4 @@
-import Api from '~/plugins/api/api';
+import { Api } from '~/shared/api';
 
 export const authLogin = async (request) => {
   await Api.post({ url: 'api/auth/login', ...request });

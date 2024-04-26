@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import { UiDatePicker } from '~/shared/ui/date-picker';
 import { UiInput } from '~/shared/ui/input';
-import DatePicker from '~/widgets/date-picker/DatePicker';
 import * as styles from './ArticleFormInputs.scss';
 
 const ccn = classNames.bind(styles);
@@ -28,7 +28,7 @@ const ArticleFormInputs = ({ onInput, onChange, values, notValidated }) => {
             isValid={!notValidated.includes(1)}
             onChange={onChange}
           />
-          <DatePicker
+          <UiDatePicker
             onChange={onChange}
             value={values[2]}
             isValid={!notValidated.includes(2)}

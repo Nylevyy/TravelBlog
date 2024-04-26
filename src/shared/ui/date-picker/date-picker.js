@@ -1,10 +1,10 @@
 import React from 'react';
+import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import DateTimePicker, { registerLocale } from 'react-datepicker';
 import { ru } from 'date-fns/locale';
-import classNames from 'classnames/bind';
 import 'react-datepicker/dist/react-datepicker.css';
-import * as styles from './DatePicker.scss';
+import * as styles from './date-picker.scss';
 
 registerLocale('ru', ru);
 

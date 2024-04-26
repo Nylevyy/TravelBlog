@@ -4,7 +4,7 @@ module.exports = {
     'airbnb',
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
-    "plugin:react/recommended",
+    'plugin:react/recommended',
     'plugin:sonarjs/recommended',
     'eslint:recommended',
   ],
@@ -65,11 +65,15 @@ module.exports = {
       },
     ],
     'react/jsx-filename-extension': 0,
+    'react/react-in-jsx-scope': 0,
     'react/jsx-props-no-spreading': 0,
     'react/jsx-indent': ['warn', 2],
-    'react/function-component-definition': [2, {
-      'namedComponents': 'arrow-function',
-    }],
+    'react/function-component-definition': [
+      2,
+      {
+        namedComponents: 'arrow-function',
+      },
+    ],
     camelcase: 0,
   },
 };

@@ -74,7 +74,7 @@ module.exports = () => {
               loader: 'sass-loader',
               options: {
                 additionalData:
-                  '@import "./src/assets/scss/variables/index.scss";',
+                  '@import "./src/shared/scss/variables/index.scss";',
               },
             },
           ],

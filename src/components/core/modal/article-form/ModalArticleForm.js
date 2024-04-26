@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
-import UiButton, {
-  uiButton_submit,
-  uiButton_reset,
-  uiButton_small,
-} from '~/components/ui/button/UiButton';
+import { UiButton } from '~/shared/ui/button';
 import { UiCheckbox } from '~/shared/ui/checkbox';
 import * as styles from './ModalArticleForm.scss';
 import ArticleFormInputs from './inputs/ArticleFormInputs';
-
-const ccn = classNames.bind(styles);
 
 const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
   const [inputs, setInputs] = useState({
@@ -111,13 +104,15 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
         <div className={styles.modalArticleForm__buttons}>
           <UiButton
             label="Готово"
-            className={ccn(uiButton_submit, uiButton_small)}
+            type="submit"
+            size="small"
             onClick={onSubmitForm}
           />
           {data && (
             <UiButton
               label="Удалить"
-              className={ccn(uiButton_reset, uiButton_small)}
+              type="reset"
+              size="small"
               onClick={onDeleteClick(data.id)}
             />
           )}

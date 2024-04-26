@@ -5,11 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { UiInput } from '~/shared/ui/input';
 import LayoutError from '~/components/layouts/error/LayoutError';
-import UiButton, {
-  uiButton_submit,
-  uiButton_reset,
-  uiButton_small,
-} from '~/components/ui/button/UiButton';
+import { UiButton } from '~/shared/ui/button';
 import { join, requestLogIn } from '~/store/ducks/app/actions';
 import { logInSelector } from '~/store/ducks/app/selectors';
 import * as styles from './LoginPage.scss';
@@ -95,12 +91,14 @@ const LoginPage = ({ requestError }) => {
             <div className={styles.loginPage__buttons}>
               <UiButton
                 label="Войти"
-                className={ccn(uiButton_submit, uiButton_small)}
+                type="submit"
+                size="small"
                 onClick={onSubmitForm}
               />
               <UiButton
                 label="Создать"
-                className={ccn(uiButton_reset, uiButton_small)}
+                type="reset"
+                size="small"
                 onClick={onCreateUserClick}
               />
             </div>

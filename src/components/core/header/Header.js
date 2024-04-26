@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import UiButton, {
-  uiButton_submit,
-  uiButton_refresh,
-} from '../../ui/button/UiButton';
+import { UiButton } from '~/shared/ui/button';
 import * as styles from './Header.scss';
 
 const ccn = classNames.bind(styles);
@@ -37,15 +34,11 @@ const Header = ({
           <h2>{title}</h2>
         </button>
         <div className={styles.header__buttons}>
-          <UiButton
-            onClick={onNewEventClick}
-            label="Событие +"
-            className={ccn(uiButton_submit)}
-          />
+          <UiButton onClick={onNewEventClick} label="Событие +" type="submit" />
           <UiButton
             onClick={onRefreshContentClick}
             label="Обновить"
-            className={ccn(uiButton_refresh)}
+            type="transparent"
           />
         </div>
       </div>

@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
+import { UiButton } from '~/shared/ui/button';
 import { UiInput } from '~/shared/ui/input';
-import * as styles from '~/components/core/modal/title-form/ModalTitleForm.scss';
-import UiButton, {
-  uiButton_submit,
-  uiButton_small,
-} from '~/components/ui/button/UiButton';
-
-const ccn = classNames.bind(styles);
+import * as styles from './ModalTitleForm.scss';
 
 const ModalTitleForm = ({ title, onSubmitFormClick }) => {
   const [input, setInput] = useState({
@@ -51,7 +45,8 @@ const ModalTitleForm = ({ title, onSubmitFormClick }) => {
       <div className={styles.modalTitleForm__buttons}>
         <UiButton
           label="Готово"
-          className={ccn(uiButton_submit, uiButton_small)}
+          type="submit"
+          size="small"
           onClick={onSubmitForm}
         />
       </div>

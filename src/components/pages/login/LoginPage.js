@@ -3,10 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import UiInput, {
-  uiInput_title,
-  uiInput_location,
-} from '~/components/ui/input/UiInput';
+import { UiInput } from '~/shared/ui/input';
 import LayoutError from '~/components/layouts/error/LayoutError';
 import UiButton, {
   uiButton_submit,
@@ -77,7 +74,7 @@ const LoginPage = ({ requestError }) => {
           </span>
           <form action="*" className={styles.loginPage__form}>
             <UiInput
-              className={ccn(uiInput_title)}
+              className={ccn('loginPage__titleInput')}
               index={0}
               isValid={inputs.isValid}
               value={inputs.values[0]}
@@ -86,7 +83,7 @@ const LoginPage = ({ requestError }) => {
               label="Логин"
             />
             <UiInput
-              className={ccn(uiInput_location)}
+              className={ccn('loginPage__passwordInput')}
               index={1}
               isValid={inputs.isValid}
               value={inputs.values[1]}

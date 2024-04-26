@@ -31,6 +31,20 @@
     flex: 1;
   }
 
+  &__title-input {
+    input {
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+
+  &__password-input {
+    input {
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+
   &__buttons {
     display: flex;
     justify-content: flex-end;

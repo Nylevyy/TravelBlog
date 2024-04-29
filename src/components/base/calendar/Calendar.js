@@ -2,15 +2,11 @@ import React, { useCallback } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { Article } from '~/entities/article';
-import {
-  articlesActions,
-  articlesSelectors,
-} from '~/store/ducks/main/articles';
+import { Article, deleteArticle } from '~/entities/article';
+import { articlesSelectors } from '~/store/ducks/main/articles';
 import { appActions } from '~/store/ducks/app';
 import * as styles from './Calendar.scss';
 
-const { deleteArticle } = articlesActions;
 const { openModal } = appActions;
 const { articlesSelector } = articlesSelectors;
 

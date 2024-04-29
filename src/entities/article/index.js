@@ -3,7 +3,7 @@ export {
   deleteArticle,
   createArticle,
   updateArticle,
-  rootArticleSaga,
+  articleSaga,
   getArticleError,
   getIsArticleFetching,
 } from './model';

@@ -76,4 +76,11 @@ module.exports = {
     ],
     camelcase: 0,
   },
+  overrides: [
+    // allow mutable state in @redux/toolkit
+    {
+      files: ['src/**/*slice.js'],
+      rules: { 'no-param-reassign': ['error', { props: false }] },
+    },
+  ],
 };

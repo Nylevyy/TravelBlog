@@ -2,13 +2,13 @@ import React, { useCallback } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import { Article } from '~/entities/article';
 import {
   articlesActions,
   articlesSelectors,
 } from '~/store/ducks/main/articles';
 import { appActions } from '~/store/ducks/app';
 import * as styles from './Calendar.scss';
-import CalendarItem from './item/CalendarItem';
 
 const { deleteArticle } = articlesActions;
 const { openModal } = appActions;
@@ -69,8 +69,8 @@ const Calendar = ({ requestError, isLoggedIn }) => {
                     <div className={styles.calendar__date}>
                       <h3>{currentDate}</h3>
                     </div>
-                    <CalendarItem
-                      {...item}
+                    <Article
+                      article={item}
                       key={item.id}
                       onDeleteClick={onDeleteClick}
                       onArticleClick={onArticleClick}
@@ -79,8 +79,8 @@ const Calendar = ({ requestError, isLoggedIn }) => {
                 );
               }
               return (
-                <CalendarItem
-                  {...item}
+                <Article
+                  article={item}
                   key={item.id}
                   onDeleteClick={onDeleteClick}
                   onArticleClick={onArticleClick}

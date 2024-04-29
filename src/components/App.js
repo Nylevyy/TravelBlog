@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '~/shared/model';
 import { appActions, appSelectors } from '~/store/ducks/app';
 import ErrorPage from '~/components/pages/404/ErrorPage';
 import LoginPage from '~/components/pages/login/LoginPage';
@@ -13,12 +13,12 @@ const { closeModal, initApp } = appActions;
 const { appSelector } = appSelectors;
 
 const App = () => {
-  const { init, modal, requestError, isFetching } = useSelector((state) =>
+  const { init, modal, requestError, isFetching } = useAppSelector((state) =>
     appSelector(state),
   );
-  const isLoggedIn = useSelector((state) => logInSelector(state));
+  const isLoggedIn = useAppSelector((state) => logInSelector(state));
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!isFetching) dispatch(closeModal());

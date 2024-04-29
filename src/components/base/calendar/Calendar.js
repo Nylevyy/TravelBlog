@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '~/shared/model';
 import { Article, deleteArticle } from '~/entities/article';
 import { articlesSelectors } from '~/store/ducks/main/articles';
 import { appActions } from '~/store/ducks/app';
@@ -11,8 +11,8 @@ const { openModal } = appActions;
 const { articlesSelector } = articlesSelectors;
 
 const Calendar = ({ requestError, isLoggedIn }) => {
-  const articles = useSelector((state) => articlesSelector(state));
-  const dispatch = useDispatch();
+  const articles = useAppSelector((state) => articlesSelector(state));
+  const dispatch = useAppDispatch();
   const onArticleClick = useCallback(
     (payload) => {
       dispatch(openModal({ ...payload }));

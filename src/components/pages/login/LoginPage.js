@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { UiInput } from '~/shared/ui/input';
 import LayoutError from '~/components/layouts/error/LayoutError';
+import { useAppDispatch, useAppSelector } from '~/shared/model';
+import { UiInput } from '~/shared/ui/input';
 import { UiButton } from '~/shared/ui/button';
 import { join, requestLogIn } from '~/store/ducks/app/actions';
 import { logInSelector } from '~/store/ducks/app/selectors';
@@ -13,9 +13,9 @@ import * as styles from './LoginPage.scss';
 const ccn = classNames.bind(styles);
 
 const LoginPage = ({ requestError }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const isLoggedIn = useSelector((state) => logInSelector(state));
+  const isLoggedIn = useAppSelector((state) => logInSelector(state));
 
   const [inputs, setInputs] = useState({
     values: ['', ''],

@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { mainActions } from '~/store/ducks/main';
 import LayoutMain from '~/components/layouts/main/LayoutMain';
 import Calendar from '~/components/base/calendar/Calendar';
 import Loader from '~/components/core/loader/Loader';
+import { useAppDispatch } from '~/shared/model';
+import { mainActions } from '~/store/ducks/main';
 
 const { initMain } = mainActions;
 
 const Main = ({ modal, requestError, isFetching, isLoggedIn }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     if (!isLoggedIn) return;
     dispatch(initMain());

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '~/shared/model';
 import { mainActions } from '~/store/ducks/main';
 import { articlesActions } from '~/store/ducks/main/articles';
 import { appActions } from '~/store/ducks/app';
@@ -16,8 +16,8 @@ const { editTitle } = titleActions;
 const { titleSelector } = titleSelectors;
 
 const LayoutMain = ({ modal, children }) => {
-  const title = useSelector((state) => titleSelector(state));
-  const dispatch = useDispatch();
+  const title = useAppSelector((state) => titleSelector(state));
+  const dispatch = useAppDispatch();
   const onNewEventClick = useCallback(() => {
     dispatch(openModal({ modalType: 'articleEditor', data: null }));
   }, [dispatch]);

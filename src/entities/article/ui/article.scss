@@ -22,7 +22,6 @@
     flex-direction: column;
     flex: 1;
     align-items: stretch;
-    border: none;
     cursor: pointer;
     text-align: left;
     padding: 10px;
@@ -43,10 +42,6 @@
       outline: none;
       box-shadow: none;
     }
-  }
-
-  &.uu {
-    background-color: black !important;
   }
 
   .info {

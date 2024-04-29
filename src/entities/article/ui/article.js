@@ -13,7 +13,7 @@ const Article = ({ article, onArticleClick, onDeleteClick }) => {
   return (
     <article className={styles.article}>
       <button
-        className={ccn('button', 'uu', {
+        className={ccn('button', {
           important: isImportant,
         })}
         type="button"
@@ -46,7 +46,7 @@ const Article = ({ article, onArticleClick, onDeleteClick }) => {
 };
 
 Article.propTypes = {
-  article: PropTypes.objectOf({
+  article: PropTypes.exact({
     title: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,

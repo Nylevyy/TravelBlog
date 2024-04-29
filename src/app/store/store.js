@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import { all } from '@redux-saga/core/effects';
-import { articleSaga, articleReducer } from '~/entities/article/model';
+import { articleSaga, articleReducer } from '~/entities/article';
 
 // TODO: remove legacy
 import { rootArticlesSaga, articlesReducer } from '~/store/ducks/main/articles';

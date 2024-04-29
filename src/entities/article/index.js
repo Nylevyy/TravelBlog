@@ -1,5 +1,6 @@
 export { Article } from './ui';
 export {
+  articleReducer,
   deleteArticle,
   createArticle,
   updateArticle,

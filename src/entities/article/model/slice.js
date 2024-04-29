@@ -2,7 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const articleSlice = createSlice({
   name: 'article',
-  initialState: null,
+  initialState: {
+    error: null,
+    isFetching: {},
+  },
   reducers: {
     setError: (state, action) => {
       state.error = action.payload;

@@ -2,17 +2,17 @@ import React, { useEffect } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '~/shared/model';
 import { appActions, appSelectors } from '~/store/ducks/app';
+import Loader from '~/components/core/loader/Loader';
 import ErrorPage from '~/components/pages/404/ErrorPage';
 import LoginPage from '~/components/pages/login/LoginPage';
 import Main from '~/components/pages/main/Main';
 import AuthProvider from '~/components/providers/auth/AuthProvider';
 import { logInSelector } from '~/store/ducks/app/selectors';
-import Loader from './core/loader/Loader';
 
 const { closeModal, initApp } = appActions;
 const { appSelector } = appSelectors;
 
-const App = () => {
+const Router = () => {
   const { init, modal, requestError, isFetching } = useAppSelector((state) =>
     appSelector(state),
   );
@@ -61,4 +61,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Router;

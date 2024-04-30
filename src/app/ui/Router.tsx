@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '~/shared/model';
 import { appActions, appSelectors } from '~/store/ducks/app';

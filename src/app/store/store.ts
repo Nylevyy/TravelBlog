@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import { all } from '@redux-saga/core/effects';
+import { all } from 'redux-saga/effects';
 import { articleSaga, articleReducer } from '~/entities/article';
 
 // TODO: remove legacy
@@ -28,7 +28,7 @@ export const store = configureStore({
     app: appReducer,
     title: titleReducer,
   },
-  middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), saga],
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([saga]),
 });
 
 saga.run(rootSaga);

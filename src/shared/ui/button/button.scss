@@ -5,39 +5,7 @@
   align-items: center;
   width: $smallDevicesButtons;
 
-  $parent: &;
-
-  &_submit {
-    & #{$parent}__button {
-      background-color: $active;
-    }
-  }
-
-  &_transparent {
-    & #{$parent}__button {
-      background-color: transparent;
-    }
-  }
-
-  &_reset {
-    & #{$parent}__button {
-      background-color: transparent;
-      color: $resetColor;
-    }
-  }
-
-  &_cancel {
-    & #{$parent}__button {
-      background-color: $error;
-      color: $contrastColor;
-    }
-  }
-
-  &_small {
-    width: $modalButtons;
-  }
-
-  &__button {
+  .button {
     display: flex;
     border: 3px solid $active;
     line-height: 30px;
@@ -65,10 +33,40 @@
       box-shadow: 0 0 15px 5px $active;
     }
 
-    & #{$parent}__label {
+    .label {
       margin: 0 auto;
       font-weight: 700;
     }
+  }
+
+  &.submit {
+    .button {
+      background-color: $active;
+    }
+  }
+
+  &.transparent {
+    .button {
+      background-color: transparent;
+    }
+  }
+
+  &.reset {
+    .button {
+      background-color: transparent;
+      color: $resetColor;
+    }
+  }
+
+  &.cancel {
+    .button {
+      background-color: $error;
+      color: $contrastColor;
+    }
+  }
+
+  &.small {
+    width: $modalButtons;
   }
 }
 
@@ -76,7 +74,7 @@
   .ui-button {
     width: $baseButtons;
 
-    &_small {
+    &.small {
       width: $modalButtons;
     }
   }

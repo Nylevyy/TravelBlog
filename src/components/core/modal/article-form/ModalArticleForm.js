@@ -103,10 +103,10 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
         />
         <div className={styles.modalArticleForm__buttons}>
           <UiButton
+            htmlProps={{ type: 'submit' }}
             label="Готово"
-            type="submit"
             size="small"
-            onClick={onSubmitForm}
+            type="submit"
           />
           {data && (
             <UiButton

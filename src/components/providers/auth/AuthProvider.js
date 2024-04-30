@@ -1,6 +1,6 @@
 import React from 'react';
-import { useAppSelector } from '~/shared/model';
 import { Navigate, Outlet } from 'react-router-dom';
+import { useAppSelector } from '~/shared/model';
 import { logInSelector } from '~/store/ducks/app/selectors';
 
 const AuthProvider = () => {

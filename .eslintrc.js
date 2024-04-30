@@ -16,6 +16,7 @@ module.exports = {
     localStorage: true,
   },
   settings: {
+    'import/extensions': [".js", ".jsx", ".ts", ".tsx"],
     'import/resolver': {
       webpack: {
         config: 'webpack.config.js',
@@ -31,17 +32,11 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    'import/extensions': 0,
     'import/no-unresolved': 0,
     'import/no-extraneous-dependencies': 0,
     'import/prefer-default-export': 0,
     'linebreak-style': 0,
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-      },
-    ],
     'react/require-default-props': 0,
     'react/forbid-prop-types': 0,
     'no-bitwise': [
@@ -82,5 +77,14 @@ module.exports = {
       files: ['src/**/*slice.js'],
       rules: { 'no-param-reassign': ['error', { props: false }] },
     },
+    {
+      files: ['*.{ts,tsx}'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: './tsconfig.json',
+      },
+      plugins: ['@typescript-eslint'],
+      extends: ['airbnb-typescript', 'plugin:@typescript-eslint/recommended'],
+    }
   ],
 };

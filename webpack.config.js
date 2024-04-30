@@ -48,7 +48,7 @@ module.exports = () => {
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.(js|ts)x?$/,
           exclude: /node_modules/,
           loader: 'babel-loader',
         },
@@ -118,7 +118,7 @@ module.exports = () => {
       alias: {
         '~': path.resolve(__dirname, 'src/'),
       },
-      extensions: ['.json', '.js'],
+      extensions: ['.tsx', '.ts', '.jsx', '...'],
     },
     devServer: {
       port,
@@ -131,7 +131,7 @@ module.exports = () => {
         const { port } = devServer.options;
         console.log(
           '\x1b[36m%s\x1b[0m',
-          `Starting the development server on port: ${port}\n`
+          `Starting the development server on port: ${port}\n`,
         );
       },
       client: {

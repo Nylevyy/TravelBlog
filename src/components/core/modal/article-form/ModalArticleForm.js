@@ -59,7 +59,7 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
     const article = {
       title: inputs.values[0],
       location: inputs.values[1],
-      date: inputs.values[2],
+      date: new Date(inputs.values[2]).toISOString(),
       description: inputs.values[3],
       isImportant: inputs.values[4],
     };

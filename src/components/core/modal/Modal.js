@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import ModalTitleForm from '~/components/core/modal/title-form/ModalTitleForm';
 import { UiCloseButton } from '~/shared/ui/close-button';
+import ModalTitleForm from '~/components/core/modal/title-form/ModalTitleForm';
 import ModalArticleForm from './article-form/ModalArticleForm';
 import * as styles from './Modal.scss';
 

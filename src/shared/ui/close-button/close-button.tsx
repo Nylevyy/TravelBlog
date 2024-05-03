@@ -1,22 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import * as styles from './close-button.scss';
 
-const CloseButton = ({ onClick }) => {
+type Props = {
+  onClick: () => void;
+};
+
+const CloseButton = ({ onClick }: Props) => {
   return (
     <div className={styles.closeButton}>
       <button
         aria-label="close-button"
-        className={styles.closeButton__button}
+        className={styles.button}
         onClick={() => onClick()}
         type="button"
       />
     </div>
   );
-};
-
-CloseButton.propTypes = {
-  onClick: PropTypes.func,
 };
 
 export default CloseButton;

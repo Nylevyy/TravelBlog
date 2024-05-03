@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { UiLoader } from '~/shared/ui/loader';
 import LayoutMain from '~/components/layouts/main/LayoutMain';
 import Calendar from '~/components/base/calendar/Calendar';
-import Loader from '~/components/core/loader/Loader';
 import { useAppDispatch } from '~/shared/model';
 import { mainActions } from '~/store/ducks/main';
 
@@ -17,7 +17,7 @@ const Main = ({ modal, requestError, isFetching, isLoggedIn }) => {
   return (
     <LayoutMain modal={modal} isLoggedIn={isLoggedIn}>
       <>
-        {!!isFetching && <Loader />}
+        {!!isFetching && <UiLoader />}
         <Calendar requestError={requestError} isLoggedIn={isLoggedIn} />
       </>
     </LayoutMain>

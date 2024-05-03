@@ -25,9 +25,11 @@ export const store = configureStore({
   reducer: {
     article: articleReducer,
     articles: articlesReducer,
+    // @ts-expect-error TODO
     app: appReducer,
     title: titleReducer,
   },
+  // @ts-expect-error TODO
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([saga]),
 });
 

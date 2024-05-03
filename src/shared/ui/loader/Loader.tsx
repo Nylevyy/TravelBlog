@@ -1,12 +1,12 @@
-import React from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
 import * as styles from './Loader.scss';
 
 const Loader = () => {
-  const items = [];
-  for (let i = 0; i < 7; i++) {
-    items.push(<BeatLoader loading="true" size="75px" key={i} />);
-  }
+  const items = new Array(7)
+    .fill(null)
+    // eslint-disable-next-line react/no-array-index-key
+    .map((_, index) => <BeatLoader loading size="75px" key={index} />);
+
   return <div className={styles.loader}>{items}</div>;
 };
 

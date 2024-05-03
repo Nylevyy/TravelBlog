@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { UiLoader } from '~/shared/ui/loader';
 import { useAppDispatch, useAppSelector } from '~/shared/model';
 import { appActions, appSelectors } from '~/store/ducks/app';
-import Loader from '~/components/core/loader/Loader';
 import ErrorPage from '~/components/pages/404/ErrorPage';
 import LoginPage from '~/components/pages/login/LoginPage';
 import Main from '~/components/pages/main/Main';
@@ -31,7 +31,7 @@ const Router = () => {
   return (
     <BrowserRouter>
       <>
-        {(!init || isFetching || null) && <Loader />}
+        {(!init || isFetching || null) && <UiLoader />}
         {init && (
           <Routes>
             <Route

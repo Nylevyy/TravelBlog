@@ -1,8 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { UiDatePicker } from '~/shared/ui/date-picker';
 import { UiInput } from '~/shared/ui/input';
+import { UiDatePicker } from '~/shared/ui/date-picker';
 import * as styles from './ArticleFormInputs.scss';
 
 const ccn = classNames.bind(styles);
@@ -13,20 +12,16 @@ const ArticleFormInputs = ({ onInput, onChange, values, notValidated }) => {
       <div className={styles.articleFormInputs__wrapper}>
         <UiInput
           label="Событие"
-          index={0}
-          onInput={onInput}
-          onChange={onChange}
-          value={values[0]}
           isValid={!notValidated.includes(0)}
+          onChange={(value) => onChange({ index: 0, value })}
+          htmlProps={{ type: 'text', value: values[0] }}
         />
         <div className={styles.articleFormInputs__wrap}>
           <UiInput
             label="Место"
-            index={1}
-            onInput={onInput}
-            value={values[1]}
             isValid={!notValidated.includes(1)}
-            onChange={onChange}
+            onChange={(value) => onChange({ index: 1, value })}
+            htmlProps={{ type: 'text', value: values[1] }}
           />
           <UiDatePicker
             onChange={onChange}

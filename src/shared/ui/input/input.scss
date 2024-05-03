@@ -6,7 +6,7 @@
 
   $parent: &;
 
-  &__field {
+  .field {
     border: none;
     border-bottom: 1px solid $passive;
     padding: 0 0 5px;
@@ -21,12 +21,12 @@
       outline: none;
     }
 
-    &_invalid {
+    &.invalid {
       background-color: $invalid;
     }
   }
 
-  &__label {
+  .label {
     color: $labels;
     font-size: 13px;
   }

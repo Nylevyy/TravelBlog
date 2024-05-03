@@ -37,9 +37,8 @@ const ModalTitleForm = ({ title, onSubmitFormClick }) => {
       <UiInput
         name="title"
         isValid={input.isValid}
-        value={input.value}
-        onInput={input.onInputChange}
-        onChange={input.onInputChange}
+        onChange={(value) => input.onInputChange({ value })}
+        htmlProps={{ type: 'text', value: input.value }}
         label="Заголовок"
       />
       <div className={styles.modalTitleForm__buttons}>

@@ -3,9 +3,9 @@ import { Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { UiButton } from '~/shared/ui/button';
+import { UiInput } from '~/shared/ui/input';
 import LayoutError from '~/components/layouts/error/LayoutError';
 import { useAppDispatch, useAppSelector } from '~/shared/model';
-import { UiInput } from '~/shared/ui/input';
 import { join, requestLogIn } from '~/store/ducks/app/actions';
 import { logInSelector } from '~/store/ducks/app/selectors';
 import * as styles from './LoginPage.scss';
@@ -71,22 +71,17 @@ const LoginPage = ({ requestError }) => {
           <form action="*" className={styles.loginPage__form}>
             <UiInput
               className={ccn('loginPage__titleInput')}
-              index={0}
               isValid={inputs.isValid}
-              value={inputs.values[0]}
-              onInput={inputs.onInputChange}
-              onChange={inputs.onInputChange}
+              onChange={(value) => inputs.onInputChange({ index: 0, value })}
+              htmlProps={{ type: 'text', value: inputs.values[0] }}
               label="Логин"
             />
             <UiInput
               className={ccn('loginPage__passwordInput')}
-              index={1}
               isValid={inputs.isValid}
-              value={inputs.values[1]}
-              onInput={inputs.onInputChange}
-              onChange={inputs.onInputChange}
+              onChange={(value) => inputs.onInputChange({ index: 1, value })}
+              htmlProps={{ type: 'password', value: inputs.values[1] }}
               label="Пароль"
-              type="password"
             />
             <div className={styles.loginPage__buttons}>
               <UiButton

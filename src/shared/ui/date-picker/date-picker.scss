@@ -6,21 +6,21 @@
   margin-bottom: 10px;
   flex: 1 1;
 
-  &__label {
+  .label {
     color: $labels;
     font-size: 13px;
   }
 
-  &_invalid {
+  &.invalid {
     background: $invalid;
   }
 
-  &__calendar {
+  .calendar {
     font-family: $secondaryFont;
     background: $background;
   }
 
-  &__input {
+  .input {
     border: none;
     border-bottom: 1px solid $labels;
     padding: 0 0 5px;
@@ -52,12 +52,12 @@
     }
   }
 
-  &__popper {
+  .popper {
     font-family: $secondaryFont;
   }
 
   @media screen and (max-height: 450px) {
-    &__popper {
+    .popper {
       transform: none !important;
     }
   }

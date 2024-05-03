@@ -1,10 +1,10 @@
-.modal-title-form {
+.title-form {
   display: flex;
   flex-direction: column;
   min-width: 280px;
   flex: 1;
 
-  &__buttons {
+  .buttons {
     display: flex;
     align-self: flex-end;
     padding: 5px;

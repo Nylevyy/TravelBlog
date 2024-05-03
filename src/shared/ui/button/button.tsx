@@ -7,7 +7,7 @@ const ccn = classNames.bind(styles);
 
 type Props = {
   onClick?: () => void;
-  className: string;
+  className?: string;
   label?: string;
   type?: ButtonType;
   size?: ButtonSize;

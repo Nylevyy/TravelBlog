@@ -157,6 +157,7 @@ module.exports = () => {
         new webpack.LoaderOptionsPlugin({
           minimize: true,
         }),
+        new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /ru/),
       ]),
     };
   }

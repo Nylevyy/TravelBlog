@@ -66,7 +66,7 @@ module.exports = () => {
                 modules: {
                   exportLocalsConvention: 'dashes',
                   mode: 'local',
-                  localIdentName: '[path]-[local]',
+                  localIdentName: '[path]-[local]-[hash:base64:5]',
                 },
               },
             },

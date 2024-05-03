@@ -16,7 +16,7 @@ module.exports = {
     localStorage: true,
   },
   settings: {
-    'import/extensions': [".js", ".jsx", ".ts", ".tsx"],
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
     'import/resolver': {
       webpack: {
         config: 'webpack.config.js',
@@ -39,6 +39,12 @@ module.exports = {
     'linebreak-style': 0,
     'react/require-default-props': 0,
     'react/forbid-prop-types': 0,
+    'jsx-a11y/label-has-associated-control': [
+      'error',
+      {
+        allowChildren: true,
+      },
+    ],
     'no-bitwise': [
       'error',
       {
@@ -88,6 +94,6 @@ module.exports = {
       rules: {
         'import/extensions': 0,
       },
-    }
+    },
   ],
 };

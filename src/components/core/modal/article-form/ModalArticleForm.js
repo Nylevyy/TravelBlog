@@ -79,7 +79,7 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
   };
 
   return (
-    <form action="" className={styles.modalArticleForm}>
+    <form action="" className={styles.modalArticleForm} onSubmit={onSubmitForm}>
       <ArticleFormInputs
         values={[
           inputs.values[0],
@@ -95,11 +95,9 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
 
       <div className={styles.modalArticleForm__dashboard}>
         <UiCheckbox
-          index={4}
-          label=" Пометить событие как важное"
-          onChange={inputs.onInputChange}
-          checked={!!inputs.values[4]}
-          id="articleForm__checkbox"
+          label="Пометить событие как важное"
+          onChange={(value) => inputs.onInputChange({ value, index: 4 })}
+          htmlProps={{ checked: !!inputs.values[4] }}
         />
         <div className={styles.modalArticleForm__buttons}>
           <UiButton

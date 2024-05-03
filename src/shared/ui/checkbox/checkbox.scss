@@ -2,12 +2,12 @@
   display: flex;
   padding: 5px;
 
-  &__label {
+  .label {
     color: $secondaryColor;
     cursor: pointer;
   }
 
-  &__input {
+  .input {
     vertical-align: middle;
   }
 }

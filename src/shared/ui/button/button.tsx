@@ -24,7 +24,7 @@ const Button = ({
 }: Props) => {
   const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     if (e.target instanceof HTMLElement) {
-      e.target.closest('button').blur();
+      e.target.closest('button')?.blur();
     }
 
     onClick?.();

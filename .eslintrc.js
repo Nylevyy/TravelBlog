@@ -30,7 +30,6 @@ module.exports = {
       {
         singleQuote: true,
         endOfLine: 'auto',
-        printWidth: 120,
       },
     ],
     'import/extensions': 0,
@@ -76,7 +75,15 @@ module.exports = {
         namedComponents: 'arrow-function',
       },
     ],
-    camelcase: 0,
+    'react/jsx-sort-props': [
+      'warn',
+      {
+        noSortAlphabetically: false,
+        callbacksLast: true,
+        multiline: 'last',
+        reservedFirst: ['key'],
+      },
+    ],
   },
   overrides: [
     // allow mutable state in @redux/toolkit

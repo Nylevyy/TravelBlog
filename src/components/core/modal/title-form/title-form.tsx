@@ -28,13 +28,13 @@ const TitleForm = ({ title, onSubmitFormClick }: Props) => {
   return (
     <FormProvider {...form}>
       <form className={styles.titleForm} onSubmit={handleSubmit(onSubmitForm)}>
-        <InputField name="title" label="Заголовок" type="text" />
+        <InputField label="Заголовок" name="title" type="text" />
         <div className={styles.buttons}>
           <UiButton
-            label="Готово"
-            type="submit"
-            size="small"
             htmlProps={{ type: 'submit' }}
+            label="Готово"
+            size="small"
+            type="submit"
           />
         </div>
       </form>

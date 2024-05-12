@@ -13,9 +13,7 @@ const { closeModal, initApp } = appActions;
 const { appSelector } = appSelectors;
 
 const Router = () => {
-  const { init, modal, requestError, isFetching } = useAppSelector((state) =>
-    appSelector(state),
-  );
+  const { init, modal, requestError, isFetching } = useAppSelector(appSelector);
   const isLoggedIn = useAppSelector((state) => logInSelector(state));
 
   const dispatch = useAppDispatch();
@@ -35,8 +33,8 @@ const Router = () => {
         {init && (
           <Routes>
             <Route
-              path="/login"
               element={<LoginPage requestError={requestError} />}
+              path="/login"
             />
 
             <Route element={<AuthProvider />}>
@@ -44,16 +42,16 @@ const Router = () => {
                 path="/"
                 element={
                   <Main
-                    modal={modal}
-                    isLoggedIn={isLoggedIn}
-                    requestError={requestError}
                     isFetching={isFetching}
+                    isLoggedIn={isLoggedIn}
+                    modal={modal}
+                    requestError={requestError}
                   />
                 }
               />
             </Route>
 
-            <Route path="*" element={<ErrorPage />} />
+            <Route element={<ErrorPage />} path="*" />
           </Routes>
         )}
       </>

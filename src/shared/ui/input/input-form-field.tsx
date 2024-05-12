@@ -19,7 +19,7 @@ const InputFormField = ({ label, name, type }: Props) => {
   );
   const isValid = getFieldState(name).invalid;
 
-  return <Input htmlProps={htmlProps} label={label} isValid={!isValid} />;
+  return <Input htmlProps={htmlProps} isValid={!isValid} label={label} />;
 };
 
 export default InputFormField;

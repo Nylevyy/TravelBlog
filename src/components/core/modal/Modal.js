@@ -29,16 +29,16 @@ const Modal = ({
         <div className={styles.modal__form}>
           {type === 'articleEditor' && (
             <ModalArticleForm
-              onSubmitFormClick={onSubmitFormClick}
-              onDeleteClick={onDeleteClick}
               data={data}
+              onDeleteClick={onDeleteClick}
+              onSubmitFormClick={onSubmitFormClick}
             />
           )}
           {type === 'titleEditor' && (
             <ModalTitleForm
-              onSubmitFormClick={onSubmitFormClick}
-              onDeleteClick={onDeleteClick}
               title={data.title}
+              onDeleteClick={onDeleteClick}
+              onSubmitFormClick={onSubmitFormClick}
             />
           )}
         </div>

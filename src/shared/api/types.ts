@@ -14,7 +14,9 @@ export interface Api {
 
   put<T, U>(request: Omit<ApiParams<T>, 'method'>): Promise<AxiosResponse<U>>;
 
-  delete<T, U>(request: Omit<ApiParams<T>, 'method'>): Promise<AxiosResponse<U>>;
+  delete<T, U>(
+    request: Omit<ApiParams<T>, 'method'>,
+  ): Promise<AxiosResponse<U>>;
 
   isPending(): boolean;
   isPending(key: string): boolean;

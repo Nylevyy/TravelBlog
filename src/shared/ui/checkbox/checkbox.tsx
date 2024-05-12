@@ -12,9 +12,9 @@ const Checkbox = ({ onChange, label, htmlProps }: Props) => {
     <div className={styles.uiCheckbox}>
       <label className={styles.label}>
         <input
+          className={styles.input}
           type="checkbox"
           onChange={(e) => onChange?.(e.target.checked)}
-          className={styles.input}
           {...htmlProps}
         />
         {label}

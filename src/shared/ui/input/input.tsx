@@ -20,7 +20,7 @@ const Input = ({ className, isValid, onChange, label, htmlProps }: Props) => {
         onChange={(e) => onChange?.(e.target.value)}
         {...htmlProps}
       />
-      <label htmlFor={className} className={styles.label}>
+      <label className={styles.label} htmlFor={className}>
         {label}
       </label>
     </div>

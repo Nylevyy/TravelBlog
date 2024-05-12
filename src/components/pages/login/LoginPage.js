@@ -53,7 +53,7 @@ const LoginPage = ({ requestError }) => {
   };
 
   if (isLoggedIn) {
-    return <Navigate to="/" replace />;
+    return <Navigate replace to="/" />;
   }
 
   return (
@@ -71,29 +71,29 @@ const LoginPage = ({ requestError }) => {
           <form action="*" className={styles.loginPage__form}>
             <UiInput
               className={ccn('loginPage__titleInput')}
-              isValid={inputs.isValid}
-              onChange={(value) => inputs.onInputChange({ index: 0, value })}
               htmlProps={{ type: 'text', value: inputs.values[0] }}
+              isValid={inputs.isValid}
               label="Логин"
+              onChange={(value) => inputs.onInputChange({ index: 0, value })}
             />
             <UiInput
               className={ccn('loginPage__passwordInput')}
-              isValid={inputs.isValid}
-              onChange={(value) => inputs.onInputChange({ index: 1, value })}
               htmlProps={{ type: 'password', value: inputs.values[1] }}
+              isValid={inputs.isValid}
               label="Пароль"
+              onChange={(value) => inputs.onInputChange({ index: 1, value })}
             />
             <div className={styles.loginPage__buttons}>
               <UiButton
                 label="Войти"
-                type="submit"
                 size="small"
+                type="submit"
                 onClick={onSubmitForm}
               />
               <UiButton
                 label="Создать"
-                type="reset"
                 size="small"
+                type="reset"
                 onClick={onCreateUserClick}
               />
             </div>

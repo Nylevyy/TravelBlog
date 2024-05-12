@@ -10,8 +10,8 @@ const CloseButton = ({ onClick }: Props) => {
       <button
         aria-label="close-button"
         className={styles.button}
-        onClick={() => onClick()}
         type="button"
+        onClick={() => onClick()}
       />
     </div>
   );

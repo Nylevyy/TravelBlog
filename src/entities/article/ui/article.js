@@ -13,17 +13,17 @@ const Article = ({ article, onArticleClick, onDeleteClick }) => {
   return (
     <article className={styles.article}>
       <button
+        aria-label="article-edit"
+        type="button"
         className={ccn('button', {
           important: isImportant,
         })}
-        type="button"
         onClick={() => {
           onArticleClick({
             data: article,
             modalType: 'articleEditor',
           });
         }}
-        aria-label="article-edit"
       >
         <div className={styles.info}>
           <div className={styles.time}>

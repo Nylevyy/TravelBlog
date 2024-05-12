@@ -11,36 +11,36 @@ const ArticleFormInputs = ({ onInput, onChange, values, notValidated }) => {
     <div className={styles.articleFormInputs}>
       <div className={styles.articleFormInputs__wrapper}>
         <UiInput
-          label="Событие"
-          isValid={!notValidated.includes(0)}
-          onChange={(value) => onChange({ index: 0, value })}
           htmlProps={{ type: 'text', value: values[0] }}
+          isValid={!notValidated.includes(0)}
+          label="Событие"
+          onChange={(value) => onChange({ index: 0, value })}
         />
         <div className={styles.articleFormInputs__wrap}>
           <UiInput
-            label="Место"
-            isValid={!notValidated.includes(1)}
-            onChange={(value) => onChange({ index: 1, value })}
             htmlProps={{ type: 'text', value: values[1] }}
+            isValid={!notValidated.includes(1)}
+            label="Место"
+            onChange={(value) => onChange({ index: 1, value })}
           />
           <UiDatePicker
-            onChange={onChange}
-            value={values[2]}
             isValid={!notValidated.includes(2)}
+            value={values[2]}
+            onChange={onChange}
           />
         </div>
       </div>
       <textarea
+        cols="25"
+        name="content"
+        placeholder="Описание"
+        rows="8"
+        value={values[3]}
         className={ccn('articleFormInputs__textarea', {
           articleFormInputs_invalid: notValidated.includes(3),
         })}
-        name="content"
-        cols="25"
-        rows="8"
-        placeholder="Описание"
-        onInput={(e) => onInput({ index: 3, value: e.target.value })}
         onChange={(e) => onChange({ index: 3, value: e.target.value })}
-        value={values[3]}
+        onInput={(e) => onInput({ index: 3, value: e.target.value })}
       />
     </div>
   );

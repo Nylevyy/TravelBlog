@@ -19,20 +19,20 @@ const DatePicker = ({ notValidated, value, onChange, id = 'date' }: Props) => {
   return (
     <div className={styles.datePicker}>
       <DateTimePicker
+        calendarClassName={styles.calendar}
+        dateFormat="d MMMM, yyyy HH:mm"
+        id={id}
+        locale="ru"
+        popperClassName={styles.popper}
+        selected={value}
+        showTimeInput
+        timeCaption="time"
+        timeFormat="HH:mm"
         className={ccn('input', {
           invalid: notValidated,
         })}
-        calendarClassName={styles.calendar}
         onChange={onChange}
         onSelect={onChange}
-        selected={value}
-        id={id}
-        showTimeInput
-        locale="ru"
-        timeFormat="HH:mm"
-        timeCaption="time"
-        dateFormat="d MMMM, yyyy HH:mm"
-        popperClassName={styles.popper}
       />
       <label className={styles.label} htmlFor={id}>
         Время

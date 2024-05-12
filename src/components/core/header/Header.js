@@ -34,11 +34,11 @@ const Header = ({
           <h2>{title}</h2>
         </button>
         <div className={styles.header__buttons}>
-          <UiButton onClick={onNewEventClick} label="Событие +" type="submit" />
+          <UiButton label="Событие +" type="submit" onClick={onNewEventClick} />
           <UiButton
-            onClick={onRefreshContentClick}
             label="Обновить"
             type="transparent"
+            onClick={onRefreshContentClick}
           />
         </div>
       </div>

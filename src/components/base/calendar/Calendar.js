@@ -66,20 +66,20 @@ const Calendar = ({ requestError, isLoggedIn }) => {
                       <h3>{currentDate}</h3>
                     </div>
                     <Article
-                      article={item}
                       key={item.id}
-                      onDeleteClick={onDeleteClick}
+                      article={item}
                       onArticleClick={onArticleClick}
+                      onDeleteClick={onDeleteClick}
                     />
                   </React.Fragment>
                 );
               }
               return (
                 <Article
-                  article={item}
                   key={item.id}
-                  onDeleteClick={onDeleteClick}
+                  article={item}
                   onArticleClick={onArticleClick}
+                  onDeleteClick={onDeleteClick}
                 />
               );
             })}

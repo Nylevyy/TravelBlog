@@ -81,6 +81,7 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
   return (
     <form action="" className={styles.modalArticleForm} onSubmit={onSubmitForm}>
       <ArticleFormInputs
+        notValidated={inputs.notValidated}
         values={[
           inputs.values[0],
           inputs.values[1],
@@ -88,16 +89,15 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
           inputs.values[3],
         ]}
         onChange={inputs.onInputChange}
-        onInput={inputs.onInputChange}
-        notValidated={inputs.notValidated}
         onChangeDate={inputs.onChangeDate}
+        onInput={inputs.onInputChange}
       />
 
       <div className={styles.modalArticleForm__dashboard}>
         <UiCheckbox
+          htmlProps={{ checked: !!inputs.values[4] }}
           label="Пометить событие как важное"
           onChange={(value) => inputs.onInputChange({ value, index: 4 })}
-          htmlProps={{ checked: !!inputs.values[4] }}
         />
         <div className={styles.modalArticleForm__buttons}>
           <UiButton
@@ -109,8 +109,8 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
           {data && (
             <UiButton
               label="Удалить"
-              type="reset"
               size="small"
+              type="reset"
               onClick={onDeleteClick(data.id)}
             />
           )}

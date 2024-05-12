@@ -15,10 +15,10 @@ const Main = ({ modal, requestError, isFetching, isLoggedIn }) => {
     dispatch(initMain());
   }, [isLoggedIn]);
   return (
-    <LayoutMain modal={modal} isLoggedIn={isLoggedIn}>
+    <LayoutMain isLoggedIn={isLoggedIn} modal={modal}>
       <>
         {!!isFetching && <UiLoader />}
-        <Calendar requestError={requestError} isLoggedIn={isLoggedIn} />
+        <Calendar isLoggedIn={isLoggedIn} requestError={requestError} />
       </>
     </LayoutMain>
   );

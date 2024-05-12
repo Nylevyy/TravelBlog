@@ -65,18 +65,18 @@ const LayoutMain = ({ modal, children }) => {
     <>
       <Header
         title={title}
+        onLogoClick={onLogoClick}
         onNewEventClick={onNewEventClick}
         onRefreshContentClick={onRefreshContentClick}
         onTitleClick={onTitleClick}
-        onLogoClick={onLogoClick}
       />
       {children}
       <Footer />
       <Modal
         {...modal}
+        onDeleteClick={onDeleteClick}
         onModalCloseClick={onModalCloseClick}
         onSubmitFormClick={onSubmitFormClick}
-        onDeleteClick={onDeleteClick}
       />
     </>
   );

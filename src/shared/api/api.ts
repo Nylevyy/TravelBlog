@@ -9,7 +9,12 @@ class AxiosApi implements Api {
     baseURL: process.env.API_BASE_URL,
   });
 
-  private async send<T, U>({ method, url, data, params }: ApiParams<T>): Promise<AxiosResponse<U>> {
+  private async send<T, U>({
+    method,
+    url,
+    data,
+    params,
+  }: ApiParams<T>): Promise<AxiosResponse<U>> {
     const reqId = nanoid();
     this.pendingReqs[reqId] = false;
 
@@ -47,7 +52,9 @@ class AxiosApi implements Api {
     });
   }
 
-  delete<T, U>(request: Omit<ApiParams<T>, 'method'>): Promise<AxiosResponse<U>> {
+  delete<T, U>(
+    request: Omit<ApiParams<T>, 'method'>,
+  ): Promise<AxiosResponse<U>> {
     return this.send<T, U>({
       ...request,
       method: 'DELETE',

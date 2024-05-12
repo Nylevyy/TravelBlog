@@ -6,6 +6,7 @@
     "start": "cross-env webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack",
     "lint:check": "eslint src",
+    "lint:fix": "eslint src --fix",
     "ts:check": "tsc",
     "ci:check": "npm run ts:check && npm run lint:check"
   },

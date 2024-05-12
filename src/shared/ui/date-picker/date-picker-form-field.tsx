@@ -13,7 +13,7 @@ const DatePickerFormField = ({ control, name, id }: Props) => {
       control={control}
       name={name}
       render={({ field, fieldState }) => (
-        <DatePicker {...field} notValidated={fieldState.invalid} id={id} />
+        <DatePicker {...field} id={id} notValidated={fieldState.invalid} />
       )}
     />
   );

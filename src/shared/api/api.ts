@@ -1,54 +1,76 @@
+import { nanoid } from '@reduxjs/toolkit';
 import Axios, { AxiosResponse } from 'axios';
+import { Api, ApiParams } from './types';
 
-const axios = Axios.create({
-  baseURL: process.env.API_BASE_URL,
-});
+class AxiosApi implements Api {
+  private pendingReqs: Record<string, boolean> = {};
 
-type ApiParams<T = undefined> = {
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
-  url: string;
-  data?: T;
-  params?: Record<string, unknown>;
-}
+  private axios = Axios.create({
+    baseURL: process.env.API_BASE_URL,
+  });
 
-class Api {
-  static send<T, U>({ method, url, data, params }: ApiParams<T>): Promise<AxiosResponse<U>> {
-    return axios.request<U>({
-      method,
-      url,
-      data,
-      params,
-      withCredentials: true,
-    });
+  private async send<T, U>({ method, url, data, params }: ApiParams<T>): Promise<AxiosResponse<U>> {
+    const reqId = nanoid();
+    this.pendingReqs[reqId] = false;
+
+    try {
+      return await this.axios.request<U>({
+        method,
+        url,
+        data,
+        params,
+        withCredentials: true,
+      });
+    } finally {
+      delete this.pendingReqs[reqId];
+    }
   }
 
-  static get<T, U>(request: Omit<ApiParams<T>, 'method'>): Promise<AxiosResponse<U>> {
+  get<T, U>(request: Omit<ApiParams<T>, 'method'>): Promise<AxiosResponse<U>> {
     return this.send<T, U>({
       ...request,
       method: 'GET',
     });
   }
 
-  static post<T, U>(request: Omit<ApiParams<T>, 'method'>): Promise<AxiosResponse<U>> {
+  post<T, U>(request: Omit<ApiParams<T>, 'method'>): Promise<AxiosResponse<U>> {
     return this.send<T, U>({
       ...request,
       method: 'POST',
     });
   }
 
-  static put<T, U>(request: Omit<ApiParams<T>, 'method'>): Promise<AxiosResponse<U>> {
+  put<T, U>(request: Omit<ApiParams<T>, 'method'>): Promise<AxiosResponse<U>> {
     return this.send<T, U>({
       ...request,
       method: 'PUT',
     });
   }
 
-  static delete<T, U>(request: Omit<ApiParams<T>, 'method'>): Promise<AxiosResponse<U>> {
+  delete<T, U>(request: Omit<ApiParams<T>, 'method'>): Promise<AxiosResponse<U>> {
     return this.send<T, U>({
       ...request,
       method: 'DELETE',
     });
   }
+
+  /**
+   * @description
+   * Имеются ли запросы в ожидании
+   */
+  isPending(): boolean;
+  /**
+   * @description
+   * Статус запроса по ключу
+   */
+  isPending(key: string): boolean;
+  isPending(key?: string) {
+    if (key) {
+      return this.pendingReqs[key];
+    }
+
+    return Object.keys(this.pendingReqs).length > 0;
+  }
 }
 
-export default Api;
+export default new AxiosApi();

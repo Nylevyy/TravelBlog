@@ -1,6 +1,6 @@
 import { Api } from '~/shared/api';
 
-const articlesPath = 'api/calendarData/articles';
+const articlesPath = 'calendarData/articles';
 
 export const postArticle = async (request) => {
   const { data } = await Api.post({ url: articlesPath, ...request });

@@ -1,6 +1,6 @@
 import { Api } from '~/shared/api';
 
-const titlePath = 'api/calendarData/title';
+const titlePath = 'calendarData/title';
 
 export const fetchTitle = async () => {
   const { data } = await Api.get({ url: titlePath });

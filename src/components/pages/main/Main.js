@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { UiLoader } from '~/shared/ui/loader';
+import { useAppDispatch } from '~/shared/model';
 import LayoutMain from '~/components/layouts/main/LayoutMain';
 import Calendar from '~/components/base/calendar/Calendar';
-import { useAppDispatch } from '~/shared/model';
 import { mainActions } from '~/store/ducks/main';
 
 const { initMain } = mainActions;

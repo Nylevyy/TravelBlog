@@ -30,6 +30,7 @@ module.exports = {
       {
         singleQuote: true,
         endOfLine: 'auto',
+        printWidth: 120,
       },
     ],
     'import/extensions': 0,
@@ -54,9 +55,9 @@ module.exports = {
     'max-len': [
       'warn',
       {
-        code: 80,
+        code: 120,
         tabWidth: 2,
-        comments: 80,
+        comments: 120,
         ignoreComments: false,
         ignoreTrailingComments: true,
         ignoreUrls: true,
@@ -80,7 +81,7 @@ module.exports = {
   overrides: [
     // allow mutable state in @redux/toolkit
     {
-      files: ['src/**/*slice.js'],
+      files: ['src/**/*slice.{js,ts}'],
       rules: { 'no-param-reassign': ['error', { props: false }] },
     },
     {

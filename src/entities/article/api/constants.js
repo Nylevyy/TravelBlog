@@ -1,1 +1,1 @@
-export const ARTICLE_API_PATH = 'api/calendarData/articles';
+export const ARTICLE_API_PATH = 'calendarData/articles';

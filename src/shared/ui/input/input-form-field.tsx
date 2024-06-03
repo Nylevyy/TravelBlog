@@ -3,12 +3,13 @@ import { useFormContext } from 'react-hook-form';
 import Input from './input';
 
 type Props = {
+  className?: string;
   label?: string;
   name: string;
   type: 'text' | 'password';
 };
 
-const InputFormField = ({ label, name, type }: Props) => {
+const InputFormField = ({ className, label, name, type }: Props) => {
   const { register, getFieldState } = useFormContext();
   const htmlProps = useMemo(
     () => ({
@@ -19,7 +20,14 @@ const InputFormField = ({ label, name, type }: Props) => {
   );
   const isValid = getFieldState(name).invalid;
 
-  return <Input htmlProps={htmlProps} isValid={!isValid} label={label} />;
+  return (
+    <Input
+      className={className}
+      htmlProps={htmlProps}
+      isValid={!isValid}
+      label={label}
+    />
+  );
 };
 
 export default InputFormField;

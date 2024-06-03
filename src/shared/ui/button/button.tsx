@@ -11,12 +11,14 @@ type Props = {
   label?: string;
   type?: ButtonType;
   size?: ButtonSize;
+  htmlType?: 'button' | 'submit' | 'reset';
   htmlProps?: ButtonHTMLAttributes<HTMLButtonElement>;
 };
 
 const Button = ({
   className,
   htmlProps,
+  htmlType = 'button',
   label,
   onClick,
   size = 'default',
@@ -33,7 +35,8 @@ const Button = ({
   return (
     <div className={ccn('ui-button', className, type, size)}>
       <button
-        type="button"
+        // eslint-disable-next-line react/button-has-type
+        type={htmlType}
         {...htmlProps}
         className={styles.button}
         onClick={handleClick}

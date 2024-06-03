@@ -6,7 +6,7 @@ import {
   getIsAuthorized,
 } from '~/features/auth';
 import { useAppSelector } from '~/shared/model';
-import LayoutError from '~/components/layouts/error/LayoutError';
+import { MinimalisticLayout } from '~/widgets/layouts';
 import * as styles from './Page.scss';
 
 const ccn = classNames.bind(styles);
@@ -20,7 +20,7 @@ const Page = () => {
   }
 
   return (
-    <LayoutError>
+    <MinimalisticLayout>
       <div className={styles.page}>
         <div className={styles.container}>
           <span
@@ -34,7 +34,7 @@ const Page = () => {
           <AuthForm />
         </div>
       </div>
-    </LayoutError>
+    </MinimalisticLayout>
   );
 };
 

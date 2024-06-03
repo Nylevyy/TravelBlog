@@ -1,10 +1,10 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
+import { getIsAuthorized } from '~/features/auth/model';
 import { useAppSelector } from '~/shared/model';
-import { logInSelector } from '~/store/ducks/app/selectors';
 
 const AuthProvider = () => {
-  const isLoggedIn = useAppSelector((state) => logInSelector(state));
+  const isLoggedIn = useAppSelector(getIsAuthorized);
 
   if (!isLoggedIn) {
     return <Navigate replace to="login" />;

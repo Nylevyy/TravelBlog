@@ -1,4 +1,4 @@
-.login-page {
+.page {
   min-height: 70vh;
   padding: 20px;
   display: flex;
@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
 
-  &__container {
+  .container {
     display: flex;
     flex-direction: column;
     background: $secondaryBackground;
@@ -16,49 +16,23 @@
     justify-content: center;
   }
 
-  &__message {
+  .message {
     text-align: center;
     margin-bottom: 10px;
 
-    &_error {
+    &.error {
       color: $error;
     }
   }
 
-  &__form {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
-  &__title-input {
-    input {
-      font-size: 14px;
-      font-weight: bold;
-    }
-  }
-
-  &__password-input {
-    input {
-      font-size: 14px;
-      font-weight: bold;
-    }
-  }
-
-  &__buttons {
-    display: flex;
-    justify-content: flex-end;
-    padding: 5px 0;
-  }
-
   @media all and (min-width: 768px) {
-    &__container {
+    .container {
       flex: 0.4;
     }
   }
 
   @media all and (min-width: 1440px) {
-    &__container {
+    .container {
       flex: 0.3;
     }
   }

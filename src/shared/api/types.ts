@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 
 export type ApiParams<T = undefined> = {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -21,3 +21,5 @@ export interface Api {
   isPending(): boolean;
   isPending(key: string): boolean;
 }
+
+export { AxiosError as ApiError };

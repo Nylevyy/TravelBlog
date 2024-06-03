@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import { all } from 'redux-saga/effects';
+import { authReducer, authSaga } from '~/features/auth';
 import { articleSaga, articleReducer } from '~/entities/article';
 
 // TODO: remove legacy
@@ -16,6 +17,7 @@ function* rootSaga() {
     rootMainSaga(),
     rootAppSaga(),
     articleSaga(),
+    authSaga(),
   ]);
 }
 
@@ -25,12 +27,13 @@ export const store = configureStore({
   reducer: {
     article: articleReducer,
     articles: articlesReducer,
+    auth: authReducer,
     // @ts-expect-error TODO
     app: appReducer,
     title: titleReducer,
   },
-  // @ts-expect-error TODO
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([saga]),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ thunk: false }).concat([saga]),
 });
 
 saga.run(rootSaga);

@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { getIsAuthorized } from '~/features/auth/model';
+import { AuthGuard, getIsAuthorized } from '~/features/auth';
 import { AuthPage } from '~/pages/auth';
+import { NotFoundPage } from '~/pages/not-found';
 import { UiLoader } from '~/shared/ui/loader';
 import { useAppDispatch, useAppSelector } from '~/shared/model';
 import { appActions, appSelectors } from '~/store/ducks/app';
-import ErrorPage from '~/components/pages/404/ErrorPage';
 import Main from '~/components/pages/main/Main';
-import AuthProvider from '~/components/providers/auth/AuthProvider';
 
 const { closeModal, initApp } = appActions;
 const { appSelector } = appSelectors;
@@ -34,7 +33,7 @@ const Router = () => {
           <Routes>
             <Route element={<AuthPage />} path="/login" />
 
-            <Route element={<AuthProvider />}>
+            <Route element={<AuthGuard />}>
               <Route
                 path="/"
                 element={
@@ -48,7 +47,7 @@ const Router = () => {
               />
             </Route>
 
-            <Route element={<ErrorPage />} path="*" />
+            <Route element={<NotFoundPage />} path="*" />
           </Routes>
         )}
       </>

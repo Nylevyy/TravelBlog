@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { UiButton } from '~/shared/ui/button';
 import { UiCheckbox } from '~/shared/ui/checkbox';
@@ -40,7 +40,8 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
       id,
     }));
   }, [data]);
-  const onSubmitForm = () => {
+  const onSubmitForm = (e) => {
+    e.preventDefault();
     const emptyFields = [];
     for (let i = 0; i < inputs.values.length - 1; i++) {
       let value = inputs.values[i];

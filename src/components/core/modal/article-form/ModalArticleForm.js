@@ -1,16 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
-import UiButton, {
-  uiButton_submit,
-  uiButton_reset,
-  uiButton_small,
-} from '~/components/ui/button/UiButton';
-import UiCheckbox from '~/components/ui/checkbox/UiCheckbox';
+import { UiButton } from '~/shared/ui/button';
+import { UiCheckbox } from '~/shared/ui/checkbox';
 import * as styles from './ModalArticleForm.scss';
 import ArticleFormInputs from './inputs/ArticleFormInputs';
-
-const ccn = classNames.bind(styles);
 
 const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
   const [inputs, setInputs] = useState({
@@ -47,7 +40,8 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
       id,
     }));
   }, [data]);
-  const onSubmitForm = () => {
+  const onSubmitForm = (e) => {
+    e.preventDefault();
     const emptyFields = [];
     for (let i = 0; i < inputs.values.length - 1; i++) {
       let value = inputs.values[i];
@@ -66,7 +60,7 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
     const article = {
       title: inputs.values[0],
       location: inputs.values[1],
-      date: inputs.values[2],
+      date: new Date(inputs.values[2]).toISOString(),
       description: inputs.values[3],
       isImportant: inputs.values[4],
     };
@@ -86,8 +80,9 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
   };
 
   return (
-    <form action="" className={styles.modalArticleForm}>
+    <form action="" className={styles.modalArticleForm} onSubmit={onSubmitForm}>
       <ArticleFormInputs
+        notValidated={inputs.notValidated}
         values={[
           inputs.values[0],
           inputs.values[1],
@@ -95,29 +90,28 @@ const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
           inputs.values[3],
         ]}
         onChange={inputs.onInputChange}
-        onInput={inputs.onInputChange}
-        notValidated={inputs.notValidated}
         onChangeDate={inputs.onChangeDate}
+        onInput={inputs.onInputChange}
       />
 
       <div className={styles.modalArticleForm__dashboard}>
         <UiCheckbox
-          index={4}
-          label=" Пометить событие как важное"
-          onChange={inputs.onInputChange}
-          checked={!!inputs.values[4]}
-          id="articleForm__checkbox"
+          htmlProps={{ checked: !!inputs.values[4] }}
+          label="Пометить событие как важное"
+          onChange={(value) => inputs.onInputChange({ value, index: 4 })}
         />
         <div className={styles.modalArticleForm__buttons}>
           <UiButton
+            htmlProps={{ type: 'submit' }}
             label="Готово"
-            className={ccn(uiButton_submit, uiButton_small)}
-            onClick={onSubmitForm}
+            size="small"
+            type="submit"
           />
           {data && (
             <UiButton
               label="Удалить"
-              className={ccn(uiButton_reset, uiButton_small)}
+              size="small"
+              type="reset"
               onClick={onDeleteClick(data.id)}
             />
           )}

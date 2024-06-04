@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import CloseButton from '~/components/ui/close-button/CloseButton';
-import ModalTitleForm from '~/components/core/modal/title-form/ModalTitleForm';
+import { UiCloseButton } from '~/shared/ui/close-button';
+import ModalTitleForm from '~/components/core/modal/title-form/title-form';
 import ModalArticleForm from './article-form/ModalArticleForm';
 import * as styles from './Modal.scss';
 
@@ -24,21 +24,21 @@ const Modal = ({
     >
       <div className={styles.modal__container}>
         <div className={styles.modal__close}>
-          <CloseButton onClick={onModalCloseClick} />
+          <UiCloseButton onClick={onModalCloseClick} />
         </div>
         <div className={styles.modal__form}>
           {type === 'articleEditor' && (
             <ModalArticleForm
-              onSubmitFormClick={onSubmitFormClick}
-              onDeleteClick={onDeleteClick}
               data={data}
+              onDeleteClick={onDeleteClick}
+              onSubmitFormClick={onSubmitFormClick}
             />
           )}
           {type === 'titleEditor' && (
             <ModalTitleForm
-              onSubmitFormClick={onSubmitFormClick}
-              onDeleteClick={onDeleteClick}
               title={data.title}
+              onDeleteClick={onDeleteClick}
+              onSubmitFormClick={onSubmitFormClick}
             />
           )}
         </div>

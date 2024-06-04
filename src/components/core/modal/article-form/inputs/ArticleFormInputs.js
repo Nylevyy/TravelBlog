@@ -1,11 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import UiInput, {
-  uiInput_title,
-  uiInput_location,
-} from '~/components/ui/input/UiInput';
-import DatePicker from '~/widgets/date-picker/DatePicker';
+import { UiInput } from '~/shared/ui/input';
+import { UiDatePicker } from '~/shared/ui/date-picker';
 import * as styles from './ArticleFormInputs.scss';
 
 const ccn = classNames.bind(styles);
@@ -15,42 +11,36 @@ const ArticleFormInputs = ({ onInput, onChange, values, notValidated }) => {
     <div className={styles.articleFormInputs}>
       <div className={styles.articleFormInputs__wrapper}>
         <UiInput
-          className={ccn(uiInput_title)}
-          label="Событие"
-          index={0}
-          onInput={onInput}
-          onChange={onChange}
-          value={values[0]}
+          htmlProps={{ type: 'text', value: values[0] }}
           isValid={!notValidated.includes(0)}
+          label="Событие"
+          onChange={(value) => onChange({ index: 0, value })}
         />
         <div className={styles.articleFormInputs__wrap}>
           <UiInput
-            className={ccn(uiInput_location)}
-            label="Место"
-            index={1}
-            onInput={onInput}
-            value={values[1]}
+            htmlProps={{ type: 'text', value: values[1] }}
             isValid={!notValidated.includes(1)}
-            onChange={onChange}
+            label="Место"
+            onChange={(value) => onChange({ index: 1, value })}
           />
-          <DatePicker
-            onChange={onChange}
-            value={values[2]}
+          <UiDatePicker
             isValid={!notValidated.includes(2)}
+            value={values[2]}
+            onChange={onChange}
           />
         </div>
       </div>
       <textarea
+        cols="25"
+        name="content"
+        placeholder="Описание"
+        rows="8"
+        value={values[3]}
         className={ccn('articleFormInputs__textarea', {
           articleFormInputs_invalid: notValidated.includes(3),
         })}
-        name="content"
-        cols="25"
-        rows="8"
-        placeholder="Описание"
-        onInput={(e) => onInput({ index: 3, value: e.target.value })}
         onChange={(e) => onChange({ index: 3, value: e.target.value })}
-        value={values[3]}
+        onInput={(e) => onInput({ index: 3, value: e.target.value })}
       />
     </div>
   );

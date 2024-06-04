@@ -1,0 +1,25 @@
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  .login {
+    input {
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+
+  .password {
+    input {
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px 0;
+  }
+}

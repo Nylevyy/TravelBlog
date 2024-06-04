@@ -48,7 +48,7 @@ module.exports = () => {
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.(js|ts)x?$/,
           exclude: /node_modules/,
           loader: 'babel-loader',
         },
@@ -66,7 +66,7 @@ module.exports = () => {
                 modules: {
                   exportLocalsConvention: 'dashes',
                   mode: 'local',
-                  localIdentName: '[path]-[local]',
+                  localIdentName: '[path]-[local]-[hash:base64:5]',
                 },
               },
             },
@@ -74,7 +74,7 @@ module.exports = () => {
               loader: 'sass-loader',
               options: {
                 additionalData:
-                  '@import "./src/assets/scss/variables/index.scss";',
+                  '@import "./src/shared/scss/variables/index.scss";',
               },
             },
           ],
@@ -118,7 +118,7 @@ module.exports = () => {
       alias: {
         '~': path.resolve(__dirname, 'src/'),
       },
-      extensions: ['.json', '.js'],
+      extensions: ['.tsx', '.ts', '.jsx', '...'],
     },
     devServer: {
       port,
@@ -131,7 +131,7 @@ module.exports = () => {
         const { port } = devServer.options;
         console.log(
           '\x1b[36m%s\x1b[0m',
-          `Starting the development server on port: ${port}\n`
+          `Starting the development server on port: ${port}\n`,
         );
       },
       client: {
@@ -157,6 +157,7 @@ module.exports = () => {
         new webpack.LoaderOptionsPlugin({
           minimize: true,
         }),
+        new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /ru/),
       ]),
     };
   }

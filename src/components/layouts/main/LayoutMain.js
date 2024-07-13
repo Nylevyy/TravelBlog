@@ -1,8 +1,12 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useAppDispatch, useAppSelector } from '~/shared/model';
+import {
+  createArticle,
+  deleteArticle,
+  updateArticle,
+} from '~/entities/article';
 import { mainActions } from '~/store/ducks/main';
-import { articlesActions } from '~/store/ducks/main/articles';
 import { appActions } from '~/store/ducks/app';
 import { titleActions, titleSelectors } from '~/store/ducks/main/title';
 import Modal from '../../core/modal/Modal';
@@ -10,7 +14,6 @@ import Footer from '../../core/footer/Footer';
 import Header from '../../core/header/Header';
 
 const { initMain } = mainActions;
-const { updateArticle, postNewArticle, deleteArticle } = articlesActions;
 const { openModal, setDefault, closeModal, requestLogOut } = appActions;
 const { editTitle } = titleActions;
 const { titleSelector } = titleSelectors;
@@ -46,7 +49,7 @@ const LayoutMain = ({ modal, children }) => {
           dispatch(updateArticle({ ...payload, id }));
           return;
         }
-        dispatch(postNewArticle({ ...payload }));
+        dispatch(createArticle({ ...payload }));
         return;
       }
       dispatch(editTitle({ ...payload }));

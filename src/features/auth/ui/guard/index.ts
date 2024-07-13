@@ -1,1 +1,1 @@
-export { default as Guard } from './Guard';
+export { default as Guard } from './guard';

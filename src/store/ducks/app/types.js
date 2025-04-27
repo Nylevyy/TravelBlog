@@ -9,4 +9,3 @@ export const JOIN = 'JOIN';
 export const LOG_OUT = 'LOG_OUT';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const SET_DEFAULT = 'SET_DEFAULT';
-export const INIT = 'INIT';

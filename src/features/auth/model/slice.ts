@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { AuthSliceState } from './types';
+import { AuthSliceState, AuthStatus } from './types';
 
 const initialState: AuthSliceState = {
-  auth: { isAuthorized: false },
+  auth: { isAuthorized: false, status: AuthStatus.Pending },
   error: null,
 };
 
@@ -19,11 +19,12 @@ const authSlice = createSlice({
   },
   selectors: {
     getIsAuthorized: (state) => state.auth.isAuthorized,
+    getIsAuthPerformed: (state) => state.auth.status !== AuthStatus.Pending,
     getErrorMessage: (state) => state.error?.message,
   },
 });
 
 export const { setAuthStatus, setError } = authSlice.actions;
-export const { getIsAuthorized, getErrorMessage } = authSlice.selectors;
+export const { getIsAuthorized, getIsAuthPerformed, getErrorMessage } = authSlice.selectors;
 
 export default authSlice.reducer;

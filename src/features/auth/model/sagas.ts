@@ -3,10 +3,10 @@ import { ApiError, StatusErrors, getErrorStatusCode } from '~/shared/api';
 import { auth, logIn, logOut, registerNewUser } from '../api';
 import { authorize, login, logout, register } from './actions';
 import { setAuthStatus, setError } from './slice';
-import { User } from './types';
+import { AuthStatus, User } from './types';
 
 function* errorHandler(e: unknown) {
-  yield put(setAuthStatus({ isAuthorized: false }));
+  yield put(setAuthStatus({ isAuthorized: false, status: AuthStatus.Error }));
 
   if (
     e instanceof ApiError &&
@@ -27,10 +27,10 @@ function* errorHandler(e: unknown) {
 function* authHandler() {
   try {
     yield call(auth);
-    yield put(setAuthStatus({ isAuthorized: true }));
+    yield put(setAuthStatus({ isAuthorized: true, status: AuthStatus.Succeed }));
     yield put(setError(null));
   } catch (e: unknown) {
-    yield put(setAuthStatus({ isAuthorized: false }));
+    yield put(setAuthStatus({ isAuthorized: false, status: AuthStatus.Error }));
     yield call(errorHandler, e);
   }
 }
@@ -38,7 +38,7 @@ function* authHandler() {
 function* logInHandler(user: User) {
   try {
     yield call(logIn, user);
-    yield put(setAuthStatus({ isAuthorized: true }));
+    yield put(setAuthStatus({ isAuthorized: true, status: AuthStatus.Succeed }));
     yield put(setError(null));
   } catch (e: unknown) {
     yield call(errorHandler, e);
@@ -48,7 +48,7 @@ function* logInHandler(user: User) {
 function* logOutHandler() {
   try {
     yield call(logOut);
-    yield put(setAuthStatus({ isAuthorized: false }));
+    yield put(setAuthStatus({ isAuthorized: false, status: AuthStatus.Succeed }));
     yield put(setError(null));
   } catch (e: unknown) {
     yield call(errorHandler, e);
@@ -58,7 +58,7 @@ function* logOutHandler() {
 function* registerHandler(user: User) {
   try {
     yield call(registerNewUser, user);
-    yield put(setAuthStatus({ isAuthorized: true }));
+    yield put(setAuthStatus({ isAuthorized: true, status: AuthStatus.Succeed }));
     yield put(setError(null));
   } catch (e: unknown) {
     yield call(errorHandler, e);

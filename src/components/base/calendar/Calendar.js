@@ -28,6 +28,7 @@ const Calendar = ({ requestError, isLoggedIn }) => {
     [dispatch],
   );
   let cachedDate = '';
+
   return (
     <div className={styles.calendar}>
       <div className={styles.calendar__container}>
@@ -42,7 +43,7 @@ const Calendar = ({ requestError, isLoggedIn }) => {
             <h3>Пожалуйста, войдите в систему</h3>
           </div>
         )}
-        {!articles.length && !requestError && isLoggedIn && (
+        {!articles?.length && !requestError && isLoggedIn && (
           <div className={styles.calendar_empty}>
             <h3>No Articles found</h3>
             <br />
@@ -51,7 +52,7 @@ const Calendar = ({ requestError, isLoggedIn }) => {
         )}
         {!requestError &&
           isLoggedIn &&
-          [...articles]
+          [...(articles ?? [])]
             .sort((a, b) => {
               if (a.date > b.date) return -1;
               return 1;

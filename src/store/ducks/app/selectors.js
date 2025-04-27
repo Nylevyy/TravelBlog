@@ -6,8 +6,7 @@ const appState = (state) => {
 
 export const appSelector = createSelector(
   appState,
-  ({ init, modal, requestError, isFetching }) => ({
-    init,
+  ({ modal, requestError, isFetching }) => ({
     modal,
     requestError,
     isFetching,

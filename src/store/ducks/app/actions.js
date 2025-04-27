@@ -10,7 +10,6 @@ import {
   OPEN_MODAL,
   CLOSE_MODAL,
   SET_DEFAULT,
-  INIT,
 } from './types';
 
 export const startRequest = () => ({
@@ -60,8 +59,4 @@ export const closeModal = () => ({
 
 export const setDefault = () => ({
   type: SET_DEFAULT,
-});
-
-export const initApp = () => ({
-  type: INIT,
 });

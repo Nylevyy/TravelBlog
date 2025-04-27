@@ -7,11 +7,9 @@ import {
   CLOSE_MODAL,
   LOG_OUT,
   LOG_IN,
-  INIT,
 } from './types';
 
 const initialState = {
-  init: null,
   userName: null,
   modal: {
     isOpen: null,
@@ -24,18 +22,6 @@ const initialState = {
 
 const appReducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case INIT:
-      return {
-        init: true,
-        userName: null,
-        modal: {
-          isOpen: false,
-          type: null,
-          data: null,
-        },
-        requestError: false,
-        isFetching: 0,
-      };
     case START_REQUEST:
       return {
         ...state,

@@ -4,4 +4,4 @@ export {
   getAuthErrorMessage,
   getIsAuthorized,
 } from './model';
-export { AuthForm, AuthGuard } from './ui';
+export { AuthForm, AuthProvider } from './ui';

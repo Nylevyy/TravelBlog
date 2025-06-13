@@ -1,5 +1,20 @@
 import { AxiosError, AxiosResponse } from 'axios';
 
+export type ApiErrorResponse = {
+  message: string;
+  status: number;
+};
+
+export type ApiResponse<T> =
+  | {
+      data: T;
+      error: null;
+    }
+  | {
+      data: null;
+      error: ApiErrorResponse;
+    };
+
 export type ApiParams<T = undefined> = {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
   url: string;
@@ -15,7 +30,7 @@ export interface Api {
   put<T, U>(request: Omit<ApiParams<T>, 'method'>): Promise<AxiosResponse<U>>;
 
   delete<T, U>(
-    request: Omit<ApiParams<T>, 'method'>,
+    request: Omit<ApiParams<T>, 'method'>
   ): Promise<AxiosResponse<U>>;
 
   isPending(): boolean;

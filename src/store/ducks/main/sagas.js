@@ -12,8 +12,8 @@ const { receiveArticles } = articlesActions;
 function* fetchMainDataHandler() {
   try {
     yield put(startRequest());
-    const { title, articles } = yield call(fetchMainData);
-    yield put(receiveTitle({ title }));
+    const { userConfig, articles } = yield call(fetchMainData);
+    yield put(receiveTitle({ title: userConfig.blogConfig.title }));
     yield put(receiveArticles({ articles }));
     yield put(endRequest());
   } catch (e) {

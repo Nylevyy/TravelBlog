@@ -10,8 +10,14 @@ export const logIn = async ({
   password,
   username,
 }: LogInParams): Promise<void> => {
-  await Api.post<LogInParams, never>({
+  const response = await Api.post<LogInParams, never>({
     url: `${AUTH_API_PATH}/login`,
     data: { username, password },
   });
+
+  const authHeader = response?.headers['authorization'];
+
+  if (authHeader) {
+    Api.setAuthToken(authHeader);
+  }
 };

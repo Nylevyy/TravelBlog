@@ -1,13 +1,15 @@
 import { nanoid } from '@reduxjs/toolkit';
-import Axios, { AxiosResponse } from 'axios';
-import { Api, ApiParams } from './types';
+import Axios, { AxiosHeaders, AxiosResponse } from 'axios';
+import { Api, ApiParams, ApiResponse } from './types';
 
-class AxiosApi implements Api {
+class TravelBlogApi implements Api {
   private pendingReqs: Record<string, boolean> = {};
 
   private axios = Axios.create({
     baseURL: process.env.API_BASE_URL,
   });
+
+  private authToken: string | null = null;
 
   private async send<T, U>({
     method,
@@ -18,14 +20,29 @@ class AxiosApi implements Api {
     const reqId = nanoid();
     this.pendingReqs[reqId] = false;
 
+    const headers = new AxiosHeaders();
+
+    if (this.authToken) {
+      headers.setAuthorization(`Bearer ${this.authToken}`);
+    }
+
     try {
-      return await this.axios.request<U>({
+      const axiosResponse = await this.axios.request<ApiResponse<U>>({
         method,
         url,
         data,
         params,
         withCredentials: true,
+        headers,
       });
+
+      const { data: responseData, error } = axiosResponse.data;
+
+      if (error) {
+        throw error;
+      }
+
+      return { ...axiosResponse, data: responseData };
     } finally {
       delete this.pendingReqs[reqId];
     }
@@ -53,7 +70,7 @@ class AxiosApi implements Api {
   }
 
   delete<T, U>(
-    request: Omit<ApiParams<T>, 'method'>,
+    request: Omit<ApiParams<T>, 'method'>
   ): Promise<AxiosResponse<U>> {
     return this.send<T, U>({
       ...request,
@@ -78,6 +95,10 @@ class AxiosApi implements Api {
 
     return Object.keys(this.pendingReqs).length > 0;
   }
+
+  public setAuthToken(token: string) {
+    this.authToken = token;
+  }
 }
 
-export default new AxiosApi();
+export default new TravelBlogApi();

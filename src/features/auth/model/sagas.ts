@@ -1,7 +1,7 @@
 import { put, call, take, all } from 'redux-saga/effects';
 import { ApiError, StatusErrors, getErrorStatusCode } from '~/shared/api';
-import { auth, logIn, logOut, registerNewUser } from '../api';
-import { authorize, login, logout, register } from './actions';
+import { logIn, logOut, registerNewUser } from '../api';
+import { login, logout, register } from './actions';
 import { setAuthStatus, setError } from './slice';
 import { AuthStatus, User } from './types';
 
@@ -22,17 +22,6 @@ function* errorHandler(e: unknown) {
   }
 
   yield put(setError({ message: 'Что-то пошло не так' }));
-}
-
-function* authHandler() {
-  try {
-    yield call(auth);
-    yield put(setAuthStatus({ isAuthorized: true, status: AuthStatus.Succeed }));
-    yield put(setError(null));
-  } catch (e: unknown) {
-    yield put(setAuthStatus({ isAuthorized: false, status: AuthStatus.Error }));
-    yield call(errorHandler, e);
-  }
 }
 
 function* logInHandler(user: User) {
@@ -65,13 +54,6 @@ function* registerHandler(user: User) {
   }
 }
 
-function* authWatcher() {
-  while (true) {
-    yield take(authorize.type);
-    yield call(authHandler);
-  }
-}
-
 function* logInWatcher() {
   while (true) {
     const { payload }: ReturnType<typeof login> = yield take(login.type);
@@ -95,7 +77,6 @@ function* registerWatcher() {
 
 function* rootAuthSaga() {
   yield all([
-    authWatcher(),
     logInWatcher(),
     logOutWatcher(),
     registerWatcher(),

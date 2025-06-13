@@ -30,9 +30,8 @@ function* editArticleHandler(article, id) {
 
   try {
     yield put(startRequest(reqId));
-    const { article: responseArticle } = yield call(updateArticle, {
+    const { article: responseArticle } = yield call(updateArticle, id, {
       data: article,
-      params: { id },
     });
     yield put(endRequest(reqId));
     return responseArticle;
@@ -47,7 +46,7 @@ function* deleteArticleHandler(id) {
 
   try {
     yield put(startRequest(reqId));
-    yield call(deleteArticle, { params: { id } });
+    yield call(deleteArticle, id, {});
     yield put(endRequest(reqId));
   } catch (err) {
     yield put(setError(err));

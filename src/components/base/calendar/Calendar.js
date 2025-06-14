@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useAppDispatch, useAppSelector } from '~/shared/model';
 import { Article, deleteArticle, getArticles } from '~/entities/article';
 import { appActions } from '~/store/ducks/app';
-import * as styles from './Calendar.scss';
+import * as styles from './Calendar.module.css';
 
 const { openModal } = appActions;
 

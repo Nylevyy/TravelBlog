@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from 'react';
-import * as styles from './checkbox.scss';
+import * as styles from './checkbox.module.css';
 
 type Props = {
   label?: string;

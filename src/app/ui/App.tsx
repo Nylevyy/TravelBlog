@@ -5,7 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { store } from '../store';
 import Router from './Router';
 
-import '~/shared/scss/styles/index.scss';
+import '~/shared/css/variables/index.css';
+import '~/shared/css/styles/index.css';
 
 moment.locale('ru');
 

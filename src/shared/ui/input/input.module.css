@@ -1,0 +1,37 @@
+.ui-input {
+  display: flex;
+  flex-direction: column;
+  padding: 0 7px;
+  margin-bottom: 10px;
+}
+
+.ui-input .field {
+  border: none;
+  border-bottom: 1px solid var(--passive);
+  padding: 0 0 5px;
+  margin: 0 0 5px;
+  display: flex;
+  background: transparent;
+}
+
+.ui-input .field:focus {
+  box-shadow: none;
+  padding: 0 0 4px;
+  border-bottom: 2px solid var(--active);
+  outline: none;
+}
+
+.ui-input .field.invalid {
+  background-color: var(--invalid);
+}
+
+.ui-input .label {
+  color: var(--labels);
+  font-size: 13px;
+}
+
+@media all and (width >= 768px) {
+  .ui-input {
+    margin-bottom: 20px;
+ }
+}

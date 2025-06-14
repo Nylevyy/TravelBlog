@@ -1,0 +1,34 @@
+.calendar {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background: var(--background);
+}
+
+.calendar_empty {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.calendar__container {
+  display: flex;
+  flex-direction: column;
+  flex: 0.8;
+}
+
+.calendar__date {
+  font-family: var(--secondary-font);
+  font-size: 22px;
+  padding: 15px;
+}
+
+@media all and (width >= 768px) {
+  .calendar_empty {
+    font-size: 26px;
+    line-height: 50px;
+ }
+
+ .calendar__date {
+    font-size: 30px;
+ }
+}

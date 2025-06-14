@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { UiInput } from '~/shared/ui/input';
 import { UiDatePicker } from '~/shared/ui/date-picker';
-import * as styles from './ArticleFormInputs.scss';
+import * as styles from './ArticleFormInputs.module.css';
 
 const ccn = classNames.bind(styles);
 
@@ -26,7 +26,7 @@ const ArticleFormInputs = ({ onInput, onChange, values, notValidated }) => {
           <UiDatePicker
             isValid={!notValidated.includes(2)}
             value={values[2]}
-            onChange={onChange}
+            onChange={(value) => onChange({ index: 2, value })}
           />
         </div>
       </div>

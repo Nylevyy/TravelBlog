@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from 'react';
 import classNames from 'classnames/bind';
-import * as styles from './input.scss';
+import * as styles from './input.module.css';
 
 const ccn = classNames.bind(styles);
 

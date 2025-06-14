@@ -7,7 +7,7 @@ import {
 } from '~/features/auth';
 import { useAppSelector } from '~/shared/model';
 import { MinimalisticLayout } from '~/widgets/layouts';
-import * as styles from './Page.scss';
+import * as styles from './Page.module.css';
 
 const ccn = classNames.bind(styles);
 

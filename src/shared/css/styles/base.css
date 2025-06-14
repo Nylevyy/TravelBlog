@@ -2,11 +2,10 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
 
-  &::after,
-  &::before {
-    box-sizing: border-box;
-  }
+*::after, *::before {
+  box-sizing: border-box;
 }
 
 html {
@@ -18,10 +17,10 @@ body {
   flex-direction: column;
   min-height: 100vh;
   height: auto;
-  font-family: $baseFont;
+  font-family: var(--base-font);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility;
-  color: $baseColor;
+  color: var(--base-color);
   font-size: 14px;
 }
 
@@ -35,17 +34,16 @@ body {
 a {
   text-decoration: none;
   outline: 0;
-  color: $baseColor;
+  color: var(--base-color);
   cursor: pointer;
   transition: color 0.4s ease;
-
-  &:focus {
-    box-shadow: 0 0 10px 0 $active;
-  }
 }
 
-ol,
-ul {
+a:focus {
+  box-shadow: 0 0 10px 0 var(--active);
+}
+
+ol, ul {
   list-style: none;
 }
 
@@ -53,34 +51,28 @@ img {
   display: block;
 }
 
-input {
-  &[type="number"] {
-    appearance: textfield;
+input[type="number"] {
+  appearance: textfield;
+}
 
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      appearance: none;
-      margin: 0;
-    }
-  }
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
 }
 
 textarea {
   resize: vertical;
 }
 
-button,
-input,
-textarea,
-select {
+button, input, textarea, select {
   background-color: transparent;
-  font-family: $baseFont;
+  font-family: var(--base-font);
   border: 0;
   border-radius: 0;
   outline: 0;
   cursor: pointer;
+}
 
-  &:focus {
-    box-shadow: 0 0 10px 0 $active;
-  }
+button:focus, input:focus, textarea:focus, select:focus {
+  box-shadow: 0 0 10px 0 var(--active);
 }

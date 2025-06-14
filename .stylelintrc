@@ -1,21 +1,13 @@
 {
-  "extends": "stylelint-config-standard-scss",
+  "extends": "stylelint-config-standard",
   "rules": {
-    "at-rule-no-unknown": [
-      true, {
-        "ignoreAtRules": ["if", "else", "extend", "mixin", "include", "content", "for", "function", "return"]
-      }
-    ],
-    "font-family-no-missing-generic-family-keyword": null,
+    "selector-class-pattern": null,
+    "color-function-alias-notation": null,
     "selector-pseudo-class-no-unknown": [
       true,
       {
         "ignorePseudoClasses": ["global"]
       }
-    ],
-    "scss/dollar-variable-pattern": 0,
-    "media-feature-range-notation": "prefix",
-    "color-function-notation": "legacy",
-    "alpha-value-notation": "number"
+    ]
   }
 }

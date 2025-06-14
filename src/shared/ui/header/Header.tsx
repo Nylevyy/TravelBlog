@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { redirectToRootPage } from '../../lib/routes';
-import * as styles from './header.scss';
+import * as styles from './header.module.css';
 
 type Props = {
   rightWidget?: ReactNode;

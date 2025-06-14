@@ -1,0 +1,73 @@
+.ui-button {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  width: var(--small-devices-buttons);
+}
+
+.ui-button .button {
+  display: flex;
+  border: 3px solid var(--active);
+  line-height: 30px;
+  font-size: 15px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex: 1;
+  color: var(--contrast-color);
+  transition: box-shadow 0.4s ease-in-out;
+}
+
+.ui-button .button:active {
+  box-shadow: 0 0 25px 10px var(--active);
+  border-top: 4px solid var(--active);
+  border-left: 4px solid var(--active);
+  border-bottom: 2px solid var(--active);
+  border-right: 2px solid var(--active);
+}
+
+.ui-button .button:hover {
+  box-shadow: 0 0 25px 10px var(--active);
+}
+
+.ui-button .button:focus {
+  outline: none;
+  box-shadow: 0 0 15px 5px var(--active);
+}
+
+.ui-button .button .label {
+  margin: 0 auto;
+  font-weight: 700;
+}
+
+.ui-button.submit .button {
+  background-color: var(--active);
+}
+
+.ui-button.transparent .button {
+  background-color: transparent;
+}
+
+.ui-button.reset .button {
+  background-color: transparent;
+  color: var(--reset-color);
+}
+
+.ui-button.cancel .button {
+  background-color: var(--error);
+  color: var(--contrast-color);
+}
+
+.ui-button.small {
+  width: var(--modal-buttons);
+}
+
+@media all and (width >= 768px) {
+  .ui-button {
+    width: var(--base-buttons);
+ }
+
+ .ui-button.small {
+    width: var(--modal-buttons);
+ }
+}

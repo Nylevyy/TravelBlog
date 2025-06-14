@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import { UiCloseButton } from '~/shared/ui/close-button';
 import ModalTitleForm from '~/components/core/modal/title-form/title-form';
 import ModalArticleForm from './article-form/ModalArticleForm';
-import * as styles from './Modal.scss';
+import * as styles from './Modal.module.css';
 
 const ccn = classNames.bind(styles);
 

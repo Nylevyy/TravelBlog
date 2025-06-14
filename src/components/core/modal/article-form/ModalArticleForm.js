@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { UiButton } from '~/shared/ui/button';
 import { UiCheckbox } from '~/shared/ui/checkbox';
-import * as styles from './ModalArticleForm.scss';
 import ArticleFormInputs from './inputs/ArticleFormInputs';
+import * as styles from './ModalArticleForm.module.css';
 
 const ModalArticleForm = ({ onSubmitFormClick, onDeleteClick, data }) => {
   const [inputs, setInputs] = useState({

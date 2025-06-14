@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import DateTimePicker, { registerLocale } from 'react-datepicker';
 import { ru } from 'date-fns/locale/ru';
 import 'react-datepicker/dist/react-datepicker.css';
-import * as styles from './date-picker.scss';
+import * as styles from './date-picker.module.css';
 
 registerLocale('ru', ru);
 
@@ -11,7 +11,7 @@ const ccn = classNames.bind(styles);
 type Props = {
   notValidated: boolean;
   value: Date;
-  onChange: (value: Date) => void;
+  onChange: (value: Date | null) => void;
   id?: string;
 };
 

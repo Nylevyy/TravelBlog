@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { UiButton } from '~/shared/ui/button';
-import * as styles from './Header.scss';
+import * as styles from './Header.module.css';
 
 const ccn = classNames.bind(styles);
 

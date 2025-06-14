@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, MouseEventHandler } from 'react';
 import classNames from 'classnames/bind';
 import { ButtonSize, ButtonType } from './types';
-import * as styles from './button.scss';
+import * as styles from './button.module.css';
 
 const ccn = classNames.bind(styles);
 

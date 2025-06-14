@@ -3,7 +3,7 @@ import { UiButton } from '~/shared/ui/button';
 import { InputField } from '~/shared/ui/input';
 import { TitleFields } from './enums';
 import { TitleFormValues } from './types';
-import * as styles from './title-form.scss';
+import * as styles from './title-form.module.css';
 
 type Props = {
   title?: string;

@@ -3,7 +3,7 @@ import moment from 'moment';
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import { UiCloseButton } from '~/shared/ui/close-button';
-import * as styles from './article.scss';
+import * as styles from './article.module.css';
 
 const ccn = classNames.bind(styles);
 

@@ -4,7 +4,7 @@ import { UiButton } from '~/shared/ui/button';
 import { InputField } from '~/shared/ui/input';
 import { login, register } from '../../model/actions';
 import { AuthFormValues, AuthFormFields } from './types';
-import * as styles from './auth-form.scss';
+import * as styles from './auth-form.module.css';
 
 const AuthForm = () => {
   const dispatch = useAppDispatch();

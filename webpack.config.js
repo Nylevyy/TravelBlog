@@ -54,12 +54,11 @@ module.exports = () => {
         },
         {
           test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
+          use: ['style-loader'],
         },
         {
-          test: /\.scss$/,
+          test: /\.css$/,
           use: [
-            'style-loader',
             {
               loader: 'css-loader',
               options: {
@@ -70,14 +69,13 @@ module.exports = () => {
                 },
               },
             },
-            {
-              loader: 'sass-loader',
-              options: {
-                additionalData:
-                  '@import "./src/shared/scss/variables/index.scss";',
-              },
-            },
           ],
+          include: /\.module\.css$/,
+        },
+        {
+          test: /\.css$/,
+          use: ['css-loader'],
+          exclude: /\.module\.css$/,
         },
         {
           test: /\.(png|jpg|gif|svg)$/,

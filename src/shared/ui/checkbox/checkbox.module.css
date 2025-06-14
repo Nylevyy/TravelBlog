@@ -3,7 +3,7 @@
   padding: 5px;
 
   .label {
-    color: $secondaryColor;
+    color: var(--secondary-color);
     cursor: pointer;
   }
 

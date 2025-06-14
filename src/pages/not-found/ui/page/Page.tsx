@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { MinimalisticLayout } from '~/widgets/layouts';
-import * as styles from './Page.scss';
+import * as styles from './Page.module.css';
 
 const Page = () => {
   return (

@@ -1,5 +1,5 @@
 import BeatLoader from 'react-spinners/BeatLoader';
-import * as styles from './Loader.scss';
+import * as styles from './loader.module.css';
 
 const Loader = () => {
   const items = new Array(7)

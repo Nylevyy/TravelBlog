@@ -1,0 +1,16 @@
+:root {
+  --white: #fff;
+  --light: #f6f6f6;
+  --transparent-light: rgb(255 255 255 / 42%);
+  --grey-light: #a3a3a3;
+  --grey-lighter: #bba7a7;
+  --grey: #717171;
+  --grey-dark: #5b5b5b;
+  --black: #000;
+  --light-black: rgb(0 0 0 / 65%);
+  --red: #f50000;
+  --light-red: rgb(248 69 91 / 31%);
+  --green: #a9d85f;
+  --pink: #d8378e;
+}
+  

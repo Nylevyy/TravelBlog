@@ -1,0 +1,6 @@
+.footer {
+  display: flex;
+  background: var(--active);
+  background: linear-gradient(90deg, rgb(9 223 133 / 100%) 0%, rgb(9 121 83 / 100%) 73%, rgb(113 241 148 / 53%) 100%);
+  flex: 1 1 75px;
+}

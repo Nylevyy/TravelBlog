@@ -1,13 +1,16 @@
 import { Api } from '~/shared/api';
 
-const titlePath = 'calendarData/title';
+const userConfigPath = 'userConfig';
 
-export const fetchTitle = async () => {
-  const { data } = await Api.get({ url: titlePath });
-  return data;
+export const fetchConfig = async () => {
+  const { data } = await Api.get({ url: userConfigPath });
+  return data.applicationConfig;
 };
 
-export const changeTitle = async (request) => {
-  const { data } = await Api.put({ url: titlePath, ...request });
-  return data;
+export const changeTitle = async (blogConfigId, request) => {
+  const { data } = await Api.put({
+    url: `${userConfigPath}/blog/${blogConfigId}`,
+    ...request,
+  });
+  return data.blogConfig;
 };

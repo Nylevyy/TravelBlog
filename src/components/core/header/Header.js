@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { UiButton } from '~/shared/ui/button';
@@ -31,7 +30,7 @@ const Header = ({
           type="button"
           onClick={() => onTitleClick(title)}
         >
-          <h2>{title}</h2>
+          <h2>{title ?? 'Отредактируйте заголовок'}</h2>
         </button>
         <div className={styles.header__buttons}>
           <UiButton label="Событие +" type="submit" onClick={onNewEventClick} />

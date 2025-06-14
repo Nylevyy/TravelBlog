@@ -1,26 +1,31 @@
 import { appTypes } from '~/store/ducks/app';
-import { RECEIVE_TITLE } from './types';
+import { RECEIVE_CONFIG } from './types';
 
 const { INIT, LOG_OUT } = appTypes;
 const initialState = {
-  title: null,
+  blogConfig: {},
 };
 
+// TODO: Переименовать в userConfigReducer
 const titleReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case INIT:
       return {
-        title: 'Please wait...',
+        blogConfig: {
+          title: 'Please wait...',
+        },
       };
-    case RECEIVE_TITLE:
+    case RECEIVE_CONFIG:
       return {
         ...state,
-        title: action.title,
+        blogConfig: action.blogConfig,
       };
     case LOG_OUT:
       return {
         ...state,
-        title: 'Возвращайтесь...',
+        blogConfig: {
+          title: 'Возвращайтесь...',
+        },
       };
     default:
       return state;

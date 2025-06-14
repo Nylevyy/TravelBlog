@@ -47,12 +47,15 @@ const LayoutMain = ({ modal, children }) => {
       if (type === 'articleEditor') {
         if (id) {
           dispatch(updateArticle({ ...payload, id }));
+          dispatch(closeModal());
           return;
         }
         dispatch(createArticle({ ...payload }));
+        dispatch(closeModal());
         return;
       }
       dispatch(editTitle({ ...payload }));
+      dispatch(closeModal());
     },
     [dispatch],
   );
@@ -60,6 +63,7 @@ const LayoutMain = ({ modal, children }) => {
     (id) => {
       return () => {
         dispatch(deleteArticle({ id }));
+        dispatch(closeModal());
       };
     },
     [dispatch],

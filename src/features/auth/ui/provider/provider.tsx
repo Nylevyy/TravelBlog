@@ -19,7 +19,7 @@ const Provider = ({ children }: PropsWithChildren) => {
     return <UiLoader />;
   }
 
-  return isLoggedIn ? children : null;;
+  return isLoggedIn ? children : null;
 };
 
 export default Provider;

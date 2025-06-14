@@ -8,5 +8,6 @@ export {
 export {
   getError as getArticleError,
   getIsFetching as getIsArticleFetching,
+  getArticles,
   default as articleReducer,
 } from './slice';

@@ -27,7 +27,9 @@ function* errorHandler(e: unknown) {
 function* logInHandler(user: User) {
   try {
     yield call(logIn, user);
-    yield put(setAuthStatus({ isAuthorized: true, status: AuthStatus.Succeed }));
+    yield put(
+      setAuthStatus({ isAuthorized: true, status: AuthStatus.Succeed }),
+    );
     yield put(setError(null));
   } catch (e: unknown) {
     yield call(errorHandler, e);
@@ -37,7 +39,9 @@ function* logInHandler(user: User) {
 function* logOutHandler() {
   try {
     yield call(logOut);
-    yield put(setAuthStatus({ isAuthorized: false, status: AuthStatus.Succeed }));
+    yield put(
+      setAuthStatus({ isAuthorized: false, status: AuthStatus.Succeed }),
+    );
     yield put(setError(null));
   } catch (e: unknown) {
     yield call(errorHandler, e);
@@ -47,7 +51,9 @@ function* logOutHandler() {
 function* registerHandler(user: User) {
   try {
     yield call(registerNewUser, user);
-    yield put(setAuthStatus({ isAuthorized: true, status: AuthStatus.Succeed }));
+    yield put(
+      setAuthStatus({ isAuthorized: true, status: AuthStatus.Succeed }),
+    );
     yield put(setError(null));
   } catch (e: unknown) {
     yield call(errorHandler, e);
@@ -76,11 +82,7 @@ function* registerWatcher() {
 }
 
 function* rootAuthSaga() {
-  yield all([
-    logInWatcher(),
-    logOutWatcher(),
-    registerWatcher(),
-  ]);
+  yield all([logInWatcher(), logOutWatcher(), registerWatcher()]);
 }
 
 export default rootAuthSaga;

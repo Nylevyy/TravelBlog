@@ -10,6 +10,6 @@ export enum AuthStatus {
 }
 
 export type AuthSliceState = {
-  auth: { isAuthorized: boolean, status: AuthStatus };
+  auth: { isAuthorized: boolean; status: AuthStatus };
   error: null | { message: string };
 };

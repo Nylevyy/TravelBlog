@@ -25,6 +25,7 @@ const authSlice = createSlice({
 });
 
 export const { setAuthStatus, setError } = authSlice.actions;
-export const { getIsAuthorized, getIsAuthPerformed, getErrorMessage } = authSlice.selectors;
+export const { getIsAuthorized, getIsAuthPerformed, getErrorMessage } =
+  authSlice.selectors;
 
 export default authSlice.reducer;

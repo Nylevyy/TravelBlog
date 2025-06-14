@@ -39,7 +39,7 @@ class TravelBlogApi implements Api {
       const { data: responseData, error } = axiosResponse.data;
 
       if (error) {
-        throw error;
+        throw new Error(error.message);
       }
 
       return { ...axiosResponse, data: responseData };
@@ -70,7 +70,7 @@ class TravelBlogApi implements Api {
   }
 
   delete<T, U>(
-    request: Omit<ApiParams<T>, 'method'>
+    request: Omit<ApiParams<T>, 'method'>,
   ): Promise<AxiosResponse<U>> {
     return this.send<T, U>({
       ...request,

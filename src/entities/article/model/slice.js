@@ -5,10 +5,12 @@ const articleSlice = createSlice({
   initialState: {
     error: null,
     isFetching: {},
+    articles: [],
   },
   reducers: {
     setError: (state, action) => {
       state.error = action.payload;
+      state.articles = [];
     },
     startRequest: (state, action) => {
       state.isFetching[action.payload] = true;
@@ -16,14 +18,19 @@ const articleSlice = createSlice({
     endRequest: (state, action) => {
       delete state.isFetching[action.payload];
     },
+    setArticles: (state, action) => {
+      state.articles = action.payload;
+    },
   },
   selectors: {
     getError: (state) => state.error,
     getIsFetching: (state) => Object.keys(state.isFetching).length > 0,
+    getArticles: (state) => state.articles,
   },
 });
 
-export const { startRequest, endRequest, setError } = articleSlice.actions;
-export const { getError, getIsFetching } = articleSlice.selectors;
+export const { startRequest, endRequest, setError, setArticles } =
+  articleSlice.actions;
+export const { getError, getIsFetching, getArticles } = articleSlice.selectors;
 
 export default articleSlice.reducer;

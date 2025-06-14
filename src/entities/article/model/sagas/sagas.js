@@ -1,6 +1,6 @@
 import { nanoid } from '@reduxjs/toolkit';
 import { all, call, put, fork, take } from '@redux-saga/core/effects';
-import { startRequest, endRequest, setError } from '../slice';
+import { startRequest, endRequest, setError, setArticles } from '../slice';
 import {
   CREATE_ARTICLE_ACTION,
   DELETE_ARTICLE_ACTION,
@@ -13,10 +13,11 @@ function* newArticleHandler(article) {
 
   try {
     yield put(startRequest(reqId));
-    const { article: responseArticle } = yield call(createArticle, {
+    const { articles } = yield call(createArticle, {
       data: article,
     });
-    return responseArticle;
+    yield put(setArticles(articles));
+    return articles;
   } catch (err) {
     yield put(setError(err));
     return null;
@@ -30,14 +31,16 @@ function* editArticleHandler(article, id) {
 
   try {
     yield put(startRequest(reqId));
-    const { article: responseArticle } = yield call(updateArticle, id, {
+    const { articles } = yield call(updateArticle, id, {
       data: article,
     });
-    yield put(endRequest(reqId));
-    return responseArticle;
+    yield put(setArticles(articles));
+    return articles;
   } catch (err) {
     yield put(setError(err));
     return null;
+  } finally {
+    yield put(endRequest(reqId));
   }
 }
 
@@ -46,10 +49,14 @@ function* deleteArticleHandler(id) {
 
   try {
     yield put(startRequest(reqId));
-    yield call(deleteArticle, id, {});
-    yield put(endRequest(reqId));
+    const { articles } = yield call(deleteArticle, id, {});
+    yield put(setArticles(articles));
+    return articles;
   } catch (err) {
     yield put(setError(err));
+    return null;
+  } finally {
+    yield put(endRequest(reqId));
   }
 }
 

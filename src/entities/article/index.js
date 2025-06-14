@@ -3,6 +3,7 @@ export {
   articleReducer,
   deleteArticle,
   createArticle,
+  getArticles,
   updateArticle,
   articleSaga,
   getArticleError,

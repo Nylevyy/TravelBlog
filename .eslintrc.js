@@ -97,8 +97,12 @@ module.exports = {
       parserOptions: {
         project: './tsconfig.json',
       },
-      plugins: ['@typescript-eslint'],
-      extends: ['airbnb-typescript', 'plugin:@typescript-eslint/recommended'],
+      plugins: ['prettier', '@typescript-eslint'],
+      extends: [
+        'airbnb-typescript',
+        'plugin:prettier/recommended',
+        'plugin:@typescript-eslint/recommended',
+      ],
       rules: {
         'import/extensions': 0,
       },

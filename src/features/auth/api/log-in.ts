@@ -15,7 +15,7 @@ export const logIn = async ({
     data: { username, password },
   });
 
-  const authHeader = response?.headers['authorization'];
+  const authHeader = response?.headers.authorization;
 
   if (authHeader) {
     Api.setAuthToken(authHeader);

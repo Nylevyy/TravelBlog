@@ -1,7 +1,7 @@
-import { RECEIVE_TITLE, EDIT_TITLE, FETCH_TITLE } from './types';
+import { RECEIVE_CONFIG, EDIT_TITLE, FETCH_CONFIG } from './types';
 
-export const receiveTitle = (payload) => ({
-  type: RECEIVE_TITLE,
+export const receiveConfig = (payload) => ({
+  type: RECEIVE_CONFIG,
   ...payload,
 });
 
@@ -10,6 +10,6 @@ export const editTitle = (payload) => ({
   ...payload,
 });
 
-export const fetchTitle = () => ({
-  type: FETCH_TITLE,
+export const fetchConfig = () => ({
+  type: FETCH_CONFIG,
 });

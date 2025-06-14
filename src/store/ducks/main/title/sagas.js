@@ -1,16 +1,17 @@
-import { put, call, take, fork, all } from '@redux-saga/core/effects';
+import { put, call, take, fork, all, select } from '@redux-saga/core/effects';
 import { appActions } from '~/store/ducks/app';
-import { EDIT_TITLE, FETCH_TITLE } from './types';
-import { receiveTitle } from './actions';
-import { changeTitle, fetchTitle } from './services';
+import { EDIT_TITLE, FETCH_CONFIG } from './types';
+import { receiveConfig } from './actions';
+import { changeTitle, fetchConfig } from './services';
+import { blogConfigIdSelector } from './selectors';
 
 const { startRequest, endRequest, reportError } = appActions;
 
-function* fetchTitleHandler() {
+function* fetchConfigHandler() {
   try {
     yield put(startRequest());
-    const newTitle = yield call(fetchTitle);
-    yield put(receiveTitle(newTitle));
+    const { blogConfig } = yield call(fetchConfig);
+    yield put(receiveConfig({ blogConfig }));
     yield put(endRequest());
   } catch (e) {
     yield put(reportError());
@@ -20,8 +21,11 @@ function* fetchTitleHandler() {
 function* newTitleHandler(title) {
   try {
     yield put(startRequest());
-    const newTitle = yield call(changeTitle, { data: { title } });
-    yield put(receiveTitle(newTitle));
+    const blogConfigIdFromState = yield select(blogConfigIdSelector);
+    const blogConfig = yield call(changeTitle, blogConfigIdFromState, {
+      data: { title },
+    });
+    yield put(receiveConfig({ blogConfig }));
     yield put(endRequest());
   } catch (e) {
     yield put(reportError());
@@ -35,15 +39,15 @@ function* newTitleWatcher() {
   }
 }
 
-function* fetchTitleWatcher() {
+function* fetchConfigWatcher() {
   while (true) {
-    yield take(FETCH_TITLE);
-    yield fork(fetchTitleHandler);
+    yield take(FETCH_CONFIG);
+    yield fork(fetchConfigHandler);
   }
 }
 
 function* rootTitleSaga() {
-  yield all([newTitleWatcher(), fetchTitleWatcher()]);
+  yield all([newTitleWatcher(), fetchConfigWatcher()]);
 }
 
 export { rootTitleSaga };

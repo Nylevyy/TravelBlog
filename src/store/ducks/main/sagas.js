@@ -6,14 +6,14 @@ import { articlesActions } from './articles';
 import { fetchMainData } from './services';
 
 const { startRequest, endRequest, reportError } = appActions;
-const { receiveTitle } = titleActions;
+const { receiveConfig } = titleActions;
 const { receiveArticles } = articlesActions;
 
 function* fetchMainDataHandler() {
   try {
     yield put(startRequest());
     const { userConfig, articles } = yield call(fetchMainData);
-    yield put(receiveTitle({ title: userConfig.blogConfig.title }));
+    yield put(receiveConfig(userConfig));
     yield put(receiveArticles({ articles }));
     yield put(endRequest());
   } catch (e) {

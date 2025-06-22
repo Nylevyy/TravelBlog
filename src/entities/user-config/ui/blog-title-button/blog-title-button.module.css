@@ -1,0 +1,33 @@
+.blog-title-button {
+  display: block;
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  padding: 0;
+  color: var(--contrast-color);
+  font-size: 16px;
+  text-align: left;
+  overflow-wrap: break-word;
+}
+
+.blog-title-button:hover {
+  box-shadow: 0 0 25px 10px var(--active);
+}
+
+.blog-title-button:focus {
+  outline: none;
+  box-shadow: 0 0 15px 5px var(--active);
+}
+
+.blog-title-button:active {
+  box-shadow: 0 0 25px 10px var(--active);
+  position: relative;
+  left: 0.2%;
+  top: 0.2%;
+}
+
+@media all and (width >= 768px) {
+  .blog-title-button {
+    font-size: 22px;
+  }
+}

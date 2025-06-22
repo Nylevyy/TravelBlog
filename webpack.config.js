@@ -48,36 +48,34 @@ module.exports = () => {
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.(js|ts)x?$/,
           exclude: /node_modules/,
           loader: 'babel-loader',
         },
         {
           test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
+          use: ['style-loader'],
         },
         {
-          test: /\.scss$/,
+          test: /\.css$/,
           use: [
-            'style-loader',
             {
               loader: 'css-loader',
               options: {
                 modules: {
                   exportLocalsConvention: 'dashes',
                   mode: 'local',
-                  localIdentName: '[path]-[local]',
+                  localIdentName: '[path]-[local]-[hash:base64:5]',
                 },
               },
             },
-            {
-              loader: 'sass-loader',
-              options: {
-                additionalData:
-                  '@import "./src/assets/scss/variables/index.scss";',
-              },
-            },
           ],
+          include: /\.module\.css$/,
+        },
+        {
+          test: /\.css$/,
+          use: ['css-loader'],
+          exclude: /\.module\.css$/,
         },
         {
           test: /\.(png|jpg|gif|svg)$/,
@@ -118,7 +116,7 @@ module.exports = () => {
       alias: {
         '~': path.resolve(__dirname, 'src/'),
       },
-      extensions: ['.json', '.js'],
+      extensions: ['.tsx', '.ts', '.jsx', '...'],
     },
     devServer: {
       port,
@@ -131,7 +129,7 @@ module.exports = () => {
         const { port } = devServer.options;
         console.log(
           '\x1b[36m%s\x1b[0m',
-          `Starting the development server on port: ${port}\n`
+          `Starting the development server on port: ${port}\n`,
         );
       },
       client: {
@@ -157,6 +155,7 @@ module.exports = () => {
         new webpack.LoaderOptionsPlugin({
           minimize: true,
         }),
+        new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /ru/),
       ]),
     };
   }

@@ -1,0 +1,12 @@
+.page {
+  min-height: 70vh;
+  margin: 0 auto;
+  padding: 20px;
+  color: var(--error);
+  font-size: 26px;
+
+  .link {
+    color: var(--contrast-color);
+    text-decoration: underline;
+  }
+}

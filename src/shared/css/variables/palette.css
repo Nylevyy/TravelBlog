@@ -1,0 +1,16 @@
+:root { 
+  --secondary-background: var(--white);
+  --sub-secondary-background: var(--transparent-light);
+  --background: var(--light);
+  --sub-background: var(--light-black);
+  --active: var(--green);
+  --passive: var(--grey-lighter);
+  --invalid: var(--light-red);
+  --error: var(--red);
+  --important: var(--pink);
+  --base-color: var(--black);
+  --contrast-color: var(--white);
+  --secondary-color: var(--grey-dark);
+  --reset-color: var(--grey);
+  --labels: var(--grey-light);
+}

@@ -1,0 +1,14 @@
+.textarea {
+  resize: none;
+  flex: 0.8;
+  padding: 15px;
+  border: 1px solid var(--passive);
+}
+
+.textarea:focus {
+  outline: 2px solid var(--active);
+}
+
+.textarea.invalid {
+  background: var(--invalid);
+}

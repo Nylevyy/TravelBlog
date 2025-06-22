@@ -1,0 +1,78 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+*::after, *::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: auto;
+  font-family: var(--base-font);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+  color: var(--base-color);
+  font-size: 14px;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  flex-grow: 1;
+}
+
+a {
+  text-decoration: none;
+  outline: 0;
+  color: var(--base-color);
+  cursor: pointer;
+  transition: color 0.4s ease;
+}
+
+a:focus {
+  box-shadow: 0 0 10px 0 var(--active);
+}
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+}
+
+input[type="number"] {
+  appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button, input, textarea, select {
+  background-color: transparent;
+  font-family: var(--base-font);
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+button:focus, input:focus, textarea:focus, select:focus {
+  box-shadow: 0 0 10px 0 var(--active);
+}

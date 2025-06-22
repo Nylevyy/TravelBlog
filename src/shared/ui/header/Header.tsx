@@ -3,28 +3,23 @@ import { redirectToRootPage } from '../../lib/routes';
 import * as styles from './header.module.css';
 
 type Props = {
-  rightWidget?: ReactNode;
-  bottomWidget?: ReactNode;
+  slots?: ReactNode[];
 };
 
-const Header = ({ bottomWidget, rightWidget }: Props) => {
+const Header = ({ slots = [] }: Props) => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <div className={styles.topWidget}>
-          <button
-            className={styles.logo}
-            type="button"
-            onClick={redirectToRootPage}
-          >
-            <h3 className={styles.logoText}>Мой Календарь</h3>
-            <div className={styles.logoBorder} />
-          </button>
+        <button
+          className={styles.logo}
+          type="button"
+          onClick={redirectToRootPage}
+        >
+          <h3 className={styles.logoText}>Мой Календарь</h3>
+          <div className={styles.logoBorder} />
+        </button>
 
-          {rightWidget}
-        </div>
-
-        <div className={styles.bottomWidget}>{bottomWidget}</div>
+        {slots.map((slot) => slot)}
       </div>
     </header>
   );

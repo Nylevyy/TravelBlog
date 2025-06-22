@@ -1,7 +1,6 @@
 .layout {
   display: flex;
   flex-direction: column;
-  background: url('../../../../shared/assets/images/jpg/errorBackground.jpg') center;
   background-size: cover;
   position: fixed;
   inset: 0;

@@ -1,6 +1,6 @@
 .header {
   display: flex;
-  background: url("../../../shared/assets/images/jpg/headerBackground.jpg") center no-repeat;
+  background: url("./headerBackground.jpg") center no-repeat;
   background-size: cover;
   color: var(--contrast-color);
   padding: 10px 15px;
@@ -57,23 +57,12 @@
   color: var(--contrast-color);
 }
 
-.header .top-widget {
-  display: flex;
-  justify-content: center;
-  flex-flow: column nowrap;
-}
-
 @media all and (width >= 768px) {
   .header .container {
-    align-items: flex-start;
- }
+    display: block;
+  }
 
- .header .top-widget {
-    display: flex;
-    flex-direction: row;
- }
-
- .header .logo {
+  .header .logo {
     margin-bottom: 0;
- }
+  }
 }

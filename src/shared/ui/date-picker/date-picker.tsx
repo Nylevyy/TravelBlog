@@ -1,3 +1,4 @@
+import { forwardRef, Ref } from 'react';
 import classNames from 'classnames/bind';
 import DateTimePicker, { registerLocale } from 'react-datepicker';
 import { ru } from 'date-fns/locale/ru';
@@ -15,30 +16,38 @@ type Props = {
   id?: string;
 };
 
-const DatePicker = ({ notValidated, value, onChange, id = 'date' }: Props) => {
-  return (
-    <div className={styles.datePicker}>
-      <DateTimePicker
-        calendarClassName={styles.calendar}
-        dateFormat="d MMMM, yyyy HH:mm"
-        id={id}
-        locale="ru"
-        popperClassName={styles.popper}
-        selected={value}
-        showTimeInput
-        timeCaption="time"
-        timeFormat="HH:mm"
-        className={ccn('input', {
-          invalid: notValidated,
-        })}
-        onChange={onChange}
-        onSelect={onChange}
-      />
-      <label className={styles.label} htmlFor={id}>
-        Время
-      </label>
-    </div>
-  );
-};
+const DatePicker = forwardRef(
+  (
+    { notValidated, value, onChange, id = 'date' }: Props,
+    ref: Ref<DateTimePicker>,
+  ) => {
+    return (
+      <div className={styles.datePicker}>
+        <DateTimePicker
+          calendarClassName={styles.calendar}
+          dateFormat="d MMMM, yyyy HH:mm"
+          id={id}
+          locale="ru"
+          popperClassName={styles.popper}
+          ref={ref}
+          selected={value}
+          showTimeInput
+          timeCaption="time"
+          timeFormat="HH:mm"
+          className={ccn('input', {
+            invalid: notValidated,
+          })}
+          onChange={onChange}
+          onSelect={onChange}
+        />
+        <label className={styles.label} htmlFor={id}>
+          Время
+        </label>
+      </div>
+    );
+  },
+);
+
+DatePicker.displayName = 'DatePicker';
 
 export default DatePicker;

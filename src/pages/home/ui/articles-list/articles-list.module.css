@@ -1,0 +1,28 @@
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  flex: 0.8;
+}
+
+.empty-message {
+  padding: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.date {
+  font-family: var(--secondary-font);
+  font-size: 22px;
+  padding: 15px;
+}
+
+@media all and (width >= 768px) {
+  .empty-message {
+    font-size: 26px;
+    line-height: 50px;
+ }
+
+ .date {
+    font-size: 30px;
+ }
+}

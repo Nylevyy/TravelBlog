@@ -1,12 +1,42 @@
 import { nanoid } from '@reduxjs/toolkit';
-import { all, call, put, fork, take } from '@redux-saga/core/effects';
-import { startRequest, endRequest, setError, setArticles } from '../slice';
+import {
+  all,
+  call,
+  put,
+  fork,
+  take,
+  takeLatest,
+} from '@redux-saga/core/effects';
+import { endRequest, startRequest } from '~/shared/ui/loader';
+import { setError, setArticles } from '../slice';
 import {
   CREATE_ARTICLE_ACTION,
   DELETE_ARTICLE_ACTION,
+  RECEIVE_ARTICLES_ACTION,
   UPDATE_ARTICLE_ACTION,
 } from './constants';
-import { createArticle, updateArticle, deleteArticle } from '../../api';
+import {
+  createArticle,
+  updateArticle,
+  deleteArticle,
+  getArticlesByUser,
+} from '../../api';
+
+function* receiveArticlesHandler() {
+  const reqId = nanoid();
+
+  try {
+    yield put(startRequest(reqId));
+    const articles = yield call(getArticlesByUser);
+    yield put(setArticles(articles));
+    return articles;
+  } catch (err) {
+    yield put(setError(err));
+    return null;
+  } finally {
+    yield put(endRequest(reqId));
+  }
+}
 
 function* newArticleHandler(article) {
   const reqId = nanoid();
@@ -67,6 +97,10 @@ function* newArticleWatcher() {
   }
 }
 
+function* receiveArticlesWatcher() {
+  yield takeLatest(RECEIVE_ARTICLES_ACTION, receiveArticlesHandler);
+}
+
 function* editArticleWatcher() {
   while (true) {
     const { article, id } = yield take(UPDATE_ARTICLE_ACTION);
@@ -84,6 +118,7 @@ function* deleteArticleWatcher() {
 function* rootArticlesSaga() {
   yield all([
     newArticleWatcher(),
+    receiveArticlesWatcher(),
     editArticleWatcher(),
     deleteArticleWatcher(),
   ]);

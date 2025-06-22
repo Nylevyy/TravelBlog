@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background: var(--background);
+}
+
+@media screen and (width >= 768px) {
+  .blog-title-button {
+    margin-left: auto;
+  }
+}

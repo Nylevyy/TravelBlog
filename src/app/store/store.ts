@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import { all } from 'redux-saga/effects';
 import { authReducer, authSaga } from '~/features/auth';
+import { rootMainPageSaga } from '~/pages/home';
 import { userConfigReducer, userConfigSaga } from '~/entities/user-config';
 import { loaderReducer } from '~/shared/ui/loader';
 import { articleSaga, articleReducer } from '~/entities/article';
@@ -21,6 +22,7 @@ function* rootSaga() {
     articleSaga(),
     authSaga(),
     userConfigSaga(),
+    rootMainPageSaga(),
   ]);
 }
 

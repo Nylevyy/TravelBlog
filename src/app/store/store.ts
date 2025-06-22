@@ -7,23 +7,8 @@ import { userConfigReducer, userConfigSaga } from '~/entities/user-config';
 import { loaderReducer } from '~/shared/ui/loader';
 import { articleSaga, articleReducer } from '~/entities/article';
 
-// TODO: remove legacy
-import { rootArticlesSaga, articlesReducer } from '~/store/ducks/main/articles';
-import { rootMainSaga } from '~/store/ducks/main';
-import { appReducer, rootAppSaga } from '~/store/ducks/app';
-import { titleSagas, titleReducer } from '~/store/ducks/main/title';
-
 function* rootSaga() {
-  yield all([
-    rootArticlesSaga(),
-    titleSagas(),
-    rootMainSaga(),
-    rootAppSaga(),
-    articleSaga(),
-    authSaga(),
-    userConfigSaga(),
-    rootMainPageSaga(),
-  ]);
+  yield all([articleSaga(), authSaga(), userConfigSaga(), rootMainPageSaga()]);
 }
 
 const saga = createSagaMiddleware();
@@ -31,13 +16,9 @@ const saga = createSagaMiddleware();
 export const store = configureStore({
   reducer: {
     article: articleReducer,
-    articles: articlesReducer,
     auth: authReducer,
     userConfig: userConfigReducer,
     loader: loaderReducer,
-    // @ts-expect-error TODO
-    app: appReducer,
-    title: titleReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ thunk: false }).concat([saga]),

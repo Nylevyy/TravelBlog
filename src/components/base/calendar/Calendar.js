@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { useAppDispatch, useAppSelector } from '~/shared/model';
-import { Article, deleteArticle, getArticles } from '~/entities/article';
+import { ArticlePost, deleteArticle, getArticles } from '~/entities/article';
 import { appActions } from '~/store/ducks/app';
 import * as styles from './Calendar.module.css';
 
@@ -64,7 +64,7 @@ const Calendar = ({ requestError, isLoggedIn }) => {
                     <div className={styles.calendar__date}>
                       <h3>{currentDate}</h3>
                     </div>
-                    <Article
+                    <ArticlePost
                       key={item.id}
                       article={item}
                       onArticleClick={onArticleClick}
@@ -74,7 +74,7 @@ const Calendar = ({ requestError, isLoggedIn }) => {
                 );
               }
               return (
-                <Article
+                <ArticlePost
                   key={item.id}
                   article={item}
                   onArticleClick={onArticleClick}

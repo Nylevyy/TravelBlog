@@ -2,12 +2,12 @@ export {
   deleteArticle,
   createArticle,
   updateArticle,
+  receiveArticles,
   rootArticleSaga as articleSaga,
 } from './sagas';
 
 export {
   getError as getArticleError,
-  getIsFetching as getIsArticleFetching,
   getArticles,
   default as articleReducer,
 } from './slice';

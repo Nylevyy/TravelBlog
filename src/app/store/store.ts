@@ -2,6 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import { all } from 'redux-saga/effects';
 import { authReducer, authSaga } from '~/features/auth';
+import { userConfigReducer, userConfigSaga } from '~/entities/user-config';
+import { loaderReducer } from '~/shared/ui/loader';
 import { articleSaga, articleReducer } from '~/entities/article';
 
 // TODO: remove legacy
@@ -18,6 +20,7 @@ function* rootSaga() {
     rootAppSaga(),
     articleSaga(),
     authSaga(),
+    userConfigSaga(),
   ]);
 }
 
@@ -28,6 +31,8 @@ export const store = configureStore({
     article: articleReducer,
     articles: articlesReducer,
     auth: authReducer,
+    userConfig: userConfigReducer,
+    loader: loaderReducer,
     // @ts-expect-error TODO
     app: appReducer,
     title: titleReducer,

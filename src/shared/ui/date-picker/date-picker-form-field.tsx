@@ -2,7 +2,7 @@ import { Control, Controller } from 'react-hook-form';
 import DatePicker from './date-picker';
 
 type Props = {
-  control: Control;
+  control?: Control;
   id?: string;
   name: string;
 };

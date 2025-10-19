@@ -1,15 +1,18 @@
 import { nanoid } from '@reduxjs/toolkit';
 import Axios, { AxiosHeaders, AxiosResponse } from 'axios';
+import { CookieStorage, Storage } from '../lib/storage';
 import { Api, ApiParams, ApiResponse } from './types';
 
 class TravelBlogApi implements Api {
+  private tokenStorage: Storage = new CookieStorage();
+
   private pendingReqs: Record<string, boolean> = {};
 
   private axios = Axios.create({
     baseURL: process.env.API_BASE_URL,
   });
 
-  private authToken: string | null = null;
+  private authToken: string | null = this.tokenStorage.get('Authorization');
 
   private async send<T, U>({
     method,
